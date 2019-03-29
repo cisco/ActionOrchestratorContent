@@ -1,0 +1,239 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01638EL6NJAHX2JWnQmbl6ILL2BOsE8vOWK",
+    "name": "Core Action - Split String Example",
+    "title": "Core Action - Split String Example",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "SetValue",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01638ELEVRYFC5JSAqPhOglzKV5f6EcvUDO",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "Split String Example with for loop and condition block",
+      "display_name": "Core Action - Split String Example",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01638ELJZ6UYO2u8Dp6zpgDK3PL76zP50UC",
+        "name": "Split String",
+        "title": "Split String",
+        "type": "core.splitstring",
+        "base_type": "activity",
+        "properties": {
+          "boundaries": [
+            {
+              "boundary": ","
+            }
+          ],
+          "continue_on_failure": false,
+          "display_name": "Split String",
+          "input_string": "a,b,c,d"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_01638ELJZ6UYO2u8Dp6zpgDK3PL76zP50UC.output.parts$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01638ELT86VR11eX4J7k4VGoVq19XRPHDQO",
+            "name": "Condition Block",
+            "title": "Condition Block",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Condition Block"
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01638ELWWG8UX13HGS2upagKUjddA4fTko6",
+                "name": "Condition Branch",
+                "title": "Condition Branch",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy.input.source_array[@]$",
+                    "operator": "eq",
+                    "right_operand": "a"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Condition Branch"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01638EM1F48MV30ABubusbLvCUwldX6jf1i",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01638EL6NJAHX2JWnQmbl6ILL2BOsE8vOWK.local.variable_workflow_01638ELEVRYFC5JSAqPhOglzKV5f6EcvUDO$",
+                          "variable_value_new": "$activity.definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy.input.source_array[@]$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01638EM6BB37066bndw6OalshzN39OswnQD",
+                "name": "Condition Branch",
+                "title": "Condition Branch",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy.input.source_array[@]$",
+                    "operator": "eq",
+                    "right_operand": "b"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Condition Branch"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01638EMB7ECAC1jpi2ojzIqJNkVBgApP98X",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01638EL6NJAHX2JWnQmbl6ILL2BOsE8vOWK.local.variable_workflow_01638ELEVRYFC5JSAqPhOglzKV5f6EcvUDO$",
+                          "variable_value_new": "$activity.definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy.input.source_array[@]$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01638EMFQQVXE57TOLRShWxnXVX0G2wSxAS",
+                "name": "Condition Branch",
+                "title": "Condition Branch",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy.input.source_array[@]$",
+                    "operator": "eq",
+                    "right_operand": "c"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Condition Branch"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01638EMKEKCW41QdqJHNv4Jwqhqb8X0mitF",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01638EL6NJAHX2JWnQmbl6ILL2BOsE8vOWK.local.variable_workflow_01638ELEVRYFC5JSAqPhOglzKV5f6EcvUDO$",
+                          "variable_value_new": "$activity.definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy.input.source_array[@]$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01638EMP3SA4I5CSY5CwJxuVFEOGYLVpQSW",
+                "name": "Condition Branch",
+                "title": "Condition Branch",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy.input.source_array[@]$",
+                    "operator": "eq",
+                    "right_operand": "d"
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Condition Branch"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01638EMTU2PGD4pARIBI9uR8aPGHC6UrGhc",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set Variables",
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01638EL6NJAHX2JWnQmbl6ILL2BOsE8vOWK.local.variable_workflow_01638ELEVRYFC5JSAqPhOglzKV5f6EcvUDO$",
+                          "variable_value_new": "$activity.definition_activity_01638ELN289QC7d3kXPi1pgqDBdptQVLAKy.input.source_array[@]$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
