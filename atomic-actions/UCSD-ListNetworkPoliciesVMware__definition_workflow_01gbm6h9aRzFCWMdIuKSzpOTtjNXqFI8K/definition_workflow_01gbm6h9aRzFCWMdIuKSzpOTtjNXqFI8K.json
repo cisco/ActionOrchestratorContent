@@ -1,0 +1,191 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gbm6h9aRzFCWMdIuKSzpOTtjNXqFI8K",
+    "name": "List Network Policies (VMware)",
+    "title": "List Network Policies (VMware)",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01gDNzjKMRVJs2QVg4TVMmIptD2Pg5QSe",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gbPOwEl58HIRlt4TaLIHksMWCa30wVb",
+        "properties": {
+          "scope": "output",
+          "name": "Get Network Policies (VMware) Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gbPsFmskeAeDYGjEkQOkI1E93Z5o1gl",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco UCS Director",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic will list network policies related to VMware in Cisco UCS Director. ",
+      "display_name": "List Network Policies (VMware)",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gbO8ixRYEeNwC0RNwILWwKyakuUUB6a",
+        "name": "HTTP Request",
+        "title": "Network Policies Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+              "value": "$workflow.definition_workflow_01gbm6h9aRzFCWMdIuKSzpOTtjNXqFI8K.input.variable_workflow_01gDNzjKMRVJs2QVg4TVMmIptD2Pg5QSe$"
+            }
+          ],
+          "display_name": "Network Policies Details",
+          "method": "GET",
+          "relative_url": "/cloupia/api-v2/vmwareNetworkPoliciesList\n",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbotXOEnAZGUQFZr1JlGb4Ez7lb1q0Q",
+        "name": "Read Table from XML",
+        "title": "Read Network Policies Details (VMware)",
+        "type": "corejava.read_table_from_xml",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Network Policies Details (VMware)",
+          "input_xml": "$activity.definition_activity_01gbO8ixRYEeNwC0RNwILWwKyakuUUB6a.output.response_body$",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string"
+            },
+            {
+              "column_name": "value",
+              "column_type": "string"
+            }
+          ],
+          "xmlpath_query": "//LOVListEntry"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbTl2clDIu0G6XDia7ZLT4a79TJY4kH",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_01gbotXOEnAZGUQFZr1JlGb4Ez7lb1q0Q.output.read_table_from_xml$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gbTsGhJlHV8JivIq61Xwguj9ON2VWVY",
+            "name": "Add Row to Table",
+            "title": "Add Network Policies Details",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Network Policies Details",
+              "input_table": "$workflow.definition_workflow_01gbm6h9aRzFCWMdIuKSzpOTtjNXqFI8K.output.variable_workflow_01gbPsFmskeAeDYGjEkQOkI1E93Z5o1gl$",
+              "name": "$activity.definition_activity_01gbTl2clDIu0G6XDia7ZLT4a79TJY4kH.input.source_array[@].name$",
+              "row": [
+                {
+                  "key": "name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbTl2clDIu0G6XDia7ZLT4a79TJY4kH.input.source_array[@].name$"
+                },
+                {
+                  "key": "value",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbTl2clDIu0G6XDia7ZLT4a79TJY4kH.input.source_array[@].value$"
+                }
+              ],
+              "value": "$activity.definition_activity_01gbTl2clDIu0G6XDia7ZLT4a79TJY4kH.input.source_array[@].value$"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi": {
+      "unique_name": "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi",
+      "properties": {
+        "value": "X-Cloupia-Request-Key",
+        "scope": "global",
+        "name": "UCS Director API Key",
+        "type": "datatype.string"
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01gbPOwEl58HIRlt4TaLIHksMWCa30wVb": {
+      "unique_name": "tabletype_01gbPOwEl58HIRlt4TaLIHksMWCa30wVb",
+      "data_type": "datatype.tabletype",
+      "display_name": "Get Network Policies Details(VMware) Details",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
