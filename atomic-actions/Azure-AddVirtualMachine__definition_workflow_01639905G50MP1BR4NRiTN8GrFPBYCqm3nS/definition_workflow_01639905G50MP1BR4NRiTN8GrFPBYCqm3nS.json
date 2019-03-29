@@ -1,0 +1,335 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS",
+    "name": "Add Virtual Machine",
+    "title": "Add Virtual Machine",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "East US",
+          "scope": "input",
+          "name": "Location",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0GLR6fWzXqnRsmYC31IYnxEY80",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": true,
+          "scope": "input",
+          "name": "Network Interface - Primary",
+          "type": "datatype.boolean"
+        },
+        "unique_name": "variable_workflow_01639915T0CDM34l6tgfRLh9MWQcKTRg48E",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "vMachine Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0NRF5dzSqNmvDTyLo3OgMGBmXB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "SKU",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0QG33NpW4ZDJJbhXowimM8iYXw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Offer",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0SWU2nrTvuwkAZci0sZKL7bH3w",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vMachine Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0B036hL5z88UJxgIEnIN0aSDKV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "latest",
+          "scope": "input",
+          "name": "Storage Profile Version",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0L136JZZHNXlsnBfNudKXQwmds",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subscription ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0JPE4AKHzbDn2p3VVEK2gWefpD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Resource Group Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0IBY5lKk6TwEp1EpSrC0l79Yzy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network Interface Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T07K86bAzp0mBugqNnabewijxPP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vMachine Size",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0MB729wPMjIxUj8WvrUn2n1Qiu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Admin UserName",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0V504dUXzuiMxcV2PWsb2HFscf",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01639915T0TZM1XdY8gvhvyEcgOOWmqIOCX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Canonical",
+          "scope": "input",
+          "name": "Publisher",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0RMF5Cm9NtzUlwAt2s9cSPn1Po",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "2018-06-01",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0DZ31Kkd59AkEHOyUZmxvlQNCk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Computer Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639915T0P447GLF0R5Mu3SiiwC7Kd3he1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Admin Password",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01639915T0FEC5x8eN7aG9JTrUNs4bJXy5D",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic will create virtual machine under a resource group in Microsoft Azure.",
+      "display_name": "Add Virtual Machine",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0163991CAYWFY1AhhFCI0L22t8HqLq7K2YH",
+        "name": "HTTP Request",
+        "title": "Create Virtual Machine",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n  \"name\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0B036hL5z88UJxgIEnIN0aSDKV$\",\r\n  \"location\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0GLR6fWzXqnRsmYC31IYnxEY80$\",\r\n  \"properties\": {\r\n    \"hardwareProfile\": {\r\n      \"vmSize\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0MB729wPMjIxUj8WvrUn2n1Qiu$\"\r\n    },\r\n    \"storageProfile\": {\r\n      \"imageReference\": {\r\n        \"sku\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0QG33NpW4ZDJJbhXowimM8iYXw$\",\r\n        \"publisher\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0RMF5Cm9NtzUlwAt2s9cSPn1Po$\",\r\n        \"version\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0L136JZZHNXlsnBfNudKXQwmds$\",\r\n        \"offer\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0SWU2nrTvuwkAZci0sZKL7bH3w$\"\r\n      }\r\n    },\r\n    \"osProfile\": {\r\n      \"adminUsername\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0V504dUXzuiMxcV2PWsb2HFscf$\",\r\n      \"computerName\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0P447GLF0R5Mu3SiiwC7Kd3he1$\",\r\n\t\t\t\"adminPassword\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0FEC5x8eN7aG9JTrUNs4bJXy5D$\"\r\n    },\r\n    \"networkProfile\": {\r\n      \"networkInterfaces\": [\r\n        {\r\n          \"id\": \"/subscriptions/$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0JPE4AKHzbDn2p3VVEK2gWefpD$/resourceGroups/$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0IBY5lKk6TwEp1EpSrC0l79Yzy$/providers/Microsoft.Network/networkInterfaces/$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T07K86bAzp0mBugqNnabewijxPP$\",\r\n          \"properties\": {\r\n            \"primary\": \"$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0CDM34l6tgfRLh9MWQcKTRg48E$\"\r\n          }\r\n        }\r\n      ]\r\n    }\r\n  }\r\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0TZM1XdY8gvhvyEcgOOWmqIOCX$"
+            }
+          ],
+          "description": "Create Virtual Machine",
+          "display_name": "Create Virtual Machine",
+          "method": "PUT",
+          "relative_url": "/subscriptions/$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0JPE4AKHzbDn2p3VVEK2gWefpD$/resourceGroups/$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0IBY5lKk6TwEp1EpSrC0l79Yzy$/providers/Microsoft.Compute/virtualMachines/$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0B036hL5z88UJxgIEnIN0aSDKV$?api-version=$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.input.variable_workflow_01639915T0DZ31Kkd59AkEHOyUZmxvlQNCk$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0163991GCRDW65MWluBOI7MlnnEmzNQPPkn",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0163991JTML976tZJTsC8agRKKgwxnfUXbI",
+            "name": "Condition Branch",
+            "title": "If Status code = 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0163991CAYWFY1AhhFCI0L22t8HqLq7K2YH.output.status_code$",
+                "operator": "eq",
+                "right_operand": "201"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code = 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0163991O8ONMU49NR8abYo3Am2WPaBxj2ct",
+                "name": "Set Variables",
+                "title": "vMachine Response Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "vMachine Response Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01639905G50MP1BR4NRiTN8GrFPBYCqm3nS.output.variable_workflow_01639915T0NRF5dzSqNmvDTyLo3OgMGBmXB$",
+                      "variable_value_new": "$activity.definition_activity_0163991CAYWFY1AhhFCI0L22t8HqLq7K2YH.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0163991SZ9I7V2bYiVakt4yVWVsq43MwdT2",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0163991CAYWFY1AhhFCI0L22t8HqLq7K2YH.output.status_code$",
+                "operator": "ne",
+                "right_operand": "201"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0163991WL4U7Z5A6CoVihFgnVHZYWISqcte",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Create Virtual Machine.\n\nError:\n$activity.definition_activity_0163991CAYWFY1AhhFCI0L22t8HqLq7K2YH.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
