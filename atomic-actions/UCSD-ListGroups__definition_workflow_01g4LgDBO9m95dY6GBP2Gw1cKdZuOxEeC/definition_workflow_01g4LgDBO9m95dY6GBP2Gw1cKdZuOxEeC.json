@@ -1,0 +1,209 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01g4LgDBO9m95dY6GBP2Gw1cKdZuOxEeC",
+    "name": "List Groups",
+    "title": "List Groups",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01g4PeIzQwhsoNLw0baVdy4WQchQrCMIM",
+        "properties": {
+          "scope": "output",
+          "name": "Table For All Groups",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01g4PLxRyR4ySBo0XwixjC52iz1k3OsvG",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0150I04PRUONK0SQKFgSxvJyr5KGbaFojeG",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco UCS Director",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic will list all groups defined in the Cisco UCS Director.",
+      "display_name": "List Groups",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01g4LY4RiC3QovihI6SxlNVN3DudiBg1v",
+        "name": "HTTP Request",
+        "title": "Get All Groups",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+              "value": "$workflow.definition_workflow_01g4LgDBO9m95dY6GBP2Gw1cKdZuOxEeC.input.variable_workflow_0150I04PRUONK0SQKFgSxvJyr5KGbaFojeG$"
+            }
+          ],
+          "display_name": "Get All Groups",
+          "method": "GET",
+          "relative_url": "/app/api/rest?formatType=json\u0026opName=userAPIGetAllGroups\u0026opData={}",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g4o4JaYwvI1HzOuYjeeLk6RqEemXi60",
+        "name": "Read Table from JSON",
+        "title": "Read All Groups ",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read All Groups ",
+          "input_json": "$activity.definition_activity_01g4LY4RiC3QovihI6SxlNVN3DudiBg1v.output.response_body$",
+          "jsonpath_query": "$.serviceResult.rows[*]",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "Group_ID",
+              "column_type": "integer",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "Group_Name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "Group_Contact_Email_Address",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g4tcHJNbSXSgu489T8s3nFbMM5BJMf3",
+        "name": "For Each",
+        "title": "For Each Groups ",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each Groups ",
+          "source_array": "$activity.definition_activity_01g4o4JaYwvI1HzOuYjeeLk6RqEemXi60.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01g4tLsPcMO6L30yR4MqLXhlAacwrEQtk",
+            "name": "Add Row to Table",
+            "title": "Add Row to Table",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "Group_Contact_Email_Address": "$activity.definition_activity_01g4tcHJNbSXSgu489T8s3nFbMM5BJMf3.input.source_array[@].Group_Contact_Email_Address$",
+              "Group_ID": "$activity.definition_activity_01g4tcHJNbSXSgu489T8s3nFbMM5BJMf3.input.source_array[@].Group_ID$",
+              "Group_Name": "$activity.definition_activity_01g4tcHJNbSXSgu489T8s3nFbMM5BJMf3.input.source_array[@].Group_Name$",
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Row to Table",
+              "input_table": "$workflow.definition_workflow_01g4LgDBO9m95dY6GBP2Gw1cKdZuOxEeC.output.variable_workflow_01g4PLxRyR4ySBo0XwixjC52iz1k3OsvG$",
+              "row": [
+                {
+                  "key": "Group_ID",
+                  "type": "integer",
+                  "value": "$activity.definition_activity_01g4tcHJNbSXSgu489T8s3nFbMM5BJMf3.input.source_array[@].Group_ID$"
+                },
+                {
+                  "key": "Group_Name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01g4tcHJNbSXSgu489T8s3nFbMM5BJMf3.input.source_array[@].Group_Name$"
+                },
+                {
+                  "key": "Group_Contact_Email_Address",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01g4tcHJNbSXSgu489T8s3nFbMM5BJMf3.input.source_array[@].Group_Contact_Email_Address$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi": {
+      "unique_name": "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi",
+      "properties": {
+        "value": "X-Cloupia-Request-Key",
+        "scope": "global",
+        "name": "UCS Director API Key",
+        "type": "datatype.string"
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01g4PeIzQwhsoNLw0baVdy4WQchQrCMIM": {
+      "unique_name": "tabletype_01g4PeIzQwhsoNLw0baVdy4WQchQrCMIM",
+      "data_type": "datatype.tabletype",
+      "display_name": "Get All Groups",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "Group_Contact_Email_Address",
+          "title": "Group_Contact Email Address",
+          "type": "string"
+        },
+        {
+          "name": "Group_ID",
+          "title": "Group ID",
+          "type": "integer"
+        },
+        {
+          "name": "Group_Name",
+          "title": "Group Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
