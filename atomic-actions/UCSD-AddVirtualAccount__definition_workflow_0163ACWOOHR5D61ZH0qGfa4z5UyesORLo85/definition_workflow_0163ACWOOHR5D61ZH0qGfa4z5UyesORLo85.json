@@ -1,0 +1,271 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85",
+    "name": "Add Virtual Account",
+    "title": "Add Virtual Account",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Virtual Access URL",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW92PC2qsilFX3OCzPlZ6KLWETag",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Physical Datacenter (Pod)",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW9FKX108G7rAImmHrgdYysmPfUv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Location",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW96PE1XrPDkmhKjrqtaEHqTCHle",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Virtual Account Details",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW99D97K6bXQphIqkv98Phschwwv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Account Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW9D6E1SDS6goQx8UHk1MCnm7b01",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Service Provider",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW9I5D0ws9N39x0YuDv3LIGR2ckd",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Virtual Server",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW8Z5M4hfIdhF9Pgfc8cNzWoFgxG",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vUserID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW9EG87FvqQz18QsMmiRGkKdntwg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Account Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW940G6JFLpq9IP2w0WSzzQq6id4",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "input",
+          "name": "Credential Policy",
+          "type": "datatype.boolean"
+        },
+        "unique_name": "variable_workflow_0163ACXSW95GX67AagK1gpQ7nKamoW2kKa0",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vPassword",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW9BWA1XJZxv58FWB5y7ORewIuvH",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Contact Email",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW9JA02CzaceQAX2N7CxlyyWcOR7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW9GRM0gFYGzpKBcDn7bRe1UuFB7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Description",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW981O259RnqSXFwMHC0R6f8SqJ6",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vPort",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0163ACXSW9AH25H1hxqukpGiK5C40yUEapV",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco UCS Director",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic will create a virtual account in Cisco UCS Director",
+      "display_name": "Add Virtual Account",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0163ACY09O3WN3u0Al8j1k7obF6qqXsjW5P",
+        "name": "HTTP Request",
+        "title": "Create Virtual Account",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "\u003ccuicOperationRequest\u003e\r\n\u003cpayload\u003e\r\n\u003c![CDATA[\r\n\u003ccloud\u003e\r\n\u003caccountType\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW940G6JFLpq9IP2w0WSzzQq6id4$\u003c/accountType\u003e\r\n\u003caccountName\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW9D6E1SDS6goQx8UHk1MCnm7b01$\u003c/accountName\u003e\r\n\u003cvServer\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW8Z5M4hfIdhF9Pgfc8cNzWoFgxG$\u003c/vServer\u003e\r\n\u003cisCredentialPolicy\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW95GX67AagK1gpQ7nKamoW2kKa0$\u003c/isCredentialPolicy\u003e\r\n\u003cvUserId\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW9EG87FvqQz18QsMmiRGkKdntwg$\u003c/vUserId\u003e\r\n\u003cvPasswd\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW9BWA1XJZxv58FWB5y7ORewIuvH$\u003c/vPasswd\u003e\r\n\u003cvPort\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW9AH25H1hxqukpGiK5C40yUEapV$\u003c/vPort\u003e\r\n\u003cvUrl\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW92PC2qsilFX3OCzPlZ6KLWETag$\u003c/vUrl\u003e\r\n\u003cdescription\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW981O259RnqSXFwMHC0R6f8SqJ6$\u003c/description\u003e\r\n\u003clocation\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW96PE1XrPDkmhKjrqtaEHqTCHle$\u003c/location\u003e\r\n\u003cphysicalDatacenter\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW9FKX108G7rAImmHrgdYysmPfUv$\u003c/physicalDatacenter\u003e\r\n\u003cserviceProvider\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.local.variable_workflow_0163ACXSW9I5D0ws9N39x0YuDv3LIGR2ckd$\u003c/serviceProvider\u003e\r\n\u003ccontactEmail\u003e$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW9JA02CzaceQAX2N7CxlyyWcOR7$\u003c/contactEmail\u003e\r\n\u003c/cloud\u003e\r\n]]\u003e\r\n\u003c/payload\u003e\r\n\u003c/cuicOperationRequest\u003e\r\n",
+          "content_type": "application/xml",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Cloupia-Request-Key",
+              "value": "$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.input.variable_workflow_0163ACXSW9GRM0gFYGzpKBcDn7bRe1UuFB7$"
+            }
+          ],
+          "display_name": "Create Virtual Account",
+          "method": "Post",
+          "relative_url": " /cloupia/api-v2/cloud ",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0163ACY65FGOK3EeVQnoXoOd4we9xJwXdjA",
+        "name": "Replace String",
+        "title": "Replace Characters",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Replace Characters",
+          "input_string": "$activity.definition_activity_0163ACY09O3WN3u0Al8j1k7obF6qqXsjW5P.output.response_body$",
+          "replace_list": [
+            {
+              "replaced_string": "\\n",
+              "replacement_string": ""
+            },
+            {
+              "replaced_string": "\\\\",
+              "replacement_string": "\\"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0163ACYBT2O6N4w5niwtTnI8RXZJUbOOP72",
+        "name": "Set Variables",
+        "title": "Set vAccount Output",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set vAccount Output",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_0163ACWOOHR5D61ZH0qGfa4z5UyesORLo85.output.variable_workflow_0163ACXSW99D97K6bXQphIqkv98Phschwwv$",
+              "variable_value_new": "$activity.definition_activity_0163ACY65FGOK3EeVQnoXoOd4we9xJwXdjA.output.result_string$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
