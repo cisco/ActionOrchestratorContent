@@ -1,0 +1,187 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gbS1SLuMTlGLFfVZKycAPLbXW9ibejJ",
+    "name": "Get Computing Policies (vmware)",
+    "title": "Get Computing Policies (vmware)",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01gbXQG5FvkxnVtEDKwPgx1IYC7veUqoT",
+        "properties": {
+          "scope": "output",
+          "name": "Computing Policies Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gbXYOetWWFsuYxQx5qxx8gkKjd22IQt",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0150HTZRBXW9R0mI2J6KDVZlb0XjdywsEop",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco UCS Director",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic get computing policies details",
+      "display_name": "Get Computing Policies (vmware)",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gbxGhqSMoMOAXQbPBgazDfhO8pkv7rj",
+        "name": "HTTP Request",
+        "title": "Get Computing Policies",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+              "value": "$workflow.definition_workflow_01gbS1SLuMTlGLFfVZKycAPLbXW9ibejJ.input.variable_workflow_0150HTZRBXW9R0mI2J6KDVZlb0XjdywsEop$"
+            }
+          ],
+          "display_name": "Get Computing Policies",
+          "method": "GET",
+          "relative_url": "/cloupia/api-v2/vmwareComputingPoliciesList",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbykd7irAZlduf2q6PjUwuwJySuphS2",
+        "name": "Read Table from XML",
+        "title": "Read Computing Policies",
+        "type": "corejava.read_table_from_xml",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Computing Policies",
+          "input_xml": "$activity.definition_activity_01gbxGhqSMoMOAXQbPBgazDfhO8pkv7rj.output.response_body$",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string"
+            },
+            {
+              "column_name": "value",
+              "column_type": "string"
+            }
+          ],
+          "xmlpath_query": "//LOVListEntry"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbytyelJZNRbHsxWvVlm2FcMPJXc9dd",
+        "name": "For Each",
+        "title": "For Each Computing Policy",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each Computing Policy",
+          "source_array": "$activity.definition_activity_01gbykd7irAZlduf2q6PjUwuwJySuphS2.output.read_table_from_xml$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gbyzZRrbJkKMnp6I8F1t0lgTFTz5Zit",
+            "name": "Add Row to Table",
+            "title": "Add Row to Policy Table ",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Row to Policy Table ",
+              "input_table": "$workflow.definition_workflow_01gbS1SLuMTlGLFfVZKycAPLbXW9ibejJ.output.variable_workflow_01gbXYOetWWFsuYxQx5qxx8gkKjd22IQt$",
+              "row": [
+                {
+                  "key": "name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbytyelJZNRbHsxWvVlm2FcMPJXc9dd.input.source_array[@].name$"
+                },
+                {
+                  "key": "value",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbytyelJZNRbHsxWvVlm2FcMPJXc9dd.input.source_array[@].value$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi": {
+      "unique_name": "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi",
+      "properties": {
+        "value": "X-Cloupia-Request-Key",
+        "scope": "global",
+        "name": "UCS Director API Key",
+        "type": "datatype.string"
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01gbXQG5FvkxnVtEDKwPgx1IYC7veUqoT": {
+      "unique_name": "tabletype_01gbXQG5FvkxnVtEDKwPgx1IYC7veUqoT",
+      "data_type": "datatype.tabletype",
+      "display_name": "Computing Policies Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "title": "Value",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
