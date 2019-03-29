@@ -1,0 +1,283 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899",
+    "name": "Associate Network Security Group",
+    "title": "Associate Network Security Group",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639B5FXKO8Q522czQKPozV9lpssFyjmFX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subscription ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639B5FXKS1Q0dHL9Ob45ysC5XguMFIQCl",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network Security Groups",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639B5FXKTWA1KG3O5ylhfekav2NpkRPyG",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01639B5FXKV5P1hYGZxbasu9wl8BPv6xynk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Resource Group Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639B5FXKWG50vLta5MiaLTFJyTLkComKJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subnet Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639B5FXKXR87VDWmaQACCOkkVhvyFlB2k",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Virtual Network Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01639B5FXKYXO74U51yGIAnZv6UvBYcz43F",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Associate Network Security Group to a Virtual Network Subnet.",
+      "display_name": "Associate Network Security Group",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01639B5MR5RZD2OhgL6mW0qeLvWCgOINGuX",
+        "name": "HTTP Request",
+        "title": "Get Subnet",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKV5P1hYGZxbasu9wl8BPv6xynk$"
+            }
+          ],
+          "description": "HTTP Request to Get Subnet Details",
+          "display_name": "Get Subnet",
+          "method": "GET",
+          "relative_url": "/subscriptions/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKS1Q0dHL9Ob45ysC5XguMFIQCl$/resourceGroups/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKWG50vLta5MiaLTFJyTLkComKJ$/providers/Microsoft.Network/virtualNetworks/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKYXO74U51yGIAnZv6UvBYcz43F$/subnets/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKXR87VDWmaQACCOkkVhvyFlB2k$?api-version=$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKO8Q522czQKPozV9lpssFyjmFX$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01639B5SATSHF4pjQkSTiwCs7F8YNJJ91UD",
+        "name": "Replace String",
+        "title": "Replace Result",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Replace Result",
+          "input_string": "$activity.definition_activity_01639B5MR5RZD2OhgL6mW0qeLvWCgOINGuX.output.response_body$",
+          "replace_list": [
+            {
+              "replaced_string": "\\\\",
+              "replacement_string": "\\"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01639B5Y8O05U3aTmfo7NLM7xsAlq2V5ffJ",
+        "name": "JSONPath Query",
+        "title": "Read Get Subnet Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": true,
+          "display_name": "Read Get Subnet Details",
+          "input_json": "$activity.definition_activity_01639B5SATSHF4pjQkSTiwCs7F8YNJJ91UD.output.result_string$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.properties.addressPrefix",
+              "jsonpath_query_name": "Subnet Address Prefix",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01639B631ZQKD1ObZeJuuqQ395meYhDyaOG",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01639B66MDYGK1Ya4VMRAEydGOICVOSLXOk",
+            "name": "Condition Branch",
+            "title": "If Subnet Address Prefix Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01639B5Y8O05U3aTmfo7NLM7xsAlq2V5ffJ.output.jsonpath_queries.Subnet Address Prefix$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If Subnet Address Prefix Found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01639B6CTZRYO6opULqhlmXtiaUM1XRZu1K",
+                "name": "HTTP Request",
+                "title": "Associate Network Security Group",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"properties\": {\n    \"addressPrefix\": \"$activity.definition_activity_01639B5Y8O05U3aTmfo7NLM7xsAlq2V5ffJ.output.jsonpath_queries.Subnet Address Prefix$\",\n    \"networkSecurityGroup\": {\n      \"id\": \"/subscriptions/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKS1Q0dHL9Ob45ysC5XguMFIQCl$/resourceGroups/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKWG50vLta5MiaLTFJyTLkComKJ$/providers/Microsoft.Network/networkSecurityGroups/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKTWA1KG3O5ylhfekav2NpkRPyG$\"\n    }\n  }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKV5P1hYGZxbasu9wl8BPv6xynk$"
+                    }
+                  ],
+                  "display_name": "Associate Network Security Group",
+                  "method": "PUT",
+                  "relative_url": "/subscriptions/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKS1Q0dHL9Ob45ysC5XguMFIQCl$/resourceGroups/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKWG50vLta5MiaLTFJyTLkComKJ$/providers/Microsoft.Network/virtualNetworks/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKYXO74U51yGIAnZv6UvBYcz43F$/subnets/$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKXR87VDWmaQACCOkkVhvyFlB2k$?api-version=$workflow.definition_workflow_01639B4TPEMOI5bCSZfs3Y8Yd9HZZ7rj899.input.variable_workflow_01639B5FXKO8Q522czQKPozV9lpssFyjmFX$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01639B6H6E7P83qgH7ZGhWuy7YVxCRXySpK",
+            "name": "Condition Branch",
+            "title": "If Subnet Address Prefix Not Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01639B5Y8O05U3aTmfo7NLM7xsAlq2V5ffJ.output.jsonpath_queries.Subnet Address Prefix$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "description": "Failed to Associate Network Security Group Rule to a subnet",
+              "display_name": "If Subnet Address Prefix Not Found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01639B6KG8ZLX1CrfjMS5nUdZ4chKjlokGd",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Associate Network Security Group with Subnet "
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
