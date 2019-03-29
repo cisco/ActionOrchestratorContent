@@ -1,0 +1,237 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gbqEOvppL4k0G2vGrJBxyzg6oBH95Rz",
+    "name": "List Clouds",
+    "title": "List Clouds",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01gbsfdqlk58Bpl519PkNrA4nemyxMKzY",
+        "properties": {
+          "scope": "output",
+          "name": "Get All Clouds Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gbsIdHzOJOIhVqC3KyhgxAcq2EODo5b",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0150HZ72DSIYL2WRp5XijW2trk1UZKSODuM",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco UCS Director",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic will list all clouds created in the Cisco UCS Director",
+      "display_name": "List Clouds",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gbqM0HSuFCxx88hO0QFWdukKWHghf0h",
+        "name": "HTTP Request",
+        "title": "Get All Clouds",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/xml",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+              "value": "$workflow.definition_workflow_01gbqEOvppL4k0G2vGrJBxyzg6oBH95Rz.input.variable_workflow_0150HZ72DSIYL2WRp5XijW2trk1UZKSODuM$"
+            }
+          ],
+          "display_name": "Get All Clouds",
+          "method": "GET",
+          "relative_url": "/cloupia/api-v2/cloud",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbRnGCzcoOqN0W9ATORtvuT0tmzQD0u",
+        "name": "Read Table from XML",
+        "title": "Read All Clouds ",
+        "type": "corejava.read_table_from_xml",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read All Clouds ",
+          "input_xml": "$activity.definition_activity_01gbqM0HSuFCxx88hO0QFWdukKWHghf0h.output.response_body$",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "accountName",
+              "column_type": "string"
+            },
+            {
+              "column_name": "contactEmail",
+              "column_type": "string"
+            },
+            {
+              "column_name": "accountType",
+              "column_type": "string"
+            },
+            {
+              "column_name": "vUserId",
+              "column_type": "string"
+            },
+            {
+              "column_name": "vPasswd",
+              "column_type": "string"
+            }
+          ],
+          "xmlpath_query": "cuicOperationResponse/response/cloud"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV",
+        "name": "For Each",
+        "title": "For Each Cloud",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each Cloud",
+          "source_array": "$activity.definition_activity_01gbRnGCzcoOqN0W9ATORtvuT0tmzQD0u.output.read_table_from_xml$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gbsmWtKq5HTNhomAzTvwNnjdNPOsYLl",
+            "name": "Add Row to Table",
+            "title": "Add Clouds to Table",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "accountName": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].accountName$",
+              "accountType": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].accountType$",
+              "action_timeout": 180,
+              "contactEmail": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].contactEmail$",
+              "continue_on_failure": false,
+              "display_name": "Add Clouds to Table",
+              "input_table": "$workflow.definition_workflow_01gbqEOvppL4k0G2vGrJBxyzg6oBH95Rz.output.variable_workflow_01gbsIdHzOJOIhVqC3KyhgxAcq2EODo5b$",
+              "row": [
+                {
+                  "key": "accountName",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].accountName$"
+                },
+                {
+                  "key": "contactEmail",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].contactEmail$"
+                },
+                {
+                  "key": "accountType",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].accountType$"
+                },
+                {
+                  "key": "vUserId",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].vUserId$"
+                },
+                {
+                  "key": "vPasswd",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].vPasswd$"
+                }
+              ],
+              "vPasswd": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].vPasswd$",
+              "vUserId": "$activity.definition_activity_01gbSWEYI0q935XLHB8TdCJmGe3MbmnrV.input.source_array[@].vUserId$"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi": {
+      "unique_name": "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi",
+      "properties": {
+        "value": "X-Cloupia-Request-Key",
+        "scope": "global",
+        "name": "UCS Director API Key",
+        "type": "datatype.string"
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01gbsfdqlk58Bpl519PkNrA4nemyxMKzY": {
+      "unique_name": "tabletype_01gbsfdqlk58Bpl519PkNrA4nemyxMKzY",
+      "data_type": "datatype.tabletype",
+      "display_name": "Get All Clouds Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "accountName",
+          "title": "Account Name",
+          "type": "string"
+        },
+        {
+          "name": "accountType",
+          "title": "Account Type",
+          "type": "string"
+        },
+        {
+          "name": "contactEmail",
+          "title": "Contact Email",
+          "type": "string"
+        },
+        {
+          "name": "vPasswd",
+          "title": "VPasswd",
+          "type": "string"
+        },
+        {
+          "name": "vUserId",
+          "title": "VUserId",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
