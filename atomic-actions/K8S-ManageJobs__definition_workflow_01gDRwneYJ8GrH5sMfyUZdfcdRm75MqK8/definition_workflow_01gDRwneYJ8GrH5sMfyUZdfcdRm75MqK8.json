@@ -1,0 +1,635 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8",
+    "name": "Manage Jobs",
+    "title": "Manage Jobs",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Job Output",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01geuBbTcupyIMbpxjhnFiTguMkVwoMdy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Namespace",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gDVEOHzoHohY8tOQAH6C6mwkSWiao6w",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Update Request Body",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gGihC1hpZNSFgsNorVNhkiN1HCCxG6A",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "input",
+          "name": "Backoff Limit",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_01gDVMGQm9vihKXuznWPX5Zwk2bOsb7rf",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "input",
+          "name": "Parallelism",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_01gDVGt26abGiESwGVDjDrIpVSPYZR8y0",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Action Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gDrCzBPkX8oj3glvxVIKG3dJ6sG7t4d",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Kind",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gDVapnZzjZIyGns0st9BLTMczNe0jPu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Restart Policy",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gDVYaUg0u4nfGdSgDX7J6FpstHDQ1wM",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gDVbrefEpu7c5SgPrqWG3BTBaJGskKu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Container Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gDVpZn9km1NvjBXe7RLClwiVHeGkFsM",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01gDxJPuSSpirc3jsUfOfMy60upEuJkFq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Image",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gDVRsatP50BWPDMhYQl0nxOKBGrgwzS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Job Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gDVDtirWGV4D8equsZ3hBm9K5Vl91FZ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Kubernetes",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic will allow create, update and delete Jobs in kubernetes. Action Type possible values are create, update and delete.",
+      "display_name": "Manage Jobs",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gGkwpG7EyXEotN7aicgjvp3ES25JSc9",
+        "name": "To Upper",
+        "title": "Convert Action Type Case",
+        "type": "core.string2upper",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Convert Action Type Case",
+          "source": "$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDrCzBPkX8oj3glvxVIKG3dJ6sG7t4d$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gDrdwrCR7hjNSLHsl1LLPga4Amv85Gl",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gDrdyxAxXJe4PULLXHqKOwZpPUQRNcc",
+            "name": "Condition Branch",
+            "title": "CREATE JOB",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gGkwpG7EyXEotN7aicgjvp3ES25JSc9.output.uppercase_text$",
+                "operator": "mw",
+                "right_operand": "CREATE"
+              },
+              "continue_on_failure": false,
+              "display_name": "CREATE JOB"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gDrFFHI9wH1gZaeJRwfEksfttMaZlSO",
+                "name": "HTTP Request",
+                "title": "Create Job",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\r\n\t\"kind\": \"$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVapnZzjZIyGns0st9BLTMczNe0jPu$\",\r\n\t\"apiVersion\": \"$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVbrefEpu7c5SgPrqWG3BTBaJGskKu$\",\r\n\t\"metadata\": {\r\n\t\t\"name\": \"$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVDtirWGV4D8equsZ3hBm9K5Vl91FZ$\"\r\n\t},\r\n\t\"spec\": {\r\n\t\t\"parallelism\": $workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVGt26abGiESwGVDjDrIpVSPYZR8y0$,\r\n\t\t\"backoffLimit\": $workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVMGQm9vihKXuznWPX5Zwk2bOsb7rf$,\r\n\t\t\"template\": {\r\n\t\t\t\"spec\": {\r\n\t\t\t\t\"containers\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVpZn9km1NvjBXe7RLClwiVHeGkFsM$\",\r\n\t\t\t\t\t\t\"image\": \"$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVRsatP50BWPDMhYQl0nxOKBGrgwzS$\"\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"restartPolicy\": \"$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVYaUg0u4nfGdSgDX7J6FpstHDQ1wM$\"\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDxJPuSSpirc3jsUfOfMy60upEuJkFq$"
+                    }
+                  ],
+                  "description": "Create Job",
+                  "display_name": "Create Job",
+                  "method": "POST",
+                  "relative_url": "/apis/batch/v1/namespaces/$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVEOHzoHohY8tOQAH6C6mwkSWiao6w$/jobs",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01geuFgcNnDAxjxrYbijA4U0D0oyzpDk6",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "display_name": "Condition Block"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01geuFJZYnOzwzO1Uxd819LLSMfewLpBz",
+                    "name": "Condition Branch",
+                    "title": "If Status Code = 201",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gDrFFHI9wH1gZaeJRwfEksfttMaZlSO.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": "201"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code = 201"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01geuCTBu51XIDXO1vdotr8aN9spqe0Rk",
+                        "name": "Set Variables",
+                        "title": "Create Job Output",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Create Job Output",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.output.variable_workflow_01geuBbTcupyIMbpxjhnFiTguMkVwoMdy$",
+                              "variable_value_new": "$activity.definition_activity_01gDrFFHI9wH1gZaeJRwfEksfttMaZlSO.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01gevVQBXqYMO06UQAeaM223kFnSALHQv",
+                        "name": "Succeeded",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Succeeded",
+                          "result_message": "Job with Name: $workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVDtirWGV4D8equsZ3hBm9K5Vl91FZ$ Created Successfully."
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01geuFKZmAyH0zSTMmhZ5R78GHdKr2Xiw",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 201",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gDrFFHI9wH1gZaeJRwfEksfttMaZlSO.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": "201"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 201"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01geulDq7MKfmjeweYJ8DUa2kKnWBW5nF",
+                        "name": "Failed",
+                        "title": "Succeeded",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to Create Job.\n\nError:\n$activity.definition_activity_01gDrFFHI9wH1gZaeJRwfEksfttMaZlSO.output.response_body$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gDrdzskWeXiUX2f45IM8hsKbUfQE4dY",
+            "name": "Condition Branch",
+            "title": "UPDATE JOB",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gGkwpG7EyXEotN7aicgjvp3ES25JSc9.output.uppercase_text$",
+                "operator": "mw",
+                "right_operand": "UPDATE"
+              },
+              "continue_on_failure": false,
+              "display_name": "UPDATE JOB"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gDrhyaIKTmdyRTa6skXX0Hl4fHJpBv1",
+                "name": "HTTP Request",
+                "title": "Update Job",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gGihC1hpZNSFgsNorVNhkiN1HCCxG6A$",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDxJPuSSpirc3jsUfOfMy60upEuJkFq$"
+                    }
+                  ],
+                  "description": "Update Job",
+                  "display_name": "Update Job",
+                  "method": "PUT",
+                  "relative_url": "/apis/batch/v1/namespaces/$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVEOHzoHohY8tOQAH6C6mwkSWiao6w$/jobs/$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVDtirWGV4D8equsZ3hBm9K5Vl91FZ$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gFC9iBTY29ZTlchsRG60YDfW2iahBqH",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01gFC9o9h304XgIbgPrkFsIWyb0Ve9hKe",
+                    "name": "Condition Branch",
+                    "title": "If Status Code = 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gDrhyaIKTmdyRTa6skXX0Hl4fHJpBv1.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": "200"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code = 200"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gFCBSBvjhHyJ7H6IJrwOLyvzNfsbwT8",
+                        "name": "Set Variables",
+                        "title": "Update Job Output",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Update Job Output",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.output.variable_workflow_01geuBbTcupyIMbpxjhnFiTguMkVwoMdy$",
+                              "variable_value_new": "$activity.definition_activity_01gDrhyaIKTmdyRTa6skXX0Hl4fHJpBv1.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01gFC9pSXguQVHEH06mC1A8h5TEHMws0l",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gDrhyaIKTmdyRTa6skXX0Hl4fHJpBv1.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": "200"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 200"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gFCjJde5BHP3ZMBEJNYuO5Ce6xTPony",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to Update Job with Name: $workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVDtirWGV4D8equsZ3hBm9K5Vl91FZ$\n\nError:\n$activity.definition_activity_01gDrhyaIKTmdyRTa6skXX0Hl4fHJpBv1.output.response_body$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gDreFO5MEn1OErMBH2ZsLBwYxEZHyMN",
+            "name": "Condition Branch",
+            "title": "DELETE JOB",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gGkwpG7EyXEotN7aicgjvp3ES25JSc9.output.uppercase_text$",
+                "operator": "mw",
+                "right_operand": "DELETE"
+              },
+              "continue_on_failure": false,
+              "display_name": "DELETE JOB"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gDrJ1wNLIyV45PiSbOHzIwP1oNM6DTo",
+                "name": "HTTP Request",
+                "title": "Delete Job",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"apiVersion\": \"$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVbrefEpu7c5SgPrqWG3BTBaJGskKu$\"\n}",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDxJPuSSpirc3jsUfOfMy60upEuJkFq$"
+                    }
+                  ],
+                  "description": "Delete Job",
+                  "display_name": "Delete Job",
+                  "method": "DELETE",
+                  "relative_url": "/apis/batch/v1/namespaces/$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVEOHzoHohY8tOQAH6C6mwkSWiao6w$/jobs/$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVDtirWGV4D8equsZ3hBm9K5Vl91FZ$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01geupKLWFpbCX6fPZ9iXjJxh1KpHZHrE",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01geupmt7nl6xFq0s3Hvvqg7GNc08CYGK",
+                    "name": "Condition Branch",
+                    "title": "If Status Code = 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gDrJ1wNLIyV45PiSbOHzIwP1oNM6DTo.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": "200"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code = 200"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gevNRHiIqq6dme9EX4mREBgU5bQ3czB",
+                        "name": "Set Variables",
+                        "title": "Delete Job Response",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Delete Job Response",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.output.variable_workflow_01geuBbTcupyIMbpxjhnFiTguMkVwoMdy$",
+                              "variable_value_new": "$activity.definition_activity_01gDrJ1wNLIyV45PiSbOHzIwP1oNM6DTo.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01geuuzlZfW8ft3PAZrX6bMRGFQRraOG6",
+                        "name": "Succeeded",
+                        "title": "Succeeded",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Succeeded",
+                          "result_message": "Job with Name: $workflow.definition_workflow_01gDRwneYJ8GrH5sMfyUZdfcdRm75MqK8.input.variable_workflow_01gDVDtirWGV4D8equsZ3hBm9K5Vl91FZ$ Deleted Successfully."
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01geupO30wZ30tMjxt1HYXnilzULMJ2is",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gDrJ1wNLIyV45PiSbOHzIwP1oNM6DTo.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": "200"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 200"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01geuxk3LKISxDhpHD6zELvSXYDXaRq2A",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Deletion of Job Failed.\n\nError:\n$activity.definition_activity_01gDrJ1wNLIyV45PiSbOHzIwP1oNM6DTo.output.response_body$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
