@@ -1,0 +1,176 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0151BY3HGJDIL28WwmAVd0KB5GiIWw7erWB",
+    "name": "Delete Datacenter",
+    "title": "Delete Datacenter",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Datacenter ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151C1TNI00VQ6obRrmDSHnwPOXuuLUytaq",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow deletes  an existing datacenter.",
+      "display_name": "Delete Datacenter",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0151BYBILF8RO12vviTafoIf3qT5bsXqMHb",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151BYFO4YSWW57nLcGbinJeCKaoN1LdRkt",
+        "name": "HTTP Request",
+        "title": "Delete Datacenter",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0151BYBILF8RO12vviTafoIf3qT5bsXqMHb.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Delete Datacenter",
+          "method": "DELETE",
+          "relative_url": "/rest/vcenter/datacenter/$workflow.definition_workflow_0151BY3HGJDIL28WwmAVd0KB5GiIWw7erWB.input.variable_workflow_0151C1TNI00VQ6obRrmDSHnwPOXuuLUytaq$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151BYOWTW96J7POROcv1v1LCA7krT8J7mp",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0151BYP1PKQFI2LYcqEh1zmb4cGs9OzVWRJ",
+            "name": "Condition Branch",
+            "title": "If Success",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151BYFO4YSWW57nLcGbinJeCKaoN1LdRkt.output.succeeded$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "display_name": "If Success"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151BYQS44IHR2dKRyFwYH3n2lrxtIcQOGZ",
+                "name": "Succeeded",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded",
+                  "result_message": "Datacenter Deleted Successfully."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0151BYP48SKD31VC3vmhd5liItVIlv9XUCV",
+            "name": "Condition Branch",
+            "title": "If Failed",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151BYFO4YSWW57nLcGbinJeCKaoN1LdRkt.output.succeeded$",
+                "operator": "eq",
+                "right_operand": "false"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Failed"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151BYS3LJD5G1vN3YIlnoJ5TYYkwLdQ7tT",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Delete Datacenter"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
