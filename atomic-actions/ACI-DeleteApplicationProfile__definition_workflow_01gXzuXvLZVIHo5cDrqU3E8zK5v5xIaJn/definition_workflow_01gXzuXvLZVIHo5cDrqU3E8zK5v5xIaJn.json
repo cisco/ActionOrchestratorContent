@@ -1,0 +1,133 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gXzuXvLZVIHo5cDrqU3E8zK5v5xIaJn",
+    "name": "Delete Application Profile",
+    "title": "Delete Application Profile",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ApplicationProfile",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gx0G3HWrv4QS3nQe7DzGvWE640bfO20",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gx0NzjhHEE7qjNKQyRNRQS2ZODfCxJT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gx0eSo9Adljps8EE3e31NQ2wLphQKq9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01gx047e6YiFGImsFZs84ZX6neq9EDpQT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cookie",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gx08qvdSYCQcOISripJ71bJGNl5Ddvs",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco ACI",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic delete/remove a particular application profile under a tenant.",
+      "display_name": "Delete Application Profile",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gXzZzVtkg6KbrnL6AAQlUND4tATOUcy",
+        "name": "Delete Application Profile",
+        "title": "Delete Application Profile",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Delete Application Profile",
+          "input": {
+            "variable_workflow_01gsIwExqfmUaoggu6uOyvBvabqZA3ZLV": "$workflow.definition_workflow_01gXzuXvLZVIHo5cDrqU3E8zK5v5xIaJn.input.variable_workflow_01gx08qvdSYCQcOISripJ71bJGNl5Ddvs$",
+            "variable_workflow_01gsdK0zbTS4PCnARX0O9igJm1kjJuPeO": "POST",
+            "variable_workflow_01gsdloLMNSSYplMekO1An6ixWk3Lxp6i": "{ \"fvTenant\":{\"attributes\":{\"dn\":\"uni/tn-$workflow.definition_workflow_01gXzuXvLZVIHo5cDrqU3E8zK5v5xIaJn.input.variable_workflow_01gx0eSo9Adljps8EE3e31NQ2wLphQKq9$\",\"status\":\"modified\"},\"children\":[{\"fvAp\":{\"attributes\":{\"dn\":\"uni/tn-$workflow.definition_workflow_01gXzuXvLZVIHo5cDrqU3E8zK5v5xIaJn.input.variable_workflow_01gx0eSo9Adljps8EE3e31NQ2wLphQKq9$/ap-$workflow.definition_workflow_01gXzuXvLZVIHo5cDrqU3E8zK5v5xIaJn.input.variable_workflow_01gx0G3HWrv4QS3nQe7DzGvWE640bfO20$\",\"status\":\"deleted\"},\"children\":[]}}]}}",
+            "variable_workflow_01gsdpOPuyoXxmcr2tUmx0nYehy4zQq7V": "node/mo/uni/tn-$workflow.definition_workflow_01gXzuXvLZVIHo5cDrqU3E8zK5v5xIaJn.input.variable_workflow_01gx0eSo9Adljps8EE3e31NQ2wLphQKq9$.json",
+            "variable_workflow_01gsdslJCwSZyhMcI4byCrpPtpAUomyce": "$workflow.definition_workflow_01gXzuXvLZVIHo5cDrqU3E8zK5v5xIaJn.input.variable_workflow_01gx047e6YiFGImsFZs84ZX6neq9EDpQT$"
+          },
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gx0O6mdr1z5i1lonsffnvx9Kx8S3Xql",
+        "name": "Set Variables",
+        "title": "Set Response",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Response",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gXzuXvLZVIHo5cDrqU3E8zK5v5xIaJn.output.variable_workflow_01gx0NzjhHEE7qjNKQyRNRQS2ZODfCxJT$",
+              "variable_value_new": "$activity.definition_activity_01gXzZzVtkg6KbrnL6AAQlUND4tATOUcy.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x"
+  ]
+}
