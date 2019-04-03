@@ -1,0 +1,552 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0150P7MX7CCIZ1DRWtdPVuR0Og6luHiUf9H",
+    "name": "Manage Virtual Machine Power State",
+    "title": "Manage Virtual Machine Power State",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Power Action",
+          "type": "datatype.string",
+          "description": "Action to perform on virtual machine. possible values are start, stop, reset, suspend."
+        },
+        "unique_name": "variable_workflow_0150P7QSPE09379mX2AsyIngprvWHb9qJfp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Virtual Machine ID",
+          "type": "datatype.string",
+          "description": "Enter VM Id"
+        },
+        "unique_name": "variable_workflow_0150P7QSPE7HB6qF64WWljstbTsIyzPdwQT",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow manages power state of a virtual machine. Possible actions for power action is start, stop, reset.",
+      "display_name": "Manage Virtual Machine Power State",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150P7R0Y40Q36g73khqhryJ5QVrJF0MNfw",
+        "name": "To Lower",
+        "title": "Set action to lower case",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set action to lower case",
+          "source": "$workflow.definition_workflow_0150P7MX7CCIZ1DRWtdPVuR0Og6luHiUf9H.input.variable_workflow_0150P7QSPE09379mX2AsyIngprvWHb9qJfp$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150XD8FTV3IC379ZQkkJ5yejac7oOOEnYT",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150P7RPRWY8K2yHZz9BCDcIa1eP7TVb0Xy",
+        "name": "HTTP Request",
+        "title": "Get VM state",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0150XD8FTV3IC379ZQkkJ5yejac7oOOEnYT.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Get VM state",
+          "method": "GET",
+          "relative_url": "/rest/vcenter/vm/$workflow.definition_workflow_0150P7MX7CCIZ1DRWtdPVuR0Og6luHiUf9H.input.variable_workflow_0150P7QSPE7HB6qF64WWljstbTsIyzPdwQT$/power",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150P7S7H4REB7YXpNLu0JYv0ztdfjfPRTY",
+        "name": "JSONPath Query",
+        "title": "Query VM State",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Query VM State",
+          "input_json": "$activity.definition_activity_0150P7RPRWY8K2yHZz9BCDcIa1eP7TVb0Xy.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..state",
+              "jsonpath_query_name": "VMState",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150P7SGYL13F463vU29Ydzw2DNKRRgtijp",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0150P7SO16L293CZuCcWdfwLhmBWbvCgmgT",
+            "name": "Condition Branch",
+            "title": "If Action equals start",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0150P7R0Y40Q36g73khqhryJ5QVrJF0MNfw.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "start"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action equals start"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0150P7T0677C64szqF9utILDsQxzufAxMNU",
+                "name": "Condition Block",
+                "title": "Check VM state",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check VM state"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0150P7T9UY2UL1W1Lm7xRfSlMfUIFiw5ipW",
+                    "name": "Condition Branch",
+                    "title": "If VM state is not POWERED_ON",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0150P7S7H4REB7YXpNLu0JYv0ztdfjfPRTY.output.jsonpath_queries.VMState$",
+                        "operator": "ne",
+                        "right_operand": "POWERED_ON"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM state is not POWERED_ON"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0150P7TPUE9IW0JR5UYkBeNFLNsGK5AmMlW",
+                        "name": "HTTP Request",
+                        "title": "Start Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "vmware-api-session-id",
+                              "value": "$activity.definition_activity_0150XD8FTV3IC379ZQkkJ5yejac7oOOEnYT.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+                            }
+                          ],
+                          "display_name": "Start Virtual Machine",
+                          "method": "POST",
+                          "relative_url": "/rest/vcenter/vm/$workflow.definition_workflow_0150P7MX7CCIZ1DRWtdPVuR0Og6luHiUf9H.input.variable_workflow_0150P7QSPE7HB6qF64WWljstbTsIyzPdwQT$/power/start",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0150P7TZ5Z51Q36RukenaAnxMwVCV3Of1HG",
+            "name": "Condition Branch",
+            "title": "If Action equals reset",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0150P7R0Y40Q36g73khqhryJ5QVrJF0MNfw.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "reset"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action equals reset"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0150P7U8TEX9X5RePOY66O3mJmPJlk9STlb",
+                "name": "Condition Block",
+                "title": "Check VM state",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check VM state"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0150P7UIJYP722d7jhxyy7idmeJSjqfZWeD",
+                    "name": "Condition Branch",
+                    "title": "If VM state is POWERED_ON",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0150P7S7H4REB7YXpNLu0JYv0ztdfjfPRTY.output.jsonpath_queries.VMState$",
+                        "operator": "eq",
+                        "right_operand": "POWERED_ON"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM state is POWERED_ON"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0150P7V15LHY87jEf5PAHEQGtmbUbuoQEcA",
+                        "name": "HTTP Request",
+                        "title": "Reset Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "vmware-api-session-id",
+                              "value": "$activity.definition_activity_0150XD8FTV3IC379ZQkkJ5yejac7oOOEnYT.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+                            }
+                          ],
+                          "display_name": "Reset Virtual Machine",
+                          "method": "POST",
+                          "relative_url": "/rest/vcenter/vm/$workflow.definition_workflow_0150P7MX7CCIZ1DRWtdPVuR0Og6luHiUf9H.input.variable_workflow_0150P7QSPE7HB6qF64WWljstbTsIyzPdwQT$/power/reset",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0150P7VDCA0D27l2PoE5N1knckZOfThpTF8",
+                    "name": "Condition Branch",
+                    "title": "If VM state is POWERED_OFF or SUSPENDED",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0150P7S7H4REB7YXpNLu0JYv0ztdfjfPRTY.output.jsonpath_queries.VMState$",
+                        "operator": "ne",
+                        "right_operand": "POWERED_ON"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM state is POWERED_OFF or SUSPENDED"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0150P7VPWYEPB3RLEuw3y6ug4YyxEDlBe0X",
+                        "name": "HTTP Request",
+                        "title": "Start Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "vmware-api-session-id",
+                              "value": "$activity.definition_activity_0150XD8FTV3IC379ZQkkJ5yejac7oOOEnYT.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+                            }
+                          ],
+                          "display_name": "Start Virtual Machine",
+                          "method": "POST",
+                          "relative_url": "/rest/vcenter/vm/$workflow.definition_workflow_0150P7MX7CCIZ1DRWtdPVuR0Og6luHiUf9H.input.variable_workflow_0150P7QSPE7HB6qF64WWljstbTsIyzPdwQT$/power/start",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0150P7VYM5OC83orNAvRUU2yDCwyIxofleW",
+            "name": "Condition Branch",
+            "title": "If Action equals suspend",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0150P7R0Y40Q36g73khqhryJ5QVrJF0MNfw.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "shutdownGuest"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action equals suspend"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0150P7W79RNML1QtddD3J7pWzGJNfZi78gC",
+                "name": "Condition Block",
+                "title": "Check VM state",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check VM state"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0150P7WDIGBI010tOg3PPj2Nnw0ODXCpYlu",
+                    "name": "Condition Branch",
+                    "title": "If VM state is POWERED_ON",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0150P7S7H4REB7YXpNLu0JYv0ztdfjfPRTY.output.jsonpath_queries.VMState$",
+                        "operator": "eq",
+                        "right_operand": "POWERED_ON"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM state is POWERED_ON"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0150P7WPXQ0FL2CVNhkS7JUZIsTEZu4G7dl",
+                        "name": "HTTP Request",
+                        "title": "Suspend Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "vmware-api-session-id",
+                              "value": "$activity.definition_activity_0150XD8FTV3IC379ZQkkJ5yejac7oOOEnYT.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+                            }
+                          ],
+                          "display_name": "Suspend Virtual Machine",
+                          "method": "POST",
+                          "relative_url": "/rest/vcenter/vm/$workflow.definition_workflow_0150P7MX7CCIZ1DRWtdPVuR0Og6luHiUf9H.input.variable_workflow_0150P7QSPE7HB6qF64WWljstbTsIyzPdwQT$/power/suspend",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0150P7X02C3014I2pMZPsLH3y12GHAxUG2w",
+            "name": "Condition Branch",
+            "title": "If Action equals stop",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0150P7R0Y40Q36g73khqhryJ5QVrJF0MNfw.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "stop"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action equals stop"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0150P7X8I62SI4crY2Y8qRwpFxyEwWslP7b",
+                "name": "Condition Block",
+                "title": "Check VM state",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check VM state"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0150P7XFYLDE20xCjWfB2kiWYh6D2F1bfun",
+                    "name": "Condition Branch",
+                    "title": "If VM state is not POWERED_OFF",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0150P7S7H4REB7YXpNLu0JYv0ztdfjfPRTY.output.jsonpath_queries.VMState$",
+                        "operator": "ne",
+                        "right_operand": "POWERED_OFF"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM state is not POWERED_OFF"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0150P7XVFN0Q23OTyoc9EjZQpXbrxvwk396",
+                        "name": "HTTP Request",
+                        "title": "Stop Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "vmware-api-session-id",
+                              "value": "$activity.definition_activity_0150XD8FTV3IC379ZQkkJ5yejac7oOOEnYT.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+                            }
+                          ],
+                          "display_name": "Stop Virtual Machine",
+                          "method": "POST",
+                          "relative_url": "/rest/vcenter/vm/$workflow.definition_workflow_0150P7MX7CCIZ1DRWtdPVuR0Og6luHiUf9H.input.variable_workflow_0150P7QSPE7HB6qF64WWljstbTsIyzPdwQT$/power/stop",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
