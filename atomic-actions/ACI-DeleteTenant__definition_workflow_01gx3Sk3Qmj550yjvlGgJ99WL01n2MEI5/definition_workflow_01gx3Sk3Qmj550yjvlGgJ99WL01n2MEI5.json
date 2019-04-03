@@ -1,0 +1,122 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gx3Sk3Qmj550yjvlGgJ99WL01n2MEI5",
+    "name": "Delete Tenant",
+    "title": "Delete Tenant",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gx3zShLm9FGEWyv0tzjiOQL8IQPXiEo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gx5DPD59nTltuNx1HPsN3FO9ePy3fXM",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01gx3XSIaU7dOSxwBSYmNcaxthN4caF8m",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cookie",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gx3YtltbDFOo1W1omiduUu5Q98CwfLi",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco ACI",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic deletes the particular tenant",
+      "display_name": "Delete Tenant",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gx3UkmzUlJrVCQ17OcSiXu1U21lnrzr",
+        "name": "Delete Tenant",
+        "title": "Delete Tenant",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Delete Tenant",
+          "input": {
+            "variable_workflow_01gsIwExqfmUaoggu6uOyvBvabqZA3ZLV": "$workflow.definition_workflow_01gx3Sk3Qmj550yjvlGgJ99WL01n2MEI5.input.variable_workflow_01gx3YtltbDFOo1W1omiduUu5Q98CwfLi$",
+            "variable_workflow_01gsdK0zbTS4PCnARX0O9igJm1kjJuPeO": "POST",
+            "variable_workflow_01gsdloLMNSSYplMekO1An6ixWk3Lxp6i": "{\"polUni\":{\"attributes\":{\"dn\":\"uni\",\"status\":\"modified\"},\"children\":[{\"fvTenant\":{\"attributes\":{\"dn\":\"uni/tn-$workflow.definition_workflow_01gx3Sk3Qmj550yjvlGgJ99WL01n2MEI5.input.variable_workflow_01gx3zShLm9FGEWyv0tzjiOQL8IQPXiEo$\",\"status\":\"deleted\"},\"children\":[]}}]}}",
+            "variable_workflow_01gsdpOPuyoXxmcr2tUmx0nYehy4zQq7V": "/node/mo/uni.json",
+            "variable_workflow_01gsdslJCwSZyhMcI4byCrpPtpAUomyce": "$workflow.definition_workflow_01gx3Sk3Qmj550yjvlGgJ99WL01n2MEI5.input.variable_workflow_01gx3XSIaU7dOSxwBSYmNcaxthN4caF8m$"
+          },
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gx5dODgKEXXnQ4Tsmn524gdXP6BGpIs",
+        "name": "Set Variables",
+        "title": "Set Response",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Response",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gx3Sk3Qmj550yjvlGgJ99WL01n2MEI5.output.variable_workflow_01gx5DPD59nTltuNx1HPsN3FO9ePy3fXM$",
+              "variable_value_new": "$activity.definition_activity_01gx3UkmzUlJrVCQ17OcSiXu1U21lnrzr.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x"
+  ]
+}
