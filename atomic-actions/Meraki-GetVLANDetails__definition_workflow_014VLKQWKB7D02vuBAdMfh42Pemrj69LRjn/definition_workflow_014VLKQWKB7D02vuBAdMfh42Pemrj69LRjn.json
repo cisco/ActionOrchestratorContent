@@ -1,0 +1,308 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn",
+    "name": "Get VLAN Details",
+    "title": "Get VLAN Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_014VLOWKFLSAW5EeTr7K5oy497ayojqOeey",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014VLPC6F2YUK7CVKr6ZUjH99U5aGjoFnqF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014VLPL6EXW3Z4wM8tNtH1WWIG0fC87ycXW",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Appliance Ip",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014VLPXL1Y8RR5TQlaMTK7cfMKJvXvPSIWR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Subnet",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014VLQ754MJK06774MeDqJNvoS6zETW7hsR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Network ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014VLQZAE9FBL3t6JFO9j1IzXjs42RMgMuX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014VLOCXXP81P48Ej1dKwdtBQ6PNPjpHctz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "VLAN Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014VLOO34Z1RY49pODWvxxyLO8c00ingZju",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Meraki",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Returns VLAN Details For The Given VLAN ID",
+      "display_name": "Get VLAN Details",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014VLLQYU7FBI6W3wNwZ3NpwCaVdb2gY9kF",
+        "name": "HTTP Request",
+        "title": "Get VLAN Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf.global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf$",
+              "value": "$workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.input.variable_workflow_014VLOWKFLSAW5EeTr7K5oy497ayojqOeey$"
+            }
+          ],
+          "display_name": "Get VLAN Details",
+          "method": "GET",
+          "relative_url": "/networks/$workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.input.variable_workflow_014VLOCXXP81P48Ej1dKwdtBQ6PNPjpHctz$/vlans/$workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.input.variable_workflow_014VLOO34Z1RY49pODWvxxyLO8c00ingZju$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014XA26VB6D4H30AEletGNIHYGmT4JEIwMU",
+        "name": "Condition Block",
+        "title": "Condition To Check Succeeded/Failed",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition To Check Succeeded/Failed"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_014XA27HRK5SR776bUoDqdIaTQoql8z8Oev",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014VLLQYU7FBI6W3wNwZ3NpwCaVdb2gY9kF.output.status_code$",
+                "operator": "eq",
+                "right_operand": "200"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014VLS7CEP6JH6WxWqv65OUOr1nnx54Davy",
+                "name": "JSONPath Query",
+                "title": "Read VLAN Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read VLAN Details",
+                  "input_json": "$activity.definition_activity_014VLLQYU7FBI6W3wNwZ3NpwCaVdb2gY9kF.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.id",
+                      "jsonpath_query_name": "Id",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.networkId",
+                      "jsonpath_query_name": "Network Id",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.name",
+                      "jsonpath_query_name": "Name",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.applianceIp",
+                      "jsonpath_query_name": "Appliance Ip",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.subnet",
+                      "jsonpath_query_name": "Subnet",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014VLSAT4AGUL4F7l2n5mQNS5uL4gv9Zi94",
+                "name": "Set Variables",
+                "title": "Set VLAN Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set VLAN Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.output.variable_workflow_014VLPXL1Y8RR5TQlaMTK7cfMKJvXvPSIWR$",
+                      "variable_value_new": "$activity.definition_activity_014VLS7CEP6JH6WxWqv65OUOr1nnx54Davy.output.jsonpath_queries.Appliance Ip$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.output.variable_workflow_014VLPC6F2YUK7CVKr6ZUjH99U5aGjoFnqF$",
+                      "variable_value_new": "$activity.definition_activity_014VLS7CEP6JH6WxWqv65OUOr1nnx54Davy.output.jsonpath_queries.Id$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.output.variable_workflow_014VLPL6EXW3Z4wM8tNtH1WWIG0fC87ycXW$",
+                      "variable_value_new": "$activity.definition_activity_014VLS7CEP6JH6WxWqv65OUOr1nnx54Davy.output.jsonpath_queries.Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.output.variable_workflow_014VLQZAE9FBL3t6JFO9j1IzXjs42RMgMuX$",
+                      "variable_value_new": "$activity.definition_activity_014VLS7CEP6JH6WxWqv65OUOr1nnx54Davy.output.jsonpath_queries.Network Id$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.output.variable_workflow_014VLQ754MJK06774MeDqJNvoS6zETW7hsR$",
+                      "variable_value_new": "$activity.definition_activity_014VLS7CEP6JH6WxWqv65OUOr1nnx54Davy.output.jsonpath_queries.Subnet$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_014XA27PXHYMK5kz6wdrJyswDvpmno87qkt",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014VLLQYU7FBI6W3wNwZ3NpwCaVdb2gY9kF.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014XA5H867UPC2yDVOKYWbVzq6E0WXr26Za",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get VLAN Details For The Vlan Id: $workflow.definition_workflow_014VLKQWKB7D02vuBAdMfh42Pemrj69LRjn.input.variable_workflow_014VLOO34Z1RY49pODWvxxyLO8c00ingZju$ With The Following Error Message: $activity.definition_activity_014VLLQYU7FBI6W3wNwZ3NpwCaVdb2gY9kF.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf": {
+      "unique_name": "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf",
+      "properties": {
+        "value": "X-Cisco-Meraki-API-Key",
+        "scope": "global",
+        "name": "MerakiAuthHeader",
+        "type": "datatype.string"
+      },
+      "object_type": "variable"
+    }
+  }
+}
