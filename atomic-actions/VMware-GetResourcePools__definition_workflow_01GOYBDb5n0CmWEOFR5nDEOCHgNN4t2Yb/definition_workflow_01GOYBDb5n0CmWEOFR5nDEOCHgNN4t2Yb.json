@@ -1,0 +1,229 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GOYBDb5n0CmWEOFR5nDEOCHgNN4t2Yb",
+    "name": "Get Resource Pools",
+    "title": "Get Resource Pools",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01GOzamNoXqz4LwT6pvPrt6GWALeOinA8",
+        "properties": {
+          "scope": "output",
+          "name": "Resource Pools",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01GOzFbfhYmKe9ZkFyEiJ1PGHjWV7OEXP",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow retrieves all the resource pools.",
+      "display_name": "Get Resource Pools",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150XK675DSUP2wK3vYA3ZJlwdYyiYkqybk",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOYILJ7rrHk7g34gjG33TAxzG8eOdWM",
+        "name": "HTTP Request",
+        "title": "Get Resource Pools",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0150XK675DSUP2wK3vYA3ZJlwdYyiYkqybk.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Get Resource Pools",
+          "method": "GET",
+          "relative_url": "/rest/vcenter/resource-pool",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOyrx27xBGiO7opft2itH4IuzMbRPSQ",
+        "name": "Read Table from JSON",
+        "title": "Read Resource Pools",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Resource Pools",
+          "input_json": "$activity.definition_activity_01GOYILJ7rrHk7g34gjG33TAxzG8eOdWM.output.response_body$",
+          "jsonpath_query": "$.value",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "resource_pool",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151H5MB13MY66MVTv932h6fGJQ9kIT2EdY",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0151H5MGRPWAQ3c8Da0VJF9Ci4vvjteDBSm",
+            "name": "Condition Branch",
+            "title": "If Row Count \u003e 0",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01GOyrx27xBGiO7opft2itH4IuzMbRPSQ.output.row_count$",
+                "operator": "gt",
+                "right_operand": 0
+              },
+              "continue_on_failure": false,
+              "display_name": "If Row Count \u003e 0"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01GOZN2amLTt0OhG0VZHNchqxkfYzrCwh",
+                "name": "For Each",
+                "title": "For Each Resource Pool",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Resource Pool",
+                  "source_array": "$activity.definition_activity_01GOyrx27xBGiO7opft2itH4IuzMbRPSQ.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01GOZS5pkyPC2metBdAoMvkd1nZCkMcf5",
+                    "name": "Add Row to Table",
+                    "title": "Resource Pools Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Resource Pools Table",
+                      "input_table": "$workflow.definition_workflow_01GOYBDb5n0CmWEOFR5nDEOCHgNN4t2Yb.output.variable_workflow_01GOzFbfhYmKe9ZkFyEiJ1PGHjWV7OEXP$",
+                      "name": "$activity.definition_activity_01GOZN2amLTt0OhG0VZHNchqxkfYzrCwh.input.source_array[@].name$",
+                      "resource_pool": "$activity.definition_activity_01GOZN2amLTt0OhG0VZHNchqxkfYzrCwh.input.source_array[@].resource_pool$",
+                      "row": [
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01GOZN2amLTt0OhG0VZHNchqxkfYzrCwh.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "resource_pool",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01GOZN2amLTt0OhG0VZHNchqxkfYzrCwh.input.source_array[@].resource_pool$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01GOzamNoXqz4LwT6pvPrt6GWALeOinA8": {
+      "unique_name": "tabletype_01GOzamNoXqz4LwT6pvPrt6GWALeOinA8",
+      "data_type": "datatype.tabletype",
+      "display_name": "Resorce Pools Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "resource_pool",
+          "title": "Resource Pool",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
