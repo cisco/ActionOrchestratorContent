@@ -1,0 +1,170 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GpWMQNGKLmwcGwIo36yIOmTs87Ir7rS",
+    "name": "Get VirtualMachine Memory",
+    "title": "Get VirtualMachine Memory",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.number",
+        "properties": {
+          "scope": "output",
+          "name": "SizeMiB",
+          "type": "datatype.number"
+        },
+        "unique_name": "variable_workflow_0150SE7G2Y8NF3bkWxBVio0QRDyjreXoSJY",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "output",
+          "name": "HotAddEnabled",
+          "type": "datatype.boolean"
+        },
+        "unique_name": "variable_workflow_01GQ3VNf5C7PXxObDqLw67dnwc17r8f2c",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Virtual Machine ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01GZ2uyP6WhEimpUsSalJPkBF4Fy8PaeT",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow retrieves virtual machine memory.",
+      "display_name": "Get VirtualMachine Memory",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150XGEJPDAVU3pIDMaGrSqgSgybKvSW4kn",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01Gpw0amYzEYh6Ameao4Bn71Q6VTfIoSC",
+        "name": "HTTP Request",
+        "title": "Get VM Memory",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0150XGEJPDAVU3pIDMaGrSqgSgybKvSW4kn.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Get VM Memory",
+          "method": "GET",
+          "relative_url": "/rest/vcenter/vm/$workflow.definition_workflow_01GpWMQNGKLmwcGwIo36yIOmTs87Ir7rS.input.variable_workflow_01GZ2uyP6WhEimpUsSalJPkBF4Fy8PaeT$/hardware/memory",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GpYjkj9iwtXLQlXUywe6Q3awmTxIHY3",
+        "name": "JSONPath Query",
+        "title": "Query VM Memory",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Query VM Memory",
+          "input_json": "$activity.definition_activity_01Gpw0amYzEYh6Ameao4Bn71Q6VTfIoSC.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..size_MiB",
+              "jsonpath_query_name": "SizeMiB",
+              "jsonpath_query_type": "number",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..hot_add_enabled",
+              "jsonpath_query_name": "HotAddEnabled",
+              "jsonpath_query_type": "boolean",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GpyxXzcdridTHLVUpVTSPBdCDH9rAgC",
+        "name": "Set Variables",
+        "title": "Output VM Memory",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Output VM Memory",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01GpWMQNGKLmwcGwIo36yIOmTs87Ir7rS.output.variable_workflow_0150SE7G2Y8NF3bkWxBVio0QRDyjreXoSJY$",
+              "variable_value_new": "$activity.definition_activity_01GpYjkj9iwtXLQlXUywe6Q3awmTxIHY3.output.jsonpath_queries.SizeMiB$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01GpWMQNGKLmwcGwIo36yIOmTs87Ir7rS.output.variable_workflow_01GQ3VNf5C7PXxObDqLw67dnwc17r8f2c$",
+              "variable_value_new": "$activity.definition_activity_01GpYjkj9iwtXLQlXUywe6Q3awmTxIHY3.output.jsonpath_queries.HotAddEnabled$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
