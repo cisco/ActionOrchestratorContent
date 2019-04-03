@@ -1,0 +1,701 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY",
+    "name": "Execute Action on Virtual Machine",
+    "title": "Execute Action on Virtual Machine",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 30,
+          "scope": "input",
+          "name": "Sleep Time (Seconds)",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "NODE_ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_015O9MPWA93B45Wbd5Ga6NXdHHROkuISJxC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Action Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Script",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gmhoxrCBjzGHtG1A5P7TOAjFkwkyaBD",
+        "properties": {
+          "scope": "local",
+          "name": "Virtual Machine Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gmhQbtXmf5aCq3bOVoXoV7eh6rFaZi0",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 10,
+          "scope": "input",
+          "name": "Counter",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Get CloudCenter Context Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "CloudCenter Suite",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic will execute script on VM and poll the status for Suite Internal Target.",
+      "display_name": "Execute Action on Virtual Machine",
+      "favorite": false,
+      "target": {
+        "target_type": "ccsuite.integration_endpoint",
+        "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q",
+        "execute_on_workflow_target": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gYxUXOJ39yjp610WpU679ORidap5hys",
+        "name": "Condition Block",
+        "title": "Check Action Type",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Check Action Type"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gYxUZpONNCipAYpEIyQhcEDmW7anwZL",
+            "name": "Condition Branch",
+            "title": "ActionType == external",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gYxTTIiozpeC0G7XGX3h938xWZW4k92$",
+                "operator": "eq",
+                "right_operand": "external"
+              },
+              "continue_on_failure": false,
+              "display_name": "ActionType == external"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gYxyFAompmtMgQu16ATMjUPjR5XsqPy",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "This action is supported only for Action Type \"On Virtual Machine OS\"."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01gmh0lkxaSZ9pzYk3hEZ6yHwZOUDWHAb",
+        "name": "Convert Json to Xml",
+        "title": "Convert Json to Xml",
+        "type": "core.json2xml",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Convert Json to Xml",
+          "input_json": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf$",
+          "replace_list": [
+            {
+              "replaced_string": "",
+              "replacement_string": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gOrY6QwsYAf3HZNMIh7scdMw1Of0a4M",
+        "name": "Find String",
+        "title": "check for virtualMachines Array",
+        "type": "core.find_string",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "check for virtualMachines Array",
+          "searched_string": "\u003cvirtualMachines\u003e",
+          "source": "$activity.definition_activity_01gmh0lkxaSZ9pzYk3hEZ6yHwZOUDWHAb.output.output_xml$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gmHx3uSclJXnITm7Fb6VqKxNCPU5Ik6",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gmHxCXrrkfna8wM3H20vnCfKKl87ves",
+            "name": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gOrY6QwsYAf3HZNMIh7scdMw1Of0a4M.output.has_match$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0156H2HHC93SO3ubpN4rhPzXH2L6t3rOuEN",
+                "name": "JSONPath Query",
+                "title": "Query VM Id",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Query VM Id",
+                  "input_json": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.id",
+                      "jsonpath_query_name": "VMId",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gqqMJJAVjafmKFGaKT3qkjoPfoh1GmA",
+                "name": "Add Row to Table",
+                "title": "Add Row to Table",
+                "type": "core.addrowtotable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Add Row to Table",
+                  "input_table": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.local.variable_workflow_01gmhQbtXmf5aCq3bOVoXoV7eh6rFaZi0$",
+                  "row": [
+                    {
+                      "key": "Id",
+                      "type": "string",
+                      "value": "$activity.definition_activity_0156H2HHC93SO3ubpN4rhPzXH2L6t3rOuEN.output.jsonpath_queries.VMId$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gmHxFhzYghwBsF1zC2N448cNLRAKZkj",
+            "name": "Condition Branch",
+            "title": "WF Type = lifecycle",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gOrY6QwsYAf3HZNMIh7scdMw1Of0a4M.output.has_match$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "display_name": "WF Type = lifecycle"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015Q2WVSM4EM94SI2K5RA7QQXi0RLZdxFy9",
+                "name": "JSONPath Query",
+                "title": "Query VM ID",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Query VM ID",
+                  "input_json": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.virtualMachines[?(@.id='$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_015O9MPWA93B45Wbd5Ga6NXdHHROkuISJxC$')].virtualMachineId",
+                      "jsonpath_query_name": "VMID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_015Q395W55CVR7gh2qhMRUbNdbveOOLQu5V",
+                "name": "Add Row to Table",
+                "title": "Add Row to Table",
+                "type": "core.addrowtotable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Add Row to Table",
+                  "input_table": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.local.variable_workflow_01gmhQbtXmf5aCq3bOVoXoV7eh6rFaZi0$",
+                  "row": [
+                    {
+                      "key": "Id",
+                      "type": "string",
+                      "value": "$activity.definition_activity_015Q2WVSM4EM94SI2K5RA7QQXi0RLZdxFy9.output.jsonpath_queries.VMID$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01gmInQYOkuC3decW8S0krmldTaPE1BRM",
+        "name": "For Each",
+        "title": "Execute Action on Each VM",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Execute Action on Each VM",
+          "source_array": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.local.variable_workflow_01gmhQbtXmf5aCq3bOVoXoV7eh6rFaZi0$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gD8cpM09uePpv4stbEAVFllma5Abi7P",
+            "name": "Generic CCS API Request",
+            "title": "Execute Action",
+            "type": "ccs.api_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "api_body": "{\n  \"resourceType\": \"VIRTUAL_MACHINE\",\n  \"executionSpecs\": [\n    {\n      \"name\": \"script\",\n      \"value\": \"$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmgK3LkOa8JMelklBT5K2eV29ZlPpqv$\",\n      \"actionTimeout\":\"$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6$*$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$\"\n    }\n  ],\n  \"executionResources\": [\n    {\n      \"id\": \"$activity.definition_activity_01gmInQYOkuC3decW8S0krmldTaPE1BRM.input.source_array[@].Id$\"\n    }\n  ]\n}",
+              "api_call_method": "POST",
+              "continue_on_failure": false,
+              "display_name": "Execute Action",
+              "relative_url": "/cloudcenter-ccm-backend/api/v1/ao_actions/executions",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "target": {
+                "override_workflow_target": false,
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01godujhiy7eGZ303hbE4c466ACRwDemj",
+            "name": "Replace String",
+            "title": "Replace String",
+            "type": "core.replacestring",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Replace String",
+              "input_string": "$activity.definition_activity_01gD8cpM09uePpv4stbEAVFllma5Abi7P.output.response_body$",
+              "replace_list": [
+                {
+                  "replaced_string": "\"",
+                  "replacement_string": ""
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01gmtHkegOeyO7mfaD3wQ11Fsf7cz8b2X",
+            "name": "While Loop",
+            "title": "While Loop",
+            "type": "logic.while",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "While Loop"
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01gmtHmtpF2EiNMtQdY4wAopRf1MZEn5u",
+                "name": "Condition Branch",
+                "title": "Counter \u003e 0",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$",
+                    "operator": "gt",
+                    "right_operand": 0
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Counter \u003e 0"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01gmIyn8XiSv68ymrpfRWAdmCCieIC1p0",
+                    "name": "Generic CCS API Request",
+                    "title": "Poll Action Status",
+                    "type": "ccs.api_request",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "api_call_method": "GET",
+                      "continue_on_failure": false,
+                      "display_name": "Poll Action Status",
+                      "relative_url": " /cloudcenter-ccm-backend/api/v1/executions/status?resourceType=VIRTUAL_MACHINE\u0026id=$activity.definition_activity_01gmInQYOkuC3decW8S0krmldTaPE1BRM.input.source_array[@].Id$\u0026actionExecutionId=$activity.definition_activity_01godujhiy7eGZ303hbE4c466ACRwDemj.output.result_string$",
+                      "runtime_user": {
+                        "override_target_runtime_user": false,
+                        "target_default": true
+                      },
+                      "target": {
+                        "override_workflow_target": false,
+                        "use_workflow_target": true
+                      }
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01gmtQP2y6Yn8vIWczq3HjtzUJLAixWLR",
+                    "name": "JSONPath Query",
+                    "title": "Query Status",
+                    "type": "corejava.jsonpathquery",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Query Status",
+                      "input_json": "$activity.definition_activity_01gmIyn8XiSv68ymrpfRWAdmCCieIC1p0.output.response_body$",
+                      "jsonpath_queries": [
+                        {
+                          "jsonpath_query": "$[0].status",
+                          "jsonpath_query_name": "status",
+                          "jsonpath_query_type": "string",
+                          "zdate_type_format": ""
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01gmtLH4v3guYKzPM1yEZLWt04agYtI7C",
+                    "name": "Condition Block",
+                    "title": "Condition Block",
+                    "type": "logic.if_else",
+                    "base_type": "activity",
+                    "properties": {
+                      "display_name": "Condition Block"
+                    },
+                    "object_type": "definition_activity",
+                    "blocks": [
+                      {
+                        "unique_name": "definition_activity_01gO9ggyKiNalxBTDSEIS9gQCHiNaT3yN",
+                        "name": "Condition Branch",
+                        "title": "Status == SUCCEEDED",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_01gmtQP2y6Yn8vIWczq3HjtzUJLAixWLR.output.jsonpath_queries.status$",
+                            "operator": "eq",
+                            "right_operand": "SUCCEEDED"
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Status == SUCCEEDED"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01gO9sgp9BWf7eW3z2ODuzHa0ZuX4Adi8",
+                            "name": "Break",
+                            "title": "Break",
+                            "type": "logic.break",
+                            "base_type": "activity",
+                            "properties": {
+                              "display_name": "Break"
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_01gmtLJjE4upV8uqPUd17bdSEjJZMSKat",
+                        "name": "Condition Branch",
+                        "title": "Status \u003c\u003e FAILED and counter\u003e1",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": {
+                              "left_operand": "$activity.definition_activity_01gmtQP2y6Yn8vIWczq3HjtzUJLAixWLR.output.jsonpath_queries.status$",
+                              "operator": "ne",
+                              "right_operand": "FAILED"
+                            },
+                            "operator": "and",
+                            "right_operand": {
+                              "left_operand": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$",
+                              "operator": "gt",
+                              "right_operand": 1
+                            }
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Status \u003c\u003e FAILED and counter\u003e1"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01gmU2dNxo7dervbMrggNEKmZGrGfKHgV",
+                            "name": "Set Variables",
+                            "title": "Decrement Counter",
+                            "type": "core.set_multiple_variables",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Decrement Counter",
+                              "variables_to_update": [
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$",
+                                  "variable_value_new": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$-1"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_01gmUFezFDQjvO0mXDDG2CMYtAmpAHoo4",
+                            "name": "Sleep",
+                            "title": "Sleep",
+                            "type": "core.sleep",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Sleep",
+                              "sleep_interval": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmUjEx0Z3LZOPK3u01H2tmZyv1QIFk6$"
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_0150KUJ8NVWNR13WrigdypY7LQxPpLtyoR2",
+                        "name": "Condition Branch",
+                        "title": "Status \u003c\u003e FAILED and Counter=1",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": {
+                              "left_operand": "$activity.definition_activity_01gmtQP2y6Yn8vIWczq3HjtzUJLAixWLR.output.jsonpath_queries.status$",
+                              "operator": "ne",
+                              "right_operand": "FAILED"
+                            },
+                            "operator": "and",
+                            "right_operand": {
+                              "left_operand": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$",
+                              "operator": "eq",
+                              "right_operand": 1
+                            }
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Status \u003c\u003e FAILED and Counter=1"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_0150L8A2WFWN50UljC0UMR8SfCFjxRD8ojN",
+                            "name": "Failed",
+                            "title": "Succeeded",
+                            "type": "logic.completed",
+                            "base_type": "activity",
+                            "properties": {
+                              "completion_type": "failed-completed",
+                              "display_name": "Failed",
+                              "result_message": "Unable to execute action on VM $activity.definition_activity_01gmInQYOkuC3decW8S0krmldTaPE1BRM.input.source_array[@].Id$ in time."
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_01gmtLk4f02k1Zv8c3bCWdNcrirA2Q4xT",
+                        "name": "Condition Branch",
+                        "title": "Status = Failed",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_01gmtQP2y6Yn8vIWczq3HjtzUJLAixWLR.output.jsonpath_queries.status$",
+                            "operator": "eq",
+                            "right_operand": "FAILED"
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Status = Failed"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01gmUE6S0Uefoqt6qVls6PSBll9JJvwmW",
+                            "name": "Failed",
+                            "title": "Succeeded",
+                            "type": "logic.completed",
+                            "base_type": "activity",
+                            "properties": {
+                              "completion_type": "failed-completed",
+                              "display_name": "Failed"
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_01gOOcYvNWK4P1KZSIM1aA3TsK7uLnluH",
+                        "name": "Condition Branch",
+                        "title": "Status = TIMEOUT",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_01gmtQP2y6Yn8vIWczq3HjtzUJLAixWLR.output.jsonpath_queries.status$",
+                            "operator": "eq",
+                            "right_operand": "TIMEOUT"
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "Status = TIMEOUT"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01gOOD1wcMUgIwmKk9bWnXGUqwRgT20Jk",
+                            "name": "Failed",
+                            "title": "Succeeded",
+                            "type": "logic.completed",
+                            "base_type": "activity",
+                            "properties": {
+                              "completion_type": "failed-completed",
+                              "display_name": "Failed"
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gmUuSmeo3kFvNsq22c4Zu0RZYXEGWRS",
+            "name": "Set Variables",
+            "title": "Reset Counter",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Reset Counter",
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmT7gkCb94ey8Tqd849LGeJvdfmsYrq$",
+                  "variable_value_new": 10
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gmhoxrCBjzGHtG1A5P7TOAjFkwkyaBD": {
+      "unique_name": "tabletype_01gmhoxrCBjzGHtG1A5P7TOAjFkwkyaBD",
+      "data_type": "datatype.tabletype",
+      "display_name": "CCS Virtual Machine",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "Id",
+          "title": "Id",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
