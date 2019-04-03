@@ -1,0 +1,211 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GOrDWL4ca4vzB93QOnGxiE7ehrxCJHJ",
+    "name": "Get Folders",
+    "title": "Get Folders",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01GOsvRQPIGzGaNEyotGLGnr2QtWVkGU7",
+        "properties": {
+          "scope": "output",
+          "name": "Get Folders",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01GOTAuLV6xnI1eZPemXBTPGnlsVUZMvG",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow retrieves all the folders.",
+      "display_name": "Get Folders",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150X4SSG37IF3U7SKVkZeiVKTuxFlvSntO",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOSa3tctJbnCGpPXGtFQFs3nNhYga3E",
+        "name": "HTTP Request",
+        "title": "Get folders",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0150X4SSG37IF3U7SKVkZeiVKTuxFlvSntO.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Get folders",
+          "method": "GET",
+          "relative_url": "/rest/vcenter/folder",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOSOEcsZKrSh3qjjWdr9adE7kEKLxGw",
+        "name": "Read Table from JSON",
+        "title": "Read folders data",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read folders data",
+          "input_json": "$activity.definition_activity_01GOSa3tctJbnCGpPXGtFQFs3nNhYga3E.output.response_body$",
+          "jsonpath_query": "$.value",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "folder",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "type",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOTEPZpi5DkHzHzmrfqwKBBP8996Qtp",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_01GOSOEcsZKrSh3qjjWdr9adE7kEKLxGw.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01GOTFb7bQlYxWlPmf4E4PhdhNZA9L1pZ",
+            "name": "Add Row to Table",
+            "title": "Add Row to Get Folders Table",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Row to Get Folders Table",
+              "folder": "$activity.definition_activity_01GOTEPZpi5DkHzHzmrfqwKBBP8996Qtp.input.source_array[@].folder$",
+              "input_table": "$workflow.definition_workflow_01GOrDWL4ca4vzB93QOnGxiE7ehrxCJHJ.output.variable_workflow_01GOTAuLV6xnI1eZPemXBTPGnlsVUZMvG$",
+              "name": "$activity.definition_activity_01GOTEPZpi5DkHzHzmrfqwKBBP8996Qtp.input.source_array[@].name$",
+              "row": [
+                {
+                  "key": "folder",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01GOTEPZpi5DkHzHzmrfqwKBBP8996Qtp.input.source_array[@].folder$"
+                },
+                {
+                  "key": "name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01GOTEPZpi5DkHzHzmrfqwKBBP8996Qtp.input.source_array[@].name$"
+                },
+                {
+                  "key": "type",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01GOTEPZpi5DkHzHzmrfqwKBBP8996Qtp.input.source_array[@].type$"
+                }
+              ],
+              "type": "$activity.definition_activity_01GOTEPZpi5DkHzHzmrfqwKBBP8996Qtp.input.source_array[@].type$"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01GOsvRQPIGzGaNEyotGLGnr2QtWVkGU7": {
+      "unique_name": "tabletype_01GOsvRQPIGzGaNEyotGLGnr2QtWVkGU7",
+      "data_type": "datatype.tabletype",
+      "display_name": "GetFolders",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "type",
+          "title": "Type",
+          "type": "string"
+        },
+        {
+          "name": "folder",
+          "title": "Folder",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
