@@ -1,0 +1,99 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GpQDYDdvFrLERruRkNRwgmf7nzayVVp",
+    "name": "Connect Host to vCenter",
+    "title": "Connect Host to vCenter",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Host",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01GpqcW0blejFJwfDcGzRrQ6w1xorJl08",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow Connects a Host to vCenter.",
+      "display_name": "Connect Host to vCenter",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150X2HKDUS7D5iqdwdM0HN7V82Ci6wVi27",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GpQVplqudTlur8RsMGxW0e4yUeOttB0",
+        "name": "HTTP Request",
+        "title": "Connect Host to vCenter",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0150X2HKDUS7D5iqdwdM0HN7V82Ci6wVi27.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Connect Host to vCenter",
+          "method": "POST",
+          "relative_url": "/rest/vcenter/host/$workflow.definition_workflow_01GpQDYDdvFrLERruRkNRwgmf7nzayVVp.input.variable_workflow_01GpqcW0blejFJwfDcGzRrQ6w1xorJl08$/connect",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
