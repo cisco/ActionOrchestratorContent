@@ -1,0 +1,205 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gRyhUUyzkhq1sqbDo3wLYiJYQ3dyFUf",
+    "name": "Bind Contract Subject to Filter",
+    "title": "Bind Contract Subject to Filter",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Filter Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_014UM35WA9SQQ4dvV9TRMQhGuFQE824OJho",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Contract Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gTHN68Wl0furHEDWlODQgL7b8nqLVfZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Request Body",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gTHRRSFMySB8EcywCRLGUFmBUTZCcDe",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gTHkO4L2sPDeUcELlpR0SLScbpphy78",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01gXeR8huoegAyGjGNZFZ8zSwue83Dt7V",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cookie",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gXeSc4FgD42BuBIdsAtScKsCWmsqJc0",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco ACI",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic binds contract subject to filter",
+      "display_name": "Bind Contract Subject to Filter",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gXJhj62te18dsQwAcCugi4Km0HV5Mwa",
+        "name": "Bind Contract Subject to Filter",
+        "title": "Bind Contract Subject to Filter",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Bind Contract Subject to Filter",
+          "input": {
+            "variable_workflow_01gsIwExqfmUaoggu6uOyvBvabqZA3ZLV": "$workflow.definition_workflow_01gRyhUUyzkhq1sqbDo3wLYiJYQ3dyFUf.input.variable_workflow_01gXeSc4FgD42BuBIdsAtScKsCWmsqJc0$",
+            "variable_workflow_01gsdK0zbTS4PCnARX0O9igJm1kjJuPeO": "POST",
+            "variable_workflow_01gsdloLMNSSYplMekO1An6ixWk3Lxp6i": "$workflow.definition_workflow_01gRyhUUyzkhq1sqbDo3wLYiJYQ3dyFUf.input.variable_workflow_01gTHRRSFMySB8EcywCRLGUFmBUTZCcDe$",
+            "variable_workflow_01gsdpOPuyoXxmcr2tUmx0nYehy4zQq7V": "/node/mo/uni/tn-$workflow.definition_workflow_01gRyhUUyzkhq1sqbDo3wLYiJYQ3dyFUf.input.variable_workflow_01gTHkO4L2sPDeUcELlpR0SLScbpphy78$/brc-$workflow.definition_workflow_01gRyhUUyzkhq1sqbDo3wLYiJYQ3dyFUf.input.variable_workflow_01gTHN68Wl0furHEDWlODQgL7b8nqLVfZ$.json",
+            "variable_workflow_01gsdslJCwSZyhMcI4byCrpPtpAUomyce": "$workflow.definition_workflow_01gRyhUUyzkhq1sqbDo3wLYiJYQ3dyFUf.input.variable_workflow_01gXeR8huoegAyGjGNZFZ8zSwue83Dt7V$"
+          },
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gTi7cCcUvUG7xWhJeTeWQSTmiKFtW4Y",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gTi7EPvH6Rx4nx4R8I3BkK1oTvl3lf6",
+            "name": "Condition Branch",
+            "title": "If Status code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gXJhj62te18dsQwAcCugi4Km0HV5Mwa.output.succeeded$",
+                "operator": "eq",
+                "right_operand": "true"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gTiDTiED5WIRfboHGHVDgnld3wAbu3H",
+                "name": "Succeeded",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded",
+                  "result_message": "$activity.definition_activity_01gXJhj62te18dsQwAcCugi4Km0HV5Mwa.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gTi7FqYzkhSLP0WduvpJLjTJKm3oc3G",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gXJhj62te18dsQwAcCugi4Km0HV5Mwa.output.succeeded$",
+                "operator": "eq",
+                "right_operand": "false"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gTiBb9JYdETqrzsc4Qloi1aOXrJ2s42",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Bind Contract Subjects to Filters.\n\nError:\n$activity.definition_activity_01gXJhj62te18dsQwAcCugi4Km0HV5Mwa.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x"
+  ]
+}
