@@ -1,0 +1,387 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GOVMpZRZSYKsPyfUyAGUxeplhkxtAYo",
+    "name": "Get Datastores",
+    "title": "Get Datastores",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Datacenter ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01GywGhiLJrwt8jN1kwRd2GwoAkYkCPDy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Relative URL",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01GywJxA6YXnX8pmtko9Kbr7xJisfbbMq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01GOWJHCYGM5x8pOxHqZUna5RDPoWdz6j",
+        "properties": {
+          "scope": "output",
+          "name": "DataStores table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01GOWvAwpg5OAbmLOPufYPoD0drs1p6gq",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow retrieves all the datastores.",
+      "display_name": "Get Datastores",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150XFVLGBOUG08rgshkAm8rrhFbjGfvlBv",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GywN4YbuhUixyFNhH2shTB8CQMx6LmB",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01GywNAlIq5tuzJFyvi6RYzLnfEFFSd0B",
+            "name": "Condition Branch",
+            "title": "Datacenter is given",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01GOVMpZRZSYKsPyfUyAGUxeplhkxtAYo.input.variable_workflow_01GywGhiLJrwt8jN1kwRd2GwoAkYkCPDy$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "Datacenter is given"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01GywpXkvPL0CWOsDwj8V0BlzJZW1N4rw",
+                "name": "Set Variables",
+                "title": "Set URL",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set URL",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01GOVMpZRZSYKsPyfUyAGUxeplhkxtAYo.local.variable_workflow_01GywJxA6YXnX8pmtko9Kbr7xJisfbbMq$",
+                      "variable_value_new": "/rest/vcenter/datastore?filter.datacenters=$workflow.definition_workflow_01GOVMpZRZSYKsPyfUyAGUxeplhkxtAYo.input.variable_workflow_01GywGhiLJrwt8jN1kwRd2GwoAkYkCPDy$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01GywNb3MjYKTy0bZRCqbYg9AdkxBhlns",
+            "name": "Condition Branch",
+            "title": "Datacenter is not given",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01GOVMpZRZSYKsPyfUyAGUxeplhkxtAYo.input.variable_workflow_01GywGhiLJrwt8jN1kwRd2GwoAkYkCPDy$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "Datacenter is not given"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01GywViMyYw7DQzYcwlAJ8NJeHXvQZ51G",
+                "name": "Set Variables",
+                "title": "Set URL",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set URL",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01GOVMpZRZSYKsPyfUyAGUxeplhkxtAYo.local.variable_workflow_01GywJxA6YXnX8pmtko9Kbr7xJisfbbMq$",
+                      "variable_value_new": "/rest/vcenter/datastore"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01GOv8iZOgqGpbKuzwcV1gF6lzQmDmnae",
+        "name": "HTTP Request",
+        "title": "Get DataStores",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0150XFVLGBOUG08rgshkAm8rrhFbjGfvlBv.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Get DataStores",
+          "method": "GET",
+          "relative_url": "$workflow.definition_workflow_01GOVMpZRZSYKsPyfUyAGUxeplhkxtAYo.local.variable_workflow_01GywJxA6YXnX8pmtko9Kbr7xJisfbbMq$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOvLTdK7khCOuDnmQpClS5dAAd98DSE",
+        "name": "Read Table from JSON",
+        "title": "Read DataStores",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read DataStores",
+          "input_json": "$activity.definition_activity_01GOv8iZOgqGpbKuzwcV1gF6lzQmDmnae.output.response_body$",
+          "jsonpath_query": "$.value",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "datastore",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "type",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "free_space",
+              "column_type": "integer",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "capacity",
+              "column_type": "integer",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151H20T4C1IX3qoIgJepGzlNKULpam4yxX",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0151H20ZB35AM3akuV8m6FeIXR5jvy2JyD0",
+            "name": "Condition Branch",
+            "title": "If Row Count \u003e 0",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01GOvLTdK7khCOuDnmQpClS5dAAd98DSE.output.row_count$",
+                "operator": "gt",
+                "right_operand": 0
+              },
+              "continue_on_failure": false,
+              "display_name": "If Row Count \u003e 0"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX",
+                "name": "For Each",
+                "title": "For Each DataStore",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each DataStore",
+                  "source_array": "$activity.definition_activity_01GOvLTdK7khCOuDnmQpClS5dAAd98DSE.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01GOwaJVB6gSZdNEYBQ1os73mgvCLxSqr",
+                    "name": "Add Row to Table",
+                    "title": "Add Datastores to table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "capacity": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].capacity$",
+                      "continue_on_failure": false,
+                      "datastore": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].datastore$",
+                      "display_name": "Add Datastores to table",
+                      "free_space": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].free_space$",
+                      "input_table": "$workflow.definition_workflow_01GOVMpZRZSYKsPyfUyAGUxeplhkxtAYo.output.variable_workflow_01GOWvAwpg5OAbmLOPufYPoD0drs1p6gq$",
+                      "name": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].name$",
+                      "row": [
+                        {
+                          "key": "datastore",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].datastore$"
+                        },
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "type",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].type$"
+                        },
+                        {
+                          "key": "free_space",
+                          "type": "integer",
+                          "value": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].free_space$"
+                        },
+                        {
+                          "key": "capacity",
+                          "type": "integer",
+                          "value": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].capacity$"
+                        }
+                      ],
+                      "type": "$activity.definition_activity_01GOWWEPnC907fpUcNRnVdv1sy55i0daX.input.source_array[@].type$"
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01GOWJHCYGM5x8pOxHqZUna5RDPoWdz6j": {
+      "unique_name": "tabletype_01GOWJHCYGM5x8pOxHqZUna5RDPoWdz6j",
+      "data_type": "datatype.tabletype",
+      "display_name": "Data Stores Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "type",
+          "title": "Type",
+          "type": "string"
+        },
+        {
+          "name": "capacity",
+          "title": "Capacity",
+          "type": "integer"
+        },
+        {
+          "name": "datastore",
+          "title": "Datastore",
+          "type": "string"
+        },
+        {
+          "name": "free_space",
+          "title": "FreeSpace",
+          "type": "integer"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
