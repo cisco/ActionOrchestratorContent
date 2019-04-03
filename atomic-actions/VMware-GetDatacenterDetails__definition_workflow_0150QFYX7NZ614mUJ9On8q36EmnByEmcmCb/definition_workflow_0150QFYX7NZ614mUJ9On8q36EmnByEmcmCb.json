@@ -1,0 +1,267 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0150QFYX7NZ614mUJ9On8q36EmnByEmcmCb",
+    "name": "Get Datacenter Details",
+    "title": "Get Datacenter Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Network Folder",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150QG25LSUKY6NZ7nVrR1viLWTdfnBCawz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "VM Folder",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150QG25LT1RV0FxNZdels7Kkai0tUmJOqB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Datacenter ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150QG25LT6G00jKErlv27ck7rN11XxWuZU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150QG25LTASD6zlYcuJEJapPw8nyYbU4yU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Datastore Folder",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150QG25LTEN40iZ7KGpKS9GWPogQcuKgjQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Host Folder",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150QG25LTIM95X1EOP7HOJPiT4531q0p3B",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Get Datacenters from  vCenter",
+      "display_name": "Get Datacenter Details",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150X73UGGNGH25KsWth3g0G8SPDKU4TSVw",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150QG2P7QD987Nrqj4BjuVKnr8duaChjdN",
+        "name": "HTTP Request",
+        "title": "Get Datacenter Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0150X73UGGNGH25KsWth3g0G8SPDKU4TSVw.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Get Datacenter Details",
+          "method": "GET",
+          "relative_url": "/rest/vcenter/datacenter/$workflow.definition_workflow_0150QFYX7NZ614mUJ9On8q36EmnByEmcmCb.input.variable_workflow_0150QG25LT6G00jKErlv27ck7rN11XxWuZU$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150QG30MQFUT3tEVeyWCtrh34jdleL71hl",
+        "name": "JSONPath Query",
+        "title": "Read Datacenter Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Datacenter Details",
+          "input_json": "$activity.definition_activity_0150QG2P7QD987Nrqj4BjuVKnr8duaChjdN.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..name",
+              "jsonpath_query_name": "Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..datastore_folder",
+              "jsonpath_query_name": "Datastore folder",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..host_folder",
+              "jsonpath_query_name": "Host folder",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..network_folder",
+              "jsonpath_query_name": "Network folder",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..vm_folder",
+              "jsonpath_query_name": "VM Folder",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150QG39WAC3S0haOyjjX5Zy3RE32zeZx4W",
+        "name": "Condition Block",
+        "title": "Check If Datacenter Exists",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check If Datacenter Exists"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0150QG3GBX3UJ1uPuE97BMyF7xL8SNXU0eR",
+            "name": "Condition Branch",
+            "title": "If Exists",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0150QG30MQFUT3tEVeyWCtrh34jdleL71hl.output.jsonpath_queries.Name$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If Exists"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0150QG3QIY6K25nRS7wHEXciVFbLtozfCV7",
+                "name": "Set Variables",
+                "title": "Datacenter Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Datacenter Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0150QFYX7NZ614mUJ9On8q36EmnByEmcmCb.output.variable_workflow_0150QG25LTASD6zlYcuJEJapPw8nyYbU4yU$",
+                      "variable_value_new": "$activity.definition_activity_0150QG30MQFUT3tEVeyWCtrh34jdleL71hl.output.jsonpath_queries.Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0150QFYX7NZ614mUJ9On8q36EmnByEmcmCb.output.variable_workflow_0150QG25LTEN40iZ7KGpKS9GWPogQcuKgjQ$",
+                      "variable_value_new": "$activity.definition_activity_0150QG30MQFUT3tEVeyWCtrh34jdleL71hl.output.jsonpath_queries.Datastore folder$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0150QFYX7NZ614mUJ9On8q36EmnByEmcmCb.output.variable_workflow_0150QG25LTIM95X1EOP7HOJPiT4531q0p3B$",
+                      "variable_value_new": "$activity.definition_activity_0150QG30MQFUT3tEVeyWCtrh34jdleL71hl.output.jsonpath_queries.Host folder$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0150QFYX7NZ614mUJ9On8q36EmnByEmcmCb.output.variable_workflow_0150QG25LSUKY6NZ7nVrR1viLWTdfnBCawz$",
+                      "variable_value_new": "$activity.definition_activity_0150QG30MQFUT3tEVeyWCtrh34jdleL71hl.output.jsonpath_queries.Network folder$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0150QFYX7NZ614mUJ9On8q36EmnByEmcmCb.output.variable_workflow_0150QG25LT1RV0FxNZdels7Kkai0tUmJOqB$",
+                      "variable_value_new": "$activity.definition_activity_0150QG30MQFUT3tEVeyWCtrh34jdleL71hl.output.jsonpath_queries.VM Folder$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
