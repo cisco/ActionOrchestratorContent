@@ -1,0 +1,230 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GOkkEwiVeIiwsx6nCWR0X1SI3X8J770",
+    "name": "Get Datacenters",
+    "title": "Get Datacenters",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01GOkZYDoLJQ22oltFFL504353eE6ExUi",
+        "properties": {
+          "scope": "output",
+          "name": "Datacenters",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01GOL0uQwRvVZzOyEpqBnL19yeKk2VJLL",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow retrieves  all the existing datacenters.",
+      "display_name": "Get Datacenters",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01GOkOsuli75p3OVNjijvRgDxu6O6hrzY",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01fktSwszNAJNtY99PGzeoItl4VYQ5zOY",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOkpFuYqIbHUiaitbc4JVhfD3Bbpxiv",
+        "name": "HTTP Request",
+        "title": "Get Datacenters",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_01GOkOsuli75p3OVNjijvRgDxu6O6hrzY.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Get Datacenters",
+          "method": "Get",
+          "relative_url": "/rest/vcenter/datacenter",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOL38fBJ4Ybmjp0WaGhWX4dmVQzeRDC",
+        "name": "Read Table from JSON",
+        "title": "Read Datacenters",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Datacenters",
+          "input_json": "$activity.definition_activity_01GOkpFuYqIbHUiaitbc4JVhfD3Bbpxiv.output.response_body$",
+          "jsonpath_query": "$.value",
+          "persist_output": true,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "datacenter",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151H0XPUTLEB4GrgPQ4ZIF9XqPGoYrOlEX",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0151H0XVWZSGA62zx5ZSpwVo1jcQFL0ddnx",
+            "name": "Condition Branch",
+            "title": "If Datacenters Row Count \u003e 0",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01GOL38fBJ4Ybmjp0WaGhWX4dmVQzeRDC.output.row_count$",
+                "operator": "gt",
+                "right_operand": 0
+              },
+              "continue_on_failure": false,
+              "display_name": "If Datacenters Row Count \u003e 0"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01GOLBnsaOy13ucQ8z8XSOWRMr8ERIWly",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "source_array": "$activity.definition_activity_01GOL38fBJ4Ybmjp0WaGhWX4dmVQzeRDC.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01GOLCyP74i5qyPIGIq34sIiXu6LNM6Y1",
+                    "name": "Add Row to Table",
+                    "title": "Add DataCenter to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "Id": "$activity.definition_activity_01GOLBnsaOy13ucQ8z8XSOWRMr8ERIWly.input.source_array[@].datacenter$",
+                      "Name": "$activity.definition_activity_01GOLBnsaOy13ucQ8z8XSOWRMr8ERIWly.input.source_array[@].name$",
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add DataCenter to Table",
+                      "input_table": "$workflow.definition_workflow_01GOkkEwiVeIiwsx6nCWR0X1SI3X8J770.output.variable_workflow_01GOL0uQwRvVZzOyEpqBnL19yeKk2VJLL$",
+                      "row": [
+                        {
+                          "key": "Id",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01GOLBnsaOy13ucQ8z8XSOWRMr8ERIWly.input.source_array[@].datacenter$"
+                        },
+                        {
+                          "key": "Name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01GOLBnsaOy13ucQ8z8XSOWRMr8ERIWly.input.source_array[@].name$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01GOkZYDoLJQ22oltFFL504353eE6ExUi": {
+      "unique_name": "tabletype_01GOkZYDoLJQ22oltFFL504353eE6ExUi",
+      "data_type": "datatype.tabletype",
+      "display_name": "Datacenter",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "maxLength": 32,
+          "name": "Id",
+          "title": "Id",
+          "type": "string"
+        },
+        {
+          "maxLength": 512,
+          "name": "Name",
+          "title": "Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
