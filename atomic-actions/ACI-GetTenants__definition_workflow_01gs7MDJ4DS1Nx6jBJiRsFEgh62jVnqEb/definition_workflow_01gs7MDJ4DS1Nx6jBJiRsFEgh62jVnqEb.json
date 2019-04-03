@@ -1,0 +1,326 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gs7MDJ4DS1Nx6jBJiRsFEgh62jVnqEb",
+    "name": "Get Tenants",
+    "title": "Get Tenants",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01gsoDTsgz0gLqXzSa20Bjs5qEAmUl1vV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cookie",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gsoEua5j9a1bDqG2AERe7dkXbCM2JSe",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gsoUepQdHtwAN8x49xEMMkNClvQaDD9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "output",
+          "name": "Tenant Count",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_01gspf857PdYL5Zvfdi1VJN4qXZBU2Gpn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gsPS001aDFomONuPxcPeorK9Dr77C3G",
+        "properties": {
+          "scope": "output",
+          "name": "Tenants Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gsPT2j7vVSLrgurAbhOtIYFJM7iPeaA",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco ACI",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic lists out all tenants in Cisco APIC",
+      "display_name": "Get Tenants",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gso6ZF8w3vW7q3nfcBnjBZPLybTl85w",
+        "name": "Get Tenants",
+        "title": "Get Tenants",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get Tenants",
+          "input": {
+            "variable_workflow_01gsIwExqfmUaoggu6uOyvBvabqZA3ZLV": "$workflow.definition_workflow_01gs7MDJ4DS1Nx6jBJiRsFEgh62jVnqEb.input.variable_workflow_01gsoEua5j9a1bDqG2AERe7dkXbCM2JSe$",
+            "variable_workflow_01gsdK0zbTS4PCnARX0O9igJm1kjJuPeO": "GET",
+            "variable_workflow_01gsdloLMNSSYplMekO1An6ixWk3Lxp6i": "null",
+            "variable_workflow_01gsdpOPuyoXxmcr2tUmx0nYehy4zQq7V": "node/class/fvTenant.json",
+            "variable_workflow_01gsdslJCwSZyhMcI4byCrpPtpAUomyce": "$workflow.definition_workflow_01gs7MDJ4DS1Nx6jBJiRsFEgh62jVnqEb.input.variable_workflow_01gsoDTsgz0gLqXzSa20Bjs5qEAmUl1vV$"
+          },
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gsPUoecvLjaerOpZbNQFkAl6dNI6MB1",
+        "name": "JSONPath Query",
+        "title": "Get Count",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get Count",
+          "input_json": "$activity.definition_activity_01gso6ZF8w3vW7q3nfcBnjBZPLybTl85w.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.totalCount",
+              "jsonpath_query_name": "totalCount",
+              "jsonpath_query_type": "integer",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gsPXNQBi01MTTWa4dHm62voy0V5P8f6",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gsPXPpub0WATPHAqstVOxQou94SqQz8",
+            "name": "Condition Branch",
+            "title": "If Count = 0",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gsPUoecvLjaerOpZbNQFkAl6dNI6MB1.output.jsonpath_queries.totalCount$",
+                "operator": "eq",
+                "right_operand": 0
+              },
+              "continue_on_failure": false,
+              "display_name": "If Count = 0"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gsPZtjUzRb7nL2MtWC9v4eLaAmgjww9",
+                "name": "Succeeded",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01gsp0BZkGZlbZIQ7rdaerIPlDaTvzSBe",
+        "name": "Read Table from JSON",
+        "title": "Read Tenants",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Tenants",
+          "input_json": "$activity.definition_activity_01gso6ZF8w3vW7q3nfcBnjBZPLybTl85w.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$",
+          "jsonpath_query": "$..attributes",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "dn",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "descr",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "monPolDn",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gsouDveXJNGG3wkgA95PoGSSqa7UNqW",
+        "name": "Set Variables",
+        "title": "Set Response",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Response",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gs7MDJ4DS1Nx6jBJiRsFEgh62jVnqEb.output.variable_workflow_01gsoUepQdHtwAN8x49xEMMkNClvQaDD9$",
+              "variable_value_new": "$activity.definition_activity_01gso6ZF8w3vW7q3nfcBnjBZPLybTl85w.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gs7MDJ4DS1Nx6jBJiRsFEgh62jVnqEb.output.variable_workflow_01gspf857PdYL5Zvfdi1VJN4qXZBU2Gpn$",
+              "variable_value_new": "$activity.definition_activity_01gsp0BZkGZlbZIQ7rdaerIPlDaTvzSBe.output.row_count$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gsp8BfxgBwLLkceYCljL0EKcmxCWN1y",
+        "name": "For Each",
+        "title": "For Each Tenant",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each Tenant",
+          "source_array": "$activity.definition_activity_01gsp0BZkGZlbZIQ7rdaerIPlDaTvzSBe.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gspa5wJkcf6nXcir3tSCvyaxUr2WT03",
+            "name": "Add Row to Table",
+            "title": "Add Tenant to Table",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Tenant to Table",
+              "input_table": "$workflow.definition_workflow_01gs7MDJ4DS1Nx6jBJiRsFEgh62jVnqEb.output.variable_workflow_01gsPT2j7vVSLrgurAbhOtIYFJM7iPeaA$",
+              "row": [
+                {
+                  "key": "Name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gsp8BfxgBwLLkceYCljL0EKcmxCWN1y.input.source_array[@].name$"
+                },
+                {
+                  "key": "DN",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gsp8BfxgBwLLkceYCljL0EKcmxCWN1y.input.source_array[@].dn$"
+                },
+                {
+                  "key": "Description",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gsp8BfxgBwLLkceYCljL0EKcmxCWN1y.input.source_array[@].descr$"
+                },
+                {
+                  "key": "MonPolDN",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gsp8BfxgBwLLkceYCljL0EKcmxCWN1y.input.source_array[@].monPolDn$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gsPS001aDFomONuPxcPeorK9Dr77C3G": {
+      "unique_name": "tabletype_01gsPS001aDFomONuPxcPeorK9Dr77C3G",
+      "data_type": "datatype.tabletype",
+      "display_name": "ACI Tenant",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "DN",
+          "title": "DN",
+          "type": "string"
+        },
+        {
+          "name": "Description",
+          "title": "Description",
+          "type": "string"
+        },
+        {
+          "name": "MonPolDN",
+          "title": "MonPolDN",
+          "type": "string"
+        },
+        {
+          "name": "Name",
+          "title": "Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x"
+  ]
+}
