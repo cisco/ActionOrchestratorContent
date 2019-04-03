@@ -1,0 +1,173 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS",
+    "name": "Get vCenter Session-Id",
+    "title": "Get vCenter Session-Id",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Session-Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Get vCenter Session ID to perform API Requests.",
+      "display_name": "Get vCenter Session-Id",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01GOG3590iPcDaiWS97rQRLvygsEg357X",
+        "name": "HTTP Request",
+        "title": "Get Session-Id",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get Session-Id",
+          "method": "POST",
+          "relative_url": "/rest/com/vmware/cis/session",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOGfmUIAObbAc1sMan3LsFF7t11nNn4",
+        "name": "JSONPath Query",
+        "title": "Query Session-Id",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Query Session-Id",
+          "input_json": "$activity.definition_activity_01GOG3590iPcDaiWS97rQRLvygsEg357X.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.value",
+              "jsonpath_query_name": "Session-Id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01GOGm2xAW1NUihVWpexuj4ycwNJK5Hh9",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01GOGm7ZTmxQGBhKQka8ErMYIvT9DGZLA",
+            "name": "Condition Branch",
+            "title": "Session-Id Present",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01GOGfmUIAObbAc1sMan3LsFF7t11nNn4.output.jsonpath_queries.Session-Id$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "Session-Id Present"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01GOGs6uRI4oGFQEUVexhj8rRKO2KvGNT",
+                "name": "Set Variables",
+                "title": "Set Session-Id",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Session-Id",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$",
+                      "variable_value_new": "$activity.definition_activity_01GOGfmUIAObbAc1sMan3LsFF7t11nNn4.output.jsonpath_queries.Session-Id$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01GOGmAAHe0Zqtsfrs6heZBy66siUieKH",
+            "name": "Condition Branch",
+            "title": "Else",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01GOGfmUIAObbAc1sMan3LsFF7t11nNn4.output.jsonpath_queries.Session-Id$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "Else"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01GOGYLppHG5RYR5kf9nRmkrTNMMKlica",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Unable to get session-id from VMware vCenter Server"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
