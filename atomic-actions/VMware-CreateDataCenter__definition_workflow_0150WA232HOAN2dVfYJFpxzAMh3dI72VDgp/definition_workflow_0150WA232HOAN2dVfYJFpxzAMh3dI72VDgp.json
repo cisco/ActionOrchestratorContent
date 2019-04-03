@@ -1,0 +1,163 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0150WA232HOAN2dVfYJFpxzAMh3dI72VDgp",
+    "name": "Create DataCenter",
+    "title": "Create DataCenter",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "DataCenter Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150WA545XNZ66BtT5eO2HFip3Uy1EXW1qJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "DataCenter Value",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150WA545XUMT2i4u9KoFcSlj2LeZZ3FrhD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Folder Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0150WA545X35Q3DcbNKMlRI51d6mGpApSZH",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This atomic workflow Creates a Datacenter",
+      "display_name": "Create DataCenter",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150X6BN4036N6o1gtOI3MNUxSLQdL5N346",
+        "name": "Get vCenter Session-Id",
+        "title": "Get vCenter Session-Id",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get vCenter Session-Id",
+          "input": {},
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150WA5NJ9V402LB4gNQVf3Ic9bsY55prgi",
+        "name": "HTTP Request",
+        "title": "Create DataCenter",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n  \"spec\": {\r\n    \"folder\": \"$workflow.definition_workflow_0150WA232HOAN2dVfYJFpxzAMh3dI72VDgp.input.variable_workflow_0150WA545X35Q3DcbNKMlRI51d6mGpApSZH$\",\r\n    \"name\": \"$workflow.definition_workflow_0150WA232HOAN2dVfYJFpxzAMh3dI72VDgp.input.variable_workflow_0150WA545XNZ66BtT5eO2HFip3Uy1EXW1qJ$\"\r\n  }\r\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$activity.definition_activity_0150X6BN4036N6o1gtOI3MNUxSLQdL5N346.output.variable_workflow_01GOGloL2Af7QFraCeyQ9bTMoF5pnvzDD$"
+            }
+          ],
+          "display_name": "Create DataCenter",
+          "method": "POST",
+          "relative_url": "/rest/vcenter/datacenter",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150WA5XA1N0W4OeGnzWiuLwDqHolpUDpin",
+        "name": "JSONPath Query",
+        "title": "Read DataCenter Value",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read DataCenter Value",
+          "input_json": "$activity.definition_activity_0150WA5NJ9V402LB4gNQVf3Ic9bsY55prgi.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.value",
+              "jsonpath_query_name": "DataCenter Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150WA67C0ROV5v02fcM98gFiIfswzaBIaR",
+        "name": "Set Variables",
+        "title": "Set DataCenter Value",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set DataCenter Value",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_0150WA232HOAN2dVfYJFpxzAMh3dI72VDgp.output.variable_workflow_0150WA545XUMT2i4u9KoFcSlj2LeZZ3FrhD$",
+              "variable_value_new": "$activity.definition_activity_0150WA5XA1N0W4OeGnzWiuLwDqHolpUDpin.output.jsonpath_queries.DataCenter Name$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01GOfUVLrmlCJT8UqhapTJsUZ3Qv02AqS"
+  ]
+}
