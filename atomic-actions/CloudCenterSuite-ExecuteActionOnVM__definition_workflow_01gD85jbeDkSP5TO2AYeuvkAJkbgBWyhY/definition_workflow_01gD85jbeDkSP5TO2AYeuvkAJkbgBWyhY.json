@@ -283,7 +283,7 @@
                   "input_json": "$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_01gmGB1E79m7TfL8YMDUFjfBqxcIAKSbf$",
                   "jsonpath_queries": [
                     {
-                      "jsonpath_query": "$.virtualMachines[?(@.id='$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_015O9MPWA93B45Wbd5Ga6NXdHHROkuISJxC$')].virtualMachineId",
+                      "jsonpath_query": "$.virtualMachines[?(@.id=='$workflow.definition_workflow_01gD85jbeDkSP5TO2AYeuvkAJkbgBWyhY.input.variable_workflow_015O9MPWA93B45Wbd5Ga6NXdHHROkuISJxC$')].virtualMachineId",
                       "jsonpath_query_name": "VMID",
                       "jsonpath_query_type": "string",
                       "zdate_type_format": ""
