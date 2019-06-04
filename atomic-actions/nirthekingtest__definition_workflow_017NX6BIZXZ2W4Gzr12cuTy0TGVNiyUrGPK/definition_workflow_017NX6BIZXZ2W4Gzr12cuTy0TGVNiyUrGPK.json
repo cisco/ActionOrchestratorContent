@@ -1,0 +1,69 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_017NX6BIZXZ2W4Gzr12cuTy0TGVNiyUrGPK",
+    "name": "Nir PMO24 ACI workflow",
+    "title": "Nir PMO24 ACI workflow",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "static",
+          "name": "admin pw",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_017NXH66FKW9D6yqlVPHyvuQN0MiV1QNCqk",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "test for PMO24 to show how easy AO is ",
+      "display_name": "Nir PMO24 ACI workflow",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_0175QOH2F688P6eFi3kUrP98qJLCtr6bE7Q",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "categories": [
+      "category_016Z06DEERYCE2UTuKXvGDoONdMOBBL3xFM"
+    ]
+  },
+  "categories": {
+    "category_016Z06DEERYCE2UTuKXvGDoONdMOBBL3xFM": {
+      "unique_name": "category_016Z06DEERYCE2UTuKXvGDoONdMOBBL3xFM",
+      "name": "ACI Automation",
+      "title": "ACI Automation",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_0175QOH2F688P6eFi3kUrP98qJLCtr6bE7Q": {
+      "unique_name": "definition_target_0175QOH2F688P6eFi3kUrP98qJLCtr6bE7Q",
+      "name": "ACI Fabric",
+      "title": "ACI Fabric",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "ACI Fabric",
+        "host": "10.2.0.14",
+        "no_runtime_user": true,
+        "path": "/api",
+        "port": 80,
+        "protocol": "http"
+      }
+    }
+  }
+}
