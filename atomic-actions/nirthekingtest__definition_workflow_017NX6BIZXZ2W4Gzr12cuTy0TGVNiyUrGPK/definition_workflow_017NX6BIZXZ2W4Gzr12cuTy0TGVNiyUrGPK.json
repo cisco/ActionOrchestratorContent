@@ -13,7 +13,7 @@
           "name": "admin pw",
           "type": "datatype.secure_string"
         },
-        "unique_name": "variable_workflow_017NXH66FKW9D6yqlVPHyvuQN0MiV1QNCqk",
+        "unique_name": "variable_workflow_017NY7Y1QF6WO1PLWGZgEpzSP1u42416Oez",
         "object_type": "variable_workflow"
       }
     ],
@@ -32,6 +32,32 @@
       }
     },
     "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_017NY5BLMMN380eQsizgYWWvhex43wSadUf",
+        "name": "Get Access Token",
+        "title": "Get Access Token",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get Access Token",
+          "input": {
+            "variable_workflow_01gRbBzC6y65ilW690WbXhKOxVVEFAWak": "admin",
+            "variable_workflow_01gRbcbVNXvwNc0xy6oSxfLv1IMlF4e8W": "$workflow.definition_workflow_017NX6BIZXZ2W4Gzr12cuTy0TGVNiyUrGPK.static.variable_workflow_017NY7Y1QF6WO1PLWGZgEpzSP1u42416Oez$"
+          },
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "016YVWSHDCXIU3jbVE7pXgYOLHVfKW1E2MG",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01gRBIJ4lT0J8qCi0CcrG0bvgGO8oehuN"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
     "categories": [
       "category_016Z06DEERYCE2UTuKXvGDoONdMOBBL3xFM"
     ]
@@ -65,5 +91,8 @@
         "protocol": "http"
       }
     }
-  }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01gRBIJ4lT0J8qCi0CcrG0bvgGO8oehuN"
+  ]
 }
