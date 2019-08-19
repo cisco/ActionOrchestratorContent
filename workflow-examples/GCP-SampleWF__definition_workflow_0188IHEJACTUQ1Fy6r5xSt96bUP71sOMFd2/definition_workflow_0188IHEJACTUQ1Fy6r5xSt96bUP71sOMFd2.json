@@ -1,0 +1,203 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0188IHEJACTUQ1Fy6r5xSt96bUP71sOMFd2",
+    "name": "GCP - ListVPCs_ReserveStaticIP_ExampleWF",
+    "title": "GCP - ListVPCs_ReserveStaticIP_ExampleWF",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "demolab1",
+          "scope": "input",
+          "name": "static-ip-name",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0188JMEX9YZNM0zVNWHOE6ZEgvcNyG1DY2X",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "longhorn-186314",
+          "scope": "input",
+          "name": "gcp-project-id",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0188J8G3E4W0M23B4RfKhzdkbqKSAzY7BwG",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "GCP - ListVPCs_ReserveStaticIP_ExampleWF",
+      "favorite": false,
+      "runtime_user": {
+        "specify_on_workflow_start": true,
+        "runtime_user_type": "runtime_user.gcp_credentials"
+      },
+      "target": {
+        "target_type": "gcp.endpoint",
+        "target_id": "definition_target_019GPPZZC9O0T7RD7AmQsknRNZOWiuBwrcY",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0188IY9VHFWSO4mx8MKA7sqqGlbdgwdrJMu",
+        "name": "Generic GCP API Request",
+        "title": "List Projects",
+        "type": "gcp.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "api_url": "https://cloudresourcemanager.googleapis.com/v1/projects",
+          "continue_on_failure": false,
+          "display_name": "List Projects",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0188J7U56SZOW60BAS775durNDjJVngocul",
+        "name": "List VPC Networks",
+        "title": "List VPC Networks",
+        "type": "gcp.list_vpc_networks",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "List VPC Networks",
+          "project_id": "$workflow.definition_workflow_0188IHEJACTUQ1Fy6r5xSt96bUP71sOMFd2.input.variable_workflow_0188J8G3E4W0M23B4RfKhzdkbqKSAzY7BwG$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0188J2GQUI3ZY0A81rM7AzqU0X9GOv3Qxvm",
+        "name": "Generic GCP API Request",
+        "title": "Reserve Static IP",
+        "type": "gcp.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "{\n  \"description\": \"Reserve new static IP for - AO Team\",\n  \"ipVersion\": \"IPV4\",\n  \"name\": \"$workflow.definition_workflow_0188IHEJACTUQ1Fy6r5xSt96bUP71sOMFd2.input.variable_workflow_0188JMEX9YZNM0zVNWHOE6ZEgvcNyG1DY2X$\",\n  \"networkTier\": \"PREMIUM\"\n}",
+          "api_call_method": "POST",
+          "api_url": "https://www.googleapis.com/compute/v1/projects/$workflow.definition_workflow_0188IHEJACTUQ1Fy6r5xSt96bUP71sOMFd2.input.variable_workflow_0188J8G3E4W0M23B4RfKhzdkbqKSAzY7BwG$/global/addresses",
+          "continue_on_failure": false,
+          "display_name": "Reserve Static IP",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0188JMYIC306A0zs2eHSHszt7fH47GLGjdP",
+        "name": "Sleep",
+        "title": "Sleep",
+        "type": "core.sleep",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Sleep",
+          "sleep_interval": 5
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0188JIA81SC2D7aFQDQ6gM6eVGf0sF69uzO",
+        "name": "Generic GCP API Request",
+        "title": "Release Reserved Static IP",
+        "type": "gcp.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "DELETE",
+          "api_url": "https://www.googleapis.com/compute/v1/projects/$workflow.definition_workflow_0188IHEJACTUQ1Fy6r5xSt96bUP71sOMFd2.input.variable_workflow_0188J8G3E4W0M23B4RfKhzdkbqKSAzY7BwG$/global/addresses/$workflow.definition_workflow_0188IHEJACTUQ1Fy6r5xSt96bUP71sOMFd2.input.variable_workflow_0188JMEX9YZNM0zVNWHOE6ZEgvcNyG1DY2X$",
+          "continue_on_failure": false,
+          "description": "https://www.googleapis.com/compute/v1/projects/[PROJECT_ID]/regions/[REGION]/addresses/[ADDRESS_NAME]",
+          "display_name": "Release Reserved Static IP",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_019GPPZZC9O0T7RD7AmQsknRNZOWiuBwrcY": {
+      "unique_name": "definition_target_019GPPZZC9O0T7RD7AmQsknRNZOWiuBwrcY",
+      "name": "GCP-Demo-Target-MK",
+      "title": "GCP-Demo-Target-MK",
+      "type": "gcp.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_019GPPLJY4OKJ15xpT2bKuWFXoK7erKoGsO",
+        "display_name": "GCP-Demo-Target-MK",
+        "host": "www.googleapis.com",
+        "protocol": "https",
+        "scope": "/auth/cloud-platform"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_019GPPLJY4OKJ15xpT2bKuWFXoK7erKoGsO": {
+      "unique_name": "definition_runtime_user_019GPPLJY4OKJ15xpT2bKuWFXoK7erKoGsO",
+      "name": "GCP-Murali-Key",
+      "title": "GCP-Murali-Key",
+      "type": "runtime_user.gcp_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "GCP-Murali-Key",
+        "key": "*****"
+      }
+    }
+  }
+}
