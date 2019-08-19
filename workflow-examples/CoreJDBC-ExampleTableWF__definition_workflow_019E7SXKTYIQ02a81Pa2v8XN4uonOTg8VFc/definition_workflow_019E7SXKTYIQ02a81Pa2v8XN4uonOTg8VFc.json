@@ -1,0 +1,675 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc",
+    "name": "Java JDBC activities",
+    "title": "Java JDBC activities",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_019E7WVQ1UWDB3EUac38CD4H67lfckprSOn",
+        "properties": {
+          "scope": "local",
+          "name": "Task Table Test",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019E94LW41Q296lfAkXyWZp86y7Q354OqdU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Result Rows",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019E9Z0AURAF62sPOAESlwT4qs18wwiw5gZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "local",
+          "name": "Set TaskID",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019EAM7T1LFJ3293BhzLHJm0EKfg8AJzCAa",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Java JDBC activities",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "corejava.jdbc_endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019E83DQZP31G434R87LgWpvmApvt5QjDhq",
+        "name": "Insert into Table via JDBC",
+        "title": "Insert into Table via JDBC",
+        "type": "corejava.insert_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Insert into Table via JDBC",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "sql_query": "INSERT INTO `JDBC-TABLE-TESTS`.`tasks` (`title`, `start_date`, `due_date`, `status`, `priority`, `description`) VALUES ( 'row2', '2019-08-16', '2019-08-17', '0', '0', 'insert into table test from AO');",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019EAGOSXBXHL5u8EJXpkt1JWO573bhDWuc",
+        "name": "Select from Table via JDBC",
+        "title": "Select from Table via JDBC",
+        "type": "corejava.select_from_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Select from Table via JDBC",
+          "persist_output": false,
+          "populate_columns": false,
+          "row_count": 200,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "sql_query": "select * from tasks;",
+          "table_columns": [
+            {
+              "column_name": "task_id",
+              "column_type": "integer"
+            }
+          ],
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019EAMHWWFRGO6m3xcPCoMu5qAV7SIZ6Nd3",
+        "name": "Set Variables",
+        "title": "Set TaskID",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set TaskID",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.local.variable_workflow_019EAM7T1LFJ3293BhzLHJm0EKfg8AJzCAa$",
+              "variable_value_new": "$activity.definition_activity_019EAGOSXBXHL5u8EJXpkt1JWO573bhDWuc.output.select_from_via_jdbc[-1].task_id$+1"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E7U1XLOIC31IzUUBKlsEnhZnXWLTh4Rs",
+        "name": "Add Row to Table",
+        "title": "Add Row1 to local Table",
+        "type": "core.addrowtotable",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Add Row1 to local Table",
+          "input_table": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.local.variable_workflow_019E94LW41Q296lfAkXyWZp86y7Q354OqdU$",
+          "row": [
+            {
+              "key": "title",
+              "type": "string",
+              "value": "bulkinsertrow1"
+            },
+            {
+              "key": "start_date",
+              "type": "string",
+              "value": "2019-08-15"
+            },
+            {
+              "key": "due_date",
+              "type": "string",
+              "value": "2019-08-17"
+            },
+            {
+              "key": "status",
+              "type": "integer",
+              "value": 1
+            },
+            {
+              "key": "priority",
+              "type": "integer",
+              "value": 1
+            },
+            {
+              "key": "description",
+              "type": "string",
+              "value": "test bulk insert row1"
+            },
+            {
+              "key": "task_id",
+              "type": "integer",
+              "value": "$activity.definition_activity_019EAGOSXBXHL5u8EJXpkt1JWO573bhDWuc.output.select_from_via_jdbc[-1].task_id$+1"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E86YH488ZX7dizqJE4EGfUqrObZvDWKx",
+        "name": "Add Row to Table",
+        "title": "Add Row2 to Local Table",
+        "type": "core.addrowtotable",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Add Row2 to Local Table",
+          "input_table": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.local.variable_workflow_019E94LW41Q296lfAkXyWZp86y7Q354OqdU$",
+          "row": [
+            {
+              "key": "title",
+              "type": "string",
+              "value": "bulkinsertrow2"
+            },
+            {
+              "key": "start_date",
+              "type": "string",
+              "value": "2019-08-10"
+            },
+            {
+              "key": "due_date",
+              "type": "string",
+              "value": "2019-08-20"
+            },
+            {
+              "key": "status",
+              "type": "integer",
+              "value": 0
+            },
+            {
+              "key": "priority",
+              "type": "integer",
+              "value": 0
+            },
+            {
+              "key": "description",
+              "type": "string",
+              "value": "test bulk insert row2"
+            },
+            {
+              "key": "task_id",
+              "type": "integer",
+              "value": "$activity.definition_activity_019EAGOSXBXHL5u8EJXpkt1JWO573bhDWuc.output.select_from_via_jdbc[-1].task_id$+2"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E9DEV5SINI0WxaLElq7SYSdMWlXyadyP",
+        "name": "Select from Table via JDBC",
+        "title": "Select from Table via JDBC result rows",
+        "type": "corejava.select_from_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Select from Table via JDBC result rows",
+          "persist_output": true,
+          "populate_columns": true,
+          "row_count": 200,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "sql_query": "select * from tasks;",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E83P7LVNO11XskOrHWQYhpqRZk7Wyont",
+        "name": "Insert Bulk into Table via JDBC",
+        "title": "Insert Bulk into Table via JDBC",
+        "type": "corejava.insert_bulk_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "data_source": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.local.variable_workflow_019E94LW41Q296lfAkXyWZp86y7Q354OqdU$",
+          "display_name": "Insert Bulk into Table via JDBC",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "source_column": "title",
+              "source_column_type": "string",
+              "target_column": "title"
+            },
+            {
+              "source_column": "start_date",
+              "source_column_type": "string",
+              "target_column": "start_date"
+            },
+            {
+              "source_column": "due_date",
+              "source_column_type": "string",
+              "target_column": "due_date"
+            },
+            {
+              "source_column": "status",
+              "source_column_type": "string",
+              "target_column": "status"
+            },
+            {
+              "source_column": "priority",
+              "source_column_type": "string",
+              "target_column": "priority"
+            },
+            {
+              "source_column": "description",
+              "source_column_type": "string",
+              "target_column": "description"
+            },
+            {
+              "source_column": "task_id",
+              "source_column_type": "integer",
+              "target_column": "task_id"
+            }
+          ],
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          },
+          "target_table_name": "tasks"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E8A8WPEFPT7fdF4l502rBK94624qo5cr",
+        "name": "Select from Table via JDBC",
+        "title": "Select from Table via JDBC all columns",
+        "type": "corejava.select_from_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Select from Table via JDBC all columns",
+          "persist_output": false,
+          "populate_columns": true,
+          "row_count": 200,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "sql_query": "select * from tasks;",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E99USFBLOK5OSNDuJsyzFYKi6cRfh5zy",
+        "name": "Update Table via JDBC",
+        "title": "Update Table via JDBC",
+        "type": "corejava.update_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Update Table via JDBC",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "sql_query": "UPDATE tasks SET description =\"test update table action\" WHERE task_id=10",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E9C6ZUXVNX1XepFSTEBCexi4oCSI4rSK",
+        "name": "Select from Table via JDBC",
+        "title": "Select from Table via JDBC for updated row",
+        "type": "corejava.select_from_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Select from Table via JDBC for updated row",
+          "persist_output": false,
+          "populate_columns": true,
+          "row_count": 200,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "sql_query": "select * from tasks where task_id=10;",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E9A04Z31VH0ilzrEmTUW8nVdYKgAoQPn",
+        "name": "Delete from Table via JDBC",
+        "title": "Delete from Table via JDBC",
+        "type": "corejava.delete_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Delete from Table via JDBC",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "sql_query": "delete from tasks where task_id=11",
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E89V57CK2732A9GVebvVoLtMl01KDbHi",
+        "name": "Select from Table via JDBC",
+        "title": "Select from Table via JDBC selected cloumns",
+        "type": "corejava.select_from_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Select from Table via JDBC selected cloumns",
+          "persist_output": false,
+          "populate_columns": false,
+          "row_count": 200,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "sql_query": "select * from tasks",
+          "table_columns": [
+            {
+              "column_name": "description",
+              "column_type": "string"
+            },
+            {
+              "column_name": "title",
+              "column_type": "string"
+            }
+          ],
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E9XVEF4AB42A2c1LS1zP5bP5R1b2aQXM",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_019E89V57CK2732A9GVebvVoLtMl01KDbHi.output.select_from_via_jdbc$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_019E9YN0J3OL02O8KQr30u2aka0PEy3BTt1",
+            "name": "Set Variables",
+            "title": "Set Variables",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Variables",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.output.variable_workflow_019E9Z0AURAF62sPOAESlwT4qs18wwiw5gZ$",
+                  "variable_value_new": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.output.variable_workflow_019E9Z0AURAF62sPOAESlwT4qs18wwiw5gZ$, [\"title\":  \"$activity.definition_activity_019E9XVEF4AB42A2c1LS1zP5bP5R1b2aQXM.input.source_array[@].title$\", \"description\": \"$activity.definition_activity_019E9XVEF4AB42A2c1LS1zP5bP5R1b2aQXM.input.source_array[@].description$\"]"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019E9QEGVKLUY43ysMXlNBjYAYkEPxCzkoi",
+        "name": "Call Procedure via JDBC",
+        "title": "Call Procedure via JDBC  get task details based on Task id",
+        "type": "corejava.call_procedure_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Call Procedure via JDBC  get task details based on Task id",
+          "persist_output": true,
+          "populate_columns": true,
+          "procedure_inputs": [
+            {
+              "input_name": "TaskID",
+              "input_type": "in",
+              "input_value_type": "integer",
+              "value_data": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.local.variable_workflow_019EAM7T1LFJ3293BhzLHJm0EKfg8AJzCAa$"
+            }
+          ],
+          "procedure_name": "GetTaskDetailsByTaskID",
+          "row_count": 200,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019E9QCUDRI6E5EUnUgZSBID2jsmWSOXRgo",
+        "name": "Call Procedure via JDBC",
+        "title": "Call Procedure via JDBC get tasks",
+        "type": "corejava.call_procedure_via_jdbc",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Call Procedure via JDBC get tasks",
+          "persist_output": true,
+          "populate_columns": false,
+          "procedure_name": "GetTaskDetails",
+          "row_count": 200,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "title",
+              "column_type": "string"
+            },
+            {
+              "column_name": "description",
+              "column_type": "string"
+            }
+          ],
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019EA2QKFRAXR0xMmAweZTSCce3o80WPlRa",
+        "name": "For Each",
+        "title": "For Each Task",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each Task",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_019E9QCUDRI6E5EUnUgZSBID2jsmWSOXRgo.output.output_from_procedure_via_jdbc$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_019EA2QNRKFV50GyL8jUmLwiF5KCyyWV6Fr",
+            "name": "Set Variables",
+            "title": "Set Variables",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Variables",
+              "skip_execution": false,
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.output.variable_workflow_019E9Z0AURAF62sPOAESlwT4qs18wwiw5gZ$",
+                  "variable_value_new": "$workflow.definition_workflow_019E7SXKTYIQ02a81Pa2v8XN4uonOTg8VFc.output.variable_workflow_019E9Z0AURAF62sPOAESlwT4qs18wwiw5gZ$ Stoted Procedure Output:  [\"title\":  \"$activity.definition_activity_019EA2QKFRAXR0xMmAweZTSCce3o80WPlRa.input.source_array[@].title$\", \"description\": \"$activity.definition_activity_019EA2QKFRAXR0xMmAweZTSCce3o80WPlRa.input.source_array[@].description$\"]"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_019E7WVQ1UWDB3EUac38CD4H67lfckprSOn": {
+      "unique_name": "tabletype_019E7WVQ1UWDB3EUac38CD4H67lfckprSOn",
+      "data_type": "datatype.tabletype",
+      "display_name": "JDBC Activities Table",
+      "columns": [
+        {
+          "name": "title",
+          "title": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "title": "description",
+          "type": "string"
+        },
+        {
+          "name": "due_date",
+          "title": "due_date",
+          "type": "string"
+        },
+        {
+          "name": "priority",
+          "title": "priority",
+          "type": "integer"
+        },
+        {
+          "name": "start_date",
+          "title": "start_date",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "title": "status",
+          "type": "integer"
+        },
+        {
+          "name": "task_id",
+          "title": "task_id",
+          "type": "integer"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
