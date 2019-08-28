@@ -1,1219 +1,1242 @@
 {
-    "workflow": {
-      "unique_name": "definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj",
-      "name": "PSC_AO_Integration_Workflow",
-      "title": "PSC_AO_Integration_Workflow",
-      "type": "generic.workflow",
-      "base_type": "workflow",
-      "variables": [
-        {
-          "schema_id": "datatype.boolean",
-          "properties": {
-            "value": false,
-            "scope": "local",
-            "name": "outputVarsExistInDestWorkflow",
-            "type": "datatype.boolean"
-          },
-          "unique_name": "variable_workflow_016QL85EDFM683GOPfEb8ZfTAco4jnsOdke",
-          "object_type": "variable_workflow"
+  "workflow": {
+    "unique_name": "definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN",
+    "name": "PSC_AO_Integration_Workflow",
+    "title": "PSC_AO_Integration_Workflow",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "outputVarsExistInDestWorkflow",
+          "type": "datatype.boolean",
+          "is_required": false
         },
-        {
-          "schema_id": "datatype.string",
-          "properties": {
-            "value": "\u003cmessage channel-id=\"$CHANNEL_ID$\"\u003e\u003cadd-comments\u003e\u003ccomment\u003e$COMMENT$\n$OUTPUT_VARIABLE$\u003c/comment\u003e\u003c/add-comments\u003e\u003ctake-action action=\"$STATUS$\"\u003e\u003c/take-action\u003e\u003c/message\u003e",
-            "scope": "local",
-            "name": "NSXMLTemplate",
-            "type": "datatype.string"
-          },
-          "unique_name": "variable_workflow_016QL85EDFXFW0tP0woiWAl70Ts9Y5P31cR",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.string",
-          "properties": {
-            "value": "Running",
-            "scope": "local",
-            "name": "RunStatus",
-            "type": "datatype.string"
-          },
-          "unique_name": "variable_workflow_016QL85EDFUR22i4p54n9SUHjwQN2Tv7kcI",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "tabletype_015ICF0I7NO0C6WGjQyRPrquxRAGOZZH89S",
-          "properties": {
-            "scope": "local",
-            "name": "ActionIdsOfDestWorkflow",
-            "type": "datatype.table"
-          },
-          "unique_name": "variable_workflow_016QL85EDFRZ42mQYdDD6Q5H3OKdNZyBAUc",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.boolean",
-          "properties": {
-            "value": true,
-            "scope": "local",
-            "name": "hasOutputVariables",
-            "type": "datatype.boolean"
-          },
-          "unique_name": "variable_workflow_016QL85EDGDMF6b8xUrt3ujv8SZ8ciWSnhB",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.integer",
-          "properties": {
-            "value": 1,
-            "scope": "local",
-            "name": "SleepTime",
-            "type": "datatype.integer"
-          },
-          "unique_name": "variable_workflow_016QL85EDEQOS2kNCvJDhsLmnzlEmvlVMxi",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.string",
-          "properties": {
-            "value": "psc_inbound_exchange",
-            "scope": "local",
-            "name": "AOToPSCExchange",
-            "type": "datatype.string"
-          },
-          "unique_name": "variable_workflow_016QL85EDG8E46ednTFytwSMlOV9Vlkx843",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.string",
-          "properties": {
-            "value": "",
-            "scope": "local",
-            "name": "PreviousOutputVariables",
-            "type": "datatype.string"
-          },
-          "unique_name": "variable_workflow_016QL85EDG0830Hklr3GyTDo32eqd1u7z3K",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.string",
-          "properties": {
-            "value": "Bearer eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOm51bGwsInN1YiI6IjkiLCJyb2xlcyI6WyJTVUlURV9VU0VSIiwiTEhfdGVuYW50X2FkbWluIl0sImlzcyI6InN1aXRlLWF1dGgiLCJ0ZW5hbnRJZCI6IjEiLCJleHAiOjE1NDU0MjA4MjgsImlhdCI6MTU0NTQxOTkxMywicm9sZXoiOlsiU1VJVEVfVVNFUiIsIkxIX3RlbmFudF9hZG1pbiJdfQ.Dt7KVqDo_FoydB1lNADKleko9OJ6thDOkjqDM5luJzcRMg5bNXPwI-oTa9mWAosO9yiDVMk92pbTVA27hOtRggTtC-9eRECQJfh_qcesNr_wvfMZseVidK734J_0R8WmsVufy4nqu3fvl2VHbCbcZH96Ap-f1r0y2Uzb5QZOucc",
-            "scope": "local",
-            "name": "AuthHeader",
-            "type": "datatype.string"
-          },
-          "unique_name": "variable_workflow_016QL85EDGAXR6jQUuyHRkN72AluiRZoMe8",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.string",
-          "properties": {
-            "value": "routeToPSC",
-            "scope": "local",
-            "name": "AmqpRoutingKey",
-            "type": "datatype.string",
-            "description": "Add the AMQP routing key here"
-          },
-          "unique_name": "variable_workflow_016QL85EDFPDF46PdOhWBjT2qutKrE3KcYA",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.string",
-          "properties": {
-            "value": "",
-            "scope": "local",
-            "name": "NSXMLOutput",
-            "type": "datatype.string"
-          },
-          "unique_name": "variable_workflow_016QL85EDG5LV3DphxI4C1DI20QrsM6uugm",
-          "object_type": "variable_workflow"
-        },
-        {
-          "schema_id": "datatype.string",
-          "properties": {
-            "value": "",
-            "scope": "local",
-            "name": "DestRunOutputVars",
-            "type": "datatype.string"
-          },
-          "unique_name": "variable_workflow_016QL85EDG2XV3uLwjoMgiLkfzZrajmliOF",
-          "object_type": "variable_workflow"
-        }
-      ],
-      "properties": {
-        "atomic": {
-          "is_atomic": false
-        },
-        "delete_workflow_instance": false,
-        "display_name": "PSC_AO_Integration_Workflow",
-        "favorite": true,
-        "target": {
-          "execute_on_target_group": false,
-          "execute_on_workflow_target": false,
-          "no_target": true,
-          "specify_on_workflow_start": false
-        }
+        "unique_name": "variable_workflow_019GJ7ESHPQER1qI3SsEnQnS9x5SK2Z5aHg",
+        "object_type": "variable_workflow"
       },
-      "object_type": "definition_workflow",
-      "actions": [
-        {
-          "unique_name": "definition_activity_016QL85QPH7JW1swxIuJmDmiVKVLu4CcgVJ",
-          "name": "JSONPath Query",
-          "title": "Get input variables ",
-          "type": "corejava.jsonpathquery",
-          "base_type": "activity",
-          "properties": {
-            "action_timeout": 180,
-            "continue_on_failure": false,
-            "description": "get input variables \nworkflow_id: Id of the target workflo to execute\nchannel_id: PSC identifier for request\nworkflow_payload: this is sent as the body of the API call to start target AO workflow\npoller_frequency: time interval for polling of target workflow status\n\nfrom payload (amqp request)",
-            "display_name": "Get input variables ",
-            "input_json": "$trigger.016QLI9VOBUEQ2sN5vHk7Du3GRbIRpjnP36.output.body$",
-            "jsonpath_queries": [
-              {
-                "jsonpath_query": "$.workflow_id",
-                "jsonpath_query_name": "WorkflowId",
-                "jsonpath_query_type": "string",
-                "zdate_type_format": ""
-              },
-              {
-                "jsonpath_query": "$.channel_id",
-                "jsonpath_query_name": "ChannelId",
-                "jsonpath_query_type": "string",
-                "zdate_type_format": ""
-              },
-              {
-                "jsonpath_query": "$.workflow_payload",
-                "jsonpath_query_name": "WorkflowPayload",
-                "jsonpath_query_type": "string",
-                "zdate_type_format": ""
-              },
-              {
-                "jsonpath_query": "$.poller_frequency",
-                "jsonpath_query_name": "PollerFrequency",
-                "jsonpath_query_type": "integer",
-                "zdate_type_format": ""
-              }
-            ]
-          },
-          "object_type": "definition_activity"
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "routeToPSC",
+          "scope": "local",
+          "name": "AmqpRoutingKey",
+          "type": "datatype.string",
+          "description": "Add the AMQP routing key here",
+          "is_required": false
         },
-        {
-          "unique_name": "definition_activity_016QL98CO6O903lKN5hud1boTERkyHafQKm",
-          "name": "Generic CCS API Request",
-          "title": "Generic CCS API Request - Run dest workflow",
-          "type": "ccs.api_request",
-          "base_type": "activity",
-          "properties": {
-            "action_timeout": 180,
-            "api_body": "$activity.definition_activity_016QL85QPH7JW1swxIuJmDmiVKVLu4CcgVJ.output.jsonpath_queries.WorkflowPayload$",
-            "api_call_method": "POST",
-            "continue_on_failure": false,
-            "description": "Run the workflow using workflowId and body from Get input variables activity",
-            "display_name": "Generic CCS API Request - Run dest workflow",
-            "relative_url": "/be-console/api/v1/workflows/start?workflow_id=$activity.definition_activity_016QL85QPH7JW1swxIuJmDmiVKVLu4CcgVJ.output.jsonpath_queries.WorkflowId$",
-            "runtime_user": {
-              "override_target_runtime_user": false,
-              "target_default": true
-            },
-            "target": {
-              "override_workflow_target": true
-            }
-          },
-          "object_type": "definition_activity"
+        "unique_name": "variable_workflow_019GJ7ESHOU6I3rJG5hHI9g4PrhBOKgrBVN",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "DestRunOutputVars",
+          "type": "datatype.string",
+          "is_required": false
         },
-        {
-          "unique_name": "definition_activity_016QL86JL4CAV5HZsODv9oWyxkyFTRH3vzu",
-          "name": "JSONPath Query",
-          "title": "Get runId of dest workflow from reponse",
-          "type": "corejava.jsonpathquery",
-          "base_type": "activity",
-          "properties": {
-            "action_timeout": 180,
-            "continue_on_failure": false,
-            "description": "Get the runId of the target workflow once it has begun excution. This id to used to poll for the status of the target workflow",
-            "display_name": "Get runId of dest workflow from reponse",
-            "input_json": "$activity.definition_activity_016QL98CO6O903lKN5hud1boTERkyHafQKm.output.response_body$",
-            "jsonpath_queries": [
-              {
-                "jsonpath_query": "$[0].id",
-                "jsonpath_query_name": "RunId",
-                "jsonpath_query_type": "string",
-                "zdate_type_format": ""
-              }
-            ]
-          },
-          "object_type": "definition_activity"
+        "unique_name": "variable_workflow_019GJ7ESHQ2OD0uxEwmsTulfR6pcGfBlEfC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "PreviousOutputVariables",
+          "type": "datatype.string",
+          "is_required": false
         },
-        {
-          "unique_name": "definition_activity_016QL86WHETXM0ts5FG4XTPMA4c8jBV8NJb",
-          "name": "Replace String",
-          "title": "Replace channelID,  started message ",
-          "type": "core.replacestring",
-          "base_type": "activity",
-          "properties": {
-            "continue_on_failure": false,
-            "description": "Create a message to be sent to PSC indicating that the target workflow has begun execution",
-            "display_name": "Replace channelID,  started message ",
-            "input_string": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFXFW0tP0woiWAl70Ts9Y5P31cR$",
-            "replace_list": [
-              {
-                "replaced_string": "$CHANNEL_ID$",
-                "replacement_string": "$activity.definition_activity_016QL85QPH7JW1swxIuJmDmiVKVLu4CcgVJ.output.jsonpath_queries.ChannelId$"
-              },
-              {
-                "replaced_string": "$COMMENT$",
-                "replacement_string": "Workflow processing started"
-              },
-              {
-                "replaced_string": "$OUTPUT_VARIABLE$",
-                "replacement_string": ""
-              },
-              {
-                "replaced_string": "$STATUS$",
-                "replacement_string": "started"
-              }
-            ]
-          },
-          "object_type": "definition_activity"
+        "unique_name": "variable_workflow_019GJ7ESHOL933XUBM5La7CRmZjDXF9SB9F",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_015ICF0I7NO0C6WGjQyRPrquxRAGOZZH89S",
+        "properties": {
+          "scope": "local",
+          "name": "ActionIdsOfDestWorkflow",
+          "type": "datatype.table",
+          "is_required": false
         },
-        {
-          "unique_name": "definition_activity_016QL879HLDA02GHmQxVGrS0tvrAlSBNBR3",
-          "name": "Publish AMQP Message",
-          "title": "Publish AMQP Message to PSC saying workflow started",
-          "type": "amqp.publish_message",
-          "base_type": "activity",
-          "properties": {
-            "action_timeout": 180,
-            "body": "$activity.definition_activity_016QL86WHETXM0ts5FG4XTPMA4c8jBV8NJb.output.result_string$",
-            "continue_on_failure": false,
-            "delivery_mode": 1,
-            "description": "Write to the queue PSC reads from that the target workflow has begun execution\n",
-            "display_name": "Publish AMQP Message to PSC saying workflow started",
-            "exchange_name": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG8E46ednTFytwSMlOV9Vlkx843$",
-            "routing_key": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFPDF46PdOhWBjT2qutKrE3KcYA$",
-            "runtime_user": {
-              "override_target_runtime_user": false,
-              "target_default": true
-            },
-            "target": {
-              "override_workflow_target": true,
-              "target_id": ""
-            }
-          },
-          "object_type": "definition_activity"
+        "unique_name": "variable_workflow_019GJ7ESHPMAR5XrgikJvtRtUgBlWj0fXah",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "psc_inbound_exchange",
+          "scope": "local",
+          "name": "AOToPSCExchange",
+          "type": "datatype.string",
+          "is_required": false
         },
-        {
-          "unique_name": "definition_activity_016QLCI6FVEC81dIrsQDeJlD5JGnEOWp4Bj",
-          "name": "Generic CCS API Request",
-          "title": "Generic CCS API Request - Get run details",
-          "type": "ccs.api_request",
-          "base_type": "activity",
-          "properties": {
-            "action_timeout": 180,
-            "api_call_method": "GET",
-            "continue_on_failure": false,
-            "description": "Get run details",
-            "display_name": "Generic CCS API Request - Get run details",
-            "relative_url": "/be-console/api/v1/instances/$activity.definition_activity_016QL86JL4CAV5HZsODv9oWyxkyFTRH3vzu.output.jsonpath_queries.RunId$",
-            "runtime_user": {
-              "override_target_runtime_user": false,
-              "target_default": true
-            },
-            "target": {
-              "override_workflow_target": true
-            }
-          },
-          "object_type": "definition_activity"
+        "unique_name": "variable_workflow_019GJ7ESHPUFZ5xRKMqOlupEseiQwrAFao8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Running",
+          "scope": "local",
+          "name": "RunStatus",
+          "type": "datatype.string",
+          "is_required": false
         },
-        {
-          "unique_name": "definition_activity_016QL88271RH41Bbw3pxmTxQuurvb3eqWVA",
-          "name": "Check for output vars in workflow",
-          "title": "Check for output vars in workflow",
-          "type": "workflow.sub_workflow",
-          "base_type": "subworkflow",
-          "properties": {
-            "continue_on_failure": false,
-            "display_name": "Check for output vars in workflow",
-            "input": {
-              "variable_workflow_016QL81UL7VW30aB5oW7EG4wkpIJnVrfA1B": "$activity.definition_activity_016QLCI6FVEC81dIrsQDeJlD5JGnEOWp4Bj.output.response_body$"
-            },
-            "target": {
-              "no_target": true,
-              "override_workflow_target": false
-            },
-            "workflow_id": "definition_workflow_016QL819I21UQ5Bd68nqZRKcM5S5iRiReFp"
-          },
-          "object_type": "definition_activity"
+        "unique_name": "variable_workflow_019GJ7ESHPHEZ0WTC6ZgEDbSKMXgZ1KwYLm",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 1,
+          "scope": "local",
+          "name": "SleepTime",
+          "type": "datatype.integer",
+          "is_required": false
         },
-        {
-          "unique_name": "definition_activity_016QL88GYFGNK7KJNmz1JS4jc15JvLNW4vJ",
-          "name": "While Loop",
-          "title": "While Loop",
-          "type": "logic.while",
-          "base_type": "activity",
-          "properties": {
-            "continue_on_failure": false,
-            "display_name": "While Loop"
-          },
-          "object_type": "definition_activity",
-          "blocks": [
+        "unique_name": "variable_workflow_019GJ7ESHOCB60cjSEyFTekYMrLjMtJDOUx",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": true,
+          "scope": "local",
+          "name": "hasOutputVariables",
+          "type": "datatype.boolean",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019GJ7ESHOYF03AQpnQXSKIQw0gisyzLHIJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Bearer eyJraWQiOiIxIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOm51bGwsInN1YiI6IjkiLCJyb2xlcyI6WyJTVUlURV9VU0VSIiwiTEhfdGVuYW50X2FkbWluIl0sImlzcyI6InN1aXRlLWF1dGgiLCJ0ZW5hbnRJZCI6IjEiLCJleHAiOjE1NDU0MjA4MjgsImlhdCI6MTU0NTQxOTkxMywicm9sZXoiOlsiU1VJVEVfVVNFUiIsIkxIX3RlbmFudF9hZG1pbiJdfQ.Dt7KVqDo_FoydB1lNADKleko9OJ6thDOkjqDM5luJzcRMg5bNXPwI-oTa9mWAosO9yiDVMk92pbTVA27hOtRggTtC-9eRECQJfh_qcesNr_wvfMZseVidK734J_0R8WmsVufy4nqu3fvl2VHbCbcZH96Ap-f1r0y2Uzb5QZOucc",
+          "scope": "local",
+          "name": "AuthHeader",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019GJ7ESHOPXW4iCIBI1V89szrGONuDcKau",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "NSXMLOutput",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019GJ7ESHPYHO3zOWhQXV6HW7PBMrtKPlmb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "<message channel-id=\"$CHANNEL_ID$\"><add-comments><comment>$COMMENT$\n$OUTPUT_VARIABLE$</comment></add-comments><take-action action=\"$STATUS$\"></take-action></message>",
+          "scope": "local",
+          "name": "NSXMLTemplate",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019GJ7ESHP2M55pps5DzFPGuJprZFQpZrsu",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "PSC_AO_Integration_Workflow",
+      "favorite": true,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019GJ7F2TVKLF1N2g50YcrEZt91VBqI3XSA",
+        "name": "JSONPath Query",
+        "title": "JsonPath-Query -- Get input variables ",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "description": "get input variables \nworkflow_id: Id of the target workflo to execute\nchannel_id: PSC identifier for request\nworkflow_payload: this is sent as the body of the API call to start target AO workflow\npoller_frequency: time interval for polling of target workflow status\n\nfrom payload (amqp request)",
+          "display_name": "JsonPath-Query -- Get input variables ",
+          "input_json": "$trigger.triggerevent_019NBO166L83Y3lEa28OjsbgLOyJLLy30NN.output.body$",
+          "jsonpath_queries": [
             {
-              "unique_name": "definition_activity_016QL88MW730Z6bJGnm6a5rWy3hf3wzWMs7",
-              "name": "Condition Branch",
-              "title": "If workflow is not success or failed",
-              "type": "logic.condition_block",
-              "base_type": "activity",
-              "properties": {
-                "condition": {
-                  "left_operand": {
-                    "left_operand": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFUR22i4p54n9SUHjwQN2Tv7kcI$",
-                    "operator": "ne",
-                    "right_operand": "success"
-                  },
-                  "operator": "and",
-                  "right_operand": {
-                    "left_operand": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFUR22i4p54n9SUHjwQN2Tv7kcI$",
-                    "operator": "ne",
-                    "right_operand": "failed"
-                  }
-                },
-                "continue_on_failure": false,
-                "display_name": "If workflow is not success or failed"
-              },
-              "object_type": "definition_activity",
-              "actions": [
-                {
-                  "unique_name": "definition_activity_016QL88V0FCH67ULmXnZZaZDEX1vo5V4Tbh",
-                  "name": "Sleep",
-                  "title": "Sleep",
-                  "type": "core.sleep",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "description": "Sleep for the time in between polls",
-                    "display_name": "Sleep",
-                    "sleep_interval": "$activity.definition_activity_016QL85QPH7JW1swxIuJmDmiVKVLu4CcgVJ.output.jsonpath_queries.PollerFrequency$"
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL89LGGRAM4FrJ9kLajvNFzcMST42Afy",
-                  "name": "HTTP Request",
-                  "title": "Get run status in poller",
-                  "type": "web-service.http_request",
-                  "base_type": "activity",
-                  "properties": {
-                    "action_timeout": 180,
-                    "allow_auto_redirect": true,
-                    "continue_on_error_status_code": false,
-                    "continue_on_failure": false,
-                    "custom_headers": [
-                      {
-                        "name": "Authorization",
-                        "value": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDGAXR6jQUuyHRkN72AluiRZoMe8$"
-                      }
-                    ],
-                    "description": "Get the status of the run by making an AO api call using the runId from the prev activity",
-                    "display_name": "Get run status in poller",
-                    "method": "GET",
-                    "relative_url": "/instances/$activity.definition_activity_016QL86JL4CAV5HZsODv9oWyxkyFTRH3vzu.output.jsonpath_queries.RunId$",
-                    "runtime_user": {
-                      "override_target_runtime_user": false,
-                      "target_default": true
-                    },
-                    "target": {
-                      "override_workflow_target": true,
-                      "target_id": "definition_target_015HN5XYB184S4drYPXjMVXbrERdKBPNEHI"
-                    }
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL8A7W3WL93kuqvhT8TvCtLRuosWeOUl",
-                  "name": "JSONPath Query",
-                  "title": "Parse run status in poller",
-                  "type": "corejava.jsonpathquery",
-                  "base_type": "activity",
-                  "properties": {
-                    "action_timeout": 180,
-                    "continue_on_failure": false,
-                    "description": "Parse the response of the API call to get run status to extract the status",
-                    "display_name": "Parse run status in poller",
-                    "input_json": "$activity.definition_activity_016QL89LGGRAM4FrJ9kLajvNFzcMST42Afy.output.response_body$",
-                    "jsonpath_queries": [
-                      {
-                        "jsonpath_query": "$.status",
-                        "jsonpath_query_name": "RunStatus",
-                        "jsonpath_query_type": "string",
-                        "zdate_type_format": ""
-                      }
-                    ]
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL8AK4J7T34GghzKxUUzAC99NdmoDh6B",
-                  "name": "Set Variables",
-                  "title": "Set RunStatusVariable in poller",
-                  "type": "core.set_multiple_variables",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "description": "Set the variable with the current status. This variable will be used in the condition check for the next poll loop",
-                    "display_name": "Set RunStatusVariable in poller",
-                    "variables_to_update": [
-                      {
-                        "variable_to_update": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFUR22i4p54n9SUHjwQN2Tv7kcI$",
-                        "variable_value_new": "$activity.definition_activity_016QL8A7W3WL93kuqvhT8TvCtLRuosWeOUl.output.jsonpath_queries.RunStatus$"
-                      }
-                    ]
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL8AU21U001ZzfnjF4zjibAka5iyOCDr",
-                  "name": "Condition Block",
-                  "title": "get output vars only if they exist",
-                  "type": "logic.if_else",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "display_name": "get output vars only if they exist"
-                  },
-                  "object_type": "definition_activity",
-                  "blocks": [
-                    {
-                      "unique_name": "definition_activity_016QL8B1JYIRX4E79QiPfJjQkHOAwMGuWUD",
-                      "name": "Condition Branch",
-                      "title": "Condition Branch: check for output variables existance",
-                      "type": "logic.condition_block",
-                      "base_type": "activity",
-                      "properties": {
-                        "condition": {
-                          "left_operand": "$activity.definition_activity_016QL88271RH41Bbw3pxmTxQuurvb3eqWVA.output.variable_workflow_016QL81UL84U62fBn8TVywYAbjokU4UIVYq$",
-                          "operator": "eq",
-                          "right_operand": "true"
-                        },
-                        "continue_on_failure": false,
-                        "display_name": "Condition Branch: check for output variables existance"
-                      },
-                      "object_type": "definition_activity",
-                      "actions": [
-                        {
-                          "unique_name": "definition_activity_016QL8BEWWD5W3cjpWWnGd1BTkphNxulYG5",
-                          "name": "JSONPath Query",
-                          "title": "get run variable properties in poller",
-                          "type": "corejava.jsonpathquery",
-                          "base_type": "activity",
-                          "properties": {
-                            "action_timeout": 180,
-                            "continue_on_failure": false,
-                            "description": "Get the run variable properties in order to extract the value of output variables, if any, to send to PSC",
-                            "display_name": "get run variable properties in poller",
-                            "input_json": "$activity.definition_activity_016QL89LGGRAM4FrJ9kLajvNFzcMST42Afy.output.response_body$",
-                            "jsonpath_queries": [
-                              {
-                                "jsonpath_query": "$.variables[*].properties",
-                                "jsonpath_query_name": "RunVariblesProperties",
-                                "jsonpath_query_type": "string",
-                                "zdate_type_format": ""
-                              }
-                            ]
-                          },
-                          "object_type": "definition_activity"
-                        },
-                        {
-                          "unique_name": "definition_activity_016QL8BS396HC3vQcO4oD6Fnk92MCjq7en8",
-                          "name": "JSONPath Query",
-                          "title": "get run output variable values in poller",
-                          "type": "corejava.jsonpathquery",
-                          "base_type": "activity",
-                          "properties": {
-                            "action_timeout": 180,
-                            "continue_on_failure": false,
-                            "description": "Get the value of the output variables from the properties",
-                            "display_name": "get run output variable values in poller",
-                            "input_json": "$activity.definition_activity_016QL8BEWWD5W3cjpWWnGd1BTkphNxulYG5.output.jsonpath_queries.RunVariblesProperties$",
-                            "jsonpath_queries": [
-                              {
-                                "jsonpath_query": "$.[?(@.scope=='output')].value",
-                                "jsonpath_query_name": "DestRunOutVarValues",
-                                "jsonpath_query_type": "string",
-                                "zdate_type_format": ""
-                              }
-                            ]
-                          },
-                          "object_type": "definition_activity"
-                        },
-                        {
-                          "unique_name": "definition_activity_016QL8C1Z4GGB79jY0XvS8jv6zZmOrxPvKB",
-                          "name": "Set Variables",
-                          "title": "Set DestRunOuputVars",
-                          "type": "core.set_multiple_variables",
-                          "base_type": "activity",
-                          "properties": {
-                            "continue_on_failure": false,
-                            "display_name": "Set DestRunOuputVars",
-                            "variables_to_update": [
-                              {
-                                "variable_to_update": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG2XV3uLwjoMgiLkfzZrajmliOF$",
-                                "variable_value_new": "$activity.definition_activity_016QL8BS396HC3vQcO4oD6Fnk92MCjq7en8.output.jsonpath_queries.DestRunOutVarValues$"
-                              }
-                            ]
-                          },
-                          "object_type": "definition_activity"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "unique_name": "definition_activity_016QL8CCKCICF4u8pdIVFSbILiwprC6GG0K",
-                  "name": "Condition Block",
-                  "title": "Condition Block: check for output vars exist to publish message",
-                  "type": "logic.if_else",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "display_name": "Condition Block: check for output vars exist to publish message"
-                  },
-                  "object_type": "definition_activity",
-                  "blocks": [
-                    {
-                      "unique_name": "definition_activity_016QL8CLAAULK5y9uC7vGxmv33aqftky6UH",
-                      "name": "Condition Branch",
-                      "title": "Condition Branch: output vars do not exist",
-                      "type": "logic.condition_block",
-                      "base_type": "activity",
-                      "properties": {
-                        "condition": {
-                          "left_operand": "$activity.definition_activity_016QL88271RH41Bbw3pxmTxQuurvb3eqWVA.output.variable_workflow_016QL81UL84U62fBn8TVywYAbjokU4UIVYq$",
-                          "operator": "eq",
-                          "right_operand": "false"
-                        },
-                        "continue_on_failure": false,
-                        "description": "If dest workflow has no output vars",
-                        "display_name": "Condition Branch: output vars do not exist"
-                      },
-                      "object_type": "definition_activity",
-                      "actions": [
-                        {
-                          "unique_name": "definition_activity_016QL8CXBN3AO7gAd2warI0YeqSUZprR6O4",
-                          "name": "Replace String",
-                          "title": "Replace channelID,  ongoing message, output variable values",
-                          "type": "core.replacestring",
-                          "base_type": "activity",
-                          "properties": {
-                            "continue_on_failure": false,
-                            "description": "Form the message to be sent to PSC with the output variables and status",
-                            "display_name": "Replace channelID,  ongoing message, output variable values",
-                            "input_string": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFXFW0tP0woiWAl70Ts9Y5P31cR$",
-                            "replace_list": [
-                              {
-                                "replaced_string": "$CHANNEL_ID$",
-                                "replacement_string": "$activity.definition_activity_016QL85QPH7JW1swxIuJmDmiVKVLu4CcgVJ.output.jsonpath_queries.ChannelId$"
-                              },
-                              {
-                                "replaced_string": "$COMMENT$",
-                                "replacement_string": "Workflow processing in progress"
-                              },
-                              {
-                                "replaced_string": "$OUTPUT_VARIABLE$",
-                                "replacement_string": ""
-                              },
-                              {
-                                "replaced_string": "$STATUS$",
-                                "replacement_string": "in progress"
-                              }
-                            ]
-                          },
-                          "object_type": "definition_activity"
-                        },
-                        {
-                          "unique_name": "definition_activity_016QL8DCB6IYE2uvkZDIJdeGEM9KorEuMDY",
-                          "name": "Publish AMQP Message",
-                          "title": "Publish AMQP Message to PSC saying workflow started",
-                          "type": "amqp.publish_message",
-                          "base_type": "activity",
-                          "properties": {
-                            "action_timeout": 180,
-                            "body": "$activity.definition_activity_016QL8CXBN3AO7gAd2warI0YeqSUZprR6O4.output.result_string$",
-                            "continue_on_failure": false,
-                            "delivery_mode": 1,
-                            "description": "Write to the queue PSC reads from that the workflow process in ongoing along with the output variables, if any",
-                            "display_name": "Publish AMQP Message to PSC saying workflow started",
-                            "exchange_name": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG8E46ednTFytwSMlOV9Vlkx843$",
-                            "routing_key": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFPDF46PdOhWBjT2qutKrE3KcYA$",
-                            "runtime_user": {
-                              "target_default": true
-                            },
-                            "target": {
-                              "override_workflow_target": true,
-                              "target_id": ""
-                            }
-                          },
-                          "object_type": "definition_activity"
-                        }
-                      ]
-                    },
-                    {
-                      "unique_name": "definition_activity_016QL8DUUZDPG0cUB9ugIQDl0p4n1ZNncnG",
-                      "name": "Condition Branch",
-                      "title": "Condition Branch: output vars exist, and changed since last poll",
-                      "type": "logic.condition_block",
-                      "base_type": "activity",
-                      "properties": {
-                        "condition": {
-                          "left_operand": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG2XV3uLwjoMgiLkfzZrajmliOF$",
-                          "operator": "ne",
-                          "right_operand": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG0830Hklr3GyTDo32eqd1u7z3K$"
-                        },
-                        "continue_on_failure": false,
-                        "description": "Send ongoing message with output vars to PSC if the output variables have changed in the target workflow",
-                        "display_name": "Condition Branch: output vars exist, and changed since last poll"
-                      },
-                      "object_type": "definition_activity",
-                      "actions": [
-                        {
-                          "unique_name": "definition_activity_016QL8EAAVZML0COdmyVOZnzUATNq88e1pv",
-                          "name": "Set Variables",
-                          "title": "Set current output variable",
-                          "type": "core.set_multiple_variables",
-                          "base_type": "activity",
-                          "properties": {
-                            "continue_on_failure": false,
-                            "description": "Set the current value of the output variables from the target workflow to a local variable, this value will be used in the next condition check ",
-                            "display_name": "Set current output variable",
-                            "variables_to_update": [
-                              {
-                                "variable_to_update": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG0830Hklr3GyTDo32eqd1u7z3K$",
-                                "variable_value_new": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG2XV3uLwjoMgiLkfzZrajmliOF$"
-                              }
-                            ]
-                          },
-                          "object_type": "definition_activity"
-                        },
-                        {
-                          "unique_name": "definition_activity_016QL8EO26J485dgQn9qzJGioFA0EsztLtm",
-                          "name": "Replace String",
-                          "title": "Replace channelID,  ongoing message, output variable values",
-                          "type": "core.replacestring",
-                          "base_type": "activity",
-                          "properties": {
-                            "continue_on_failure": false,
-                            "description": "Form the message to be sent to PSC with the output variables and status",
-                            "display_name": "Replace channelID,  ongoing message, output variable values",
-                            "input_string": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFXFW0tP0woiWAl70Ts9Y5P31cR$",
-                            "replace_list": [
-                              {
-                                "replaced_string": "$CHANNEL_ID$",
-                                "replacement_string": "$activity.definition_activity_016QL85QPH7JW1swxIuJmDmiVKVLu4CcgVJ.output.jsonpath_queries.ChannelId$"
-                              },
-                              {
-                                "replaced_string": "$COMMENT$",
-                                "replacement_string": "Workflow processing in progress"
-                              },
-                              {
-                                "replaced_string": "$OUTPUT_VARIABLE$",
-                                "replacement_string": "output variables: $workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG0830Hklr3GyTDo32eqd1u7z3K$"
-                              },
-                              {
-                                "replaced_string": "$STATUS$",
-                                "replacement_string": "in progress"
-                              }
-                            ]
-                          },
-                          "object_type": "definition_activity"
-                        },
-                        {
-                          "unique_name": "definition_activity_016QL8F23IYKX7iD7vMnxdBcgbstEgnIiIw",
-                          "name": "Publish AMQP Message",
-                          "title": "Publish AMQP Message to PSC saying workflow started",
-                          "type": "amqp.publish_message",
-                          "base_type": "activity",
-                          "properties": {
-                            "action_timeout": 180,
-                            "body": "$activity.definition_activity_016QL8EO26J485dgQn9qzJGioFA0EsztLtm.output.result_string$",
-                            "continue_on_failure": false,
-                            "delivery_mode": 1,
-                            "description": "Write to the queue PSC reads from that the workflow process in ongoing along with the output variables, if any",
-                            "display_name": "Publish AMQP Message to PSC saying workflow started",
-                            "exchange_name": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG8E46ednTFytwSMlOV9Vlkx843$",
-                            "routing_key": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFPDF46PdOhWBjT2qutKrE3KcYA$",
-                            "runtime_user": {
-                              "target_default": true
-                            },
-                            "target": {
-                              "override_workflow_target": true,
-                              "target_id": ""
-                            }
-                          },
-                          "object_type": "definition_activity"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "unique_name": "definition_activity_016QL8FDUYU3M7jek0yxvxxLiv5Yq0kkScI",
-          "name": "Condition Block",
-          "title": "Condition Block: check if output vars exist after done",
-          "type": "logic.if_else",
-          "base_type": "activity",
-          "properties": {
-            "continue_on_failure": false,
-            "display_name": "Condition Block: check if output vars exist after done"
-          },
-          "object_type": "definition_activity",
-          "blocks": [
+              "jsonpath_query": "$.workflow_id",
+              "jsonpath_query_name": "WorkflowId",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
             {
-              "unique_name": "definition_activity_016QL8FLR58KG4aAcvBEjn5yrXjSGQ3vMn5",
-              "name": "Condition Branch",
-              "title": "Condition Branch: check if op vars exists after done",
-              "type": "logic.condition_block",
-              "base_type": "activity",
-              "properties": {
-                "condition": {
-                  "left_operand": "$activity.definition_activity_016QL88271RH41Bbw3pxmTxQuurvb3eqWVA.output.variable_workflow_016QL81UL84U62fBn8TVywYAbjokU4UIVYq$",
-                  "operator": "eq",
-                  "right_operand": "true"
-                },
-                "continue_on_failure": false,
-                "display_name": "Condition Branch: check if op vars exists after done"
-              },
-              "object_type": "definition_activity",
-              "actions": [
-                {
-                  "unique_name": "definition_activity_016QLEXA0F8GC5y4L4onRBKVBKAzfffxky9",
-                  "name": "Generic CCS API Request",
-                  "title": "Generic CCS API Request - Get run details",
-                  "type": "ccs.api_request",
-                  "base_type": "activity",
-                  "properties": {
-                    "action_timeout": 180,
-                    "api_call_method": "GET",
-                    "continue_on_failure": false,
-                    "description": "Get run details",
-                    "display_name": "Generic CCS API Request - Get run details",
-                    "relative_url": "/be-console/api/v1/instances/$activity.definition_activity_016QL86JL4CAV5HZsODv9oWyxkyFTRH3vzu.output.jsonpath_queries.RunId$?detailed=true",
-                    "runtime_user": {
-                      "override_target_runtime_user": false,
-                      "target_default": true
-                    },
-                    "target": {
-                      "override_workflow_target": true
-                    }
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL8GFKL5GS3cuyXX5HCw64aQwI9pERgk",
-                  "name": "JSONPath Query",
-                  "title": "get run variable properties",
-                  "type": "corejava.jsonpathquery",
-                  "base_type": "activity",
-                  "properties": {
-                    "action_timeout": 180,
-                    "continue_on_failure": false,
-                    "description": "Parse API response to get variable properties from which to extract the output variables",
-                    "display_name": "get run variable properties",
-                    "input_json": "$activity.definition_activity_016QLEXA0F8GC5y4L4onRBKVBKAzfffxky9.output.response_body$",
-                    "jsonpath_queries": [
-                      {
-                        "jsonpath_query": "$.variables[*].properties",
-                        "jsonpath_query_name": "RunVariblesProperties",
-                        "jsonpath_query_type": "string",
-                        "zdate_type_format": ""
-                      }
-                    ]
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL8H02B5L86oD747h03HqZ46ogqG4ArZ",
-                  "name": "JSONPath Query",
-                  "title": "get run output variable values",
-                  "type": "corejava.jsonpathquery",
-                  "base_type": "activity",
-                  "properties": {
-                    "action_timeout": 180,
-                    "continue_on_failure": false,
-                    "description": "get the final output variables",
-                    "display_name": "get run output variable values",
-                    "input_json": "$activity.definition_activity_016QL8GFKL5GS3cuyXX5HCw64aQwI9pERgk.output.jsonpath_queries.RunVariblesProperties$",
-                    "jsonpath_queries": [
-                      {
-                        "jsonpath_query": "$.[?(@.scope=='output')].value",
-                        "jsonpath_query_name": "DestRunOutVarValues",
-                        "jsonpath_query_type": "string",
-                        "zdate_type_format": ""
-                      }
-                    ]
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL8HJR4CMT2flyTKCSk0fvSGJTqPYWQI",
-                  "name": "Set Variables",
-                  "title": "Set DestRunOutputVars",
-                  "type": "core.set_multiple_variables",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "display_name": "Set DestRunOutputVars",
-                    "variables_to_update": [
-                      {
-                        "variable_to_update": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG2XV3uLwjoMgiLkfzZrajmliOF$",
-                        "variable_value_new": "$activity.definition_activity_016QL8H02B5L86oD747h03HqZ46ogqG4ArZ.output.jsonpath_queries.DestRunOutVarValues$"
-                      }
-                    ]
-                  },
-                  "object_type": "definition_activity"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "unique_name": "definition_activity_016QL8I6V5RKL2HXe2M71g4Y3YTBqYoXLEO",
-          "name": "Replace String",
-          "title": "Replace channelID and output vars in NSXML",
-          "type": "core.replacestring",
-          "base_type": "activity",
-          "properties": {
-            "continue_on_failure": false,
-            "description": "Process the final response to be sent to PSC",
-            "display_name": "Replace channelID and output vars in NSXML",
-            "input_string": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFXFW0tP0woiWAl70Ts9Y5P31cR$",
-            "replace_list": [
-              {
-                "replaced_string": "$CHANNEL_ID$",
-                "replacement_string": "$activity.definition_activity_016QL85QPH7JW1swxIuJmDmiVKVLu4CcgVJ.output.jsonpath_queries.ChannelId$"
-              },
-              {
-                "replaced_string": "$OUTPUT_VARIABLE$",
-                "replacement_string": "output variables:$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG2XV3uLwjoMgiLkfzZrajmliOF$"
-              }
-            ]
-          },
-          "object_type": "definition_activity"
-        },
-        {
-          "unique_name": "definition_activity_016QL8INM2X6T2aut7d3pqqKxIb81KpMGKb",
-          "name": "Condition Block",
-          "title": "Condition Block: check for failed/success",
-          "type": "logic.if_else",
-          "base_type": "activity",
-          "properties": {
-            "continue_on_failure": false,
-            "description": "The status in the response change based on with the workflow completed successfully or failed",
-            "display_name": "Condition Block: check for failed/success"
-          },
-          "object_type": "definition_activity",
-          "blocks": [
+              "jsonpath_query": "$.channel_id",
+              "jsonpath_query_name": "ChannelId",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
             {
-              "unique_name": "definition_activity_016QL8IXAHD6W3rMbnHn8oR0LbiaGEoAWcq",
-              "name": "Condition Branch",
-              "title": "Workflow Success branch",
-              "type": "logic.condition_block",
-              "base_type": "activity",
-              "properties": {
-                "condition": {
-                  "left_operand": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFUR22i4p54n9SUHjwQN2Tv7kcI$",
-                  "operator": "eq",
+              "jsonpath_query": "$.workflow_payload",
+              "jsonpath_query_name": "WorkflowPayload",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.poller_frequency",
+              "jsonpath_query_name": "PollerFrequency",
+              "jsonpath_query_type": "integer",
+              "zdate_type_format": ""
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019IAX2CTAG6N04YZQFBGmWPpLIrACdjjt3",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request -- Trigger Child Workflow",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "$activity.definition_activity_019GJ7F2TVKLF1N2g50YcrEZt91VBqI3XSA.output.jsonpath_queries.WorkflowPayload$",
+          "api_call_method": "POST",
+          "continue_on_failure": false,
+          "display_name": "Generic CCS API Request -- Trigger Child Workflow",
+          "relative_url": "/be-console/api/v1/workflows/start?workflow_id=$activity.definition_activity_019GJ7F2TVKLF1N2g50YcrEZt91VBqI3XSA.output.jsonpath_queries.WorkflowId$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019GJ7FSSLI5V0NjbkRPPaBJl3MsJdKRdph",
+        "name": "JSONPath Query",
+        "title": "Get runId of dest workflow from reponse",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "description": "Get the runId of the target workflow once it has begun excution. This id to used to poll for the status of the target workflow",
+          "display_name": "Get runId of dest workflow from reponse",
+          "input_json": "$activity.definition_activity_019IAX2CTAG6N04YZQFBGmWPpLIrACdjjt3.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$[0].id",
+              "jsonpath_query_name": "RunId",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019GJ7G55F8053ra8QnjzOACMgY7GBvJvh1",
+        "name": "Replace String",
+        "title": "Replace channelID,  started message ",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "Create a message to be sent to PSC indicating that the target workflow has begun execution",
+          "display_name": "Replace channelID,  started message ",
+          "input_string": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHP2M55pps5DzFPGuJprZFQpZrsu$",
+          "replace_list": [
+            {
+              "replaced_string": "$CHANNEL_ID$",
+              "replacement_string": "$activity.definition_activity_019GJ7F2TVKLF1N2g50YcrEZt91VBqI3XSA.output.jsonpath_queries.ChannelId$"
+            },
+            {
+              "replaced_string": "$COMMENT$",
+              "replacement_string": "Workflow processing started"
+            },
+            {
+              "replaced_string": "$OUTPUT_VARIABLE$",
+              "replacement_string": ""
+            },
+            {
+              "replaced_string": "$STATUS$",
+              "replacement_string": "started"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019GJ7GIXIO1O0cuwnM2HIdJdKXfeYxJSO0",
+        "name": "Publish AMQP Message",
+        "title": "Publish AMQP Message to PSC saying workflow started",
+        "type": "amqp.publish_message",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "body": "$activity.definition_activity_019GJ7G55F8053ra8QnjzOACMgY7GBvJvh1.output.result_string$",
+          "continue_on_failure": false,
+          "delivery_mode": 1,
+          "description": "Write to the queue PSC reads from that the target workflow has begun execution\n",
+          "display_name": "Publish AMQP Message to PSC saying workflow started",
+          "exchange_name": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPUFZ5xRKMqOlupEseiQwrAFao8$",
+          "routing_key": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHOU6I3rJG5hHI9g4PrhBOKgrBVN$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": ""
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019GJ7GXJ33GC2WF2fuSsbJIQ7BZARxhe1G",
+        "name": "Generic CCS API Request",
+        "title": "Generic CCS API Request - Get run details",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "continue_on_failure": false,
+          "description": "Get run details",
+          "display_name": "Generic CCS API Request - Get run details",
+          "relative_url": "/be-console/api/v1/instances/$activity.definition_activity_019GJ7FSSLI5V0NjbkRPPaBJl3MsJdKRdph.output.jsonpath_queries.RunId$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019GJ7HA4S3ND0SRZdvgv9IVV9se1HsZgBh",
+        "name": "Check for output vars in workflow",
+        "title": "Check for output vars in workflow",
+        "type": "workflow.sub_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check for output vars in workflow",
+          "input": {
+            "variable_workflow_019GJ7CCSJMBK7Ug0mRRDhE3POMLfag2qn1": "$activity.definition_activity_019GJ7GXJ33GC2WF2fuSsbJIQ7BZARxhe1G.output.response_body$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "no_target": true,
+            "override_workflow_target": false
+          },
+          "workflow_id": "definition_workflow_019GJ7BW72PN41UOHCedQ4XyZAoOEIRIc0z"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019GJ7HH7HTMX6ApltkvclRBHQdesmDXGDY",
+        "name": "While Loop",
+        "title": "While Loop",
+        "type": "logic.while",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "While Loop",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_019GJ7HOC1YJI1T2Lc4OWA4MIq0PcC1YQER",
+            "name": "Condition Branch",
+            "title": "If workflow is not success or failed",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": {
+                  "left_operand": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPHEZ0WTC6ZgEDbSKMXgZ1KwYLm$",
+                  "operator": "ne",
                   "right_operand": "success"
                 },
-                "continue_on_failure": false,
-                "display_name": "Workflow Success branch"
+                "operator": "and",
+                "right_operand": {
+                  "left_operand": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPHEZ0WTC6ZgEDbSKMXgZ1KwYLm$",
+                  "operator": "ne",
+                  "right_operand": "failed"
+                }
               },
-              "object_type": "definition_activity",
-              "actions": [
-                {
-                  "unique_name": "definition_activity_016QL8J9LJNAM5KjvO8lWqGBqTcqB5TTxSB",
-                  "name": "Replace String",
-                  "title": "Replace comment and status for success",
-                  "type": "core.replacestring",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "display_name": "Replace comment and status for success",
-                    "input_string": "$activity.definition_activity_016QL8I6V5RKL2HXe2M71g4Y3YTBqYoXLEO.output.result_string$",
-                    "replace_list": [
+              "continue_on_failure": false,
+              "display_name": "If workflow is not success or failed",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019GJ7HXR8VY86KnhXEaCbjQ4hrz5COhYGt",
+                "name": "Sleep",
+                "title": "Sleep",
+                "type": "core.sleep",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "description": "Sleep for the time in between polls",
+                  "display_name": "Sleep",
+                  "skip_execution": false,
+                  "sleep_interval": "$activity.definition_activity_019GJ7F2TVKLF1N2g50YcrEZt91VBqI3XSA.output.jsonpath_queries.PollerFrequency$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019NCBEKD2D6Z2U9pXCMitYwqnh4YXzi2rs",
+                "name": "Generic CCS API Request",
+                "title": "Generic CCS API Request -- get run status",
+                "type": "ccs.api_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "api_call_method": "GET",
+                  "continue_on_failure": false,
+                  "display_name": "Generic CCS API Request -- get run status",
+                  "relative_url": "/be-console/api/v1/instances/$activity.definition_activity_019GJ7FSSLI5V0NjbkRPPaBJl3MsJdKRdph.output.jsonpath_queries.RunId$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019GJ7IMPZO9B574ihNvHaMUzti2A3kZ3wj",
+                "name": "JSONPath Query",
+                "title": "Parse run status in poller",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "description": "Parse the response of the API call to get run status to extract the status",
+                  "display_name": "Parse run status in poller",
+                  "input_json": "$activity.definition_activity_019NCBEKD2D6Z2U9pXCMitYwqnh4YXzi2rs.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.status.state",
+                      "jsonpath_query_name": "RunStatus",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019GJ7IX0WFE52fPQg9tSss8COyp8SZfj6M",
+                "name": "Set Variables",
+                "title": "Set RunStatusVariable in poller",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "description": "Set the variable with the current status. This variable will be used in the condition check for the next poll loop",
+                  "display_name": "Set RunStatusVariable in poller",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPHEZ0WTC6ZgEDbSKMXgZ1KwYLm$",
+                      "variable_value_new": "$activity.definition_activity_019GJ7IMPZO9B574ihNvHaMUzti2A3kZ3wj.output.jsonpath_queries.RunStatus$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019GJ7J4IWTS75WDiIDLvf7PVDlbwWpgd6d",
+                "name": "Condition Block",
+                "title": "get output vars only if they exist",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "get output vars only if they exist",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_019GJ7JAW3BHK0joOmnjIuTMUWiodKIMZA8",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch: check for output variables existance",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019GJ7HA4S3ND0SRZdvgv9IVV9se1HsZgBh.output.variable_workflow_019GJ7CCSJW6O46f6Vwn4LEeYBYcqRracEp$",
+                        "operator": "eq",
+                        "right_operand": "true"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Condition Branch: check for output variables existance",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
                       {
-                        "replaced_string": "$COMMENT$",
-                        "replacement_string": "Workflow completed successfully"
+                        "unique_name": "definition_activity_019GJ7JLG9ROF7au0ViVNcCmwMHbnPlta8S",
+                        "name": "JSONPath Query",
+                        "title": "get run variable properties in poller",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "description": "Get the run variable properties in order to extract the value of output variables, if any, to send to PSC",
+                          "display_name": "get run variable properties in poller",
+                          "input_json": "$activity.definition_activity_019NCBEKD2D6Z2U9pXCMitYwqnh4YXzi2rs.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.variables[*].properties",
+                              "jsonpath_query_name": "RunVariblesProperties",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
                       },
                       {
-                        "replaced_string": "$STATUS$",
-                        "replacement_string": "done"
-                      }
-                    ]
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL8JLPQUL37m7oWPuxgx82KYB6581Kg0",
-                  "name": "Set Variables",
-                  "title": "Set NSXML output success",
-                  "type": "core.set_multiple_variables",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "display_name": "Set NSXML output success",
-                    "variables_to_update": [
+                        "unique_name": "definition_activity_019GJ7JXU0ARX3hoedPVrCkGk6LHcYsFOJn",
+                        "name": "JSONPath Query",
+                        "title": "get run output variable values in poller",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "description": "Get the value of the output variables from the properties",
+                          "display_name": "get run output variable values in poller",
+                          "input_json": "$activity.definition_activity_019GJ7JLG9ROF7au0ViVNcCmwMHbnPlta8S.output.jsonpath_queries.RunVariblesProperties$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.[?(@.scope=='output')].value",
+                              "jsonpath_query_name": "DestRunOutVarValues",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
                       {
-                        "variable_to_update": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG5LV3DphxI4C1DI20QrsM6uugm$",
-                        "variable_value_new": "$activity.definition_activity_016QL8J9LJNAM5KjvO8lWqGBqTcqB5TTxSB.output.result_string$"
+                        "unique_name": "definition_activity_019GJ7K7MDXG02pa21AhkoWUV94bdM1f470",
+                        "name": "Set Variables",
+                        "title": "Set DestRunOuputVars",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set DestRunOuputVars",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHQ2OD0uxEwmsTulfR6pcGfBlEfC$",
+                              "variable_value_new": "$activity.definition_activity_019GJ7JXU0ARX3hoedPVrCkGk6LHcYsFOJn.output.jsonpath_queries.DestRunOutVarValues$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_019GJ7KFN0EG92sdGOoVzD8RZYQIOJGSeQn",
+                "name": "Condition Block",
+                "title": "Condition Block: check for output vars exist to publish message",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block: check for output vars exist to publish message",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_019GJ7KOT9RNS1FG4LqlQyKlpD93Nug6RNK",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch: output vars do not exist",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019GJ7HA4S3ND0SRZdvgv9IVV9se1HsZgBh.output.variable_workflow_019GJ7CCSJW6O46f6Vwn4LEeYBYcqRracEp$",
+                        "operator": "eq",
+                        "right_operand": "false"
+                      },
+                      "continue_on_failure": false,
+                      "description": "If dest workflow has no output vars",
+                      "display_name": "Condition Branch: output vars do not exist",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019GJ7L06U5XY4t8i5AEOZkoFVXuNdeNvig",
+                        "name": "Replace String",
+                        "title": "Replace channelID,  ongoing message, output variable values",
+                        "type": "core.replacestring",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "description": "Form the message to be sent to PSC with the output variables and status",
+                          "display_name": "Replace channelID,  ongoing message, output variable values",
+                          "input_string": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHP2M55pps5DzFPGuJprZFQpZrsu$",
+                          "replace_list": [
+                            {
+                              "replaced_string": "$CHANNEL_ID$",
+                              "replacement_string": "$activity.definition_activity_019GJ7F2TVKLF1N2g50YcrEZt91VBqI3XSA.output.jsonpath_queries.ChannelId$"
+                            },
+                            {
+                              "replaced_string": "$COMMENT$",
+                              "replacement_string": "Workflow processing in progress"
+                            },
+                            {
+                              "replaced_string": "$OUTPUT_VARIABLE$",
+                              "replacement_string": ""
+                            },
+                            {
+                              "replaced_string": "$STATUS$",
+                              "replacement_string": "in progress"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_019GJ7LBQ0Q9O0RjrKmGxAFnuoSQd1V1rxt",
+                        "name": "Publish AMQP Message",
+                        "title": "Publish AMQP Message to PSC saying workflow started",
+                        "type": "amqp.publish_message",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "body": "$activity.definition_activity_019GJ7L06U5XY4t8i5AEOZkoFVXuNdeNvig.output.result_string$",
+                          "continue_on_failure": false,
+                          "delivery_mode": 1,
+                          "description": "Write to the queue PSC reads from that the workflow process in ongoing along with the output variables, if any",
+                          "display_name": "Publish AMQP Message to PSC saying workflow started",
+                          "exchange_name": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPUFZ5xRKMqOlupEseiQwrAFao8$",
+                          "routing_key": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHOU6I3rJG5hHI9g4PrhBOKgrBVN$",
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": ""
+                          }
+                        },
+                        "object_type": "definition_activity"
                       }
                     ]
                   },
-                  "object_type": "definition_activity"
-                }
-              ]
+                  {
+                    "unique_name": "definition_activity_019GJ7LLEEZS80FJpxh4nNptdhe5nkilR1Z",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch: output vars exist, and changed since last poll",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHQ2OD0uxEwmsTulfR6pcGfBlEfC$",
+                        "operator": "ne",
+                        "right_operand": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHOL933XUBM5La7CRmZjDXF9SB9F$"
+                      },
+                      "continue_on_failure": false,
+                      "description": "Send ongoing message with output vars to PSC if the output variables have changed in the target workflow",
+                      "display_name": "Condition Branch: output vars exist, and changed since last poll",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019GJ7LSQ1V1V37QRP2iiGpeKWjZPMcHQvC",
+                        "name": "Set Variables",
+                        "title": "Set current output variable",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "description": "Set the current value of the output variables from the target workflow to a local variable, this value will be used in the next condition check ",
+                          "display_name": "Set current output variable",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHOL933XUBM5La7CRmZjDXF9SB9F$",
+                              "variable_value_new": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHQ2OD0uxEwmsTulfR6pcGfBlEfC$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_019GJ7M29MJCA4YuTJvsEloKUMmR6xaR5M9",
+                        "name": "Replace String",
+                        "title": "Replace channelID,  ongoing message, output variable values",
+                        "type": "core.replacestring",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "description": "Form the message to be sent to PSC with the output variables and status",
+                          "display_name": "Replace channelID,  ongoing message, output variable values",
+                          "input_string": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHP2M55pps5DzFPGuJprZFQpZrsu$",
+                          "replace_list": [
+                            {
+                              "replaced_string": "$CHANNEL_ID$",
+                              "replacement_string": "$activity.definition_activity_019GJ7F2TVKLF1N2g50YcrEZt91VBqI3XSA.output.jsonpath_queries.ChannelId$"
+                            },
+                            {
+                              "replaced_string": "$COMMENT$",
+                              "replacement_string": "Workflow processing in progress"
+                            },
+                            {
+                              "replaced_string": "$OUTPUT_VARIABLE$",
+                              "replacement_string": "output variables: $workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHOL933XUBM5La7CRmZjDXF9SB9F$"
+                            },
+                            {
+                              "replaced_string": "$STATUS$",
+                              "replacement_string": "in progress"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_019GJ7MF2EVQP0i7XlJXffh5Qe4OVfEGWXD",
+                        "name": "Publish AMQP Message",
+                        "title": "Publish AMQP Message to PSC saying workflow started",
+                        "type": "amqp.publish_message",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "body": "$activity.definition_activity_019GJ7M29MJCA4YuTJvsEloKUMmR6xaR5M9.output.result_string$",
+                          "continue_on_failure": false,
+                          "delivery_mode": 1,
+                          "description": "Write to the queue PSC reads from that the workflow process in ongoing along with the output variables, if any",
+                          "display_name": "Publish AMQP Message to PSC saying workflow started",
+                          "exchange_name": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPUFZ5xRKMqOlupEseiQwrAFao8$",
+                          "routing_key": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHOU6I3rJG5hHI9g4PrhBOKgrBVN$",
+                          "runtime_user": {
+                            "target_default": true
+                          },
+                          "skip_execution": false,
+                          "target": {
+                            "override_workflow_target": true,
+                            "target_id": ""
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019GJ7MP6RVT06m9sgU44euyFfW65Y8tipK",
+        "name": "Condition Block",
+        "title": "Condition Block: check if output vars exist after done",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block: check if output vars exist after done",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_019GJ7MWML2BO3Q21X27RxzOHqVZCKVHudv",
+            "name": "Condition Branch",
+            "title": "Condition Branch: check if op vars exists after done",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_019GJ7HA4S3ND0SRZdvgv9IVV9se1HsZgBh.output.variable_workflow_019GJ7CCSJW6O46f6Vwn4LEeYBYcqRracEp$",
+                "operator": "eq",
+                "right_operand": "true"
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch: check if op vars exists after done",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019GJ7N7Z8YUF4e8lFrSyjXogMvRjR9BNRg",
+                "name": "Generic CCS API Request",
+                "title": "Generic CCS API Request - Get run details",
+                "type": "ccs.api_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "api_call_method": "GET",
+                  "continue_on_failure": false,
+                  "description": "Get run details",
+                  "display_name": "Generic CCS API Request - Get run details",
+                  "relative_url": "/be-console/api/v1/instances/$activity.definition_activity_019GJ7FSSLI5V0NjbkRPPaBJl3MsJdKRdph.output.jsonpath_queries.RunId$?detailed=true",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019GJ7NJMJY4L6uohxYW5aNdDhXkBQ4Uye1",
+                "name": "JSONPath Query",
+                "title": "get run variable properties",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "description": "Parse API response to get variable properties from which to extract the output variables",
+                  "display_name": "get run variable properties",
+                  "input_json": "$activity.definition_activity_019GJ7N7Z8YUF4e8lFrSyjXogMvRjR9BNRg.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.variables[*].properties",
+                      "jsonpath_query_name": "RunVariblesProperties",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019GJ7NUM6L9G0hi4T2YLDgkdHvzytTc6N0",
+                "name": "JSONPath Query",
+                "title": "get run output variable values",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "description": "get the final output variables",
+                  "display_name": "get run output variable values",
+                  "input_json": "$activity.definition_activity_019GJ7NJMJY4L6uohxYW5aNdDhXkBQ4Uye1.output.jsonpath_queries.RunVariblesProperties$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.[?(@.scope=='output')].value",
+                      "jsonpath_query_name": "DestRunOutVarValues",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019GJ7O2LF1K718Tnzj6p1T7CC0Urms29rF",
+                "name": "Set Variables",
+                "title": "Set DestRunOutputVars",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set DestRunOutputVars",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHQ2OD0uxEwmsTulfR6pcGfBlEfC$",
+                      "variable_value_new": "$activity.definition_activity_019GJ7NUM6L9G0hi4T2YLDgkdHvzytTc6N0.output.jsonpath_queries.DestRunOutVarValues$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019GJ7OD9ECHQ2TGcgnwXREidNRmTPekrdL",
+        "name": "Replace String",
+        "title": "Replace channelID and output vars in NSXML",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "Process the final response to be sent to PSC",
+          "display_name": "Replace channelID and output vars in NSXML",
+          "input_string": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHP2M55pps5DzFPGuJprZFQpZrsu$",
+          "replace_list": [
+            {
+              "replaced_string": "$CHANNEL_ID$",
+              "replacement_string": "$activity.definition_activity_019GJ7F2TVKLF1N2g50YcrEZt91VBqI3XSA.output.jsonpath_queries.ChannelId$"
             },
             {
-              "unique_name": "definition_activity_016QL8JV8ZTYN6vZD41tVNtmtr5QizhGCuJ",
-              "name": "Condition Branch",
-              "title": "Workflow failed branch",
-              "type": "logic.condition_block",
-              "base_type": "activity",
-              "properties": {
-                "condition": {
-                  "left_operand": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFUR22i4p54n9SUHjwQN2Tv7kcI$",
-                  "operator": "eq",
-                  "right_operand": "failed"
-                },
-                "continue_on_failure": false,
-                "display_name": "Workflow failed branch"
-              },
-              "object_type": "definition_activity",
-              "actions": [
-                {
-                  "unique_name": "definition_activity_016QL8K7ESHLO7hHEFmrkZkzVrCFHt8IONS",
-                  "name": "Replace String",
-                  "title": "Replace comment and status for failure",
-                  "type": "core.replacestring",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "display_name": "Replace comment and status for failure",
-                    "input_string": "$activity.definition_activity_016QL8I6V5RKL2HXe2M71g4Y3YTBqYoXLEO.output.result_string$",
-                    "replace_list": [
-                      {
-                        "replaced_string": "$COMMENT$",
-                        "replacement_string": "Workflow failed to complete"
-                      },
-                      {
-                        "replaced_string": "$STATUS$",
-                        "replacement_string": "done"
-                      }
-                    ]
-                  },
-                  "object_type": "definition_activity"
-                },
-                {
-                  "unique_name": "definition_activity_016QL8KHN0FGN2ak7ufVxCca7NOFZIIKbvM",
-                  "name": "Set Variables",
-                  "title": "Set NSXML output failure ",
-                  "type": "core.set_multiple_variables",
-                  "base_type": "activity",
-                  "properties": {
-                    "continue_on_failure": false,
-                    "display_name": "Set NSXML output failure ",
-                    "variables_to_update": [
-                      {
-                        "variable_to_update": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG5LV3DphxI4C1DI20QrsM6uugm$",
-                        "variable_value_new": "$activity.definition_activity_016QL8K7ESHLO7hHEFmrkZkzVrCFHt8IONS.output.result_string$"
-                      }
-                    ]
-                  },
-                  "object_type": "definition_activity"
-                }
-              ]
+              "replaced_string": "$OUTPUT_VARIABLE$",
+              "replacement_string": "output variables:$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHQ2OD0uxEwmsTulfR6pcGfBlEfC$"
             }
           ]
         },
-        {
-          "unique_name": "definition_activity_016QL8KV6EG4W3HkvLJUxfOwJoRar9MkoKC",
-          "name": "Publish AMQP Message",
-          "title": "Publish AMQP Message to PSC saying done",
-          "type": "amqp.publish_message",
-          "base_type": "activity",
-          "properties": {
-            "action_timeout": 180,
-            "body": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG5LV3DphxI4C1DI20QrsM6uugm$",
-            "continue_on_failure": false,
-            "delivery_mode": 1,
-            "description": "Write to the queue PSC reads from that the workflow has completed along with the status and output variables",
-            "display_name": "Publish AMQP Message to PSC saying done",
-            "exchange_name": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDG8E46ednTFytwSMlOV9Vlkx843$",
-            "routing_key": "$workflow.definition_workflow_016QL80Y3D2J62KI5hebU1SiGXzunNcCkQj.local.variable_workflow_016QL85EDFPDF46PdOhWBjT2qutKrE3KcYA$",
-            "runtime_user": {
-              "override_target_runtime_user": false,
-              "target_default": true
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019GJ7OLU3M0O2WXy86Jyo0dTPh2VjWg6sR",
+        "name": "Condition Block",
+        "title": "Condition Block: check for failed/success",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "The status in the response change based on with the workflow completed successfully or failed",
+          "display_name": "Condition Block: check for failed/success",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_019GJ7ORROK8L38E5YxxPh73CnhxmpnePTV",
+            "name": "Condition Branch",
+            "title": "Workflow Success branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPHEZ0WTC6ZgEDbSKMXgZ1KwYLm$",
+                "operator": "eq",
+                "right_operand": "success"
+              },
+              "continue_on_failure": false,
+              "display_name": "Workflow Success branch"
             },
-            "target": {
-              "override_workflow_target": true,
-              "target_id": ""
-            }
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019GJ7P1OIBLF1wqtRixUeGmVOEVf1qr6IN",
+                "name": "Replace String",
+                "title": "Replace comment and status for success",
+                "type": "core.replacestring",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Replace comment and status for success",
+                  "input_string": "$activity.definition_activity_019GJ7OD9ECHQ2TGcgnwXREidNRmTPekrdL.output.result_string$",
+                  "replace_list": [
+                    {
+                      "replaced_string": "$COMMENT$",
+                      "replacement_string": "Workflow completed successfully"
+                    },
+                    {
+                      "replaced_string": "$STATUS$",
+                      "replacement_string": "done"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019GJ7PAYVB5Z0tHKCfEwnORbupdKRIjTn8",
+                "name": "Set Variables",
+                "title": "Set NSXML output success",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set NSXML output success",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPYHO3zOWhQXV6HW7PBMrtKPlmb$",
+                      "variable_value_new": "$activity.definition_activity_019GJ7P1OIBLF1wqtRixUeGmVOEVf1qr6IN.output.result_string$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
           },
-          "object_type": "definition_activity"
+          {
+            "unique_name": "definition_activity_019GJ7PIV7LA25eq086pxoRCufSi86tHXKn",
+            "name": "Condition Branch",
+            "title": "Workflow failed branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPHEZ0WTC6ZgEDbSKMXgZ1KwYLm$",
+                "operator": "eq",
+                "right_operand": "failed"
+              },
+              "continue_on_failure": false,
+              "display_name": "Workflow failed branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019GJ7PSOIHFZ5YIogZjROOkw9Vu9dtAQ2L",
+                "name": "Replace String",
+                "title": "Replace comment and status for failure",
+                "type": "core.replacestring",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Replace comment and status for failure",
+                  "input_string": "$activity.definition_activity_019GJ7OD9ECHQ2TGcgnwXREidNRmTPekrdL.output.result_string$",
+                  "replace_list": [
+                    {
+                      "replaced_string": "$COMMENT$",
+                      "replacement_string": "Workflow failed to complete"
+                    },
+                    {
+                      "replaced_string": "$STATUS$",
+                      "replacement_string": "done"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019GJ7Q0VK7D22UXkTOJv7w8HlhRoyMy8As",
+                "name": "Set Variables",
+                "title": "Set NSXML output failure ",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set NSXML output failure ",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPYHO3zOWhQXV6HW7PBMrtKPlmb$",
+                      "variable_value_new": "$activity.definition_activity_019GJ7PSOIHFZ5YIogZjROOkw9Vu9dtAQ2L.output.result_string$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019GJ7QC1A5SL47f4j1tzNWH9Wds5wWx27x",
+        "name": "Publish AMQP Message",
+        "title": "Publish AMQP Message to PSC saying done",
+        "type": "amqp.publish_message",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "body": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPYHO3zOWhQXV6HW7PBMrtKPlmb$",
+          "continue_on_failure": false,
+          "delivery_mode": 1,
+          "description": "Write to the queue PSC reads from that the workflow has completed along with the status and output variables",
+          "display_name": "Publish AMQP Message to PSC saying done",
+          "exchange_name": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHPUFZ5xRKMqOlupEseiQwrAFao8$",
+          "routing_key": "$workflow.definition_workflow_019GJ7B6M8HJA1Vy8t7g7uouVHJ4lBhErcN.local.variable_workflow_019GJ7ESHOU6I3rJG5hHI9g4PrhBOKgrBVN$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": ""
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_015ICF0I7NO0C6WGjQyRPrquxRAGOZZH89S": {
+      "unique_name": "tabletype_015ICF0I7NO0C6WGjQyRPrquxRAGOZZH89S",
+      "data_type": "datatype.tabletype",
+      "display_name": "ActionIdsArray",
+      "columns": [
+        {
+          "is_required": true,
+          "name": "ActionId",
+          "title": "ActionId",
+          "type": "string"
         }
       ],
-      "categories": [
-        "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
-      ]
-    },
-    "targets": {
-      "definition_target_015HN5XYB184S4drYPXjMVXbrERdKBPNEHI": {
-        "unique_name": "definition_target_015HN5XYB184S4drYPXjMVXbrERdKBPNEHI",
-        "name": "Run AO API",
-        "title": "Run AO API",
-        "type": "web-service.endpoint",
-        "base_type": "target",
-        "object_type": "definition_target",
-        "properties": {
-          "disable_certificate_validation": true,
-          "display_name": "Run AO API",
-          "host": "be-console",
-          "no_runtime_user": true,
-          "path": "/api/v1",
-          "port": 8081,
-          "protocol": "https"
-        }
-      }
-    },
-    "table_types": {
-      "tabletype_015ICF0I7NO0C6WGjQyRPrquxRAGOZZH89S": {
-        "unique_name": "tabletype_015ICF0I7NO0C6WGjQyRPrquxRAGOZZH89S",
-        "data_type": "datatype.tabletype",
-        "display_name": "ActionIdsArray",
-        "max_rows": 256,
-        "max_columns": 256,
-        "max_column_size": 1024,
-        "max_table_size": 26000,
-        "columns": [
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "subworkflows": [
+    {
+      "workflow": {
+        "unique_name": "definition_workflow_019GJ7BW72PN41UOHCedQ4XyZAoOEIRIc0z",
+        "name": "Check for output vars in workflow",
+        "title": "Check for output vars in workflow",
+        "type": "generic.workflow",
+        "base_type": "workflow",
+        "variables": [
           {
-            "is_required": true,
-            "name": "ActionId",
-            "title": "ActionId",
-            "type": "string"
+            "schema_id": "datatype.boolean",
+            "properties": {
+              "value": false,
+              "scope": "output",
+              "name": "destWorkflowHasOuputVariables",
+              "type": "datatype.boolean",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_019GJ7CCSJW6O46f6Vwn4LEeYBYcqRracEp",
+            "object_type": "variable_workflow"
+          },
+          {
+            "schema_id": "datatype.string",
+            "properties": {
+              "value": "",
+              "scope": "input",
+              "name": "JSONResponse",
+              "type": "datatype.string",
+              "is_required": false
+            },
+            "unique_name": "variable_workflow_019GJ7CCSJMBK7Ug0mRRDhE3POMLfag2qn1",
+            "object_type": "variable_workflow"
           }
         ],
-        "base_type": "datatype",
-        "object_type": "tabletype"
-      }
-    },
-    "subworkflows": [
-      {
-        "workflow": {
-          "unique_name": "definition_workflow_016QL819I21UQ5Bd68nqZRKcM5S5iRiReFp",
-          "name": "Check for output vars in workflow",
-          "title": "Check for output vars in workflow",
-          "type": "generic.workflow",
-          "base_type": "workflow",
-          "variables": [
-            {
-              "schema_id": "datatype.string",
-              "properties": {
-                "value": "",
-                "scope": "input",
-                "name": "JSONResponse",
-                "type": "datatype.string"
-              },
-              "unique_name": "variable_workflow_016QL81UL7VW30aB5oW7EG4wkpIJnVrfA1B",
-              "object_type": "variable_workflow"
-            },
-            {
-              "schema_id": "datatype.boolean",
-              "properties": {
-                "value": false,
-                "scope": "output",
-                "name": "destWorkflowHasOuputVariables",
-                "type": "datatype.boolean"
-              },
-              "unique_name": "variable_workflow_016QL81UL84U62fBn8TVywYAbjokU4UIVYq",
-              "object_type": "variable_workflow"
-            }
-          ],
-          "properties": {
-            "atomic": {
-              "is_atomic": false
-            },
-            "delete_workflow_instance": false,
-            "display_name": "Check for output vars in workflow",
-            "favorite": true,
-            "target": {
-              "no_target": true
-            }
+        "properties": {
+          "atomic": {
+            "is_atomic": false
           },
-          "object_type": "definition_workflow",
-          "actions": [
-            {
-              "unique_name": "definition_activity_016QL824PWF2L3BFcjfhrP8eOnoWzr9iq64",
-              "name": "Execute Python Script",
-              "title": "Execute Python Script",
-              "type": "python3.script",
-              "base_type": "activity",
-              "properties": {
-                "action_timeout": 180,
-                "continue_on_failure": false,
-                "display_name": "Execute Python Script",
-                "script": "import json\nimport sys\n\nj = sys.argv[1]\njsonObject = json.loads(j)\noutputVarExists = False\nif  \"variables\" in jsonObject:\n variables = jsonObject[\"variables\"]\n for i, val in enumerate(variables):\n  if \"properties\" in val:\n   if \"output\" == val[\"properties\"][\"scope\"]:\n    outputVarExists=True\n    break\nprint(str(outputVarExists).lower())",
-                "script_arguments": [
-                  "$workflow.definition_workflow_016QL819I21UQ5Bd68nqZRKcM5S5iRiReFp.input.variable_workflow_016QL81UL7VW30aB5oW7EG4wkpIJnVrfA1B$"
-                ]
-              },
-              "object_type": "definition_activity"
+          "delete_workflow_instance": false,
+          "display_name": "Check for output vars in workflow",
+          "favorite": true,
+          "target": {
+            "no_target": true
+          }
+        },
+        "object_type": "definition_workflow",
+        "actions": [
+          {
+            "unique_name": "definition_activity_019GJ7CNTIYEP2Qe1SYnPpGAYihw4hazE3n",
+            "name": "Execute Python Script",
+            "title": "Execute Python Script",
+            "type": "python3.script",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Execute Python Script",
+              "script": "import json\nimport sys\n\nj = sys.argv[1]\njsonObject = json.loads(j)\noutputVarExists = False\nif  \"variables\" in jsonObject:\n variables = jsonObject[\"variables\"]\n for i, val in enumerate(variables):\n  if \"properties\" in val:\n   if \"output\" == val[\"properties\"][\"scope\"]:\n    outputVarExists=True\n    break\nprint(str(outputVarExists).lower())",
+              "script_arguments": [
+                "$workflow.definition_workflow_019GJ7BW72PN41UOHCedQ4XyZAoOEIRIc0z.input.variable_workflow_019GJ7CCSJMBK7Ug0mRRDhE3POMLfag2qn1$"
+              ]
             },
-            {
-              "unique_name": "definition_activity_016QL82E2GE601zVZdZZGWwSjeNetFZhC0P",
-              "name": "JSONPath Query",
-              "title": "JSONPath Query",
-              "type": "corejava.jsonpathquery",
-              "base_type": "activity",
-              "properties": {
-                "action_timeout": 180,
-                "continue_on_failure": false,
-                "display_name": "JSONPath Query",
-                "input_json": "$activity.definition_activity_016QL824PWF2L3BFcjfhrP8eOnoWzr9iq64.output.response_body$",
-                "jsonpath_queries": [
-                  {
-                    "jsonpath_query": "$",
-                    "jsonpath_query_name": "OpVarsExist",
-                    "jsonpath_query_type": "boolean",
-                    "zdate_type_format": ""
-                  }
-                ]
-              },
-              "object_type": "definition_activity"
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019GJ7CXDLN017jPs23wIyPECzZrslztl3z",
+            "name": "JSONPath Query",
+            "title": "JSONPath Query",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "JSONPath Query",
+              "input_json": "$activity.definition_activity_019GJ7CNTIYEP2Qe1SYnPpGAYihw4hazE3n.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$",
+                  "jsonpath_query_name": "OpVarsExist",
+                  "jsonpath_query_type": "boolean",
+                  "zdate_type_format": ""
+                }
+              ]
             },
-            {
-              "unique_name": "definition_activity_016QL82POCZTK4L3v5aW5DS2yVSxO2zUozr",
-              "name": "Set Variables",
-              "title": "Set Variables",
-              "type": "core.set_multiple_variables",
-              "base_type": "activity",
-              "properties": {
-                "continue_on_failure": false,
-                "display_name": "Set Variables",
-                "variables_to_update": [
-                  {
-                    "variable_to_update": "$workflow.definition_workflow_016QL819I21UQ5Bd68nqZRKcM5S5iRiReFp.output.variable_workflow_016QL81UL84U62fBn8TVywYAbjokU4UIVYq$",
-                    "variable_value_new": "$activity.definition_activity_016QL82E2GE601zVZdZZGWwSjeNetFZhC0P.output.jsonpath_queries.OpVarsExist$"
-                  }
-                ]
-              },
-              "object_type": "definition_activity"
-            }
-          ],
-          "categories": [
-            "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
-          ]
-        }
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_019GJ7D89TLVB0SzVKJrXwOjqM6038xIhLg",
+            "name": "Set Variables",
+            "title": "Set Variables",
+            "type": "core.set_multiple_variables",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Set Variables",
+              "variables_to_update": [
+                {
+                  "variable_to_update": "$workflow.definition_workflow_019GJ7BW72PN41UOHCedQ4XyZAoOEIRIc0z.output.variable_workflow_019GJ7CCSJW6O46f6Vwn4LEeYBYcqRracEp$",
+                  "variable_value_new": "$activity.definition_activity_019GJ7CXDLN017jPs23wIyPECzZrslztl3z.output.jsonpath_queries.OpVarsExist$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ],
+        "categories": [
+          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+        ]
       }
-    ]
-  }
+    }
+  ]
+}
