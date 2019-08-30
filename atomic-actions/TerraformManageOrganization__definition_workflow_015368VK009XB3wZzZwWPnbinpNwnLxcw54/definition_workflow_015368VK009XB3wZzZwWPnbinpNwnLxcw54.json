@@ -1,0 +1,323 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54",
+    "name": "Manage Organization",
+    "title": "Manage Organization",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Action Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536A99545OU74Q0gaFcEkyWDHBEts3nJ8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01536AII21HO872xDjGJDGIo3YsJrX0z0WT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Email",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536APAGM4DJ25vBs84gBGT59x0jWheq1h",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536AVQJIUGB70kJBEjeDS6PAzjwiwBzio",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Organization Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536B87GKPRY7Ow5Wihp6BDseYxpKbxT3V",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Organization Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536BG9KGU441SUNpAhyfuAoTFK2zM4xVA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response Body",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536BPFQW7OV0XI5FN29YhRIeWTG2C1afb",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Terraform",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Manage Organization - Performs Create,Update and Delete Organization Operations Based On The Action Type Provided.",
+      "display_name": "Manage Organization",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_015369OWR42J56tOCZ6szMMnvSvPhWmFjom",
+        "name": "To Lower",
+        "title": "Action Type To Lower",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Action Type To Lower",
+          "source": "$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536A99545OU74Q0gaFcEkyWDHBEts3nJ8$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015369XITNE5W7S469ZFWnlacio5Xs3A4mm",
+        "name": "Condition Block",
+        "title": "Check Action Type",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Action Type"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_015369XN54YMQ3wWo8SkP8Sm0UV67LESULy",
+            "name": "Condition Branch",
+            "title": "If Action Type = create",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015369OWR42J56tOCZ6szMMnvSvPhWmFjom.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "create"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Type = create"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01536DADUBUI65zBvBz1hUBEpmCbItmKP7N",
+                "name": "Create Organization",
+                "title": "Create Organization",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Create Organization",
+                  "input": {
+                    "variable_workflow_014WDBTO92UUZ1wW8IhwMtTlkaMaYbcbkRK": "POST",
+                    "variable_workflow_014WDC2RB0MB54WJ5do8TXHBFh9gvua3YZw": "/organizations",
+                    "variable_workflow_014WDCG2R30XN4B2OC4lBbEF7E0K71Ebpor": "{ \"data\": {\"type\": \"$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536BG9KGU441SUNpAhyfuAoTFK2zM4xVA$\",\"attributes\": {\"name\":\"$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536AVQJIUGB70kJBEjeDS6PAzjwiwBzio$\",\"email\": \"$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536APAGM4DJ25vBs84gBGT59x0jWheq1h$\"}}}",
+                    "variable_workflow_014WDDBAICAZJ4SoiyEAxwGSM6woAg1V0wz": "$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536AII21HO872xDjGJDGIo3YsJrX0z0WT$"
+                  },
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01536DKBXV4451bHnhbC7lZyxgZUSvO9lIP",
+                "name": "Set Variables",
+                "title": "Set Response Body",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Response Body",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.output.variable_workflow_01536BPFQW7OV0XI5FN29YhRIeWTG2C1afb$",
+                      "variable_value_new": "$activity.definition_activity_01536DADUBUI65zBvBz1hUBEpmCbItmKP7N.output.variable_workflow_014WDD08WGXPS46gsajojkTbUtZtZjlpgsb$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_015369XQTMUMS42ZDULDxhmos8q6lQK0id7",
+            "name": "Condition Branch",
+            "title": "If Action Type = update",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015369OWR42J56tOCZ6szMMnvSvPhWmFjom.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "update"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Type = update"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01536DC7CWQKB5WyqiyYPaouncCLZ7cLd71",
+                "name": "Update Organization",
+                "title": "Update Organization",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Update Organization",
+                  "input": {
+                    "variable_workflow_014WDBTO92UUZ1wW8IhwMtTlkaMaYbcbkRK": "PATCH",
+                    "variable_workflow_014WDC2RB0MB54WJ5do8TXHBFh9gvua3YZw": "/organizations/$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536B87GKPRY7Ow5Wihp6BDseYxpKbxT3V$",
+                    "variable_workflow_014WDCG2R30XN4B2OC4lBbEF7E0K71Ebpor": "{\n  \"data\": {\n    \"type\": \"$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536BG9KGU441SUNpAhyfuAoTFK2zM4xVA$\",\n    \"attributes\": {\n      \"email\": \"$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536APAGM4DJ25vBs84gBGT59x0jWheq1h$\"\n    }\n  }\n}",
+                    "variable_workflow_014WDDBAICAZJ4SoiyEAxwGSM6woAg1V0wz": "$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536AII21HO872xDjGJDGIo3YsJrX0z0WT$"
+                  },
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01536DLKWCE4432RECGesLZ2vEKqu4Spped",
+                "name": "Set Variables",
+                "title": "Set Response Body",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Response Body",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.output.variable_workflow_01536BPFQW7OV0XI5FN29YhRIeWTG2C1afb$",
+                      "variable_value_new": "$activity.definition_activity_01536DC7CWQKB5WyqiyYPaouncCLZ7cLd71.output.variable_workflow_014WDD08WGXPS46gsajojkTbUtZtZjlpgsb$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01536C0GWHSBE3hNn8RJKdlj5lJJuHD0mIx",
+            "name": "Condition Branch",
+            "title": "If Action Type = delete",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015369OWR42J56tOCZ6szMMnvSvPhWmFjom.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "delete"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Type = delete"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01536DE9TCVA03i6ctzB3rGcv98HROg6TwL",
+                "name": "Delete Organization",
+                "title": "Delete Organization",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Delete Organization",
+                  "input": {
+                    "variable_workflow_014WDBTO92UUZ1wW8IhwMtTlkaMaYbcbkRK": "DELETE",
+                    "variable_workflow_014WDC2RB0MB54WJ5do8TXHBFh9gvua3YZw": "/organizations/$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536B87GKPRY7Ow5Wihp6BDseYxpKbxT3V$",
+                    "variable_workflow_014WDCG2R30XN4B2OC4lBbEF7E0K71Ebpor": "null",
+                    "variable_workflow_014WDDBAICAZJ4SoiyEAxwGSM6woAg1V0wz": "$workflow.definition_workflow_015368VK009XB3wZzZwWPnbinpNwnLxcw54.input.variable_workflow_01536AII21HO872xDjGJDGIo3YsJrX0z0WT$"
+                  },
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01536DPEJ39C31wlyrDLDmiCTyk8qbviEeU",
+                "name": "Succeeded",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded",
+                  "result_message": "Organization Deleted Successfully."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC",
+    "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC",
+    "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC"
+  ]
+}

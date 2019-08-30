@@ -1,0 +1,376 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8",
+    "name": "Manage PolicySet",
+    "title": "Manage PolicySet",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Workspace Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536KHJMXUQE6NvQvRi2DrDF4cEx8VEiQd",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Relationship Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536K95BFLKE4ehOw74ykhKeW4gkUqpk91",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Update Request Body",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536D0JFYH1H02biXqGVtKJX035WqgZK8a",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Policy Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536KZ96IID73IcWHQkcTOqADSul8MkDKL",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01536BM1ICZKT4TnJKdbthMdpPUADswPqkv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Policy Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536N2HOLM7Q3ZIqUpLwnUfP3ygCep6jlR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Relationship Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536JZVT7HPZ0z3y4FVCdNPsPmvvyV4KrC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Organization Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536C96FZG077B4t7HEvyZ7dCim1YIg3rq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Policy Set Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536CHQA7LFN6prL86ForF0fqmlvSFpylA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Workspace Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536KR0Q8UI06jPf5gJbcWCl5xz25GnTVT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Policy Description",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536NULTVSZ95VgtN3aSax4wxmHzS6pqlM",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response Body",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536CONBZ1I166D47fKKdGYbD6ucWW2YAg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Action Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01536BW0JXPT538capJz4sjEbWUU39xnYAJ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Terraform",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "this atomic workflow create/update/delete a policy set",
+      "display_name": "Manage PolicySet",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01536B03P4I5W5svsSUd5MaNfK773au85fL",
+        "name": "To Lower",
+        "title": "Action Type to Lower",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Action Type to Lower",
+          "source": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536BW0JXPT538capJz4sjEbWUU39xnYAJ$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01536DFZKO67Q2IJLbtk4J3Glewcsizfjei",
+        "name": "Condition Block",
+        "title": "Check Action Type",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Action Type"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01536DG5EJYSQ14KEaBV10cjgDFwdJHshM5",
+            "name": "Condition Branch",
+            "title": "If Add",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536BW0JXPT538capJz4sjEbWUU39xnYAJ$",
+                "operator": "eq",
+                "right_operand": "create"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Add"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01536F1ICGT4X3nlYgkejMxpKppQDZPag6W",
+                "name": "Create Policy Set",
+                "title": "Create Policy Set",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Create Policy Set",
+                  "input": {
+                    "variable_workflow_014WDBTO92UUZ1wW8IhwMtTlkaMaYbcbkRK": "POST",
+                    "variable_workflow_014WDC2RB0MB54WJ5do8TXHBFh9gvua3YZw": "/organizations/$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536C96FZG077B4t7HEvyZ7dCim1YIg3rq$/policy-sets",
+                    "variable_workflow_014WDCG2R30XN4B2OC4lBbEF7E0K71Ebpor": "{\"data\":{\"attributes\":{\"name\":\"$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536N2HOLM7Q3ZIqUpLwnUfP3ygCep6jlR$\",\"description\":\"$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536NULTVSZ95VgtN3aSax4wxmHzS6pqlM$\"},\"relationships\":{\"policies\":{\"data\":[{\"id\":\"$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536JZVT7HPZ0z3y4FVCdNPsPmvvyV4KrC$\",\"type\":\"$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536K95BFLKE4ehOw74ykhKeW4gkUqpk91$\"}]},\"workspaces\":{\"data\":[{\"id\":\"$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536KHJMXUQE6NvQvRi2DrDF4cEx8VEiQd$\",\"type\":\"$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536KR0Q8UI06jPf5gJbcWCl5xz25GnTVT$\"}]}},\"type\":\"$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536KZ96IID73IcWHQkcTOqADSul8MkDKL$\"}}",
+                    "variable_workflow_014WDDBAICAZJ4SoiyEAxwGSM6woAg1V0wz": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536BM1ICZKT4TnJKdbthMdpPUADswPqkv$"
+                  },
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01536R202D7AY6NEaE2XjWTDjnJqZSBXylp",
+                "name": "Set Variables",
+                "title": "Set Response Body",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Response Body",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.output.variable_workflow_01536CONBZ1I166D47fKKdGYbD6ucWW2YAg$",
+                      "variable_value_new": "$activity.definition_activity_01536F1ICGT4X3nlYgkejMxpKppQDZPag6W.output.variable_workflow_014WDD08WGXPS46gsajojkTbUtZtZjlpgsb$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01536DG9L8AWB5cdlXGb8w4r279usQTU66j",
+            "name": "Condition Branch",
+            "title": "If Update",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536BW0JXPT538capJz4sjEbWUU39xnYAJ$",
+                "operator": "eq",
+                "right_operand": "update"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Update"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01536F36EJL0R5ydVU8ntrLojBPBtwTL3Ks",
+                "name": "Update Policy Set",
+                "title": "Update Policy Set",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Update Policy Set",
+                  "input": {
+                    "variable_workflow_014WDBTO92UUZ1wW8IhwMtTlkaMaYbcbkRK": "PATCH",
+                    "variable_workflow_014WDC2RB0MB54WJ5do8TXHBFh9gvua3YZw": "/policy-sets/$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536CHQA7LFN6prL86ForF0fqmlvSFpylA$",
+                    "variable_workflow_014WDCG2R30XN4B2OC4lBbEF7E0K71Ebpor": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536D0JFYH1H02biXqGVtKJX035WqgZK8a$",
+                    "variable_workflow_014WDDBAICAZJ4SoiyEAxwGSM6woAg1V0wz": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536BM1ICZKT4TnJKdbthMdpPUADswPqkv$"
+                  },
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01536SSGUOK9N1AK7R0ANUpmqK4UCmNfm5I",
+                "name": "Set Variables",
+                "title": "Set Response Body",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Response Body",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.output.variable_workflow_01536CONBZ1I166D47fKKdGYbD6ucWW2YAg$",
+                      "variable_value_new": "$activity.definition_activity_01536F36EJL0R5ydVU8ntrLojBPBtwTL3Ks.output.variable_workflow_014WDD08WGXPS46gsajojkTbUtZtZjlpgsb$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01536DIHTSYYC6hBmKJymSUzPJJzlBIz5T8",
+            "name": "Condition Branch",
+            "title": "If Delete",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536BW0JXPT538capJz4sjEbWUU39xnYAJ$",
+                "operator": "eq",
+                "right_operand": "delete"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Delete"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01536F500QVT33Y2pZUem160lBK6s2NkCsp",
+                "name": "Delete Policy Set",
+                "title": "Delete Policy Set",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Delete Policy Set",
+                  "input": {
+                    "variable_workflow_014WDBTO92UUZ1wW8IhwMtTlkaMaYbcbkRK": "DELETE",
+                    "variable_workflow_014WDC2RB0MB54WJ5do8TXHBFh9gvua3YZw": "/policy-sets/$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536CHQA7LFN6prL86ForF0fqmlvSFpylA$/relationships/policies",
+                    "variable_workflow_014WDCG2R30XN4B2OC4lBbEF7E0K71Ebpor": "null",
+                    "variable_workflow_014WDDBAICAZJ4SoiyEAxwGSM6woAg1V0wz": "$workflow.definition_workflow_01536AMWHZDAY4zqq51BIUcGDEDjpmJHcX8.input.variable_workflow_01536BM1ICZKT4TnJKdbthMdpPUADswPqkv$"
+                  },
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "01gQ9JO6NNJpw6sXHVGZEGRGZ2QoL5Ldk",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC",
+    "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC",
+    "definition_workflow_014WDAIJEHSLM4J75COBxh9Y7csRuqdtQLC"
+  ]
+}
