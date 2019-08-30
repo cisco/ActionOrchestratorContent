@@ -1,0 +1,174 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gp2wkKoeQoeMMl1EnR2n4hywGNqxhqC",
+    "name": "Retrieve Metric Hierarchy",
+    "title": "Retrieve Metric Hierarchy",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01gpksLZ7kvbcFKTljdInXA30bpBcIPZJ",
+        "properties": {
+          "scope": "output",
+          "name": "Metric Hierarchy Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gpktF7nzTNVyfss0G98DE8O3g5AZOAx",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp3jtmW8Ka57JvxIkbTWwyMJO7IQP5E",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Retrieve Metric Hierarchy For The Given Application Name.",
+      "display_name": "Retrieve Metric Hierarchy",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gpJuIDUTtONTGujCkguDHZMhWf6w581",
+        "name": "HTTP Request",
+        "title": "Retrieve Metric Hierarchy",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Retrieve Metric Hierarchy",
+          "method": "GET",
+          "relative_url": "/rest/applications/$workflow.definition_workflow_01gp2wkKoeQoeMMl1EnR2n4hywGNqxhqC.input.variable_workflow_01gp3jtmW8Ka57JvxIkbTWwyMJO7IQP5E$/metrics",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpLjEQJxNMo1CQRRwCZnfnzp1cVnqLm",
+        "name": "Read Table from XML",
+        "title": "Read Metric Hierarchy",
+        "type": "corejava.read_table_from_xml",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Metric Hierarchy",
+          "input_xml": "$activity.definition_activity_01gpJuIDUTtONTGujCkguDHZMhWf6w581.output.response_body$",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "type",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "xmlpath_query": "/metric-items/metric-item"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gporlEO8y498dlmY2JS2H7jQBy4rxf7",
+        "name": "For Each",
+        "title": "Retrieve Metric Hierarchy",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Retrieve Metric Hierarchy",
+          "source_array": "$activity.definition_activity_01gpLjEQJxNMo1CQRRwCZnfnzp1cVnqLm.output.read_table_from_xml$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gplkOjGMnflXMnFMVN00Ek4eN72HREF",
+            "name": "Add Row to Table",
+            "title": "Add Metric Hierarchy Details",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Metric Hierarchy Details",
+              "input_table": "$workflow.definition_workflow_01gp2wkKoeQoeMMl1EnR2n4hywGNqxhqC.output.variable_workflow_01gpktF7nzTNVyfss0G98DE8O3g5AZOAx$",
+              "row": [
+                {
+                  "key": "name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gporlEO8y498dlmY2JS2H7jQBy4rxf7.input.source_array[@].name$"
+                },
+                {
+                  "key": "type",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gporlEO8y498dlmY2JS2H7jQBy4rxf7.input.source_array[@].type$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gpksLZ7kvbcFKTljdInXA30bpBcIPZJ": {
+      "unique_name": "tabletype_01gpksLZ7kvbcFKTljdInXA30bpBcIPZJ",
+      "data_type": "datatype.tabletype",
+      "display_name": "AppD - Metric Hierarchy Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "title": "Type",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

@@ -1,0 +1,576 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP",
+    "name": "Perform VM Power Actions",
+    "title": "Perform VM Power Actions",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "VM Action",
+          "type": "datatype.string",
+          "description": "Enter VM Action. Allowed values:\n1.poweron\n2.reboot\n3.shutdown\n4.poweroff",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gbn2DKLgqibaeU93brgUPjT6ye3QiUk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string",
+          "description": "Enter Access key.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150I4SXL8QQJ3kUNlZBDSFCLglbqe8sb2x",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "VM ID",
+          "type": "datatype.string",
+          "description": "Enter VM ID.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gbomXsXcN4kjsDEo2b9Z2uzTvrE4Ose",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco UCS Director",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic will perform power actions of a virtual machine created through Cisco UCS Director. Possible values for action are poweron, poweroff, shutdown, restart",
+      "display_name": "Perform VM Power Actions",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gvZY3uSfZv1trKbGBQRlTaQvKilvIKg",
+        "name": "To Lower",
+        "title": "Set VM Action Lower Case",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set VM Action Lower Case",
+          "source": "$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_01gbn2DKLgqibaeU93brgUPjT6ye3QiUk$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbTPSlxj5NGAJ1FqoK7Qq4BvOQh1Fxs",
+        "name": "HTTP Request",
+        "title": "Get VM State",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+              "value": "$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_0150I4SXL8QQJ3kUNlZBDSFCLglbqe8sb2x$"
+            }
+          ],
+          "display_name": "Get VM State",
+          "method": "GET",
+          "relative_url": "/app/api/rest?formatType=json\u0026opName=userAPIGetVMSummary\u0026opData={param0:$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_01gbomXsXcN4kjsDEo2b9Z2uzTvrE4Ose$}",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbt22N0nwumPd9cO2AcCGAJO0AxHcFf",
+        "name": "JSONPath Query",
+        "title": "Query VM State",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Query VM State",
+          "input_json": "$activity.definition_activity_01gbTPSlxj5NGAJ1FqoK7Qq4BvOQh1Fxs.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..Overview_Status",
+              "jsonpath_query_name": "VM State",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gbuCLZGOsF4GXoMcZct3DL5hyjFZwhe",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gbuCQtkqjkffMKXZNl3N3ht07s8HFX0",
+            "name": "Condition Branch",
+            "title": "If Action Equals Power On",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gvZY3uSfZv1trKbGBQRlTaQvKilvIKg.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "poweron"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Equals Power On"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gbV7wxiJsVt4nFQCAB8TAPttqYEC7YT",
+                "name": "Condition Block",
+                "title": "Check VM State",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check VM State"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01gbV7ztg8dnnZhnfy8Fy3DvURNr1qjw0",
+                    "name": "Condition Branch",
+                    "title": "If VM State Is Not Powered_On",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gbt22N0nwumPd9cO2AcCGAJO0AxHcFf.output.jsonpath_queries.VM State$",
+                        "operator": "nmw",
+                        "right_operand": "ON*"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM State Is Not Powered_On"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gbVd3XlVw49AOKgoDYnpt5L5KhQJ8ix",
+                        "name": "HTTP Request",
+                        "title": "Power On Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "\u003ccuicOperationRequest\u003e\r\n\u003coperationType\u003eVMWARE_VM_POWER_ACTION\u003c/operationType\u003e\r\n\u003cpayload\u003e\r\n\u003c![CDATA[\r\n\u003cVMwareVMPowerAction\u003e\r\n\r\n\u003cvmId\u003e$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_01gbomXsXcN4kjsDEo2b9Z2uzTvrE4Ose$\u003c/vmId\u003e\r\n\r\n\u003cvmAction\u003epowerOn\u003c/vmAction\u003e\r\n\r\n\u003c/VMwareVMPowerAction\u003e\r\n\r\n]]\u003e\r\n\u003c/payload\u003e\r\n\u003c/cuicOperationRequest\u003e\r\n",
+                          "content_type": "application/xml",
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+                              "value": "$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_0150I4SXL8QQJ3kUNlZBDSFCLglbqe8sb2x$"
+                            }
+                          ],
+                          "display_name": "Power On Virtual Machine",
+                          "method": "POST",
+                          "relative_url": "/cloupia/api-v2/customActions",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gbuCrrdoTd961ehrD6g4H4SyWREndDm",
+            "name": "Condition Branch",
+            "title": "If Action Equals Reboot",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gvZY3uSfZv1trKbGBQRlTaQvKilvIKg.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "reboot"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Equals Reboot"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gbvJw70ngNWenxK0GBFhJLt2lR8bOrJ",
+                "name": "Condition Block",
+                "title": "Check VM State",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check VM State"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01gbvj0vTQxWoEjkQYH81KCCResD10h6D",
+                    "name": "Condition Branch",
+                    "title": "If VM State Is Powered_On",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gbt22N0nwumPd9cO2AcCGAJO0AxHcFf.output.jsonpath_queries.VM State$",
+                        "operator": "mw",
+                        "right_operand": "ON*"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM State Is Powered_On"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gbvTdF4FPpUdhWMXPnClEdfdWe4gxmn",
+                        "name": "HTTP Request",
+                        "title": "Reboot Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "accept": "XML",
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "\u003ccuicOperationRequest\u003e\r\n\u003coperationType\u003eVMWARE_VM_POWER_ACTION\u003c/operationType\u003e\r\n\u003cpayload\u003e\r\n\u003c![CDATA[\r\n\u003cVMwareVMPowerAction\u003e\r\n\r\n\u003cvmId\u003e$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_01gbomXsXcN4kjsDEo2b9Z2uzTvrE4Ose$\u003c/vmId\u003e\r\n\r\n\u003cvmAction\u003ereboot\u003c/vmAction\u003e\r\n\r\n\u003c/VMwareVMPowerAction\u003e\r\n\r\n]]\u003e\r\n\u003c/payload\u003e\r\n\u003c/cuicOperationRequest\u003e\r\n",
+                          "content_type": "application/xml",
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+                              "value": "$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_0150I4SXL8QQJ3kUNlZBDSFCLglbqe8sb2x$"
+                            }
+                          ],
+                          "display_name": "Reboot Virtual Machine",
+                          "method": "POST",
+                          "relative_url": " /cloupia/api-v2/customActions ",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01gbvj3V3BBQ1P04RmnoRTljyRhaB5mvJ",
+                    "name": "Condition Branch",
+                    "title": "If VM State Is Powered_Off Or Shut_Down",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gbt22N0nwumPd9cO2AcCGAJO0AxHcFf.output.jsonpath_queries.VM State$",
+                        "operator": "nmw",
+                        "right_operand": "ON*"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM State Is Powered_Off Or Shut_Down"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gbwaq6Zt4q0AHe1JVCEiHcPlNsIiz3y",
+                        "name": "HTTP Request",
+                        "title": "Power On Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "accept": "XML",
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "\u003ccuicOperationRequest\u003e\r\n\u003coperationType\u003eVMWARE_VM_POWER_ACTION\u003c/operationType\u003e\r\n\u003cpayload\u003e\r\n\u003c![CDATA[\r\n\u003cVMwareVMPowerAction\u003e\r\n\r\n\u003cvmId\u003e$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_01gbomXsXcN4kjsDEo2b9Z2uzTvrE4Ose$\u003c/vmId\u003e\r\n\r\n\u003cvmAction\u003epowerOn\u003c/vmAction\u003e\r\n\r\n\u003c/VMwareVMPowerAction\u003e\r\n\r\n]]\u003e\r\n\u003c/payload\u003e\r\n\u003c/cuicOperationRequest\u003e\r\n",
+                          "content_type": "application/xml",
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+                              "value": "$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_0150I4SXL8QQJ3kUNlZBDSFCLglbqe8sb2x$"
+                            }
+                          ],
+                          "display_name": "Power On Virtual Machine",
+                          "method": "POST",
+                          "relative_url": " /cloupia/api-v2/customActions ",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gbwnacns1tR9ELMSN999Riea6KSITGq",
+            "name": "Condition Branch",
+            "title": "If Action Equals Shut Down",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gvZY3uSfZv1trKbGBQRlTaQvKilvIKg.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "shutdown"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Equals Shut Down"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gbwnCTHJRQMI6uYNrKsPdZO6Yyt1r82",
+                "name": "Condition Block",
+                "title": "Check VM State",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check VM State"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01gbwnDqhO35oMc1hNWeQ689R17hNaI4a",
+                    "name": "Condition Branch",
+                    "title": "If VM State Is Powered_On",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gbt22N0nwumPd9cO2AcCGAJO0AxHcFf.output.jsonpath_queries.VM State$",
+                        "operator": "mw",
+                        "right_operand": " ON* "
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM State Is Powered_On"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gbwne1KPRCHj6h4GDmVS0N2qCmtKlxL",
+                        "name": "HTTP Request",
+                        "title": "Shut Down Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "accept": "XML",
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "\u003ccuicOperationRequest\u003e\r\n\u003coperationType\u003eVMWARE_VM_POWER_ACTION\u003c/operationType\u003e\r\n\u003cpayload\u003e\r\n\u003c![CDATA[\r\n\u003cVMwareVMPowerAction\u003e\r\n\r\n\u003cvmId\u003e$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_01gbomXsXcN4kjsDEo2b9Z2uzTvrE4Ose$\u003c/vmId\u003e\r\n\r\n\u003cvmAction\u003eshutdownGuest\u003c/vmAction\u003e\r\n\r\n\u003c/VMwareVMPowerAction\u003e\r\n\r\n]]\u003e\r\n\u003c/payload\u003e\r\n\u003c/cuicOperationRequest\u003e\r\n",
+                          "content_type": "application/xml",
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+                              "value": "$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_0150I4SXL8QQJ3kUNlZBDSFCLglbqe8sb2x$"
+                            }
+                          ],
+                          "display_name": "Shut Down Virtual Machine",
+                          "method": "POST",
+                          "relative_url": " /cloupia/api-v2/customActions ",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gbxwcqnw4gwHlv1D1gz3E2xAFsk8cyU",
+            "name": "Condition Branch",
+            "title": "If Action Equals Power Off",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gvZY3uSfZv1trKbGBQRlTaQvKilvIKg.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "poweroff"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Equals Power Off"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gbxweecmDdVWjBzpVbWhPw66elU6Uml",
+                "name": "Condition Block",
+                "title": "Check VM State",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check VM State"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01gbxwGkPSgKAWsWetO52Q8gEHT1FXWuk",
+                    "name": "Condition Branch",
+                    "title": "If VM State Is Not Powered _Off",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gbt22N0nwumPd9cO2AcCGAJO0AxHcFf.output.jsonpath_queries.VM State$",
+                        "operator": "nmw",
+                        "right_operand": "OFF*"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If VM State Is Not Powered _Off"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gbxwIwzsGwnYmoipoOLOodYGKcEQ8Hf",
+                        "name": "HTTP Request",
+                        "title": "Power Off Virtual Machine",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "accept": "XML",
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "\u003ccuicOperationRequest\u003e\r\n\u003coperationType\u003eVMWARE_VM_POWER_ACTION\u003c/operationType\u003e\r\n\u003cpayload\u003e\r\n\u003c![CDATA[\r\n\u003cVMwareVMPowerAction\u003e\r\n\r\n\u003cvmId\u003e$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_01gbomXsXcN4kjsDEo2b9Z2uzTvrE4Ose$\u003c/vmId\u003e\r\n\r\n\u003cvmAction\u003epowerOff\u003c/vmAction\u003e\r\n\r\n\u003c/VMwareVMPowerAction\u003e\r\n\r\n]]\u003e\r\n\u003c/payload\u003e\r\n\u003c/cuicOperationRequest\u003e\r\n",
+                          "content_type": "application/xml",
+                          "continue_on_error_status_code": false,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi.global.variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi$",
+                              "value": "$workflow.definition_workflow_01gbNMOVbE6ib9F3Db3lIyoo9oW367eMP.input.variable_workflow_0150I4SXL8QQJ3kUNlZBDSFCLglbqe8sb2x$"
+                            }
+                          ],
+                          "display_name": "Power Off Virtual Machine",
+                          "method": "POST",
+                          "relative_url": " /cloupia/api-v2/customActions ",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi": {
+      "unique_name": "variable_01g4itdQW73Y0cMTQEcTsUdc5XRrudSHi",
+      "properties": {
+        "value": "X-Cloupia-Request-Key",
+        "scope": "global",
+        "name": "UCS Director API Key",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

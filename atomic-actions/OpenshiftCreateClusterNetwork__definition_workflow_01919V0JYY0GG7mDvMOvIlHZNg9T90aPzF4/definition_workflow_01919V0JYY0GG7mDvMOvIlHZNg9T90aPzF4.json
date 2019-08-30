@@ -1,0 +1,272 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4",
+    "name": "Create Cluster Network",
+    "title": "Create Cluster Network",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Name",
+          "type": "datatype.string",
+          "description": "Enter new Cluster Network Name to be created.\n(Eg. testnetwork)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01919V0XXYVM62SlHhxiLVLvTTZovs3CaXA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "ClusterNetwork",
+          "scope": "input",
+          "name": "Kind",
+          "type": "datatype.string",
+          "description": "Enter Cluster Network Kind (Eg. ClusterNetwork)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01919V0XXYXDC4ipZji22yfb9A86jISXx7I",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "v1",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string",
+          "description": "Enter API Version (Eg. v1)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01919V0XXYGCG1Bm4Tp7S9PQAO3cE76ex0T",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Cluster Network Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01919V0XXYLBO4FifnKnnRfk3qUuOU4Ysop",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01919V0XXYNIU2j3fSm3UrG43lA56ZBvyKl",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network (CIDR)",
+          "type": "datatype.string",
+          "description": "Enter Network (Eg. 10.0.0.0/24)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01919V0XXYPE62oM6Y4RupXxcmIciBEAtQg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "Host Subnet Length (Bit Length)",
+          "type": "datatype.integer",
+          "description": "Enter Host Subnet Length (Eg. 8)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01919V0XXYR4B4hwKtXgBM2TTRyoyUeYA3n",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Service Network (CIDR)",
+          "type": "datatype.string",
+          "description": "Enter Service Network Value (Eg. \"172.0.0.0/16)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01919V0XXYT3T57wcurbIT7VpQjn1ZFoTEu",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Creates a Cluster Network.",
+      "display_name": "Create Cluster Network",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01919V11RXX480zgymlsSczmSExd81xvHkj",
+        "name": "HTTP Request",
+        "title": "Create ClusterNetwork",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n\t\"kind\": \"$workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.input.variable_workflow_01919V0XXYXDC4ipZji22yfb9A86jISXx7I$\",\n  \"apiVersion\": \"$workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.input.variable_workflow_01919V0XXYGCG1Bm4Tp7S9PQAO3cE76ex0T$\",\n\t\"network\": \"$workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.input.variable_workflow_01919V0XXYPE62oM6Y4RupXxcmIciBEAtQg$\",\n\t\"hostsubnetlength\":\"$workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.input.variable_workflow_01919V0XXYR4B4hwKtXgBM2TTRyoyUeYA3n$\",\n\t\"serviceNetwork\": \"$workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.input.variable_workflow_01919V0XXYT3T57wcurbIT7VpQjn1ZFoTEu$\",\n\t\"metadata\": {\n\t\t\"name\": \"$workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.input.variable_workflow_01919V0XXYVM62SlHhxiLVLvTTZovs3CaXA$\"\n\t}\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.input.variable_workflow_01919V0XXYNIU2j3fSm3UrG43lA56ZBvyKl$"
+            }
+          ],
+          "display_name": "Create ClusterNetwork",
+          "method": "POST",
+          "relative_url": "/clusternetworks",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01919V16BN7XO078CkwZlVZaA4ut771WfwI",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01919V19CS4TA1vmuV6f0ARTAuiR5n0DeQI",
+            "name": "Condition Branch",
+            "title": "If Status Code == 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01919V11RXX480zgymlsSczmSExd81xvHkj.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code == 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01919V1E0UFRJ4xsOSnYJ1ygHC9JvKyTQU6",
+                "name": "Set Variables",
+                "title": "Cluster Network Output",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Cluster Network Output",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.output.variable_workflow_01919V0XXYLBO4FifnKnnRfk3qUuOU4Ysop$",
+                      "variable_value_new": "$activity.definition_activity_01919V11RXX480zgymlsSczmSExd81xvHkj.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01919V1HZKZ0K2T4M8Hb1gKqb3ZHnGbmX9W",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01919V11RXX480zgymlsSczmSExd81xvHkj.output.status_code$",
+                "operator": "ne",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 201",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01919V1L82OOX62HS9l3DPHAZg4f2Qh8GwL",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Create Cluster Network with Name: $workflow.definition_workflow_01919V0JYY0GG7mDvMOvIlHZNg9T90aPzF4.input.variable_workflow_01919V0XXYVM62SlHhxiLVLvTTZovs3CaXA$\n\nError Message:\n$activity.definition_activity_01919V11RXX480zgymlsSczmSExd81xvHkj.output.response_body$\n\nStatus Message:\n$activity.definition_activity_01919V11RXX480zgymlsSczmSExd81xvHkj.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv",
+    "name": "Retrieve a Specific Action Suppression by ID",
+    "title": "Retrieve a Specific Action Suppression by ID",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "AccountId",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpSdWxzLsIF7tT6Le7fN3OeDFlW6gMH",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ApplicationId",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpSGM2RMjMqYWsUKX9f3aDawjVc4qla",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gRCCOtkT791X0VL7nf5uLZINiTpiGyO",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Affects",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gRCISWn1UXi3ahV7y2wT9cXsgFH02oh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ActionName",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gRCddyL6iaQFm8p1JhsKvb3ukPPVr93",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "StartTime",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gRCfo0D57nu61J4CrVZXhhVpj8V6reE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "EndTime",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gRCgaQ5rG4C7dQ2cBkYMX9KpLWYXGWD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ActionSuppressionId",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpSIZwCfCe9pQAYTrn2oUcEnB8i9xe3",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Retrieves a Specific Action Suppression by ID.",
+      "display_name": "Retrieve a Specific Action Suppression by ID",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gpSiXXEQ3dCcJpCGj4Tep0mxcJHcCy9",
+        "name": "HTTP Request",
+        "title": "Retrieve  Action Suppression",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Retrieve  Action Suppression",
+          "method": "GET",
+          "relative_url": " /api/accounts/$workflow.definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv.input.variable_workflow_01gpSdWxzLsIF7tT6Le7fN3OeDFlW6gMH$/applications/$workflow.definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv.input.variable_workflow_01gpSGM2RMjMqYWsUKX9f3aDawjVc4qla$/actionsuppressions/$workflow.definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv.input.variable_workflow_01gpSIZwCfCe9pQAYTrn2oUcEnB8i9xe3$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpSTObgpg14EY8K0950X7fD0JWEYKBu",
+        "name": "JSONPath Query",
+        "title": "Read Action Suppression Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Action Suppression Details",
+          "input_json": "$activity.definition_activity_01gpSiXXEQ3dCcJpCGj4Tep0mxcJHcCy9.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.name",
+              "jsonpath_query_name": "ActionName",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.id",
+              "jsonpath_query_name": "ID",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..startTimeMillis",
+              "jsonpath_query_name": "StartTime",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..endTimeMillis",
+              "jsonpath_query_name": "EndTime",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.affects",
+              "jsonpath_query_name": "Affects",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRCBcY840S2Q3IxKbZ7s10T3yfbRLWW",
+        "name": "Set Variables",
+        "title": "Set Output Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Output Variables",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv.output.variable_workflow_01gRCddyL6iaQFm8p1JhsKvb3ukPPVr93$",
+              "variable_value_new": "$activity.definition_activity_01gpSTObgpg14EY8K0950X7fD0JWEYKBu.output.jsonpath_queries.ActionName$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv.output.variable_workflow_01gRCCOtkT791X0VL7nf5uLZINiTpiGyO$",
+              "variable_value_new": "$activity.definition_activity_01gpSTObgpg14EY8K0950X7fD0JWEYKBu.output.jsonpath_queries.ID$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv.output.variable_workflow_01gRCfo0D57nu61J4CrVZXhhVpj8V6reE$",
+              "variable_value_new": "$activity.definition_activity_01gpSTObgpg14EY8K0950X7fD0JWEYKBu.output.jsonpath_queries.StartTime$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv.output.variable_workflow_01gRCgaQ5rG4C7dQ2cBkYMX9KpLWYXGWD$",
+              "variable_value_new": "$activity.definition_activity_01gpSTObgpg14EY8K0950X7fD0JWEYKBu.output.jsonpath_queries.EndTime$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpSBscHrnErcvVgBwd50zUEEHVxizGv.output.variable_workflow_01gRCISWn1UXi3ahV7y2wT9cXsgFH02oh$",
+              "variable_value_new": "$activity.definition_activity_01gpSTObgpg14EY8K0950X7fD0JWEYKBu.output.jsonpath_queries.Affects$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

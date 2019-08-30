@@ -1,0 +1,96 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0150QNPYV7YIC4LNxN3xbx3KpOwCkILMnCA",
+    "name": "Delete Host From vCenter",
+    "title": "Delete Host From vCenter",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Host",
+          "type": "datatype.string",
+          "description": "Enter Host",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150QNT2D441V0uHb5DInZkUNQtezdIcr1J",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Session Id",
+          "type": "datatype.secure_string",
+          "description": "Provide Session Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_019BJ9NKJ3VDC6XKkCtgCQ8vjrauYW4VJkk",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow deletes host from vCenter.",
+      "display_name": "Delete Host From vCenter",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150QNTL0HMZ15bX2IqFlebZoFbnhMnIynE",
+        "name": "HTTP Request",
+        "title": "Delete Host From vCenter",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$workflow.definition_workflow_0150QNPYV7YIC4LNxN3xbx3KpOwCkILMnCA.input.variable_workflow_019BJ9NKJ3VDC6XKkCtgCQ8vjrauYW4VJkk$"
+            }
+          ],
+          "display_name": "Delete Host From vCenter",
+          "method": "DELETE",
+          "relative_url": "/qwe/$workflow.definition_workflow_0150QNPYV7YIC4LNxN3xbx3KpOwCkILMnCA.input.variable_workflow_0150QNT2D441V0uHb5DInZkUNQtezdIcr1J$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

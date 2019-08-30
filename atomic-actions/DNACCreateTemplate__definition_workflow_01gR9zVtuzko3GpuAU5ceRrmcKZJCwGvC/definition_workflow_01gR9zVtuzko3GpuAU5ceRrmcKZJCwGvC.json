@@ -1,0 +1,322 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC",
+    "name": "Create Template",
+    "title": "Create Template",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Product Series",
+          "type": "datatype.string",
+          "description": "Product Series",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRBZnbBxgsyVI4pSxOg3RuoAGZKoPqQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Product Family",
+          "type": "datatype.string",
+          "description": "Product Family",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRBxcj2hk2mJFSpjzNF3yPHkQN3593e",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018CGV55AUFCK6mMd94TeDWbloEe80x3rQd",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "URL",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGrYTeDLeXhcn0kJKys6j4CMYivckQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Project ID",
+          "type": "datatype.string",
+          "description": "Project ID",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gRAePWTVMikOYR9vqj6dgIaNXwQngxT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Task ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGq65rWUQldgXs3k2MVrrewPrDUOR9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Project Name",
+          "type": "datatype.string",
+          "description": "Project Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAhkAKqBFzqTxqwb713scePvQkwQvT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Template Name",
+          "type": "datatype.string",
+          "description": "Template Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAiqXtoj4NM0gi3wNKn4a1kTwywqDt",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Software Version",
+          "type": "datatype.string",
+          "description": "Software Version",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRANTe9s07jNysYgLiVfegAm6pYBHpn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Software Type",
+          "type": "datatype.string",
+          "description": "Software Type",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAlgA7tB9Ao2yXhhAStDzdL6suh0Ss",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Product Type",
+          "type": "datatype.string",
+          "description": "Product Type",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRb1JZqvM5EAIzs7tJBbbW4cQ1baeHb",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic creates/add template based on project Id",
+      "display_name": "Create Template",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gRA77agAFuz7uJGsnawN3AnC94xpKyh",
+        "name": "HTTP Request",
+        "title": "Create Template",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n\t\"name\": \"$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRAiqXtoj4NM0gi3wNKn4a1kTwywqDt$\",\n\t\"projectName\": \"$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRAhkAKqBFzqTxqwb713scePvQkwQvT$\",\n\t\"projectId\": \"$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRAePWTVMikOYR9vqj6dgIaNXwQngxT$\",\n\t\"softwareType\": \"$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRAlgA7tB9Ao2yXhhAStDzdL6suh0Ss$\",\n\t\"softwareVersion\": \"$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRANTe9s07jNysYgLiVfegAm6pYBHpn$\",\n\t\"deviceTypes\": [\n\t\t{\n\t\t\t\"productFamily\": \"$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRBxcj2hk2mJFSpjzNF3yPHkQN3593e$\",\n\t\t\t\"productSeries\": \"$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRBZnbBxgsyVI4pSxOg3RuoAGZKoPqQ$\",\n\t\t\t\"productType\": \"$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRb1JZqvM5EAIzs7tJBbbW4cQ1baeHb$\"\n\t\t}\n\t]\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_018CGV55AUFCK6mMd94TeDWbloEe80x3rQd$"
+            }
+          ],
+          "display_name": "Create Template",
+          "method": "POST",
+          "relative_url": "/dna/intent/api/v1/template-programmer/project/$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.input.variable_workflow_01gRAePWTVMikOYR9vqj6dgIaNXwQngxT$/template",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRb3MoOMCMb0K71JmRJyqCOj9rD1Ycq",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRb3OCJJzIsorm2V49wnll75TeGS3PR",
+            "name": "Condition Branch",
+            "title": "If Status code = 202",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRA77agAFuz7uJGsnawN3AnC94xpKyh.output.status_code$",
+                "operator": "eq",
+                "right_operand": "202"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Status code = 202",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRkFLcpZWp9ffzYkcB5KsNdL738QTxO",
+                "name": "JSONPath Query",
+                "title": "Read Task Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Task Details",
+                  "input_json": "$activity.definition_activity_01gRA77agAFuz7uJGsnawN3AnC94xpKyh.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.response.taskId",
+                      "jsonpath_query_name": "Task ID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.response.url",
+                      "jsonpath_query_name": "URL",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gRGTqBxbpL6G0t9RsJ3bIuBdnL1aocJ",
+                "name": "Set Variables",
+                "title": "Task ID and URL Output",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Task ID and URL Output",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.output.variable_workflow_01gRGq65rWUQldgXs3k2MVrrewPrDUOR9$",
+                      "variable_value_new": "$activity.definition_activity_01gRkFLcpZWp9ffzYkcB5KsNdL738QTxO.output.jsonpath_queries.Task ID$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR9zVtuzko3GpuAU5ceRrmcKZJCwGvC.output.variable_workflow_01gRGrYTeDLeXhcn0kJKys6j4CMYivckQ$",
+                      "variable_value_new": "$activity.definition_activity_01gRkFLcpZWp9ffzYkcB5KsNdL738QTxO.output.jsonpath_queries.URL$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gRGlKoEBR4vt1BP6c4i3Vkq5eGtkT7u",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Completed"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

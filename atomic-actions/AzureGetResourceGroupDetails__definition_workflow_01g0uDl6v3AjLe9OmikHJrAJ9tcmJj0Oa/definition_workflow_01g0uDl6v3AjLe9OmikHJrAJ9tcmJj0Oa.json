@@ -1,0 +1,259 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01g0uDl6v3AjLe9OmikHJrAJ9tcmJj0Oa",
+    "name": "Get Resource Group Details",
+    "title": "Get Resource Group Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Resource Group Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01g0V2vGWzKxnKGGD2X22O08mpvKnM2B6",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Resource Group Location",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01g0VC207bl9Ck6NylYtDmjyw7iGcUA5k",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subscription ID",
+          "type": "datatype.string",
+          "description": "enter a valid subscription id\nex: 244fc-3ef8-49b2-b02d-7f0",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g0uULdAY7xfPJbfreAnyN8G49OeO25K",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Resource Group Name",
+          "type": "datatype.string",
+          "description": "enter a existing resource group name\nex: sample_rgroup",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g0uwZUQArQnJPNJVVwuSjxL5743Uds5",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string",
+          "description": "enter a valid api version\nex: 2018-08-01",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1E38E2dOeH3hop6Da9a7Q8iIEuLsjY",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1dhSDkkZgQH2eklviGgsHu5nXUXFWg",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Get Resource Group Details",
+      "display_name": "Get Resource Group Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01g0VfxDBrDOZNFXt8b1PSTLe2RDm5alr",
+        "name": "HTTP Request",
+        "title": "Get Resource Group Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01g0uDl6v3AjLe9OmikHJrAJ9tcmJj0Oa.input.variable_workflow_01g1dhSDkkZgQH2eklviGgsHu5nXUXFWg$"
+            }
+          ],
+          "display_name": "Get Resource Group Details",
+          "method": "GET",
+          "relative_url": "/subscriptions/$workflow.definition_workflow_01g0uDl6v3AjLe9OmikHJrAJ9tcmJj0Oa.input.variable_workflow_01g0uULdAY7xfPJbfreAnyN8G49OeO25K$/resourcegroups/$workflow.definition_workflow_01g0uDl6v3AjLe9OmikHJrAJ9tcmJj0Oa.input.variable_workflow_01g0uwZUQArQnJPNJVVwuSjxL5743Uds5$?api-version=$workflow.definition_workflow_01g0uDl6v3AjLe9OmikHJrAJ9tcmJj0Oa.input.variable_workflow_01g1E38E2dOeH3hop6Da9a7Q8iIEuLsjY$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g0VVqknkPhxNJMY37NB7ercmBJbbHqD",
+        "name": "JSONPath Query",
+        "title": "Read Resource Group Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": true,
+          "display_name": "Read Resource Group Details",
+          "input_json": "$activity.definition_activity_01g0VfxDBrDOZNFXt8b1PSTLe2RDm5alr.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.id",
+              "jsonpath_query_name": "id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.location",
+              "jsonpath_query_name": "resource group location",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g1EDe2ddWSZewmTDgB5drEbBkkcnZGa",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01g1EDK8jZM9SNrTEx6FJECPAz8cbaq5I",
+            "name": "Condition Branch",
+            "title": "If Resource Group Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g0VVqknkPhxNJMY37NB7ercmBJbbHqD.output.jsonpath_queries.id$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If Resource Group Found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01g0v9DhbLMHhX2wNCghKnTmqDnJTbGl2",
+                "name": "Set Variables",
+                "title": "Set Resource Groups",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Resource Groups",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01g0uDl6v3AjLe9OmikHJrAJ9tcmJj0Oa.output.variable_workflow_01g0V2vGWzKxnKGGD2X22O08mpvKnM2B6$",
+                      "variable_value_new": "$activity.definition_activity_01g0VVqknkPhxNJMY37NB7ercmBJbbHqD.output.jsonpath_queries.id$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01g0uDl6v3AjLe9OmikHJrAJ9tcmJj0Oa.output.variable_workflow_01g0VC207bl9Ck6NylYtDmjyw7iGcUA5k$",
+                      "variable_value_new": "$activity.definition_activity_01g0VVqknkPhxNJMY37NB7ercmBJbbHqD.output.jsonpath_queries.resource group location$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01g1EDMcUwBp2DR2uD9inFknRzSrmkk60",
+            "name": "Condition Branch",
+            "title": "If Resource Group not Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g0VVqknkPhxNJMY37NB7ercmBJbbHqD.output.jsonpath_queries.id$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If Resource Group not Found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01g1EV8yZwyymEFG4u8DjxGrG9YV0c4T3",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Unable to get resource group details for the provided resource group name."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

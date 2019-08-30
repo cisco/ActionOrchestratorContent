@@ -1,0 +1,283 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gphwYi8shI27nn8XWW1sMgFe5z63RhA",
+    "name": "Retrieve All Existing Action Suppressions",
+    "title": "Retrieve All Existing Action Suppressions",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_016Z4ORXRAX3Z6IDx3xlkkljZ3bJxcI2KiD",
+        "properties": {
+          "scope": "output",
+          "name": "Appd Action Suppressions",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_016Z4QVQ7IYD33MX2uojHzqgTKXpwqGK31T",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "Application Id",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_017648RGMWTWF7ej0KUTARHS4LPtUixMm0Y",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "Account Id",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0176493GM2H2H0eGjklG0sbrPO3IQDCoC8M",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Retrieve All Existing Action Suppressions For The Given Application Id.",
+      "display_name": "Retrieve All Existing Action Suppressions",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_016VS2FLXD63Z58SLEC8XqJLdsRJtPNjRep",
+        "name": "HTTP Request",
+        "title": " Retrieve All Existing Action Suppressions",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": " Retrieve All Existing Action Suppressions",
+          "method": "GET",
+          "relative_url": "/api/accounts/$workflow.definition_workflow_01gphwYi8shI27nn8XWW1sMgFe5z63RhA.input.variable_workflow_0176493GM2H2H0eGjklG0sbrPO3IQDCoC8M$/applications/$workflow.definition_workflow_01gphwYi8shI27nn8XWW1sMgFe5z63RhA.input.variable_workflow_017648RGMWTWF7ej0KUTARHS4LPtUixMm0Y$/actionsuppressions",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_016Z4AEVOVJCH1211H8bSLzyi67FVpEIySV",
+        "name": "Condition Block",
+        "title": "Check Response",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Response"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_016Z4AF0HYPTE6GN8gKDm9pcRqlN1MMAZ9t",
+            "name": "Condition Branch",
+            "title": "If status code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016VS2FLXD63Z58SLEC8XqJLdsRJtPNjRep.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If status code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016Z4LHQHDHZ41DTPhVIMxWDmznVCk78Eym",
+                "name": "Read Table from JSON",
+                "title": "Read Action Supression Details",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Action Supression Details",
+                  "input_json": "$activity.definition_activity_016VS2FLXD63Z58SLEC8XqJLdsRJtPNjRep.output.response_body$",
+                  "jsonpath_query": "$.actionSuppressions[*]",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "timeRange",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "affects",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_016Z4QZJSRK7N3CcFZjX2ZlBBkX9Mv6zMeB",
+                "name": "For Each",
+                "title": "For  Each Action Suppression",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For  Each Action Suppression",
+                  "source_array": "$activity.definition_activity_016Z4LHQHDHZ41DTPhVIMxWDmznVCk78Eym.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_016Z4RH3B6GR66fzsRvUL8WDo62ztXjp3lZ",
+                    "name": "Add Row to Table",
+                    "title": "Add Row to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Row to Table",
+                      "input_table": "$workflow.definition_workflow_01gphwYi8shI27nn8XWW1sMgFe5z63RhA.output.variable_workflow_016Z4QVQ7IYD33MX2uojHzqgTKXpwqGK31T$",
+                      "row": [
+                        {
+                          "key": "ID",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016Z4QZJSRK7N3CcFZjX2ZlBBkX9Mv6zMeB.input.source_array[@].id$"
+                        },
+                        {
+                          "key": "Name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016Z4QZJSRK7N3CcFZjX2ZlBBkX9Mv6zMeB.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "TimeRange",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016Z4QZJSRK7N3CcFZjX2ZlBBkX9Mv6zMeB.input.source_array[@].timeRange$"
+                        },
+                        {
+                          "key": "Affects",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016Z4QZJSRK7N3CcFZjX2ZlBBkX9Mv6zMeB.input.source_array[@].affects$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_016Z4AF3FQCTD5YqtGEC5n3J3d7PaQRvkoQ",
+            "name": "Condition Branch",
+            "title": "If status code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016VS2FLXD63Z58SLEC8XqJLdsRJtPNjRep.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If status code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016Z4KWC3NE0026JLmiyICDDdgruorneXj5",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Unable to get actionsuppressions from Appd instance\n\nError Description:\n$activity.definition_activity_016VS2FLXD63Z58SLEC8XqJLdsRJtPNjRep.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_016Z4ORXRAX3Z6IDx3xlkkljZ3bJxcI2KiD": {
+      "unique_name": "tabletype_016Z4ORXRAX3Z6IDx3xlkkljZ3bJxcI2KiD",
+      "data_type": "datatype.tabletype",
+      "display_name": "Appd Action Suppressions",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "Affects",
+          "title": "Affects",
+          "type": "string"
+        },
+        {
+          "name": "ID",
+          "title": "ID",
+          "type": "string"
+        },
+        {
+          "name": "Name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "TimeRange",
+          "title": "TimeRange",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

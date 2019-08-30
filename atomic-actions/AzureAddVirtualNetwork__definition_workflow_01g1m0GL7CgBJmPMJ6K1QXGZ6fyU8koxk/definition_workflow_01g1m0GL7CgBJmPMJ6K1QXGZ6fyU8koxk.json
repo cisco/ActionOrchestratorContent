@@ -1,0 +1,314 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk",
+    "name": "Add Virtual Network",
+    "title": "Add Virtual Network",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subscription ID",
+          "type": "datatype.string",
+          "description": "enter a valid subscription id\nex: 244fc-3ef8-49b2-b02d-7f0",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1oQZSZooM8KjiIglgRroEeVoYyjiy0",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "vNetwork ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01g1ql4khTyaaJyGkDTC2JPRkhd5FQeNF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string",
+          "description": "enter a valid api version\nex: 2018-08-01",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1P20w4YfvUCxOoezzYDlORl4eAo2Er",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Address Prefixes",
+          "type": "datatype.string",
+          "description": "enter a valid address prefixes, the virtual network's address range in CIDR notation.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1Pu7pjTD4RrpBzDJItKWpAwyqWfuVD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Resource Group Name",
+          "type": "datatype.string",
+          "description": "enter a valid resourcegroup name which exists\nex: resourcegroup_testing",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1oVMWfxWAyL2v2ZUnZXj894NsGVITF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vNetwork Name",
+          "type": "datatype.string",
+          "description": "enter a valid virtual network name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1owMhSjwYz792PZylFWedgutJNYXEo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Location",
+          "type": "datatype.string",
+          "description": "enter a valid location\nex: westus",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1PstBOqfSXrlPGCsAH7iZNHOGiiP4r",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1Q4897ieg0MXUUgrzODJyoBXkepxgo",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Create a Virtual Network",
+      "display_name": "Add Virtual Network",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01g1mDZCzVCneaTcZIWYrZuRsdIxEEzGy",
+        "name": "HTTP Request",
+        "title": "Create Virtual Network",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n\t\"location\": \"$workflow.definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk.input.variable_workflow_01g1PstBOqfSXrlPGCsAH7iZNHOGiiP4r$\",\r\n\t\"properties\": {\r\n\t\t\"addressSpace\": {\r\n      \"addressPrefixes\": [\r\n        \"$workflow.definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk.input.variable_workflow_01g1Pu7pjTD4RrpBzDJItKWpAwyqWfuVD$\"\r\n      ]\r\n    }\r\n\t}\r\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk.input.variable_workflow_01g1Q4897ieg0MXUUgrzODJyoBXkepxgo$"
+            }
+          ],
+          "display_name": "Create Virtual Network",
+          "method": "PUT",
+          "relative_url": "/subscriptions/$workflow.definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk.input.variable_workflow_01g1oQZSZooM8KjiIglgRroEeVoYyjiy0$/resourceGroups/$workflow.definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk.input.variable_workflow_01g1oVMWfxWAyL2v2ZUnZXj894NsGVITF$/providers/Microsoft.Network/virtualNetworks/$workflow.definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk.input.variable_workflow_01g1owMhSjwYz792PZylFWedgutJNYXEo$?api-version=$workflow.definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk.input.variable_workflow_01g1P20w4YfvUCxOoezzYDlORl4eAo2Er$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01g0VK5V9OdditW4LkbLV7PYS3Yuj92mm"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gDiPpVxSi8wTGNws3NrMQgFNlni4J6E",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gDiPU0NY7KUOr538nHfMyNOJgvso7Jw",
+            "name": "Condition Branch",
+            "title": "If Status Code = 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1mDZCzVCneaTcZIWYrZuRsdIxEEzGy.output.status_code$",
+                "operator": "eq",
+                "right_operand": "201"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01g1rhIekmXoGJHysK8QgHue4iDU6YKP5",
+                "name": "Replace String",
+                "title": "Escape Characters",
+                "type": "core.replacestring",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Escape Characters",
+                  "input_string": "$activity.definition_activity_01g1mDZCzVCneaTcZIWYrZuRsdIxEEzGy.output.response_body$",
+                  "replace_list": [
+                    {
+                      "replaced_string": "\\\\",
+                      "replacement_string": "\\"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g1q6X4GKbHiR8XwKTg7iutpk5h1mpXm",
+                "name": "JSONPath Query",
+                "title": "Read Virtual Network ID",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Virtual Network ID",
+                  "input_json": "$activity.definition_activity_01g1rhIekmXoGJHysK8QgHue4iDU6YKP5.output.result_string$$activity.definition_activity_01g1rhIekmXoGJHysK8QgHue4iDU6YKP5.output.result_string$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.id",
+                      "jsonpath_query_name": "Virtual Network ID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g1qhtgFFQasTOd1kJFoN6isGy6Riie5",
+                "name": "Set Variables",
+                "title": "Get Virtual Network ID",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Get Virtual Network ID",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01g1m0GL7CgBJmPMJ6K1QXGZ6fyU8koxk.output.variable_workflow_01g1ql4khTyaaJyGkDTC2JPRkhd5FQeNF$",
+                      "variable_value_new": "$activity.definition_activity_01g1q6X4GKbHiR8XwKTg7iutpk5h1mpXm.output.jsonpath_queries.Virtual Network ID$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gDiPVNYEyap3bzamzJOQ5ESsEKsLLvb",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1mDZCzVCneaTcZIWYrZuRsdIxEEzGy.output.status_code$",
+                "operator": "ne",
+                "right_operand": "201"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gDivhxPuihnRPiTdot8UkdXHvxIOpMW",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Unable to create Virtual Network\n\nError:\n$activity.definition_activity_01g1mDZCzVCneaTcZIWYrZuRsdIxEEzGy.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01g0VK5V9OdditW4LkbLV7PYS3Yuj92mm": {
+      "unique_name": "definition_target_01g0VK5V9OdditW4LkbLV7PYS3Yuj92mm",
+      "name": "Microsoft Azure Base Target",
+      "title": "Microsoft Azure Base Target",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "Microsoft Azure Base Target",
+        "host": "management.azure.com",
+        "no_runtime_user": true,
+        "protocol": "https",
+        "proxy_password": "Cisco123!",
+        "proxy_username": "aoadapterauthor@cisco.com"
+      }
+    }
+  }
+}

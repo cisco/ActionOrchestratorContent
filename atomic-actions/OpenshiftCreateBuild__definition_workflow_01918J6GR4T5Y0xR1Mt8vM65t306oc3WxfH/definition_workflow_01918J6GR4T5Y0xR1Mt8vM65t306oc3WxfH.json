@@ -1,0 +1,208 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01918J6GR4T5Y0xR1Mt8vM65t306oc3WxfH",
+    "name": "Create a Build",
+    "title": "Create a Build",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Request Body",
+          "type": "datatype.string",
+          "description": "Enter Request Body \n(Eg. \n{\n  \"apiVersion\": \"v1\",\n  \"kind\": \"Build\",\n  \"metadata\": {\n    \"name\": \"example\",\n    \"labels\": {\n      \"app\": \"example\"\n    }\n  },\n  \"strategy\": {\n    \"dockerStrategy\": {\n      \"from\": {\n        \"name\": \"origin-custom-docker-builder:latest\",\n        \"kind\": \"ImageStreamTag\",\n        \"exposeDockerSocket\": true,\n        \"env\": [\n          {\n            \"name\": \"****\",\n            \"value\": \"port_number\"\n          }\n        ]\n      }\n    }\n  }\n}\n)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01918J6T9VDNL5UnBYuEMHzaG6JWoDTpgq1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01918J6T9VFP84O0UTwugzIgBROXHFLBTRB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Namespace Name",
+          "type": "datatype.string",
+          "description": "Enter Namespace Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01918J6T9V6E41dMlrgKf5ZdgvxHAYbQtcu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response Body",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01918J6T9VBHD6TTpITEPUnfo2MhJaB9YNV",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic worklow Creates a Build.",
+      "display_name": "Create a Build",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01918J6X3WQ386LY1rsLwFQcIWsirGpSaDh",
+        "name": "HTTP Request",
+        "title": "Create Build",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_01918J6GR4T5Y0xR1Mt8vM65t306oc3WxfH.input.variable_workflow_01918J6T9VDNL5UnBYuEMHzaG6JWoDTpgq1$",
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01918J6GR4T5Y0xR1Mt8vM65t306oc3WxfH.input.variable_workflow_01918J6T9VFP84O0UTwugzIgBROXHFLBTRB$"
+            }
+          ],
+          "display_name": "Create Build",
+          "method": "POST",
+          "relative_url": "/namespaces/$workflow.definition_workflow_01918J6GR4T5Y0xR1Mt8vM65t306oc3WxfH.input.variable_workflow_01918J6T9V6E41dMlrgKf5ZdgvxHAYbQtcu$/builds",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01918J708XVIF4impOLyfvngScVbtEID40F",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01918J7318AQ40iZvKLct3o0xKLUbgURJmI",
+            "name": "Condition Branch",
+            "title": "If Status Code == 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01918J6X3WQ386LY1rsLwFQcIWsirGpSaDh.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code == 201",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01918J76JT88F26YxX4AGWXJ4xM4e2i8sNw",
+                "name": "Set Variables",
+                "title": "Set Created Build Response",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Created Build Response",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01918J6GR4T5Y0xR1Mt8vM65t306oc3WxfH.output.variable_workflow_01918J6T9VBHD6TTpITEPUnfo2MhJaB9YNV$",
+                      "variable_value_new": "$activity.definition_activity_01918J6X3WQ386LY1rsLwFQcIWsirGpSaDh.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01918J7A10HWK4cuTN3soKCiudZh7lqo0A9",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01918J6X3WQ386LY1rsLwFQcIWsirGpSaDh.output.status_code$",
+                "operator": "ne",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 201",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01918J7DBQ3CG6vPzh1EufdxPjGmwVm4yMF",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Create Build with Namespace Name: $workflow.definition_workflow_01918J6GR4T5Y0xR1Mt8vM65t306oc3WxfH.input.variable_workflow_01918J6T9V6E41dMlrgKf5ZdgvxHAYbQtcu$\n\nError Message:\n$activity.definition_activity_01918J6X3WQ386LY1rsLwFQcIWsirGpSaDh.output.response_body$\n\nStatus Message:\n$activity.definition_activity_01918J6X3WQ386LY1rsLwFQcIWsirGpSaDh.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

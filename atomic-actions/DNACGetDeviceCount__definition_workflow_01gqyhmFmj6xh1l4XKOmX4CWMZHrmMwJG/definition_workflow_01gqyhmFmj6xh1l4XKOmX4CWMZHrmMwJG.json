@@ -1,0 +1,147 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gqyhmFmj6xh1l4XKOmX4CWMZHrmMwJG",
+    "name": "Get Device Count",
+    "title": "Get Device Count",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018CHVFTEG2U01di6k8kZOuve4LLknSEm4I",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "output",
+          "name": "Device Count",
+          "type": "datatype.integer",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gqZ8JB19c39sonHMHw2P67A0wpxtmW9",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic get the device count",
+      "display_name": "Get Device Count",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gqymD3Bj0Bv2rTPVtIU4AQoDjt6smP7",
+        "name": "HTTP Request",
+        "title": "Get Device Count",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gqyhmFmj6xh1l4XKOmX4CWMZHrmMwJG.input.variable_workflow_018CHVFTEG2U01di6k8kZOuve4LLknSEm4I$"
+            }
+          ],
+          "display_name": "Get Device Count",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/network-device/count",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gqyNHx0WZpvOCE5ZjC5HzZLuAcBvcs2",
+        "name": "JSONPath Query",
+        "title": "Read Device Count",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Device Count",
+          "input_json": "$activity.definition_activity_01gqymD3Bj0Bv2rTPVtIU4AQoDjt6smP7.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.response",
+              "jsonpath_query_name": "response",
+              "jsonpath_query_type": "integer",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gqynlZq9zXc56Hml9KTG35D5Hxs3fdL",
+        "name": "Set Variables",
+        "title": "Set Device Count",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Device Count",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gqyhmFmj6xh1l4XKOmX4CWMZHrmMwJG.output.variable_workflow_01gqZ8JB19c39sonHMHw2P67A0wpxtmW9$",
+              "variable_value_new": "$activity.definition_activity_01gqyNHx0WZpvOCE5ZjC5HzZLuAcBvcs2.output.jsonpath_queries.response$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

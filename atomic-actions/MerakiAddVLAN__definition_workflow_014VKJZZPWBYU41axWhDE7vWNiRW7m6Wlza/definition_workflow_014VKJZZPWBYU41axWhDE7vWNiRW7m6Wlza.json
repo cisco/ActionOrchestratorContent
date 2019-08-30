@@ -1,0 +1,334 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza",
+    "name": "Add VLAN",
+    "title": "Add VLAN",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network ID",
+          "type": "datatype.string",
+          "description": "enter a valid netowrk id for a VLAN\nex: N_24329156",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014VKNWX01ZUQ6MVLyYDswBpkXCIGS8u7br",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014VKKVKLNJT45eEH17G225UTIBbyBIy0go",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "VLAN Name",
+          "type": "datatype.string",
+          "description": "enter the name of the new VLAN\nex: My Vlan",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014VKMQLPIFNE5Jpq7sAuHXHRZRDTpSfeHb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "VLAN ID",
+          "type": "datatype.string",
+          "description": "enter a valid VLAN ID of the new VLAN (must be between 1 and 4094)\nex: 1234",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014W83DYZSMH577QpqDadE6GsYXpicOAILZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Fixed IP Assignments",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_014VKUTGVAGRP4TiJ4YcoCAIoLzyQN8LPfe",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Appliance IP",
+          "type": "datatype.string",
+          "description": "enter a valid local IP of the appliance on the VLAN.\nex: 1.2.3.4",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014VKNHCTI7335xrzAzmBMQdW4KXDonTgtm",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subnet",
+          "type": "datatype.string",
+          "description": "enter a valid subnet of the VLAN\nex: 192.168.1.0/24",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014VKN24NB9ZR0xBAkm8mC29ZOK58ZSgmkC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Reserved IP Ranges",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_014WA804GDG7C5A6k9I68R7dwadvpv0vLD1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "DNS Name Servers",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_014WA8A6FOYQ41QWGLUxRDAFUjYPghBAqjB",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Meraki",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Creates a VLAN",
+      "display_name": "Add VLAN",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014VKK7WN3G6N0kjzKh73JRFh8H0m9HZnw8",
+        "name": "HTTP Request",
+        "title": "Add VLAN",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n  \"id\": \"$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.input.variable_workflow_014W83DYZSMH577QpqDadE6GsYXpicOAILZ$\",\r\n  \"name\": \"$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.input.variable_workflow_014VKMQLPIFNE5Jpq7sAuHXHRZRDTpSfeHb$\",\r\n  \"applianceIp\": \"$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.input.variable_workflow_014VKNHCTI7335xrzAzmBMQdW4KXDonTgtm$\",\r\n  \"subnet\": \"$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.input.variable_workflow_014VKN24NB9ZR0xBAkm8mC29ZOK58ZSgmkC$\"\r\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "$global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf.global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf$",
+              "value": "$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.input.variable_workflow_014VKKVKLNJT45eEH17G225UTIBbyBIy0go$"
+            }
+          ],
+          "display_name": "Add VLAN",
+          "method": "POST",
+          "relative_url": "/networks/$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.input.variable_workflow_014VKNWX01ZUQ6MVLyYDswBpkXCIGS8u7br$/vlans",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014VKTM9984VE7XYiwrYqAkY8g1ktfIkH20",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_014VKTMK7W7UX1gH3KIGs9V0evmi4IM0WvS",
+            "name": "Condition Branch",
+            "title": "If Succeeded",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014VKK7WN3G6N0kjzKh73JRFh8H0m9HZnw8.output.succeeded$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "display_name": "If Succeeded"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014W9XBPBVK9O3tDQD2n0uMTMklLcKQc6cP",
+                "name": "JSONPath Query",
+                "title": "Read VLAN Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read VLAN Details",
+                  "input_json": "$activity.definition_activity_014VKK7WN3G6N0kjzKh73JRFh8H0m9HZnw8.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.fixedIpAssignments",
+                      "jsonpath_query_name": "Fixed IP Assignments",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.reservedIpRanges",
+                      "jsonpath_query_name": "Reserved IP Ranges",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.dnsNameservers",
+                      "jsonpath_query_name": "DNS Name Servers",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014WAAK877ZYN3JfrHMMBXZL8p1jAYLMQUP",
+                "name": "Set Variables",
+                "title": "Set VLAN Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set VLAN Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.output.variable_workflow_014VKUTGVAGRP4TiJ4YcoCAIoLzyQN8LPfe$",
+                      "variable_value_new": "$activity.definition_activity_014W9XBPBVK9O3tDQD2n0uMTMklLcKQc6cP.output.jsonpath_queries.Fixed IP Assignments$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.output.variable_workflow_014WA804GDG7C5A6k9I68R7dwadvpv0vLD1$",
+                      "variable_value_new": "$activity.definition_activity_014W9XBPBVK9O3tDQD2n0uMTMklLcKQc6cP.output.jsonpath_queries.Reserved IP Ranges$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.output.variable_workflow_014WA8A6FOYQ41QWGLUxRDAFUjYPghBAqjB$",
+                      "variable_value_new": "$activity.definition_activity_014W9XBPBVK9O3tDQD2n0uMTMklLcKQc6cP.output.jsonpath_queries.DNS Name Servers$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014W828VCMCM35YFvxYphcAV0cV9Vsnz1od",
+                "name": "Succeeded",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded",
+                  "result_message": "VLAN Successfully Created  with ID: $workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.input.variable_workflow_014W83DYZSMH577QpqDadE6GsYXpicOAILZ$ and Name: $workflow.definition_workflow_014VKJZZPWBYU41axWhDE7vWNiRW7m6Wlza.input.variable_workflow_014VKMQLPIFNE5Jpq7sAuHXHRZRDTpSfeHb$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_014VKTMRK5EBD6dJ9YfBCYrXtZli06XT4km",
+            "name": "Condition Branch",
+            "title": "If Failed",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014VKK7WN3G6N0kjzKh73JRFh8H0m9HZnw8.output.succeeded$",
+                "operator": "eq",
+                "right_operand": "false"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Failed"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014VKU902TM956P3bCFxfDHjW1Cki0luRQV",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Add VLAN.\n\nError: \n$activity.definition_activity_014VKK7WN3G6N0kjzKh73JRFh8H0m9HZnw8.output.response_body$\n\n$activity.definition_activity_014VKK7WN3G6N0kjzKh73JRFh8H0m9HZnw8.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf": {
+      "unique_name": "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf",
+      "properties": {
+        "value": "X-Cisco-Meraki-API-Key",
+        "scope": "global",
+        "name": "MerakiAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

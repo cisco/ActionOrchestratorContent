@@ -1,0 +1,272 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_016QQAJ02NLA466dx9oPC9a1IRrLs0ybovg",
+    "name": "Get All Processes",
+    "title": "Get All Processes",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_016T6DV2HROG05IzDGDmjCzwy3sFCyLeZab",
+        "properties": {
+          "scope": "output",
+          "name": "Process Details",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_016T6DZNRJ8R46Y45dFuSfg2PmDaSAKbSSj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016QQDM9I3ZOY784PNKki3t3Q49iw5gv4Ip",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco Process Orchestrator",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic will list out all processes available in CPO.",
+      "display_name": "Get All Processes",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_016QQB0BFQTV63cwBGCKZ4i48Mv7ZWciJgC",
+        "name": "HTTP Request",
+        "title": "Get All Process",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Get All Process",
+          "method": "GET",
+          "relative_url": "/Processes",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_016QQBA4WEIHC43KxYn9BKnpa9tD78utuiR",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_016QQBA9HAOOY1WWrT39lW3X7c1dmq8NmX9",
+            "name": "Condition Branch",
+            "title": "If Status Code  = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016QQB0BFQTV63cwBGCKZ4i48Mv7ZWciJgC.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code  = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016T6C17QMFPH34nioY6g8AO0ljSawAMbQa",
+                "name": "Read Table from JSON",
+                "title": "Read Process Details from JSON",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Process Details from JSON",
+                  "input_json": "$activity.definition_activity_016QQB0BFQTV63cwBGCKZ4i48Mv7ZWciJgC.output.response_body$",
+                  "jsonpath_query": "$",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "Id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "Name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "Description",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_016T6CR0B2U2910ZyOYgnKLUG6hkgtpnrP2",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "source_array": "$activity.definition_activity_016T6C17QMFPH34nioY6g8AO0ljSawAMbQa.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_016T6EUP2TTKJ65Os9wwSlEtSrCmQMu1TD6",
+                    "name": "Add Row to Table",
+                    "title": "Add Process to Proces Details Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Process to Proces Details Table",
+                      "input_table": "$workflow.definition_workflow_016QQAJ02NLA466dx9oPC9a1IRrLs0ybovg.output.variable_workflow_016T6DZNRJ8R46Y45dFuSfg2PmDaSAKbSSj$",
+                      "row": [
+                        {
+                          "key": "Id",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016T6CR0B2U2910ZyOYgnKLUG6hkgtpnrP2.input.source_array[@].Id$"
+                        },
+                        {
+                          "key": "Name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016T6CR0B2U2910ZyOYgnKLUG6hkgtpnrP2.input.source_array[@].Name$"
+                        },
+                        {
+                          "key": "Description",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016T6CR0B2U2910ZyOYgnKLUG6hkgtpnrP2.input.source_array[@].Description$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_016QQCCQP9AOQ49Ut5DQuBO10qez7jgxFPF",
+                "name": "Set Variables",
+                "title": "Set Response",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Response",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_016QQAJ02NLA466dx9oPC9a1IRrLs0ybovg.output.variable_workflow_016QQDM9I3ZOY784PNKki3t3Q49iw5gv4Ip$",
+                      "variable_value_new": "$activity.definition_activity_016QQB0BFQTV63cwBGCKZ4i48Mv7ZWciJgC.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_016QQBACF92O44KfwbqUzl7RLDV08RDHt09",
+            "name": "Condition Branch",
+            "title": "If Status Code  \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016QQB0BFQTV63cwBGCKZ4i48Mv7ZWciJgC.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code  \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016QQEZXAAS646LVScjqqdpvY10W4XzwKoR",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get All Process.\nError: $activity.definition_activity_016QQB0BFQTV63cwBGCKZ4i48Mv7ZWciJgC.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_016T6DV2HROG05IzDGDmjCzwy3sFCyLeZab": {
+      "unique_name": "tabletype_016T6DV2HROG05IzDGDmjCzwy3sFCyLeZab",
+      "data_type": "datatype.tabletype",
+      "display_name": "Process Details",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "Description",
+          "title": "Description",
+          "type": "string"
+        },
+        {
+          "name": "Id",
+          "title": "Id",
+          "type": "string"
+        },
+        {
+          "name": "Name",
+          "title": "Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

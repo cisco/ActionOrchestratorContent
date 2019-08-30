@@ -1,0 +1,163 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0151HULE6D7QM30mT9nPyJcRVpnnJzylwep",
+    "name": "Delete Item from Cart",
+    "title": "Delete Item from Cart",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cart Item Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151IG0KIBRVO0NQLtDvtHw6s1oKUNXISag",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0151IGARHXYFC7fNEEGE0HOdLXUfOBNTGOO",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Service Now",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Delete's Item from Cart For The Given Cart Id",
+      "display_name": "Delete Item from Cart",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0151ICHR9NIIW4bZ8F9UZDuFirAJzkLEB9G",
+        "name": "HTTP Request",
+        "title": "Delete Item from Cart",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_0151HULE6D7QM30mT9nPyJcRVpnnJzylwep.input.variable_workflow_0151IGARHXYFC7fNEEGE0HOdLXUfOBNTGOO$"
+            }
+          ],
+          "display_name": "Delete Item from Cart",
+          "method": "DELETE",
+          "relative_url": "/sn_sc/servicecatalog/cart/$workflow.definition_workflow_0151HULE6D7QM30mT9nPyJcRVpnnJzylwep.input.variable_workflow_0151IG0KIBRVO0NQLtDvtHw6s1oKUNXISag$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151IDAEYUUJG1vXAl2xPpucBypYzpyOBsA",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0151IDAJW7Q5O7MQQmzVrbkpRW9YPPpfYZo",
+            "name": "Condition Branch",
+            "title": "If Status code = 204",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151ICHR9NIIW4bZ8F9UZDuFirAJzkLEB9G.output.status_code$",
+                "operator": "eq",
+                "right_operand": "204"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code = 204"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151IINTSVPZ41D5jxI63kvQZKqtwArHL0Z",
+                "name": "Succeeded",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded",
+                  "result_message": "Deleted Item from Cart Successfully"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0151IDAN2INMJ0baQVd7sWEajX9dWW2DLce",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 204",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151ICHR9NIIW4bZ8F9UZDuFirAJzkLEB9G.output.status_code$",
+                "operator": "ne",
+                "right_operand": "204"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code \u003c\u003e 204"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151IIP94BC166Zfxty4TL4XUKd1ZE1hEJm",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Delete Item from Cart: $workflow.definition_workflow_0151HULE6D7QM30mT9nPyJcRVpnnJzylwep.input.variable_workflow_0151IG0KIBRVO0NQLtDvtHw6s1oKUNXISag$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

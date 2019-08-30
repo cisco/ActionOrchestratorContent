@@ -1,0 +1,402 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_015DF8N42V0YZ01vZdFEfcCkpP3o4sT18tP",
+    "name": "List Tenants",
+    "title": "List Tenants",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_015DIPNL9KBJW5JrV4W19914dQnUmah6Huy",
+        "properties": {
+          "scope": "output",
+          "name": "Openstack Tenants Table",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_015DIQ594K2TC6uE18q7oIUjFFXUx3nAHHb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_015DI9GIK5AQD197PclCwHJLhqtUqSEJj19",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic lists the tenant details",
+      "display_name": "List Tenants",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_015DF9CKLZKEQ1Lcpplafyw9QGBBzL53oq8",
+        "name": "HTTP Request",
+        "title": "List Tenants",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+              "value": "$workflow.definition_workflow_015DF8N42V0YZ01vZdFEfcCkpP3o4sT18tP.input.variable_workflow_015DI9GIK5AQD197PclCwHJLhqtUqSEJj19$"
+            }
+          ],
+          "display_name": "List Tenants",
+          "method": "GET",
+          "relative_url": "/v3/projects",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015DFMNHGDPUQ6sEUpzj3NtKjYzqiFK3YU1",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_015DFMNNH9T301xNHVcnNIDje5yh1KoHgT4",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DF9CKLZKEQ1Lcpplafyw9QGBBzL53oq8.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DFNEHAY4Z90gFDze3KrHH5p0qCSDJB5l",
+                "name": "Read Table from JSON",
+                "title": "Read Tenant Details",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Tenant Details",
+                  "input_json": "$activity.definition_activity_015DF9CKLZKEQ1Lcpplafyw9QGBBzL53oq8.output.response_body$",
+                  "jsonpath_query": "$..projects",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "is_domain",
+                      "column_type": "boolean",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "description",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "enabled",
+                      "column_type": "boolean",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "parent_id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "domain_id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_015DFNL1XYINA7UvAA7DJfOxjmbmbyMHqpc",
+                "name": "Condition Block",
+                "title": "Evaluate Condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate Condition"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_015DFNL9OA9HX7m5AJDPHyhk589MC4c2ORE",
+                    "name": "Condition Branch",
+                    "title": "If ID found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_015DFNEHAY4Z90gFDze3KrHH5p0qCSDJB5l.output.read_table_from_json[0].id$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If ID found"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_015DF9UHAF1HA7BhXl8GLh2IrZIAjXvqV6Y",
+                        "name": "For Each",
+                        "title": "For Each Tenant",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "For Each Tenant",
+                          "source_array": "$activity.definition_activity_015DFNEHAY4Z90gFDze3KrHH5p0qCSDJB5l.output.read_table_from_json$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_015DFA0BEZIAR1RHJfptZqMK3ArRHLHsGcm",
+                            "name": "Add Row to Table",
+                            "title": "Add Tenant Details",
+                            "type": "core.addrowtotable",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "continue_on_failure": false,
+                              "display_name": "Add Tenant Details",
+                              "input_table": "$workflow.definition_workflow_015DF8N42V0YZ01vZdFEfcCkpP3o4sT18tP.output.variable_workflow_015DIQ594K2TC6uE18q7oIUjFFXUx3nAHHb$",
+                              "row": [
+                                {
+                                  "key": "is_domain",
+                                  "type": "boolean",
+                                  "value": "$activity.definition_activity_015DF9UHAF1HA7BhXl8GLh2IrZIAjXvqV6Y.input.source_array[@].is_domain$"
+                                },
+                                {
+                                  "key": "description",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_015DF9UHAF1HA7BhXl8GLh2IrZIAjXvqV6Y.input.source_array[@].description$"
+                                },
+                                {
+                                  "key": "enabled",
+                                  "type": "boolean",
+                                  "value": "$activity.definition_activity_015DF9UHAF1HA7BhXl8GLh2IrZIAjXvqV6Y.input.source_array[@].enabled$"
+                                },
+                                {
+                                  "key": "id",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_015DF9UHAF1HA7BhXl8GLh2IrZIAjXvqV6Y.input.source_array[@].id$"
+                                },
+                                {
+                                  "key": "parent_id",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_015DF9UHAF1HA7BhXl8GLh2IrZIAjXvqV6Y.input.source_array[@].parent_id$"
+                                },
+                                {
+                                  "key": "domain_id",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_015DF9UHAF1HA7BhXl8GLh2IrZIAjXvqV6Y.input.source_array[@].domain_id$"
+                                },
+                                {
+                                  "key": "name",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_015DF9UHAF1HA7BhXl8GLh2IrZIAjXvqV6Y.input.source_array[@].name$"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_015DFNLE7KOWL1LzL3jHQWYYd3FgAEjttbX",
+                    "name": "Condition Branch",
+                    "title": "If ID not found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_015DFNEHAY4Z90gFDze3KrHH5p0qCSDJB5l.output.read_table_from_json[0].id$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If ID not found"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_015DFO8TIZBML5omFeTCLXgnfXoRx10aX3g",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to add tenant details id not found"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_015DFMNREP55S5bwK6NY301K1vjYCPTuZpI",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DF9CKLZKEQ1Lcpplafyw9QGBBzL53oq8.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DFOGJEXVZN09qJinejeRh1IJszACdHti",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to run the http request"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C": {
+      "unique_name": "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "Openstack Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_015DIPNL9KBJW5JrV4W19914dQnUmah6Huy": {
+      "unique_name": "tabletype_015DIPNL9KBJW5JrV4W19914dQnUmah6Huy",
+      "data_type": "datatype.tabletype",
+      "display_name": "Openstack Tenants",
+      "columns": [
+        {
+          "name": "id",
+          "title": "Project ID",
+          "type": "string"
+        },
+        {
+          "name": "is_domain",
+          "title": "Is Domain",
+          "type": "boolean"
+        },
+        {
+          "name": "name",
+          "title": "Project Name",
+          "type": "string"
+        },
+        {
+          "name": "parent_id",
+          "title": "Parent Id",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "string"
+        },
+        {
+          "name": "domain_id",
+          "title": "Domain Id",
+          "type": "string"
+        },
+        {
+          "name": "enabled",
+          "title": "Enabled",
+          "type": "boolean"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

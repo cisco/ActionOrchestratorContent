@@ -1,0 +1,165 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014UPS5ZKOC5R2qA2ugCqRqI2594zYzqPzt",
+    "name": "Get Access Token",
+    "title": "Get Access Token",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "output",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Output Access Token",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01527E1CEDFK43pouBxCfgl4ns7BneKNCyp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Service Account Name",
+          "type": "datatype.string",
+          "description": "Enter Service Account Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0158YMH3NT2WX7TM6CrnWRACfFZdagseYO2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Get Token Command",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_014UPV4JOA2YG54SNFQuY3pFCBi4buWvy66",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Kubernetes",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic will publish token that can used to perform API operations for kubernetes.",
+      "display_name": "Get Access Token",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "terminal.unix_linux_endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014UPSLZ3HHC12wP8b76gdgsplPX8VCc8KI",
+        "name": "Execute Linux/Unix SSH Command",
+        "title": "Get Service Secret Name",
+        "type": "terminal.ssh_command",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "command": "x=$(kubectl get serviceaccount $workflow.definition_workflow_014UPS5ZKOC5R2qA2ugCqRqI2594zYzqPzt.input.variable_workflow_0158YMH3NT2WX7TM6CrnWRACfFZdagseYO2$ -o json | jq -Mr '.secrets[].name');echo $x |  sed ':a;N;$!ba;s/\\r\\n//g'",
+          "command_timeout": 60,
+          "continue_on_failure": false,
+          "display_name": "Get Service Secret Name",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014UR17LAR1N81NYOXan80MrIiDHpMi6ZwL",
+        "name": "Replace String",
+        "title": "Replace String",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Replace String",
+          "input_string": "$activity.definition_activity_014UPSLZ3HHC12wP8b76gdgsplPX8VCc8KI.output.response_body$",
+          "replace_list": [
+            {
+              "replaced_string": "\\r",
+              "replacement_string": ""
+            },
+            {
+              "replaced_string": "\\n",
+              "replacement_string": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01527AH6O501P6ickrW5fk7itBVuPFYjq6x",
+        "name": "Execute Linux/Unix SSH Command",
+        "title": "Get Token",
+        "type": "terminal.ssh_command",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "command": "kubectl get secrets $activity.definition_activity_014UR17LAR1N81NYOXan80MrIiDHpMi6ZwL.output.result_string$ -o json | jq -Mr '.data.token' | base64 -d",
+          "command_timeout": 60,
+          "continue_on_failure": false,
+          "display_name": "Get Token",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01527D1DXMTC04KhgiiXorycSNkHY9bgsEH",
+        "name": "Set Variables",
+        "title": "Set Token",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Token",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_014UPS5ZKOC5R2qA2ugCqRqI2594zYzqPzt.output.variable_workflow_01527E1CEDFK43pouBxCfgl4ns7BneKNCyp$",
+              "variable_value_new": "$activity.definition_activity_01527AH6O501P6ickrW5fk7itBVuPFYjq6x.output.response_body$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

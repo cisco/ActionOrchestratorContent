@@ -1,0 +1,425 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo",
+    "name": "Create Site",
+    "title": "Create Site",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Type",
+          "type": "datatype.string",
+          "description": "Possible Values for Type are area, building and floor ",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gRbsZv7bngjIUL7Xfvef9rT591CsaPP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Area Parent Name",
+          "type": "datatype.string",
+          "description": "Area Parent Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRG7862VJoEXqkiXznac9Fh1zYDNAMz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Request Body",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGQd52OvHSTvzJj40MFIGIFI2bREdl",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Floor Name",
+          "type": "datatype.string",
+          "description": "Floor Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGd9vxYiWeyXyJLNa5oOY4Q3X2RkHJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Building Name",
+          "type": "datatype.string",
+          "description": "Building Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGamVDKnUliXqldTAJ9gSqFhQCb7TA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Building Address",
+          "type": "datatype.string",
+          "description": "Building Address",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGCfPQPgkExdn6RjTy3Ng4a57zwERQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Floor Parent Name",
+          "type": "datatype.string",
+          "description": "Floor Parent Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGF8sVp4MbezU4jrvmvfJcZKHV2zjB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Message",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGMqM33lbm6F6BxpLLFxhmKN20cAWD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Execution Status URL",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGKZPvmM3QU55Ua5wpfF08oewaRRXt",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018IJVXKCLS7C1KIoPnmnkjvjvTipt28V8V",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Execution Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRGI9EpjvmY4ZfBq3EDkxw8EPxn5hjA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Area Name",
+          "type": "datatype.string",
+          "description": "Area Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRG2cC90OvNuSOcaXeZpxFfsBmSg5pt",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow creates a site",
+      "display_name": "Create Site",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gRbmIQhzxxpc0qExYC7irRn9hu4IB9u",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRbmLmxjpqpZRA3K6DtS2XyPiz6NnBy",
+            "name": "Condition Branch",
+            "title": "If Type is Area",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRbsZv7bngjIUL7Xfvef9rT591CsaPP$",
+                "operator": "eq",
+                "right_operand": "area"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Type is Area",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRg108rYxNjZs9a2Zp6H28j70NjVpvH",
+                "name": "Set Variables",
+                "title": "Set Site Area details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Site Area details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.local.variable_workflow_01gRGQd52OvHSTvzJj40MFIGIFI2bREdl$",
+                      "variable_value_new": "{\n  \"type\": \"area\",\n  \"site\": {\n    \"area\": {\n      \"name\": \"$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRG2cC90OvNuSOcaXeZpxFfsBmSg5pt$\",\n      \"parentName\": \"$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRG7862VJoEXqkiXznac9Fh1zYDNAMz$\"\n    }\n  }\n}"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRbmN81W9NSpGkWaFAvnrEYmvhPQaJd",
+            "name": "Condition Branch",
+            "title": "If Type is Building",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRbsZv7bngjIUL7Xfvef9rT591CsaPP$",
+                "operator": "eq",
+                "right_operand": "building"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Type is Building",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRg3rIujowh5NTaAofM4QhlpxfHqijy",
+                "name": "Set Variables",
+                "title": "Set Site Building details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Site Building details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.local.variable_workflow_01gRGQd52OvHSTvzJj40MFIGIFI2bREdl$",
+                      "variable_value_new": "{\n  \"type\": \"building\",\n  \"site\": {\n    \"building\": {\n      \"name\": \"$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRGamVDKnUliXqldTAJ9gSqFhQCb7TA$\",\n      \"address\": \"$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRGCfPQPgkExdn6RjTy3Ng4a57zwERQ$\"\n    }\n  }\n}"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRbncKxrXlNmdsoju5sm2PvIZHSYhG6",
+            "name": "Condition Branch",
+            "title": "If Type is Floor",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRbsZv7bngjIUL7Xfvef9rT591CsaPP$",
+                "operator": "eq",
+                "right_operand": "floor"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Type is Floor",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRg54aWinWRB1zBvaI8sEbdjKAxDMxJ",
+                "name": "Set Variables",
+                "title": "Set Site Floor Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Site Floor Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.local.variable_workflow_01gRGQd52OvHSTvzJj40MFIGIFI2bREdl$",
+                      "variable_value_new": "{\n  \"type\": \"floor\",\n    \"site\": {\n  \"floor\": {\n      \"name\": \"$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRGd9vxYiWeyXyJLNa5oOY4Q3X2RkHJ$\",\n      \"parentName\": \"$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_01gRGF8sVp4MbezU4jrvmvfJcZKHV2zjB$\"\n    }\n  }\n}"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01gRi0F5J5EyRTiuakyu7YkdgbouxO6jq",
+        "name": "HTTP Request",
+        "title": "Create Site",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.local.variable_workflow_01gRGQd52OvHSTvzJj40MFIGIFI2bREdl$",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.input.variable_workflow_018IJVXKCLS7C1KIoPnmnkjvjvTipt28V8V$"
+            }
+          ],
+          "display_name": "Create Site",
+          "method": "POST",
+          "relative_url": "/dna/intent/api/v1/site",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRJ8LtW7TSJM5AenARBMfQ2exVIwuNu",
+        "name": "JSONPath Query",
+        "title": "Read Site Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Site Details",
+          "input_json": "$activity.definition_activity_01gRi0F5J5EyRTiuakyu7YkdgbouxO6jq.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.executionId ",
+              "jsonpath_query_name": "Execution Id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.executionStatusUrl ",
+              "jsonpath_query_name": "Execution Status Url",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.message ",
+              "jsonpath_query_name": "Message",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRJkP6ujBWv3mYdEb8uS5lleJRaqcnz",
+        "name": "Set Variables",
+        "title": "Set Site Details",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Site Details",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.output.variable_workflow_01gRGI9EpjvmY4ZfBq3EDkxw8EPxn5hjA$",
+              "variable_value_new": "$activity.definition_activity_01gRJ8LtW7TSJM5AenARBMfQ2exVIwuNu.output.jsonpath_queries.Execution Id$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.output.variable_workflow_01gRGKZPvmM3QU55Ua5wpfF08oewaRRXt$",
+              "variable_value_new": "$activity.definition_activity_01gRJ8LtW7TSJM5AenARBMfQ2exVIwuNu.output.jsonpath_queries.Execution Status Url$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gRbGEPYjsK8jlI8ye2YLkl0T6UAwNMo.output.variable_workflow_01gRGMqM33lbm6F6BxpLLFxhmKN20cAWD$",
+              "variable_value_new": "$activity.definition_activity_01gRJ8LtW7TSJM5AenARBMfQ2exVIwuNu.output.jsonpath_queries.Message$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_015DF5MXFPWRY3lfm5HPZIo5dE0rjFTSb8n",
+    "name": "Get Access Token",
+    "title": "Get Access Token",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Default",
+          "scope": "input",
+          "name": "Project Domain Name",
+          "type": "datatype.string",
+          "description": "Project Domain Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0186ODBTP1KK4351HZxTIvzeIbgAUExsDlf",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "output",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0186P0Y2XEPL202dVPyrKoTeSS6Jm2jwZwg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Password",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_015DFE4QAJTXD1z7MlMx1bcerHSuyvnwrUI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Username",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_015DF6RI1OJCI74vgWSV6iVDd9yi2P9iad8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Default",
+          "scope": "input",
+          "name": "User Domain Name",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_015DF77HNPK5S2ZFV78fLcqrfeaUsyMfGv5",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic get the access token for openstack",
+      "display_name": "Get Access Token",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_015DF5TW0BQHK43dsDobig9wcoWaqM9sVPT",
+        "name": "HTTP Request",
+        "title": "Get Openstack Access Token",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"auth\": {\n    \"identity\": {\n      \"methods\": [\n        \"password\"\n      ],\n      \"password\": {\n        \"user\": {\n          \"domain\": {\n            \"name\": \"$workflow.definition_workflow_015DF5MXFPWRY3lfm5HPZIo5dE0rjFTSb8n.input.variable_workflow_015DF77HNPK5S2ZFV78fLcqrfeaUsyMfGv5$\"\n          },\n          \"name\": \"$workflow.definition_workflow_015DF5MXFPWRY3lfm5HPZIo5dE0rjFTSb8n.input.variable_workflow_015DF6RI1OJCI74vgWSV6iVDd9yi2P9iad8$\",\n          \"password\": \"$workflow.definition_workflow_015DF5MXFPWRY3lfm5HPZIo5dE0rjFTSb8n.input.variable_workflow_015DFE4QAJTXD1z7MlMx1bcerHSuyvnwrUI$\"\n        }\n      }\n    },\n    \"scope\": {\n      \"project\": {\n        \"domain\": {\n          \"name\": \"Default\"\n        },\n        \"name\": \"$workflow.definition_workflow_015DF5MXFPWRY3lfm5HPZIo5dE0rjFTSb8n.input.variable_workflow_015DF6RI1OJCI74vgWSV6iVDd9yi2P9iad8$\"\n      }\n    }\n  }\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Get Openstack Access Token",
+          "method": "POST",
+          "relative_url": "/v3/auth/tokens?nocatalog",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015DF92E4CNBH3Xl4yIe80JOAgWysQoIkFQ",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_015DF92IFZ24A2oYIMIRtI4yvUC159d411I",
+            "name": "Condition Branch",
+            "title": "If Status Code = 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DF5TW0BQHK43dsDobig9wcoWaqM9sVPT.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0186OC08WBO9N3uNHKvRUz6lsza0qFV4kag",
+                "name": "For Each",
+                "title": "For Each Response Header",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Response Header",
+                  "source_array": "$activity.definition_activity_015DF5TW0BQHK43dsDobig9wcoWaqM9sVPT.output.response_headers$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_0186ODYZ8LSHH0aIJYnRPmwBhWRDttAy8Zk",
+                    "name": "Condition Block",
+                    "title": "Check for Token Header",
+                    "type": "logic.if_else",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Check for Token Header"
+                    },
+                    "object_type": "definition_activity",
+                    "blocks": [
+                      {
+                        "unique_name": "definition_activity_0186ODZ3RB8AA6uTB1nJPV6BARVhcYAGmJb",
+                        "name": "Condition Branch",
+                        "title": "If Header is X-Subject-Token",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_0186OC08WBO9N3uNHKvRUz6lsza0qFV4kag.input.source_array[@].name$",
+                            "operator": "eq",
+                            "right_operand": "X-Subject-Token"
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "If Header is X-Subject-Token"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_015DFB2EU48U70PLiObVfdnqDTUvsYljVBq",
+                            "name": "Set Variables",
+                            "title": "Output Access Token",
+                            "type": "core.set_multiple_variables",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Output Access Token",
+                              "variables_to_update": [
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_015DF5MXFPWRY3lfm5HPZIo5dE0rjFTSb8n.output.variable_workflow_0186P0Y2XEPL202dVPyrKoTeSS6Jm2jwZwg$",
+                                  "variable_value_new": "$activity.definition_activity_0186OC08WBO9N3uNHKvRUz6lsza0qFV4kag.input.source_array[@].value$"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_0186OUNWM8ZQZ6FiaSrqO7WMe4ojzsYqKg9",
+                            "name": "Break",
+                            "title": "Break",
+                            "type": "logic.break",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Break"
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      },
+                      {
+                        "unique_name": "definition_activity_0186ODZ6N1IV14dYIt5kNpnl07H4LNYjPfz",
+                        "name": "Condition Branch",
+                        "title": "If Header is not X-Subject-Token",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_0186OC08WBO9N3uNHKvRUz6lsza0qFV4kag.input.source_array[@].name$",
+                            "operator": "ne",
+                            "right_operand": "X-Subject-Token"
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "If Header is not X-Subject-Token"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_015DF92LV8K6W13MAGfdNzRfh2YHg2a78lq",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DF5TW0BQHK43dsDobig9wcoWaqM9sVPT.output.status_code$",
+                "operator": "ne",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DF9S0468FV4RE0elViqjo45bSsQGuEFb",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get openstack access token.\n\nStatus Text : $activity.definition_activity_015DF5TW0BQHK43dsDobig9wcoWaqM9sVPT.output.status_text$\n\nResponse Body : $activity.definition_activity_015DF5TW0BQHK43dsDobig9wcoWaqM9sVPT.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

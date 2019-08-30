@@ -1,0 +1,382 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm",
+    "name": "Get Device Details",
+    "title": "Get Device Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network Id",
+          "type": "datatype.string",
+          "description": "enter a existing netowrk id\nex: N_24329156",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014ZOQDMCJFCC4lAvjAQ0XknB5uWxOEnRJ2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Longitude",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194JP7Z86J4G3UMTKAGDrqwOsAV6ZOkW23",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Latitude",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194JPWJ9YR6W4ljZmElBmQoLbo6DnToYK7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Serial",
+          "type": "datatype.string",
+          "description": "enter a existing device serial\nex: Q234-ABCD-5678",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014ZOR2T6G5BV6uRlFGcRs94EsAeS3Lmrad",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Address",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194JQZZCJEK53iZWClyvjd1vUj4BW1Uom2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device LANIP",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194JRDKYEO1G6fMhA44b7SgqvbZOHFVMdh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device MAC",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194JQ8R03ACY5SlTyhOBQsjJ4NBdONHSAX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014ZOTO2RNFLU1cSBPao5dfrkW1ZLifRyzO",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Model",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194JQOKFW8GT7WK7iNLjPNo4EwdVDHSj6w",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194JOAGI17VD0u8nHaRdpBMNjlJLnkutra",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Meraki",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Returns Device Details For The Given Device Id.",
+      "display_name": "Get Device Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014ZOUJ68YJ6D4DaVf5Gea2KQz3HSSntA0h",
+        "name": "HTTP Request",
+        "title": "Get Device Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf.global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf$",
+              "value": "$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.input.variable_workflow_014ZOTO2RNFLU1cSBPao5dfrkW1ZLifRyzO$"
+            }
+          ],
+          "display_name": "Get Device Details",
+          "method": "GET",
+          "relative_url": "/networks/$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.input.variable_workflow_014ZOQDMCJFCC4lAvjAQ0XknB5uWxOEnRJ2$/devices/$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.input.variable_workflow_014ZOR2T6G5BV6uRlFGcRs94EsAeS3Lmrad$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M",
+        "name": "JSONPath Query",
+        "title": "Read Device Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Device Details",
+          "input_json": "$activity.definition_activity_014ZOUJ68YJ6D4DaVf5Gea2KQz3HSSntA0h.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.lanIp",
+              "jsonpath_query_name": "LAN IP",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.mac",
+              "jsonpath_query_name": "MAC",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.lat",
+              "jsonpath_query_name": "Lat",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.lng",
+              "jsonpath_query_name": "Lng",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.address",
+              "jsonpath_query_name": "Address",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.name",
+              "jsonpath_query_name": "Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.model",
+              "jsonpath_query_name": "Model",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014ZRO4ICOGDP7MAxH0DbNwmdcNkdTJVl2f",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_014ZRO4MRX3950G3OCTRpbeGqQGmzfhQGQ8",
+            "name": "Condition Branch",
+            "title": "If Details Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.Name$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If Details Found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014ZRPXPBTKUD4iwFr8OqirN4p3r5QP3ycA",
+                "name": "Set Variables",
+                "title": "Set Device Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Device Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.output.variable_workflow_0194JQZZCJEK53iZWClyvjd1vUj4BW1Uom2$",
+                      "variable_value_new": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.Address$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.output.variable_workflow_0194JRDKYEO1G6fMhA44b7SgqvbZOHFVMdh$",
+                      "variable_value_new": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.LAN IP$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.output.variable_workflow_0194JPWJ9YR6W4ljZmElBmQoLbo6DnToYK7$",
+                      "variable_value_new": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.Lat$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.output.variable_workflow_0194JP7Z86J4G3UMTKAGDrqwOsAV6ZOkW23$",
+                      "variable_value_new": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.Lng$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.output.variable_workflow_0194JQ8R03ACY5SlTyhOBQsjJ4NBdONHSAX$",
+                      "variable_value_new": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.MAC$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.output.variable_workflow_0194JQOKFW8GT7WK7iNLjPNo4EwdVDHSj6w$",
+                      "variable_value_new": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.Model$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014ZO31YMR5RC3P4HKqP5jDMCfmSdduSTKm.output.variable_workflow_0194JOAGI17VD0u8nHaRdpBMNjlJLnkutra$",
+                      "variable_value_new": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.Name$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014ZRQ8HEHQWM5Df9kCBwJqOQtTVbUqc0M8",
+                "name": "Succeeded",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded",
+                  "result_message": "Device Details Found"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_014ZRO4PQFO3H0FXKmrMBafv9NTZQLilQnQ",
+            "name": "Condition Branch",
+            "title": "If Details not Foundo",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014ZR2N5ZO1WB2PeMh4EipPaeaRPkcZwb7M.output.jsonpath_queries.Name$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If Details not Foundo"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014ZRQ2S0T9SD4off89tXANQ5UifgMMPYLz",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get Device Details"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf": {
+      "unique_name": "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf",
+      "properties": {
+        "value": "X-Cisco-Meraki-API-Key",
+        "scope": "global",
+        "name": "MerakiAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gqzxTTPVc0AHEO35LqqQgiFj82rHfui",
+    "name": "Get Network Device by IP",
+    "title": "Get Network Device by IP",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "IP Address",
+          "type": "datatype.string",
+          "description": "Device IP address",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gR0c8TVQY6v5eLnkkoEraWvuP9jMbLQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR1OadWAuaJrlw7TNbrYl2r1LPmlw3B",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ResponseBody",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAICjGor11kwW8NmbMkFOloBdfirIX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Host Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAfIE06v10j2vSfu8dR55JOqWwQXyI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "MAC Address",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAjKnyP00upwoLo9iXhN5CPxDB6f8n",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018CKZVWE9R600WfoCxQeXfTPi69nXVMhyt",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow fetches network device by ip.",
+      "display_name": "Get Network Device by IP",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gR0GDbR6QEUcpV7ArJ8QllTWt8yQheJ",
+        "name": "HTTP Request",
+        "title": "Get network Device by IP",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gqzxTTPVc0AHEO35LqqQgiFj82rHfui.input.variable_workflow_018CKZVWE9R600WfoCxQeXfTPi69nXVMhyt$"
+            }
+          ],
+          "display_name": "Get network Device by IP",
+          "method": "GET",
+          "relative_url": "/api/v1/network-device/ip-address/$workflow.definition_workflow_01gqzxTTPVc0AHEO35LqqQgiFj82rHfui.input.variable_workflow_01gR0c8TVQY6v5eLnkkoEraWvuP9jMbLQ$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gR18D3X6oMl5dj5N64SHSxCxxBeBitD",
+        "name": "JSONPath Query",
+        "title": "Read Network Device ",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Network Device ",
+          "input_json": "$activity.definition_activity_01gR0GDbR6QEUcpV7ArJ8QllTWt8yQheJ.output.response_body$$activity.definition_activity_01gR0GDbR6QEUcpV7ArJ8QllTWt8yQheJ.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.response.id",
+              "jsonpath_query_name": "Id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.macAddress",
+              "jsonpath_query_name": "MAC Address",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.hostname",
+              "jsonpath_query_name": "Host Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRa6hliJE7cNTiTKk0kAoUehpj6FPub",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRa6KONCnUbITnrPXmQvd8zTsTyXOrq",
+            "name": "Condition Branch",
+            "title": "If Id Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gR18D3X6oMl5dj5N64SHSxCxxBeBitD.output.jsonpath_queries.Id$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Id Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRacLjbtBEch3XvBN5aYUACWJOc5rgE",
+                "name": "Set Variables",
+                "title": "Set Network Device",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Network Device",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqzxTTPVc0AHEO35LqqQgiFj82rHfui.output.variable_workflow_01gRAICjGor11kwW8NmbMkFOloBdfirIX$",
+                      "variable_value_new": "$activity.definition_activity_01gR0GDbR6QEUcpV7ArJ8QllTWt8yQheJ.output.response_body$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqzxTTPVc0AHEO35LqqQgiFj82rHfui.output.variable_workflow_01gR1OadWAuaJrlw7TNbrYl2r1LPmlw3B$",
+                      "variable_value_new": "$activity.definition_activity_01gR18D3X6oMl5dj5N64SHSxCxxBeBitD.output.jsonpath_queries.Id$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqzxTTPVc0AHEO35LqqQgiFj82rHfui.output.variable_workflow_01gRAfIE06v10j2vSfu8dR55JOqWwQXyI$",
+                      "variable_value_new": "$activity.definition_activity_01gR18D3X6oMl5dj5N64SHSxCxxBeBitD.output.jsonpath_queries.Host Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqzxTTPVc0AHEO35LqqQgiFj82rHfui.output.variable_workflow_01gRAjKnyP00upwoLo9iXhN5CPxDB6f8n$",
+                      "variable_value_new": "$activity.definition_activity_01gR18D3X6oMl5dj5N64SHSxCxxBeBitD.output.jsonpath_queries.MAC Address$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRa6N3boRnJXVGAtPMWQQ8OEMhUIK4P",
+            "name": "Condition Branch",
+            "title": "If Id not Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gR18D3X6oMl5dj5N64SHSxCxxBeBitD.output.jsonpath_queries.Id$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Id not Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRaRBkjRYL9VTGtz3P27NGrm49bXqrf",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get Network Device by Ip"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

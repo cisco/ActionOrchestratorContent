@@ -1,0 +1,161 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gp0eOVcRP3rqQJQnFCyEkoYbzGqjgbG",
+    "name": "Configure Metric Retention By Account",
+    "title": "Configure Metric Retention By Account",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "Number Of Days",
+          "type": "datatype.integer",
+          "description": "Number Of Days",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_017HV70VND54822dVFHgb5vzXCP2NZwz1ik",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "Account ID",
+          "type": "datatype.integer",
+          "description": "Account ID",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_017HV6JVOC5S96GHcf1kwchBU1cocSQipVa",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Configure Metric Retention By Account For The Given Account Id.",
+      "display_name": "Configure Metric Retention By Account",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gp0I59dN8L0JFKgMIqkPotR2dJGzw8l",
+        "name": "HTTP Request",
+        "title": "Configure Metric Retention By Account",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Configure Metric Retention By Account",
+          "method": "POST",
+          "relative_url": "/api/accounts/$workflow.definition_workflow_01gp0eOVcRP3rqQJQnFCyEkoYbzGqjgbG.input.variable_workflow_017HV6JVOC5S96GHcf1kwchBU1cocSQipVa$/metricstaleduration/$workflow.definition_workflow_01gp0eOVcRP3rqQJQnFCyEkoYbzGqjgbG.input.variable_workflow_017HV70VND54822dVFHgb5vzXCP2NZwz1ik$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_016Z6S38T40W05B8BLp9VKBKN19bl4jtg7w",
+        "name": "Condition Block",
+        "title": "Check Response",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Response"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_016Z6S3E4R00L3LnrSAcB008kfN3qrAxzuS",
+            "name": "Condition Branch",
+            "title": "If status = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gp0I59dN8L0JFKgMIqkPotR2dJGzw8l.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If status = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016Z6SGEQY0B37Y6vF91s7sJOYSZWcshVJf",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Completed"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_016Z6S3HM3KKU16Bfxcvb0Vk8Jb3YDkpsMK",
+            "name": "Condition Branch",
+            "title": "If status \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gp0I59dN8L0JFKgMIqkPotR2dJGzw8l.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If status \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016Z6SMGO4B0V7TKGZd5LteAE4WRAw5q4C7",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to configure metric retention for an account.\n\nError Description:\n$activity.definition_activity_01gp0I59dN8L0JFKgMIqkPotR2dJGzw8l.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

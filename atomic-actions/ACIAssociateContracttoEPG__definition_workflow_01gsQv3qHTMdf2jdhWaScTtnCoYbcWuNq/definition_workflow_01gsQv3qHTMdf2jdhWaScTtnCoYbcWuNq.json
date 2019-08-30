@@ -1,0 +1,252 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gsQv3qHTMdf2jdhWaScTtnCoYbcWuNq",
+    "name": "Associate Contract to EPG",
+    "title": "Associate Contract to EPG",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "EPG Name",
+          "type": "datatype.string",
+          "description": "Enter EPG Name\nsample input:default",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gXGP73BEfwKoBwhUb84KRxzwPQKDdXd",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Request Body",
+          "type": "datatype.string",
+          "description": "Sample Input: {\"mgmtRsOoBProv\":{\"attributes\":{\"tnVzOOBBrCPName\":\"default\"}}}",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gsT0Ey4yZvORaaZ7474ppSlfHeY3jrj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gsqcPsf30D0YqBdgjh0WLgiHpbPPNi9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cookie",
+          "type": "datatype.string",
+          "description": "Enter Cookie",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gsqdKhKxilrnMrPNRpf6tAwMusFTD0t",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response Body",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196G5ENS0NIV5rr4qGf1cuTVBefo8K3xrU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant Name",
+          "type": "datatype.string",
+          "description": "Enter Tennat Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gssYSVG0MaSV7eBkF4sJJQxLqEaBmLP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name",
+          "type": "datatype.string",
+          "description": "Enter Application Name\nsample input: default",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gXGDK4wKexiHmuw4kA04OAlZOFIG7tV",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco ACI",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic associates a particular contract to EPG",
+      "display_name": "Associate Contract to EPG",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0191DJ98H51KI4H47rHA76eQIYvHKVxmVjV",
+        "name": "HTTP Request",
+        "title": "Associate Contract to EPG",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_01gsQv3qHTMdf2jdhWaScTtnCoYbcWuNq.input.variable_workflow_01gsT0Ey4yZvORaaZ7474ppSlfHeY3jrj$",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "cookie": [
+            "$workflow.definition_workflow_01gsQv3qHTMdf2jdhWaScTtnCoYbcWuNq.input.variable_workflow_01gsqdKhKxilrnMrPNRpf6tAwMusFTD0t$"
+          ],
+          "custom_headers": [
+            {
+              "name": "APIC-challenge",
+              "value": "$workflow.definition_workflow_01gsQv3qHTMdf2jdhWaScTtnCoYbcWuNq.input.variable_workflow_01gsqcPsf30D0YqBdgjh0WLgiHpbPPNi9$"
+            }
+          ],
+          "display_name": "Associate Contract to EPG",
+          "method": "POST",
+          "relative_url": "node/mo/uni/tn-$workflow.definition_workflow_01gsQv3qHTMdf2jdhWaScTtnCoYbcWuNq.input.variable_workflow_01gssYSVG0MaSV7eBkF4sJJQxLqEaBmLP$/ap-$workflow.definition_workflow_01gsQv3qHTMdf2jdhWaScTtnCoYbcWuNq.input.variable_workflow_01gXGDK4wKexiHmuw4kA04OAlZOFIG7tV$/epg-.json",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gXGwTG0GTgQ6SOzdb06k07Fr3hZcS86",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gXGwV3OdaBRVIc1x5Jz147ef7Gs6DLk",
+            "name": "Condition Branch",
+            "title": "If Status Code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0191DJ98H51KI4H47rHA76eQIYvHKVxmVjV.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code == 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0196G54BXHT346kTSOs0QQpV0AL5gLJvQB6",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gsQv3qHTMdf2jdhWaScTtnCoYbcWuNq.output.variable_workflow_0196G5ENS0NIV5rr4qGf1cuTVBefo8K3xrU$",
+                      "variable_value_new": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gXGwwVeaRhMfXijrg344bY72WEG7VlR",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0191DJ98H51KI4H47rHA76eQIYvHKVxmVjV.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gXgBLoxDwdlh0SXentZakxgFbsmkl66",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Associate Contract to EPG\nErrorMessage:$activity.definition_activity_0191DJ98H51KI4H47rHA76eQIYvHKVxmVjV.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

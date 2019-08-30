@@ -1,0 +1,716 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H",
+    "name": "Manage Project",
+    "title": "Manage Project",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Project Name",
+          "type": "datatype.string",
+          "description": "Enter Project Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019I5EIW9XS3M2RpUpgH2TnX1cx5HVxphju",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Project ID",
+          "type": "datatype.string",
+          "description": "Enter Project ID",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019I5DJ16Y7QL1IHPlhlFmpizr9XNPag12h",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Project Details",
+          "type": "datatype.string",
+          "description": "Project Details Response",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019I5PFW0AYLZ2nRXyJm08dK2X0yO3dLP9i",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "input",
+          "name": "Project isDomain",
+          "type": "datatype.boolean",
+          "description": "Is Domain (Eg. false/true)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019I5E8DN3SIT3nnaTRHCqHRvdiX69yzcil",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_019I5AOT1S6XD4FB6iGgWIYIWENI5oemcDH",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Project Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019I5DS5J2IU24IfZBXDKLQRjOmVIqOAmTJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Project Description",
+          "type": "datatype.string",
+          "description": "Provide Description For the Project",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019I5BNV6DISB6HwnxPPJTcafBs9TyQ0kOb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Action Type",
+          "type": "datatype.string",
+          "description": "Enter Action Type (Eg. Add/Update/Delete)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_019I5BCT4SQXI0iq9ulS4gKlH3IeqhXA7b3",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": true,
+          "scope": "input",
+          "name": "Project Enabled",
+          "type": "datatype.boolean",
+          "description": "Project Enabled (Eg. True/False)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019I5CTIIUZW92R8hvhMqC3V9U0I6uQFvHP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Project Domain Id",
+          "type": "datatype.string",
+          "description": "Enter Project Domain Id",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019I5BZEL8N6W5LCivuhx15PGDdYlnba23E",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Creates, Updated and Deletes a Project.",
+      "display_name": "Manage Project",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019I59MP1BG0S6LNrVdDcikkOiGggkAwwEz",
+        "name": "To Lower",
+        "title": "Action Type To Lower",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Action Type To Lower",
+          "skip_execution": false,
+          "source": "$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5BCT4SQXI0iq9ulS4gKlH3IeqhXA7b3$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019I59V3H8DK31RiBNihYDSRZnzUNCO7TlI",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_019I59VA19DEK2JRMdc1yfmfp21cRnAxotR",
+            "name": "Condition Branch",
+            "title": "If Add",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_019I59MP1BG0S6LNrVdDcikkOiGggkAwwEz.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "add"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Add",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019I5QZV68FS8767KDhvwXHICi7qjQZkfaL",
+                "name": "HTTP Request",
+                "title": "Create Project",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"project\": {\n    \"description\": \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5BNV6DISB6HwnxPPJTcafBs9TyQ0kOb$\",\n    \"domain_id\": \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5BZEL8N6W5LCivuhx15PGDdYlnba23E$\",\n    \"enabled\": $workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5CTIIUZW92R8hvhMqC3V9U0I6uQFvHP$,\n    \"is_domain\": $workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5E8DN3SIT3nnaTRHCqHRvdiX69yzcil$,\n    \"name\": \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5EIW9XS3M2RpUpgH2TnX1cx5HVxphju$\"\n  }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                      "value": "$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5AOT1S6XD4FB6iGgWIYIWENI5oemcDH$"
+                    }
+                  ],
+                  "display_name": "Create Project",
+                  "method": "POST",
+                  "relative_url": "/projects",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019I5R2T9WY5F0pSkYFVNUbsV7yMtvaumgu",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_019I5R2XOM0S55RcPe8eKttlkixSY1RpfhX",
+                    "name": "Condition Branch",
+                    "title": "If Status Code == 201",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019I5QZV68FS8767KDhvwXHICi7qjQZkfaL.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 201
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code == 201",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019I5UVC88LWQ01YtfxIrVqIxVMrPzsD7ct",
+                        "name": "JSONPath Query",
+                        "title": "Read Project Id",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "display_name": "Read Project Id",
+                          "input_json": "$activity.definition_activity_019I5QZV68FS8767KDhvwXHICi7qjQZkfaL.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.project.id",
+                              "jsonpath_query_name": "Project Id",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_019I5X7279H4X4mL90XNB7sHKOuUaZhQtAz",
+                        "name": "Set Variables",
+                        "title": "Project Details",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Project Details",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.output.variable_workflow_019I5DS5J2IU24IfZBXDKLQRjOmVIqOAmTJ$",
+                              "variable_value_new": "$activity.definition_activity_019I5UVC88LWQ01YtfxIrVqIxVMrPzsD7ct.output.jsonpath_queries.Project Id$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.output.variable_workflow_019I5PFW0AYLZ2nRXyJm08dK2X0yO3dLP9i$",
+                              "variable_value_new": "$activity.definition_activity_019I5QZV68FS8767KDhvwXHICi7qjQZkfaL.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_019I5R3081CXE1MpZLVrjejNgXwnW2WSXVm",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 201",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019I5QZV68FS8767KDhvwXHICi7qjQZkfaL.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 201
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 201",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019I5T9MJRQH60SnsRzZPTP2ZbhZRM7hT0w",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to Create Project: \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5DJ16Y7QL1IHPlhlFmpizr9XNPag12h$\"\n\nError Message:\n$activity.definition_activity_019I5QZV68FS8767KDhvwXHICi7qjQZkfaL.output.response_body$\n\nStatus Message:\n$activity.definition_activity_019I5QZV68FS8767KDhvwXHICi7qjQZkfaL.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_019I59VCMMJGV3L7xfJ7B9MxioXKblRZiAf",
+            "name": "Condition Branch",
+            "title": "If Update",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_019I59MP1BG0S6LNrVdDcikkOiGggkAwwEz.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "update"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Update",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019I5K41MEH010MdxYom7PTqB0VJQUtLBan",
+                "name": "HTTP Request",
+                "title": "Update Project",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"project\": {\n    \"description\": \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5BNV6DISB6HwnxPPJTcafBs9TyQ0kOb$\",\n    \"name\": \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5EIW9XS3M2RpUpgH2TnX1cx5HVxphju$\"\n  }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                      "value": "$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5AOT1S6XD4FB6iGgWIYIWENI5oemcDH$"
+                    }
+                  ],
+                  "display_name": "Update Project",
+                  "method": "PATCH",
+                  "relative_url": "/projects/$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5DJ16Y7QL1IHPlhlFmpizr9XNPag12h$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019I5K9D2GUQF03k5XgI8BYM80CfLDSKHSZ",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_019I5K9HX4SUS06iExdySWQCuxHfh0BAGg1",
+                    "name": "Condition Branch",
+                    "title": "If Status Code == 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019I5K41MEH010MdxYom7PTqB0VJQUtLBan.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code == 200",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019I5PL5F9XH04iLcaSntiYkdGtjzpdshjy",
+                        "name": "Set Variables",
+                        "title": "Set Update Project Result",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Update Project Result",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.output.variable_workflow_019I5PFW0AYLZ2nRXyJm08dK2X0yO3dLP9i$",
+                              "variable_value_new": "$activity.definition_activity_019I5K41MEH010MdxYom7PTqB0VJQUtLBan.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_019I5KBD3WV26652k21IFdsHxLdKp8XmrvX",
+                        "name": "Succeeded",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Succeeded",
+                          "result_message": "Project Updated Successfully"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_019I5K9L09NSM0EKHyPsMyGYia8oeZdcQdm",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019I5K41MEH010MdxYom7PTqB0VJQUtLBan.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 200",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019I5KCT6H19J3a4IyeFnP7uJu8rj987y8q",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to update the project: \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5DJ16Y7QL1IHPlhlFmpizr9XNPag12h$\"\n\nError Message:\n$activity.definition_activity_019I5K41MEH010MdxYom7PTqB0VJQUtLBan.output.response_body$\n\nStatus Message:\n$activity.definition_activity_019I5K41MEH010MdxYom7PTqB0VJQUtLBan.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_019I59X6FW7BY2ax39OnBuo7MZjEmS1E721",
+            "name": "Condition Branch",
+            "title": "If Delete",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_019I59MP1BG0S6LNrVdDcikkOiGggkAwwEz.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "delete"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Delete",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019I5HH9V4I2K3zAnvI1Irb54V8WjR1k3vY",
+                "name": "HTTP Request",
+                "title": "Delete Project",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                      "value": "$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5AOT1S6XD4FB6iGgWIYIWENI5oemcDH$"
+                    }
+                  ],
+                  "display_name": "Delete Project",
+                  "method": "DELETE",
+                  "relative_url": "/projects/$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5DJ16Y7QL1IHPlhlFmpizr9XNPag12h$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019I5HV6FZJ5E5fQAsmqlTQecYXhHxHMxoM",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_019I5HVBQF2MO3NKWncWuJMSK9cAxa6JzjM",
+                    "name": "Condition Branch",
+                    "title": "If Status Code == 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019I5HH9V4I2K3zAnvI1Irb54V8WjR1k3vY.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code == 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019I5IJMHM4B27RRkiwOksuAo6VldhN48Qu",
+                        "name": "Succeeded",
+                        "title": "Succeeded",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Succeeded",
+                          "result_message": "Successfully deleted the project: \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5DJ16Y7QL1IHPlhlFmpizr9XNPag12h$\""
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_019I5HVERYY146NqrQ643uG0mb9vqvsrREy",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019I5HH9V4I2K3zAnvI1Irb54V8WjR1k3vY.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019I5IWDWF2Z91NtIatM3WqECIKPB0kqBS4",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to delete the project: \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5DJ16Y7QL1IHPlhlFmpizr9XNPag12h$\""
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_019I59YSO6WDB2qvC9nqhGrd6Ha3VONNjVw",
+            "name": "Condition Branch",
+            "title": "If Not Add/Update/Delete",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": {
+                  "left_operand": {
+                    "left_operand": "$activity.definition_activity_019I59MP1BG0S6LNrVdDcikkOiGggkAwwEz.output.lowercase_text$",
+                    "operator": "ne",
+                    "right_operand": "add"
+                  },
+                  "operator": "or",
+                  "right_operand": {
+                    "left_operand": "$activity.definition_activity_019I59MP1BG0S6LNrVdDcikkOiGggkAwwEz.output.lowercase_text$",
+                    "operator": "ne",
+                    "right_operand": "update"
+                  }
+                },
+                "operator": "or",
+                "right_operand": {
+                  "left_operand": "$activity.definition_activity_019I59MP1BG0S6LNrVdDcikkOiGggkAwwEz.output.lowercase_text$",
+                  "operator": "ne",
+                  "right_operand": "delete"
+                }
+              },
+              "continue_on_failure": false,
+              "display_name": "If Not Add/Update/Delete",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019I5GKSF25NU7SoHcvcBX7vR5h08kSR2ft",
+                "name": "Succeeded",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded",
+                  "result_message": "Invalid Action Type: \"$workflow.definition_workflow_019I59HW1Q00L0qJ9VWL0V47HqLnT6BdT4H.input.variable_workflow_019I5BCT4SQXI0iq9ulS4gKlH3IeqhXA7b3$\".\n\nSupported Action Types are add/delete/update."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C": {
+      "unique_name": "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "Openstack Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

@@ -1,0 +1,418 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr",
+    "name": "Create a New Action Suppression",
+    "title": "Create a New Action Suppression",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "StartTime",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018OK9F66YV674ORaX0c0EaJfA3sNHxW0Dz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Action ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018OK9F66YZF224PtcXH7VnlDFikbris1Vi",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Affects (json)",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018OK9F66YR3O3OtrQPjYmpYsMC0kMpLPOu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ActionSuppressionName",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018OK9F66ZEKT39yuZsCs2nQgp16W1XXnot",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "RequestBody",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018OK9F66ZATW51FEPwC2Zor5F5n3esOcpF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "ApplicationId",
+          "type": "datatype.integer",
+          "description": "Application ID",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018OK9F66Z3BU6nz7YK2ZkmmfbG8CT2Frhl",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "HealthRuleIds (comma seperated)",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018OK9F66Z7692IE3NP4HKki61KQOu3uvnB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "AccountId",
+          "type": "datatype.integer",
+          "description": "Account ID",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018OK9F66YJTQ5U9lSLKqHw3JaA3IFZT0PA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "EndTime",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018OK9F66ZIHE3Ij0ejiS56VeAb7cp5Yjq3",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Creates a New Action Suppression.",
+      "display_name": "Create a New Action Suppression",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018OK9FN5NGX14I4Bact2Z7jv1rxNqAChZw",
+        "name": "Condition Block",
+        "title": "Build Request Body",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Build Request Body"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018OK9G18PUO26wa1BFbNg0rvHwRDwQXr4C",
+            "name": "Condition Branch",
+            "title": "If HealthRuleIds Not Null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66Z7692IE3NP4HKki61KQOu3uvnB$",
+                "operator": "ne",
+                "right_operand": "null"
+              },
+              "continue_on_failure": false,
+              "display_name": "If HealthRuleIds Not Null"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018OK9GMJ5DJC6DZmamw73bgTaMFIupSn2S",
+                "name": "Set Variables",
+                "title": "Set Request Body",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Request Body",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.local.variable_workflow_018OK9F66ZATW51FEPwC2Zor5F5n3esOcpF$",
+                      "variable_value_new": "{\n\t\"name\": \"$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66ZEKT39yuZsCs2nQgp16W1XXnot$\",\n\t\"timeRange\": {\n\t\t\"startTimeMillis\": \"$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66YV674ORaX0c0EaJfA3sNHxW0Dz$\",\n\t\t\"endTimeMillis\": \"$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66ZIHE3Ij0ejiS56VeAb7cp5Yjq3$\"\n\t},\n\t\"healthRuleIds\": [$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66Z7692IE3NP4HKki61KQOu3uvnB$],\n\t\"affects\": $workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66YR3O3OtrQPjYmpYsMC0kMpLPOu$\n}"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018OK9H5FMZH74GjSKeIzMqyEAoMbv1h2rV",
+            "name": "Condition Branch",
+            "title": "If HealthRuleIds is Null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66Z7692IE3NP4HKki61KQOu3uvnB$",
+                "operator": "eq",
+                "right_operand": "null"
+              },
+              "continue_on_failure": false,
+              "display_name": "If HealthRuleIds is Null"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018OK9HOE8XWS5Lc4YwPfqzfqCb2X27iRsM",
+                "name": "Set Variables",
+                "title": "Set Request Body",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Request Body",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.local.variable_workflow_018OK9F66ZATW51FEPwC2Zor5F5n3esOcpF$",
+                      "variable_value_new": "{\n\t\"name\": \"$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66ZEKT39yuZsCs2nQgp16W1XXnot$\",\n\t\"timeRange\": {\n\t\t\"startTimeMillis\": \"$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66YV674ORaX0c0EaJfA3sNHxW0Dz$\",\n\t\t\"endTimeMillis\": \"$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66ZIHE3Ij0ejiS56VeAb7cp5Yjq3$\"\n\t},\n\t\"affects\": $workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66YR3O3OtrQPjYmpYsMC0kMpLPOu$\n}"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_018OK9I6TNS33183gecoKC7kcOo2uoTDq8k",
+        "name": "HTTP Request",
+        "title": "Create New Action Suppression",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.local.variable_workflow_018OK9F66ZATW51FEPwC2Zor5F5n3esOcpF$",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/vnd.appd.cntrl+json;v=1"
+            }
+          ],
+          "display_name": "Create New Action Suppression",
+          "method": "POST",
+          "relative_url": "/api/accounts/$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66YJTQ5U9lSLKqHw3JaA3IFZT0PA$/applications/$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.input.variable_workflow_018OK9F66Z3BU6nz7YK2ZkmmfbG8CT2Frhl$/actionsuppressions",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018OK9IOA3CU45LushFmPOZtg80TlpzjCM7",
+        "name": "Condition Block",
+        "title": "Check Response",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Response"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018OK9J5DBW7E2qNv1qcsuRpWnRiF5wu2QA",
+            "name": "Condition Branch",
+            "title": "If status code = 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018OK9I6TNS33183gecoKC7kcOo2uoTDq8k.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If status code = 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018OK9JSYFXWT5cBSxKuyIaDg1kgf6x8Lbz",
+                "name": "For Each",
+                "title": "For Each Response Header",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Response Header",
+                  "source_array": "$activity.definition_activity_018OK9I6TNS33183gecoKC7kcOo2uoTDq8k.output.response_headers$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_018OK9KK59IGY6P7jrZMeHwKZUYzeBrJgRo",
+                    "name": "Condition Block",
+                    "title": "Condition Block",
+                    "type": "logic.if_else",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Condition Block"
+                    },
+                    "object_type": "definition_activity",
+                    "blocks": [
+                      {
+                        "unique_name": "definition_activity_018OK9KWHIRSQ2MVSULtJQnjcPDbBSZyOap",
+                        "name": "Condition Branch",
+                        "title": "check for header location",
+                        "type": "logic.condition_block",
+                        "base_type": "activity",
+                        "properties": {
+                          "condition": {
+                            "left_operand": "$activity.definition_activity_018OK9JSYFXWT5cBSxKuyIaDg1kgf6x8Lbz.input.source_array[@].name$",
+                            "operator": "eq",
+                            "right_operand": "Location"
+                          },
+                          "continue_on_failure": false,
+                          "display_name": "check for header location"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_018OK9LJ1SG767YtWjg3zEMbCyr1j0DBIOq",
+                            "name": "Split String",
+                            "title": "Split String",
+                            "type": "core.splitstring",
+                            "base_type": "activity",
+                            "properties": {
+                              "boundaries": [
+                                {
+                                  "boundary": "/"
+                                }
+                              ],
+                              "continue_on_failure": false,
+                              "display_name": "Split String",
+                              "input_string": "$activity.definition_activity_018OK9JSYFXWT5cBSxKuyIaDg1kgf6x8Lbz.input.source_array[@].value$",
+                              "remove_empty": true
+                            },
+                            "object_type": "definition_activity"
+                          },
+                          {
+                            "unique_name": "definition_activity_018OK9M2Q9U2N1Bur7GXFHjAHLjqycnEVSU",
+                            "name": "Set Variables",
+                            "title": "Set ActionID",
+                            "type": "core.set_multiple_variables",
+                            "base_type": "activity",
+                            "properties": {
+                              "continue_on_failure": false,
+                              "display_name": "Set ActionID",
+                              "variables_to_update": [
+                                {
+                                  "variable_to_update": "$workflow.definition_workflow_018OK9CSZ8L5I45Fuhgl72xHYUx6o8sNtUr.output.variable_workflow_018OK9F66YZF224PtcXH7VnlDFikbris1Vi$",
+                                  "variable_value_new": "$activity.definition_activity_018OK9LJ1SG767YtWjg3zEMbCyr1j0DBIOq.output.parts[-1]$"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018OK9MNU4WLZ0GFeDrOBv8xNzX3a8AUCqv",
+            "name": "Condition Branch",
+            "title": "If status code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018OK9I6TNS33183gecoKC7kcOo2uoTDq8k.output.status_code$",
+                "operator": "ne",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If status code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018OK9N4IPF1J3tpVOirWGXYhonzHfGaDQw",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to create action suppression in Appd.\n\nError Description:\n$activity.definition_activity_018OK9I6TNS33183gecoKC7kcOo2uoTDq8k.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

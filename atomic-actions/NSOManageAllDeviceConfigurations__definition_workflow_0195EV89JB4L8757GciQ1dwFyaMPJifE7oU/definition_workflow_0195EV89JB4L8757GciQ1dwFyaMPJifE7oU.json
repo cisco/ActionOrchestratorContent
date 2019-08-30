@@ -1,0 +1,2080 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0195EV89JB4L8757GciQ1dwFyaMPJifE7oU",
+    "name": "NSO Manage All Device Configurations",
+    "title": "NSO Manage All Device Configurations",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This workflow parallelly tries to  V-D-C-V-U-V blocks for all modules.\nNote:class-map/policy-map doesnot support DELETE functionality",
+      "display_name": "NSO Manage All Device Configurations",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0195HUGFLBFL4320duoWxYmtCp3J2NIWbm2",
+        "name": "Parallel Block",
+        "title": "VIEW Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "VIEW Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0195HUGGMCL104UFOmnyyTvAnU6INDz5tzY",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195HUUQMTMSG24AnMj27FqPf3y2tageD0W",
+                "name": "Manage  Device Class-Map",
+                "title": "Manage  Device Class-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Class-Map",
+                  "input": {
+                    "variable_workflow_01908EIYC74LW1wYlrncoKsSHh1TUr9KmF0": "VIEW",
+                    "variable_workflow_01908EIYC79P85jCzi1Oyfih7avUwSqqCFG": "tailf-ncs:devices",
+                    "variable_workflow_01908EIYC7AXO5rjH8SGGSj424vqoLYCeM0": "c0",
+                    "variable_workflow_01908IMQ30XSC3G2zaRYFxTpIWhY64cnzzr": "test-class-map",
+                    "variable_workflow_01908KKO61S0S6dooO4PF6zadptHotiH5Fx": 1,
+                    "variable_workflow_01908LN7VPRIK5zkwK6vDt1F15zvH9Xn4Uo": 255,
+                    "variable_workflow_01908M4AME1RC6q8dS2Xm78FmS8jTr8bHEc": 1,
+                    "variable_workflow_01908N2VETJY03T2YqtPLAfTgIv3nA4UGhj": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_01908EIMORWB42QH1w5ZLUPS73OEeeyVjQC"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195HUGGY8LO43pUNJCqdL2T2GVMhkmtHMB",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195HVPXRAOFS0WaRFCEpBmfWmx0dyBHX6s",
+                "name": "Manage  Device IP",
+                "title": "Manage  Device IP",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device IP",
+                  "input": {
+                    "variable_workflow_018ZFC2GQZSNO5wYzC1mSXahN92LIpMlefu": "tailf-ncs:devices",
+                    "variable_workflow_018ZFC2GQZW4O25PqLcUixzNMDQ5gVXGdmO": "c0",
+                    "variable_workflow_018ZFC2GR01LW2mTnThkiq4YuxgPPl0fYmg": "VIEW",
+                    "variable_workflow_018ZFC2GR04M81A9Eh7mbnjmhA9pyIhd09t": "test-vrf-name",
+                    "variable_workflow_018ZFJTTO80YS6QowfVScHczgH8AqeO0HiC": "test-std",
+                    "variable_workflow_018ZFKIL6Y7BO0o5LES6LwWBUWjFkspQKMr": false,
+                    "variable_workflow_018ZFKSWC36W85F1kk42z5aEkfNyf4DvXea": false,
+                    "variable_workflow_018ZFLB4I2NES2iHbtTZ0EGdcbQB2JgM0RD": false,
+                    "variable_workflow_018ZFN3WBAN4K2V7D2pBRcZ7hNrxpsoPLLg": 1,
+                    "variable_workflow_018ZFOX9XMZTG73gzanHCHJ8TEwoafjvBQm": 2
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018ZFC2122JGC6IaaIkbLs85QeYDuxD5Ki7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195HVGVZFJ0G4uA7DtPcz97xhYnwzptJyu",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195HVRRMX6IO0Mvt15x1DnW3aXtIIFDw2T",
+                "name": "Manage  Device Interface",
+                "title": "Manage  Device Interface",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Interface",
+                  "input": {
+                    "variable_workflow_018YP55F72NIW4BtJ911fVtSB8gDGFQRgHk": "VIEW",
+                    "variable_workflow_018YPD80V437G7KXm1FDmfOxBEplhzwHhfX": "192.168.1.1",
+                    "variable_workflow_018YPDGXX8MJ87NyQ69mmy1MxBXYvjPqlyN": "255.250.250.0",
+                    "variable_workflow_018YRB0GF7B6O5Wq1RR7oxO9GJrqDp5LCRm": "tailf-ncs:devices",
+                    "variable_workflow_018YREBRKPBC062ly10rNb28FfjVjpJysD3": "c0",
+                    "variable_workflow_018ZF5U2MBCSG3B9pdcTRb3TE3I70ILf8YA": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018YP1XRAWS9C76KIFbLm2QGZNi9SbDNXLV"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195HVTX2T0IG0Mr3k3JoDBwsmoZDpn7Qo3",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195HVW0IXBEO2owunO1cEW8RRsDbnh4bXC",
+                "name": "Manage  Device Mpls",
+                "title": "Manage  Device Mpls",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Mpls",
+                  "input": {
+                    "variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY": "c0",
+                    "variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu": "tailf-ncs:devices",
+                    "variable_workflow_0190H00Z7J6V03vDO8Evl1mBnDAlRLp2TdP": "VIEW",
+                    "variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM": false
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195HW442US944uipNXv8FJyYVKcmgYXeNy",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195HWDZGUY6W2tztvzoF0cVi2IksNcRQxF",
+                "name": "Manage  Device Policy-Map",
+                "title": "Manage  Device Policy-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Policy-Map",
+                  "input": {
+                    "variable_workflow_019094V8D0PNW1XtHUWsyGtTZvv1cgThg0o": "tailf-ncs:devices",
+                    "variable_workflow_019094V8D0UR877XFfNVLnwxjNF2C9bbKbA": "c0",
+                    "variable_workflow_019094V8D0ZJG36vIxUy0RHLcLo70RjLWxq": "VIEW",
+                    "variable_workflow_01909GPA0ZAA00Y3KjFRD95aYtOuulCWCyW": "map1",
+                    "variable_workflow_01909H4BBV7G40fQo87MHJsjJNcbNMBMVtL": "c0",
+                    "variable_workflow_01909I5FFQX7C7jJ7wiYg2SewdyRyNUPvcx": 500,
+                    "variable_workflow_01909IMC7TUK81m7KyO5dpshhvt18uJRyhc": 100,
+                    "variable_workflow_01909K0MCXK683LnqAGFhSy4ObFERc0oeoL": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_019094UPTXL2C4ZGvsulMI0eSg1Zp2jafzD"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195HWNEYZ8MK5yRZiIRwOjG5Q9hDigZ8Dz",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195HWQ35QDY44HolNIIbSSbrCh66psZbtc",
+                "name": "Manage  Device Router",
+                "title": "Manage  Device Router",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Router",
+                  "input": {
+                    "variable_workflow_0190HFPMJNLXK2g5vWYIFZAa9rxpbGlm2wR": "c0",
+                    "variable_workflow_0190HFPMJNPK40Yn2D0Fih0KLMrFSFUEtN0": "tailf-ncs:devices",
+                    "variable_workflow_0190HFPMJNRES4rl070M91VZxPbaEUDNWAB": "VIEW",
+                    "variable_workflow_0190HMUY2612G3qY3lCqwxGTbJyTiN0TgHS": "10.10.10.1",
+                    "variable_workflow_0190HN0EW91YK4CU5pmg4F7kP13YsLFWjOX": "255.255.255.251",
+                    "variable_workflow_0190HOFPTC09O2oivYRODlZdXY8bQcuqTBt": "1.2.3.4",
+                    "variable_workflow_0190HP2RJSYWG3CFyrOr9OdKjjqHJPK1q8Z": 2,
+                    "variable_workflow_0190HPPEJ28R84tw8MRiMIdgRn2AXzb3GAR": 3,
+                    "variable_workflow_0190HQAGL1G3K2E8CLsi0h3FD5XPEFpWCU7": 300,
+                    "variable_workflow_0190I2268Z5545WFYYzvlCoUkIhzeM67dmd": "2.3.4.5",
+                    "variable_workflow_0190I2HW3KGVG3OyCEJDbwZHtXUgcJLAoEk": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190HFPASPK1O4VQhHgOdYrQWmWxpsvOTYL"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195HXFQ9PIAW19ljIVlOtGMnwEnfgEa2lb",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195HXNZGCFK431qQ8g2wfFgqMfh6MMwizG",
+                "name": "Manage  Device Spanning-Tree",
+                "title": "Manage  Device Spanning-Tree",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Spanning-Tree",
+                  "input": {
+                    "variable_workflow_0190EY755KM2G3XzPGSZXSH78xCLmxGJo6F": "c0",
+                    "variable_workflow_0190EY755KZ9G7La8IX5rOGlPJP6WXqwAlr": "tailf-ncs:devices",
+                    "variable_workflow_0190EY755L1YO2AWL1DOIpApqCpJDXN5QwB": "VIEW",
+                    "variable_workflow_0190F05SSY9EC6SrccVLsh1i5alekBopAAJ": true
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190EY6EL76T44To3e3RajZ5SY1v95VfpW7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_0195IDJWZGY086W2W3jmShofeZpgmHNVqNG",
+        "name": "Parallel Block",
+        "title": "DELETE Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "DELETE Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0195IDJY8DGLS3LaUsOUAvrQ2g0Es4auILI",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IDJYKVM5S4QPvDEAG0vHM1PhxeSpR4W",
+                "name": "Manage  Device IP",
+                "title": "Manage  Device IP",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device IP",
+                  "input": {
+                    "variable_workflow_018ZFC2GQZSNO5wYzC1mSXahN92LIpMlefu": "tailf-ncs:devices",
+                    "variable_workflow_018ZFC2GQZW4O25PqLcUixzNMDQ5gVXGdmO": "c0",
+                    "variable_workflow_018ZFC2GR01LW2mTnThkiq4YuxgPPl0fYmg": "DELETE",
+                    "variable_workflow_018ZFC2GR04M81A9Eh7mbnjmhA9pyIhd09t": "test-vrf-name",
+                    "variable_workflow_018ZFJTTO80YS6QowfVScHczgH8AqeO0HiC": "test-std",
+                    "variable_workflow_018ZFKIL6Y7BO0o5LES6LwWBUWjFkspQKMr": false,
+                    "variable_workflow_018ZFKSWC36W85F1kk42z5aEkfNyf4DvXea": false,
+                    "variable_workflow_018ZFLB4I2NES2iHbtTZ0EGdcbQB2JgM0RD": false,
+                    "variable_workflow_018ZFN3WBAN4K2V7D2pBRcZ7hNrxpsoPLLg": 1,
+                    "variable_workflow_018ZFOX9XMZTG73gzanHCHJ8TEwoafjvBQm": 2
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018ZFC2122JGC6IaaIkbLs85QeYDuxD5Ki7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IDJZ1LCI80Vs0wQzDFnVM8yqEn18i2h",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IDJZEEQUG7c6FSOBnHDZQKOKGYnKeMQ",
+                "name": "Manage  Device Interface",
+                "title": "Manage  Device Interface",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Interface",
+                  "input": {
+                    "variable_workflow_018YP55F72NIW4BtJ911fVtSB8gDGFQRgHk": "DELETE",
+                    "variable_workflow_018YPD80V437G7KXm1FDmfOxBEplhzwHhfX": "192.168.1.1",
+                    "variable_workflow_018YPDGXX8MJ87NyQ69mmy1MxBXYvjPqlyN": "255.250.250.0",
+                    "variable_workflow_018YRB0GF7B6O5Wq1RR7oxO9GJrqDp5LCRm": "tailf-ncs:devices",
+                    "variable_workflow_018YREBRKPBC062ly10rNb28FfjVjpJysD3": "c0",
+                    "variable_workflow_018ZF5U2MBCSG3B9pdcTRb3TE3I70ILf8YA": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018YP1XRAWS9C76KIFbLm2QGZNi9SbDNXLV"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IDJZYMOH83BQG84RToYjwq9EqLAsRnR",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IDK0BYVZ86OsKtAox3kOHh8t98O3OIb",
+                "name": "Manage  Device Mpls",
+                "title": "Manage  Device Mpls",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Mpls",
+                  "input": {
+                    "variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY": "c0",
+                    "variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu": "tailf-ncs:devices",
+                    "variable_workflow_0190H00Z7J6V03vDO8Evl1mBnDAlRLp2TdP": "DELETE",
+                    "variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM": false
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IDK1T2N1S5RIXlk1nGpzasK5PrHYsPI",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IDK26W3X82qRlNLplFgQ5DMArvunidY",
+                "name": "Manage  Device Router",
+                "title": "Manage  Device Router",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Router",
+                  "input": {
+                    "variable_workflow_0190HFPMJNLXK2g5vWYIFZAa9rxpbGlm2wR": "c0",
+                    "variable_workflow_0190HFPMJNPK40Yn2D0Fih0KLMrFSFUEtN0": "tailf-ncs:devices",
+                    "variable_workflow_0190HFPMJNRES4rl070M91VZxPbaEUDNWAB": "DELETE",
+                    "variable_workflow_0190HMUY2612G3qY3lCqwxGTbJyTiN0TgHS": "10.10.10.1",
+                    "variable_workflow_0190HN0EW91YK4CU5pmg4F7kP13YsLFWjOX": "255.255.255.251",
+                    "variable_workflow_0190HOFPTC09O2oivYRODlZdXY8bQcuqTBt": "1.2.3.4",
+                    "variable_workflow_0190HP2RJSYWG3CFyrOr9OdKjjqHJPK1q8Z": 2,
+                    "variable_workflow_0190HPPEJ28R84tw8MRiMIdgRn2AXzb3GAR": 3,
+                    "variable_workflow_0190HQAGL1G3K2E8CLsi0h3FD5XPEFpWCU7": 300,
+                    "variable_workflow_0190I2268Z5545WFYYzvlCoUkIhzeM67dmd": "2.3.4.5",
+                    "variable_workflow_0190I2HW3KGVG3OyCEJDbwZHtXUgcJLAoEk": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190HFPASPK1O4VQhHgOdYrQWmWxpsvOTYL"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IDK2W66NK2JZrXjbYCDW0P9uvwBvDSB",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IDK39TYTK4By4UIGUOq8a5jvaFXZMne",
+                "name": "Manage  Device Spanning-Tree",
+                "title": "Manage  Device Spanning-Tree",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Spanning-Tree",
+                  "input": {
+                    "variable_workflow_0190EY755KM2G3XzPGSZXSH78xCLmxGJo6F": "c0",
+                    "variable_workflow_0190EY755KZ9G7La8IX5rOGlPJP6WXqwAlr": "tailf-ncs:devices",
+                    "variable_workflow_0190EY755L1YO2AWL1DOIpApqCpJDXN5QwB": "DELETE",
+                    "variable_workflow_0190F05SSY9EC6SrccVLsh1i5alekBopAAJ": true
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190EY6EL76T44To3e3RajZ5SY1v95VfpW7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_0195IEG4PRHEK6WkCXxrDSw0EmnrBpPcqu0",
+        "name": "Parallel Block",
+        "title": "CREATE Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "CREATE Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0195IEG52E32G5r0VnYPJTOLa2H9PbjMwB0",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IEG5DF8R47PPIIFW4TguODn4o77S4Rr",
+                "name": "Manage  Device Class-Map",
+                "title": "Manage  Device Class-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Class-Map",
+                  "input": {
+                    "variable_workflow_01908EIYC74LW1wYlrncoKsSHh1TUr9KmF0": "CREATE",
+                    "variable_workflow_01908EIYC79P85jCzi1Oyfih7avUwSqqCFG": "tailf-ncs:devices",
+                    "variable_workflow_01908EIYC7AXO5rjH8SGGSj424vqoLYCeM0": "c0",
+                    "variable_workflow_01908IMQ30XSC3G2zaRYFxTpIWhY64cnzzr": "test-class-map",
+                    "variable_workflow_01908KKO61S0S6dooO4PF6zadptHotiH5Fx": 1,
+                    "variable_workflow_01908LN7VPRIK5zkwK6vDt1F15zvH9Xn4Uo": 255,
+                    "variable_workflow_01908M4AME1RC6q8dS2Xm78FmS8jTr8bHEc": 1,
+                    "variable_workflow_01908N2VETJY03T2YqtPLAfTgIv3nA4UGhj": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_01908EIMORWB42QH1w5ZLUPS73OEeeyVjQC"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IEG5V9S8G19Y4o5xJgnrcVb9udE8e5z",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IEG65OPDO5fRTPFumqJPBXuQJ2UONot",
+                "name": "Manage  Device IP",
+                "title": "Manage  Device IP",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device IP",
+                  "input": {
+                    "variable_workflow_018ZFC2GQZSNO5wYzC1mSXahN92LIpMlefu": "tailf-ncs:devices",
+                    "variable_workflow_018ZFC2GQZW4O25PqLcUixzNMDQ5gVXGdmO": "c0",
+                    "variable_workflow_018ZFC2GR01LW2mTnThkiq4YuxgPPl0fYmg": "CREATE",
+                    "variable_workflow_018ZFC2GR04M81A9Eh7mbnjmhA9pyIhd09t": "test-vrf-name",
+                    "variable_workflow_018ZFJTTO80YS6QowfVScHczgH8AqeO0HiC": "test-std",
+                    "variable_workflow_018ZFKIL6Y7BO0o5LES6LwWBUWjFkspQKMr": false,
+                    "variable_workflow_018ZFKSWC36W85F1kk42z5aEkfNyf4DvXea": false,
+                    "variable_workflow_018ZFLB4I2NES2iHbtTZ0EGdcbQB2JgM0RD": false,
+                    "variable_workflow_018ZFN3WBAN4K2V7D2pBRcZ7hNrxpsoPLLg": 1,
+                    "variable_workflow_018ZFOX9XMZTG73gzanHCHJ8TEwoafjvBQm": 2
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018ZFC2122JGC6IaaIkbLs85QeYDuxD5Ki7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IEG6KW89C33jgar7wBCGcR9ZomalFHn",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IEG6W1CDS4UriaUvonMbV6rWQPqa02t",
+                "name": "Manage  Device Interface",
+                "title": "Manage  Device Interface",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Interface",
+                  "input": {
+                    "variable_workflow_018YP55F72NIW4BtJ911fVtSB8gDGFQRgHk": "CREATE",
+                    "variable_workflow_018YPD80V437G7KXm1FDmfOxBEplhzwHhfX": "192.168.1.1",
+                    "variable_workflow_018YPDGXX8MJ87NyQ69mmy1MxBXYvjPqlyN": "255.250.250.0",
+                    "variable_workflow_018YRB0GF7B6O5Wq1RR7oxO9GJrqDp5LCRm": "tailf-ncs:devices",
+                    "variable_workflow_018YREBRKPBC062ly10rNb28FfjVjpJysD3": "c0",
+                    "variable_workflow_018ZF5U2MBCSG3B9pdcTRb3TE3I70ILf8YA": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018YP1XRAWS9C76KIFbLm2QGZNi9SbDNXLV"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IEG7CSQRC1eDtdaD83gR0Inp3JvtLAm",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IEG7PB13K72TIco13DVkRSOOfNRJHI9",
+                "name": "Manage  Device Mpls",
+                "title": "Manage  Device Mpls",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Mpls",
+                  "input": {
+                    "variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY": "c0",
+                    "variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu": "tailf-ncs:devices",
+                    "variable_workflow_0190H00Z7J6V03vDO8Evl1mBnDAlRLp2TdP": "CREATE",
+                    "variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM": false
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IEG8BQFDO4KmHncgO3VA6Qfov3H76xu",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IEG8O9Z606jesDkEVNO2xqOy3EsMGG1",
+                "name": "Manage  Device Policy-Map",
+                "title": "Manage  Device Policy-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Policy-Map",
+                  "input": {
+                    "variable_workflow_019094V8D0PNW1XtHUWsyGtTZvv1cgThg0o": "tailf-ncs:devices",
+                    "variable_workflow_019094V8D0UR877XFfNVLnwxjNF2C9bbKbA": "c0",
+                    "variable_workflow_019094V8D0ZJG36vIxUy0RHLcLo70RjLWxq": "CREATE",
+                    "variable_workflow_01909GPA0ZAA00Y3KjFRD95aYtOuulCWCyW": "map1",
+                    "variable_workflow_01909H4BBV7G40fQo87MHJsjJNcbNMBMVtL": "c0",
+                    "variable_workflow_01909I5FFQX7C7jJ7wiYg2SewdyRyNUPvcx": 500,
+                    "variable_workflow_01909IMC7TUK81m7KyO5dpshhvt18uJRyhc": 100,
+                    "variable_workflow_01909K0MCXK683LnqAGFhSy4ObFERc0oeoL": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_019094UPTXL2C4ZGvsulMI0eSg1Zp2jafzD"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IEG9758VC1tk59cEfIKwZTPnRToqShI",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IEG9L2ZR85m27QXWzA3vUj1qweO9dXa",
+                "name": "Manage  Device Router",
+                "title": "Manage  Device Router",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Router",
+                  "input": {
+                    "variable_workflow_0190HFPMJNLXK2g5vWYIFZAa9rxpbGlm2wR": "c0",
+                    "variable_workflow_0190HFPMJNPK40Yn2D0Fih0KLMrFSFUEtN0": "tailf-ncs:devices",
+                    "variable_workflow_0190HFPMJNRES4rl070M91VZxPbaEUDNWAB": "CREATE",
+                    "variable_workflow_0190HMUY2612G3qY3lCqwxGTbJyTiN0TgHS": "10.10.10.1",
+                    "variable_workflow_0190HN0EW91YK4CU5pmg4F7kP13YsLFWjOX": "255.255.255.251",
+                    "variable_workflow_0190HOFPTC09O2oivYRODlZdXY8bQcuqTBt": "1.2.3.4",
+                    "variable_workflow_0190HP2RJSYWG3CFyrOr9OdKjjqHJPK1q8Z": 2,
+                    "variable_workflow_0190HPPEJ28R84tw8MRiMIdgRn2AXzb3GAR": 3,
+                    "variable_workflow_0190HQAGL1G3K2E8CLsi0h3FD5XPEFpWCU7": 300,
+                    "variable_workflow_0190I2268Z5545WFYYzvlCoUkIhzeM67dmd": "2.3.4.5",
+                    "variable_workflow_0190I2HW3KGVG3OyCEJDbwZHtXUgcJLAoEk": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190HFPASPK1O4VQhHgOdYrQWmWxpsvOTYL"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IEGA81VI44ODRyJokfCiluRpNYxtPkE",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IEGAMORPO23ZL21bAWSzO5dMbqBcTQt",
+                "name": "Manage  Device Spanning-Tree",
+                "title": "Manage  Device Spanning-Tree",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Spanning-Tree",
+                  "input": {
+                    "variable_workflow_0190EY755KM2G3XzPGSZXSH78xCLmxGJo6F": "c0",
+                    "variable_workflow_0190EY755KZ9G7La8IX5rOGlPJP6WXqwAlr": "tailf-ncs:devices",
+                    "variable_workflow_0190EY755L1YO2AWL1DOIpApqCpJDXN5QwB": "CREATE",
+                    "variable_workflow_0190F05SSY9EC6SrccVLsh1i5alekBopAAJ": true
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190EY6EL76T44To3e3RajZ5SY1v95VfpW7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_0195IHOJRE7O05sPFhn2RWzW6eDTOPf5C9R",
+        "name": "Parallel Block",
+        "title": "VIEW  Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "VIEW  Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0195IHOKGJFBK6uBPG3fr7qzLXUx5rou3Tj",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHOKWOR3K1EpECZyBKoYesYJYaY4bYU",
+                "name": "Manage  Device Class-Map",
+                "title": "Manage  Device Class-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Class-Map",
+                  "input": {
+                    "variable_workflow_01908EIYC74LW1wYlrncoKsSHh1TUr9KmF0": "VIEW",
+                    "variable_workflow_01908EIYC79P85jCzi1Oyfih7avUwSqqCFG": "tailf-ncs:devices",
+                    "variable_workflow_01908EIYC7AXO5rjH8SGGSj424vqoLYCeM0": "c0",
+                    "variable_workflow_01908IMQ30XSC3G2zaRYFxTpIWhY64cnzzr": "test-class-map",
+                    "variable_workflow_01908KKO61S0S6dooO4PF6zadptHotiH5Fx": 1,
+                    "variable_workflow_01908LN7VPRIK5zkwK6vDt1F15zvH9Xn4Uo": 255,
+                    "variable_workflow_01908M4AME1RC6q8dS2Xm78FmS8jTr8bHEc": 1,
+                    "variable_workflow_01908N2VETJY03T2YqtPLAfTgIv3nA4UGhj": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_01908EIMORWB42QH1w5ZLUPS73OEeeyVjQC"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHOLJRKIG5DqkliNFXSqZNzjwSzebsM",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHOM2OYDG7ToehwPdEiyf2xV80QlJ3I",
+                "name": "Manage  Device IP",
+                "title": "Manage  Device IP",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device IP",
+                  "input": {
+                    "variable_workflow_018ZFC2GQZSNO5wYzC1mSXahN92LIpMlefu": "tailf-ncs:devices",
+                    "variable_workflow_018ZFC2GQZW4O25PqLcUixzNMDQ5gVXGdmO": "c0",
+                    "variable_workflow_018ZFC2GR01LW2mTnThkiq4YuxgPPl0fYmg": "VIEW",
+                    "variable_workflow_018ZFC2GR04M81A9Eh7mbnjmhA9pyIhd09t": "test-vrf-name",
+                    "variable_workflow_018ZFJTTO80YS6QowfVScHczgH8AqeO0HiC": "test-std",
+                    "variable_workflow_018ZFKIL6Y7BO0o5LES6LwWBUWjFkspQKMr": false,
+                    "variable_workflow_018ZFKSWC36W85F1kk42z5aEkfNyf4DvXea": false,
+                    "variable_workflow_018ZFLB4I2NES2iHbtTZ0EGdcbQB2JgM0RD": false,
+                    "variable_workflow_018ZFN3WBAN4K2V7D2pBRcZ7hNrxpsoPLLg": 1,
+                    "variable_workflow_018ZFOX9XMZTG73gzanHCHJ8TEwoafjvBQm": 2
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018ZFC2122JGC6IaaIkbLs85QeYDuxD5Ki7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHOMQ3IJS7cEwlXQwxnA43qfXgmoAKr",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHONBC40G1rB0LbkOxvuVfylxxsJ2qk",
+                "name": "Manage  Device Interface",
+                "title": "Manage  Device Interface",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Interface",
+                  "input": {
+                    "variable_workflow_018YP55F72NIW4BtJ911fVtSB8gDGFQRgHk": "VIEW",
+                    "variable_workflow_018YPD80V437G7KXm1FDmfOxBEplhzwHhfX": "192.168.1.1",
+                    "variable_workflow_018YPDGXX8MJ87NyQ69mmy1MxBXYvjPqlyN": "255.250.250.0",
+                    "variable_workflow_018YRB0GF7B6O5Wq1RR7oxO9GJrqDp5LCRm": "tailf-ncs:devices",
+                    "variable_workflow_018YREBRKPBC062ly10rNb28FfjVjpJysD3": "c0",
+                    "variable_workflow_018ZF5U2MBCSG3B9pdcTRb3TE3I70ILf8YA": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018YP1XRAWS9C76KIFbLm2QGZNi9SbDNXLV"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHOO2QZHC5BFsrMOvvvJ5DDGzPTK4b1",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHOOKYTZ40sOkKTBbDjOiHyT9MZUhdt",
+                "name": "Manage  Device Mpls",
+                "title": "Manage  Device Mpls",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Mpls",
+                  "input": {
+                    "variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY": "c0",
+                    "variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu": "tailf-ncs:devices",
+                    "variable_workflow_0190H00Z7J6V03vDO8Evl1mBnDAlRLp2TdP": "VIEW",
+                    "variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM": false
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHOPCD6RS7fcyI7jNe9tmfaPQpYa9U4",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHOPVUWT47Km43tf7zxscerDiqrbcOI",
+                "name": "Manage  Device Policy-Map",
+                "title": "Manage  Device Policy-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Policy-Map",
+                  "input": {
+                    "variable_workflow_019094V8D0PNW1XtHUWsyGtTZvv1cgThg0o": "tailf-ncs:devices",
+                    "variable_workflow_019094V8D0UR877XFfNVLnwxjNF2C9bbKbA": "c0",
+                    "variable_workflow_019094V8D0ZJG36vIxUy0RHLcLo70RjLWxq": "VIEW",
+                    "variable_workflow_01909GPA0ZAA00Y3KjFRD95aYtOuulCWCyW": "map1",
+                    "variable_workflow_01909H4BBV7G40fQo87MHJsjJNcbNMBMVtL": "c0",
+                    "variable_workflow_01909I5FFQX7C7jJ7wiYg2SewdyRyNUPvcx": 500,
+                    "variable_workflow_01909IMC7TUK81m7KyO5dpshhvt18uJRyhc": 100,
+                    "variable_workflow_01909K0MCXK683LnqAGFhSy4ObFERc0oeoL": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_019094UPTXL2C4ZGvsulMI0eSg1Zp2jafzD"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHOR53RP40hdhmy8RhJnhWVHLIwGfVK",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHORK6LD42uwJWlRp2D7anaAazaAB6M",
+                "name": "Manage  Device Router",
+                "title": "Manage  Device Router",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Router",
+                  "input": {
+                    "variable_workflow_0190HFPMJNLXK2g5vWYIFZAa9rxpbGlm2wR": "c0",
+                    "variable_workflow_0190HFPMJNPK40Yn2D0Fih0KLMrFSFUEtN0": "tailf-ncs:devices",
+                    "variable_workflow_0190HFPMJNRES4rl070M91VZxPbaEUDNWAB": "VIEW",
+                    "variable_workflow_0190HMUY2612G3qY3lCqwxGTbJyTiN0TgHS": "10.10.10.1",
+                    "variable_workflow_0190HN0EW91YK4CU5pmg4F7kP13YsLFWjOX": "255.255.255.251",
+                    "variable_workflow_0190HOFPTC09O2oivYRODlZdXY8bQcuqTBt": "1.2.3.4",
+                    "variable_workflow_0190HP2RJSYWG3CFyrOr9OdKjjqHJPK1q8Z": 2,
+                    "variable_workflow_0190HPPEJ28R84tw8MRiMIdgRn2AXzb3GAR": 3,
+                    "variable_workflow_0190HQAGL1G3K2E8CLsi0h3FD5XPEFpWCU7": 300,
+                    "variable_workflow_0190I2268Z5545WFYYzvlCoUkIhzeM67dmd": "2.3.4.5",
+                    "variable_workflow_0190I2HW3KGVG3OyCEJDbwZHtXUgcJLAoEk": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190HFPASPK1O4VQhHgOdYrQWmWxpsvOTYL"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHOSG529G6j67fXAmRwcRYB9YY2Q2Jg",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHOTCWYHW0q3L13pu8Ia1arYnhlx866",
+                "name": "Manage  Device Spanning-Tree",
+                "title": "Manage  Device Spanning-Tree",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Spanning-Tree",
+                  "input": {
+                    "variable_workflow_0190EY755KM2G3XzPGSZXSH78xCLmxGJo6F": "c0",
+                    "variable_workflow_0190EY755KZ9G7La8IX5rOGlPJP6WXqwAlr": "tailf-ncs:devices",
+                    "variable_workflow_0190EY755L1YO2AWL1DOIpApqCpJDXN5QwB": "VIEW",
+                    "variable_workflow_0190F05SSY9EC6SrccVLsh1i5alekBopAAJ": true
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190EY6EL76T44To3e3RajZ5SY1v95VfpW7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_0195IHRR8ZAGC6eRWTc29CprxLgH4Sep3Wz",
+        "name": "Parallel Block",
+        "title": "UPDATE Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "UPDATE Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0195IHRRLSLPG5OKCCqAviyroi83bXFxw5z",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHRRW8EKC73PDPxMBiCSBqq7VKcH4aY",
+                "name": "Manage  Device Class-Map",
+                "title": "Manage  Device Class-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Class-Map",
+                  "input": {
+                    "variable_workflow_01908EIYC74LW1wYlrncoKsSHh1TUr9KmF0": "UPDATE",
+                    "variable_workflow_01908EIYC79P85jCzi1Oyfih7avUwSqqCFG": "tailf-ncs:devices",
+                    "variable_workflow_01908EIYC7AXO5rjH8SGGSj424vqoLYCeM0": "c0",
+                    "variable_workflow_01908IMQ30XSC3G2zaRYFxTpIWhY64cnzzr": "test-class-map",
+                    "variable_workflow_01908KKO61S0S6dooO4PF6zadptHotiH5Fx": 1,
+                    "variable_workflow_01908LN7VPRIK5zkwK6vDt1F15zvH9Xn4Uo": 255,
+                    "variable_workflow_01908M4AME1RC6q8dS2Xm78FmS8jTr8bHEc": 1,
+                    "variable_workflow_01908N2VETJY03T2YqtPLAfTgIv3nA4UGhj": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_01908EIMORWB42QH1w5ZLUPS73OEeeyVjQC"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHRSAPYEW2lpbVJYXSQqF42d87IwRgj",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHRSL19RW3VGgSYiDJRFhwUCVslQ3Y7",
+                "name": "Manage  Device IP",
+                "title": "Manage  Device IP",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device IP",
+                  "input": {
+                    "variable_workflow_018ZFC2GQZSNO5wYzC1mSXahN92LIpMlefu": "tailf-ncs:devices",
+                    "variable_workflow_018ZFC2GQZW4O25PqLcUixzNMDQ5gVXGdmO": "c0",
+                    "variable_workflow_018ZFC2GR01LW2mTnThkiq4YuxgPPl0fYmg": "UPDATE",
+                    "variable_workflow_018ZFC2GR04M81A9Eh7mbnjmhA9pyIhd09t": "test-vrf-name",
+                    "variable_workflow_018ZFJTTO80YS6QowfVScHczgH8AqeO0HiC": "test-std",
+                    "variable_workflow_018ZFKIL6Y7BO0o5LES6LwWBUWjFkspQKMr": false,
+                    "variable_workflow_018ZFKSWC36W85F1kk42z5aEkfNyf4DvXea": false,
+                    "variable_workflow_018ZFLB4I2NES2iHbtTZ0EGdcbQB2JgM0RD": false,
+                    "variable_workflow_018ZFN3WBAN4K2V7D2pBRcZ7hNrxpsoPLLg": 1,
+                    "variable_workflow_018ZFOX9XMZTG73gzanHCHJ8TEwoafjvBQm": 2
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018ZFC2122JGC6IaaIkbLs85QeYDuxD5Ki7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHRT4G59K5pLBs4oWQQyGbx8uVItdBn",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHRTFAPU416rgk9SieR1xU13j9gjKdi",
+                "name": "Manage  Device Interface",
+                "title": "Manage  Device Interface",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Interface",
+                  "input": {
+                    "variable_workflow_018YP55F72NIW4BtJ911fVtSB8gDGFQRgHk": "UPDATE",
+                    "variable_workflow_018YPD80V437G7KXm1FDmfOxBEplhzwHhfX": "192.168.1.1",
+                    "variable_workflow_018YPDGXX8MJ87NyQ69mmy1MxBXYvjPqlyN": "255.250.250.0",
+                    "variable_workflow_018YRB0GF7B6O5Wq1RR7oxO9GJrqDp5LCRm": "tailf-ncs:devices",
+                    "variable_workflow_018YREBRKPBC062ly10rNb28FfjVjpJysD3": "c0",
+                    "variable_workflow_018ZF5U2MBCSG3B9pdcTRb3TE3I70ILf8YA": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018YP1XRAWS9C76KIFbLm2QGZNi9SbDNXLV"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHRTVLXT04gP00UFANTs9T3sJrlI2ik",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHRU72C6G08fKAsNztrId2LCaByp8bT",
+                "name": "Manage  Device Mpls",
+                "title": "Manage  Device Mpls",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Mpls",
+                  "input": {
+                    "variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY": "c0",
+                    "variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu": "tailf-ncs:devices",
+                    "variable_workflow_0190H00Z7J6V03vDO8Evl1mBnDAlRLp2TdP": "UPDATE",
+                    "variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM": false
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHRUS4YIO0X7ZtOTDK4EZLB0CY6Vqz8",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHRV8I22W7CPboT4A9IE60cEpZ3PLbI",
+                "name": "Manage  Device Policy-Map",
+                "title": "Manage  Device Policy-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Policy-Map",
+                  "input": {
+                    "variable_workflow_019094V8D0PNW1XtHUWsyGtTZvv1cgThg0o": "tailf-ncs:devices",
+                    "variable_workflow_019094V8D0UR877XFfNVLnwxjNF2C9bbKbA": "c0",
+                    "variable_workflow_019094V8D0ZJG36vIxUy0RHLcLo70RjLWxq": "UPDATE",
+                    "variable_workflow_01909GPA0ZAA00Y3KjFRD95aYtOuulCWCyW": "map1",
+                    "variable_workflow_01909H4BBV7G40fQo87MHJsjJNcbNMBMVtL": "c0",
+                    "variable_workflow_01909I5FFQX7C7jJ7wiYg2SewdyRyNUPvcx": 500,
+                    "variable_workflow_01909IMC7TUK81m7KyO5dpshhvt18uJRyhc": 100,
+                    "variable_workflow_01909K0MCXK683LnqAGFhSy4ObFERc0oeoL": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_019094UPTXL2C4ZGvsulMI0eSg1Zp2jafzD"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHRVRNJDK3EJRySZmMY5DDLBZhkTxYe",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHRW54M143kwnif8Cid7R6wrR0gmF2O",
+                "name": "Manage  Device Router",
+                "title": "Manage  Device Router",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Router",
+                  "input": {
+                    "variable_workflow_0190HFPMJNLXK2g5vWYIFZAa9rxpbGlm2wR": "c0",
+                    "variable_workflow_0190HFPMJNPK40Yn2D0Fih0KLMrFSFUEtN0": "tailf-ncs:devices",
+                    "variable_workflow_0190HFPMJNRES4rl070M91VZxPbaEUDNWAB": "UPDATE",
+                    "variable_workflow_0190HMUY2612G3qY3lCqwxGTbJyTiN0TgHS": "10.10.10.1",
+                    "variable_workflow_0190HN0EW91YK4CU5pmg4F7kP13YsLFWjOX": "255.255.255.251",
+                    "variable_workflow_0190HOFPTC09O2oivYRODlZdXY8bQcuqTBt": "1.2.3.4",
+                    "variable_workflow_0190HP2RJSYWG3CFyrOr9OdKjjqHJPK1q8Z": 2,
+                    "variable_workflow_0190HPPEJ28R84tw8MRiMIdgRn2AXzb3GAR": 3,
+                    "variable_workflow_0190HQAGL1G3K2E8CLsi0h3FD5XPEFpWCU7": 300,
+                    "variable_workflow_0190I2268Z5545WFYYzvlCoUkIhzeM67dmd": "2.3.4.5",
+                    "variable_workflow_0190I2HW3KGVG3OyCEJDbwZHtXUgcJLAoEk": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190HFPASPK1O4VQhHgOdYrQWmWxpsvOTYL"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHRWQC7GK0O8Bk4MbG0GMayArtOwg9T",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHRX3IT3W2YIjayBWqAgBcxqDYIIoxm",
+                "name": "Manage  Device Spanning-Tree",
+                "title": "Manage  Device Spanning-Tree",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Spanning-Tree",
+                  "input": {
+                    "variable_workflow_0190EY755KM2G3XzPGSZXSH78xCLmxGJo6F": "c0",
+                    "variable_workflow_0190EY755KZ9G7La8IX5rOGlPJP6WXqwAlr": "tailf-ncs:devices",
+                    "variable_workflow_0190EY755L1YO2AWL1DOIpApqCpJDXN5QwB": "UPDATE",
+                    "variable_workflow_0190F05SSY9EC6SrccVLsh1i5alekBopAAJ": true
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190EY6EL76T44To3e3RajZ5SY1v95VfpW7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_0195IHV0R0LB01RyIazwEzEBBGHlZlaHnQx",
+        "name": "Parallel Block",
+        "title": "VIEW Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "VIEW Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0195IHV13BS8S2sNwZqKbKUGF8cgaK9ZS6H",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHV1E5L9O57AC1OfLZXRMSUQbVg6C8u",
+                "name": "Manage  Device Class-Map",
+                "title": "Manage  Device Class-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Class-Map",
+                  "input": {
+                    "variable_workflow_01908EIYC74LW1wYlrncoKsSHh1TUr9KmF0": "VIEW",
+                    "variable_workflow_01908EIYC79P85jCzi1Oyfih7avUwSqqCFG": "tailf-ncs:devices",
+                    "variable_workflow_01908EIYC7AXO5rjH8SGGSj424vqoLYCeM0": "c0",
+                    "variable_workflow_01908IMQ30XSC3G2zaRYFxTpIWhY64cnzzr": "test-class-map",
+                    "variable_workflow_01908KKO61S0S6dooO4PF6zadptHotiH5Fx": 1,
+                    "variable_workflow_01908LN7VPRIK5zkwK6vDt1F15zvH9Xn4Uo": 255,
+                    "variable_workflow_01908M4AME1RC6q8dS2Xm78FmS8jTr8bHEc": 1,
+                    "variable_workflow_01908N2VETJY03T2YqtPLAfTgIv3nA4UGhj": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_01908EIMORWB42QH1w5ZLUPS73OEeeyVjQC"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHV1SUAIW0LxZ4yWvNcwQ9XlLmFI3yO",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHV27XZWK3FIpy5kb4nrhoT1sQwApEb",
+                "name": "Manage  Device IP",
+                "title": "Manage  Device IP",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device IP",
+                  "input": {
+                    "variable_workflow_018ZFC2GQZSNO5wYzC1mSXahN92LIpMlefu": "tailf-ncs:devices",
+                    "variable_workflow_018ZFC2GQZW4O25PqLcUixzNMDQ5gVXGdmO": "c0",
+                    "variable_workflow_018ZFC2GR01LW2mTnThkiq4YuxgPPl0fYmg": "VIEW",
+                    "variable_workflow_018ZFC2GR04M81A9Eh7mbnjmhA9pyIhd09t": "test-vrf-name",
+                    "variable_workflow_018ZFJTTO80YS6QowfVScHczgH8AqeO0HiC": "test-std",
+                    "variable_workflow_018ZFKIL6Y7BO0o5LES6LwWBUWjFkspQKMr": false,
+                    "variable_workflow_018ZFKSWC36W85F1kk42z5aEkfNyf4DvXea": false,
+                    "variable_workflow_018ZFLB4I2NES2iHbtTZ0EGdcbQB2JgM0RD": false,
+                    "variable_workflow_018ZFN3WBAN4K2V7D2pBRcZ7hNrxpsoPLLg": 1,
+                    "variable_workflow_018ZFOX9XMZTG73gzanHCHJ8TEwoafjvBQm": 2
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018ZFC2122JGC6IaaIkbLs85QeYDuxD5Ki7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHV2OWW9K4b4428he3E01N5z9np6WlR",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHV30U26S7fO22ne7alb456qjcWtmkR",
+                "name": "Manage  Device Interface",
+                "title": "Manage  Device Interface",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Interface",
+                  "input": {
+                    "variable_workflow_018YP55F72NIW4BtJ911fVtSB8gDGFQRgHk": "VIEW",
+                    "variable_workflow_018YPD80V437G7KXm1FDmfOxBEplhzwHhfX": "192.168.1.1",
+                    "variable_workflow_018YPDGXX8MJ87NyQ69mmy1MxBXYvjPqlyN": "255.250.250.0",
+                    "variable_workflow_018YRB0GF7B6O5Wq1RR7oxO9GJrqDp5LCRm": "tailf-ncs:devices",
+                    "variable_workflow_018YREBRKPBC062ly10rNb28FfjVjpJysD3": "c0",
+                    "variable_workflow_018ZF5U2MBCSG3B9pdcTRb3TE3I70ILf8YA": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_018YP1XRAWS9C76KIFbLm2QGZNi9SbDNXLV"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHV3IPATO4CdpOjMIGuoMNIYHtctpzy",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHV3X62FK6FtFOTo503g3MM8QGDco53",
+                "name": "Manage  Device Mpls",
+                "title": "Manage  Device Mpls",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Mpls",
+                  "input": {
+                    "variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY": "c0",
+                    "variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu": "tailf-ncs:devices",
+                    "variable_workflow_0190H00Z7J6V03vDO8Evl1mBnDAlRLp2TdP": "VIEW",
+                    "variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM": false
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHV4II8D84tbpP0kNp32J4pBXK3YHjO",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHV4VYHMG377I8IE9gGV9sOeHPsDqPR",
+                "name": "Manage  Device Policy-Map",
+                "title": "Manage  Device Policy-Map",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Policy-Map",
+                  "input": {
+                    "variable_workflow_019094V8D0PNW1XtHUWsyGtTZvv1cgThg0o": "tailf-ncs:devices",
+                    "variable_workflow_019094V8D0UR877XFfNVLnwxjNF2C9bbKbA": "c0",
+                    "variable_workflow_019094V8D0ZJG36vIxUy0RHLcLo70RjLWxq": "VIEW",
+                    "variable_workflow_01909GPA0ZAA00Y3KjFRD95aYtOuulCWCyW": "map1",
+                    "variable_workflow_01909H4BBV7G40fQo87MHJsjJNcbNMBMVtL": "c0",
+                    "variable_workflow_01909I5FFQX7C7jJ7wiYg2SewdyRyNUPvcx": 500,
+                    "variable_workflow_01909IMC7TUK81m7KyO5dpshhvt18uJRyhc": 100,
+                    "variable_workflow_01909K0MCXK683LnqAGFhSy4ObFERc0oeoL": 1
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_019094UPTXL2C4ZGvsulMI0eSg1Zp2jafzD"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHV5F8O204WEIvs6VXhAnBEaTUFCzkG",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHV5WBXO47OV3eMOlo9VLfR1O8q7UTp",
+                "name": "Manage  Device Router",
+                "title": "Manage  Device Router",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Router",
+                  "input": {
+                    "variable_workflow_0190HFPMJNLXK2g5vWYIFZAa9rxpbGlm2wR": "c0",
+                    "variable_workflow_0190HFPMJNPK40Yn2D0Fih0KLMrFSFUEtN0": "tailf-ncs:devices",
+                    "variable_workflow_0190HFPMJNRES4rl070M91VZxPbaEUDNWAB": "VIEW",
+                    "variable_workflow_0190HMUY2612G3qY3lCqwxGTbJyTiN0TgHS": "10.10.10.1",
+                    "variable_workflow_0190HN0EW91YK4CU5pmg4F7kP13YsLFWjOX": "255.255.255.251",
+                    "variable_workflow_0190HOFPTC09O2oivYRODlZdXY8bQcuqTBt": "1.2.3.4",
+                    "variable_workflow_0190HP2RJSYWG3CFyrOr9OdKjjqHJPK1q8Z": 2,
+                    "variable_workflow_0190HPPEJ28R84tw8MRiMIdgRn2AXzb3GAR": 3,
+                    "variable_workflow_0190HQAGL1G3K2E8CLsi0h3FD5XPEFpWCU7": 300,
+                    "variable_workflow_0190I2268Z5545WFYYzvlCoUkIhzeM67dmd": "2.3.4.5",
+                    "variable_workflow_0190I2HW3KGVG3OyCEJDbwZHtXUgcJLAoEk": "1"
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190HFPASPK1O4VQhHgOdYrQWmWxpsvOTYL"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195IHV6KLR5K3e0xvvpj8Kd8QEWZph68uq",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Parallel Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195IHV70APYS2JzCzRjYxMG07IRFiKhi9Y",
+                "name": "Manage  Device Spanning-Tree",
+                "title": "Manage  Device Spanning-Tree",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Manage  Device Spanning-Tree",
+                  "input": {
+                    "variable_workflow_0190EY755KM2G3XzPGSZXSH78xCLmxGJo6F": "c0",
+                    "variable_workflow_0190EY755KZ9G7La8IX5rOGlPJP6WXqwAlr": "tailf-ncs:devices",
+                    "variable_workflow_0190EY755L1YO2AWL1DOIpApqCpJDXN5QwB": "VIEW",
+                    "variable_workflow_0190F05SSY9EC6SrccVLsh1i5alekBopAAJ": true
+                  },
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "execute_on_this_target": false,
+                    "no_target": false,
+                    "override_workflow_target": false,
+                    "target_type": "0195ED0KT16T833yP1277TBEfMqY76KSOg5",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_0190EY6EL76T44To3e3RajZ5SY1v95VfpW7"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_018YP1XRAWS9C76KIFbLm2QGZNi9SbDNXLV",
+    "definition_workflow_0190HFPASPK1O4VQhHgOdYrQWmWxpsvOTYL",
+    "definition_workflow_019094UPTXL2C4ZGvsulMI0eSg1Zp2jafzD",
+    "definition_workflow_018ZFC2122JGC6IaaIkbLs85QeYDuxD5Ki7",
+    "definition_workflow_01908EIMORWB42QH1w5ZLUPS73OEeeyVjQC",
+    "definition_workflow_0190EY6EL76T44To3e3RajZ5SY1v95VfpW7",
+    "definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s"
+  ]
+}

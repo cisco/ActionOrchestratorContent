@@ -1,0 +1,289 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74",
+    "name": "Retrieve Node Information by Node Name",
+    "title": "Retrieve Node Information by Node Name",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Machine Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJUHjEyTKqNZIQ6MzzJKnCsPGNeLFk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Machine Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJsiw04pxCfiCZtRcbb8oI1V7eEZgI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Node Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpGbynXlWhWVwj20LhvdIrNineckOum",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Machine OS Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJvnkGIdkL6Z3rDuB7xv90uCW2X8tV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJkPCvo42vdq597aeQj4vi9xVVN3zB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJn2dtnMKXIDPLkTZ0PyRU4Y0aQDcu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Tier Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJqmKqYQjJk6XO7T5lbIrGDD2w46jv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "IP Address",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJxbIIHF224GZTFVzjh2RvrezkH8pK",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpGaeQixk9YfLC4xoSV7Q7VkLAVaJ7V",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "TierId",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJPrcbkbhMCcXbLAu8cgyS9NE9qfOx",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpJMClguPg5Hx5E3aNcA7uwwwFSWTIG",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Retrieve Node Information For The Given Node Name.",
+      "display_name": "Retrieve Node Information by Node Name",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gpCUIHw8BYj9niPpCcHZLscbVS08YHU",
+        "name": "HTTP Request",
+        "title": "Retrieve Node Information",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Retrieve Node Information",
+          "method": "GET",
+          "relative_url": "/rest/applications/$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.input.variable_workflow_01gpGaeQixk9YfLC4xoSV7Q7VkLAVaJ7V$/nodes/$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.input.variable_workflow_01gpGbynXlWhWVwj20LhvdIrNineckOum$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ",
+        "name": "XPath Query",
+        "title": "Read Node Information",
+        "type": "core.xpathquery",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Read Node Information",
+          "input_xml": "$activity.definition_activity_01gpCUIHw8BYj9niPpCcHZLscbVS08YHU.output.response_body$",
+          "xpath_queries": [
+            {
+              "xpath_query": "/nodes/node/id",
+              "xpath_query_name": "Id",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "/nodes/node/name",
+              "xpath_query_name": "Name",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "/nodes/node/type",
+              "xpath_query_name": "Type",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "/nodes/node/tierId",
+              "xpath_query_name": "Tier Id",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "/nodes/node/tierName",
+              "xpath_query_name": "Tier Name",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "/nodes/node/machineId",
+              "xpath_query_name": "MachineId",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "/nodes/node/machineName",
+              "xpath_query_name": "Machine Name",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "/nodes/node/machineOSType",
+              "xpath_query_name": "Machine OS Type",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "/nodes/node/ipAddresses/ipAddress",
+              "xpath_query_name": "Ip Address",
+              "xpath_query_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpIDBpIQvt2XZmBpF1S6vnDQueLhc0c",
+        "name": "Set Variables",
+        "title": "Set Node Information",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Node Information",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJkPCvo42vdq597aeQj4vi9xVVN3zB$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.Id$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJMClguPg5Hx5E3aNcA7uwwwFSWTIG$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.Name$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJn2dtnMKXIDPLkTZ0PyRU4Y0aQDcu$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.Type$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJPrcbkbhMCcXbLAu8cgyS9NE9qfOx$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.Tier Id$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJqmKqYQjJk6XO7T5lbIrGDD2w46jv$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.Tier Name$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJsiw04pxCfiCZtRcbb8oI1V7eEZgI$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.MachineId$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJUHjEyTKqNZIQ6MzzJKnCsPGNeLFk$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.Machine Name$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJvnkGIdkL6Z3rDuB7xv90uCW2X8tV$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.Machine OS Type$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gp04R8BY6IJLE7SDSEmKUKSed1fzG74.output.variable_workflow_01gpJxbIIHF224GZTFVzjh2RvrezkH8pK$",
+              "variable_value_new": "$activity.definition_activity_01gpICTOer9CM9YwmDDtnv9g5XAZ66OhQ.output.xpath_queries.Ip Address$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS",
+    "name": "Create Volume",
+    "title": "Create Volume",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "input",
+          "name": "Volume Size (GiB) ",
+          "type": "datatype.integer",
+          "description": "Enter Volumn Size (Eg: 10)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196A4LJD9ZWZ7mFzt1DX5ipPrwwIDADWNh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0194PKOKIFMHJ6R7ayKtdvEKu6g6CjXUUQc",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Availability Zone",
+          "type": "datatype.string",
+          "description": "Enter Availability Zone (Eg. zone1:host1)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0194PKOKIFR5W1yldZWXet97C2drjtEzc1u",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Volume Name",
+          "type": "datatype.string",
+          "description": "Enter Volume Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0194PKOKIFTEV5SU3JYj6VWs2t5i9aVXP8O",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Volume Description",
+          "type": "datatype.string",
+          "description": "Enter Volume Description",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0194PKOKIFX3B6UOrJyuWXfb9JEGSqCnnLD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Volume Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194PKOKIFYU45c2bfRhE8rrP0hAl7sKgpu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Volume Type",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0194PKOKIG1G34UFb4xW0dRyY2tOhuX5yTb",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Creates a Volume",
+      "display_name": "Create Volume",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0194PKONUCTIE4QEaVp7QSgwahqW9240Hcz",
+        "name": "HTTP Request",
+        "title": "Create Volume",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n    \"volume\": {\n        \"availability_zone\": \"$workflow.definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS.input.variable_workflow_0194PKOKIFR5W1yldZWXet97C2drjtEzc1u$\",\n        \"display_name\": \"$workflow.definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS.input.variable_workflow_0194PKOKIFTEV5SU3JYj6VWs2t5i9aVXP8O$\",\n        \"display_description\": \"$workflow.definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS.input.variable_workflow_0194PKOKIFX3B6UOrJyuWXfb9JEGSqCnnLD$\",\n        \"size\": $workflow.definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS.input.variable_workflow_0196A4LJD9ZWZ7mFzt1DX5ipPrwwIDADWNh$\n    }\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+              "value": "$workflow.definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS.input.variable_workflow_0194PKOKIFMHJ6R7ayKtdvEKu6g6CjXUUQc$"
+            }
+          ],
+          "display_name": "Create Volume",
+          "method": "POST",
+          "relative_url": "/os-volumes",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0194PKORI09B35UUFnNPZHhdE3FoE559IWb",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0194PKOU36MU16zw3s0JQTbALSXjQEaC4uV",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0194PKONUCTIE4QEaVp7QSgwahqW9240Hcz.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0194PKOYM92CD6zvVwwNUEOo7DIZdJkbcC3",
+                "name": "JSONPath Query",
+                "title": "Read Volume Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Volume Details",
+                  "input_json": "$activity.definition_activity_0194PKONUCTIE4QEaVp7QSgwahqW9240Hcz.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.volume..id",
+                      "jsonpath_query_name": "Volume Id",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.volume..volumeType",
+                      "jsonpath_query_name": "Volume Type",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0194PKP1X0S3F3uErF8kW8C3HokLoHGWvY3",
+                "name": "Condition Block",
+                "title": "Evaluate Condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate Condition"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0194PKP4MGB300LE7yfVyd3tJF4Q9fPjb7M",
+                    "name": "Condition Branch",
+                    "title": "If Id Found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0194PKOYM92CD6zvVwwNUEOo7DIZdJkbcC3.output.jsonpath_queries.Volume Id$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Id Found"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0194PKP8KHTTI0kHRAXfJYH0kq83BoTbPKi",
+                        "name": "Set Variables",
+                        "title": "Set Volume Details",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Volume Details",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS.output.variable_workflow_0194PKOKIFYU45c2bfRhE8rrP0hAl7sKgpu$",
+                              "variable_value_new": "$activity.definition_activity_0194PKOYM92CD6zvVwwNUEOo7DIZdJkbcC3.output.jsonpath_queries.Volume Id$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS.output.variable_workflow_0194PKOKIG1G34UFb4xW0dRyY2tOhuX5yTb$",
+                              "variable_value_new": "$activity.definition_activity_0194PKOYM92CD6zvVwwNUEOo7DIZdJkbcC3.output.jsonpath_queries.Volume Type$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0194PKPE5CLA22Jq4scerWdTjmhibO4IPlA",
+                    "name": "Condition Branch",
+                    "title": "If Id Not Found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0194PKOYM92CD6zvVwwNUEOo7DIZdJkbcC3.output.jsonpath_queries.Volume Id$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Id Not Found"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0194PKPJNBST21Ty1tVEnJ9ncWGsXKC3GA5",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to set variable for id"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0194PKPRJ84S33pUATOBG3eRVcbfp6QLk6T",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0194PKONUCTIE4QEaVp7QSgwahqW9240Hcz.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0194PKPUDRDZV6ukNscEFY55ffLfPSJHXjc",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Create a Volume: $workflow.definition_workflow_0194PKO66JKH714CDK2bNN2zv3uzV9551mS.input.variable_workflow_0194PKOKIFTEV5SU3JYj6VWs2t5i9aVXP8O$\n\nError Message:\n$activity.definition_activity_0194PKONUCTIE4QEaVp7QSgwahqW9240Hcz.output.response_body$\n\nStatus Message:\n$activity.definition_activity_0194PKONUCTIE4QEaVp7QSgwahqW9240Hcz.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C": {
+      "unique_name": "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "Openstack Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

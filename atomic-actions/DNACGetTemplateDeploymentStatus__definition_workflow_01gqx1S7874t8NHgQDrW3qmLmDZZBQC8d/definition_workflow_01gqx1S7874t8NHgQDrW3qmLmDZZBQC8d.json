@@ -1,0 +1,339 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d",
+    "name": "Get Template Deployment Status",
+    "title": "Get Template Deployment Status",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Deployment Id",
+          "type": "datatype.string",
+          "description": "Deployment Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gqxYcqYxH2unP4oYJiZGhf8YDvnU0bv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Status",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gqy2XBOtx8rv09iHIduZDbxSo7GxNOM",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018JFT916WLV83CSoI1D8AWPnaeOEUd5cnh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Template Version",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gqyCNtGKQmQQP1vZFU35p5HL4NWHYGA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Template Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gqyaoEGJPj18rD8RmE4iFM5CmA38PsI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Deployment ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR0jphwby768J5R3lguj50EKcMJyUrV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gqYUnEm8uLDo8ld5hGd7uHSS6QA2skX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gqYw7KfoDEfP1qr43h4TmRrCfue1TbX",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic get template deployement status for a particular deployement Id",
+      "display_name": "Get Template Deployment Status",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gqxD6xW7NDM48A3ffoe0A28DsatzHpy",
+        "name": "HTTP Request",
+        "title": "Get Template Deployment Status",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d.input.variable_workflow_018JFT916WLV83CSoI1D8AWPnaeOEUd5cnh$"
+            }
+          ],
+          "display_name": "Get Template Deployment Status",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/template-programmer/template/deploy/status/$workflow.definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d.input.variable_workflow_01gqxYcqYxH2unP4oYJiZGhf8YDvnU0bv$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6",
+        "name": "JSONPath Query",
+        "title": "Read Template Deployment Status Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Template Deployment Status Details",
+          "input_json": "$activity.definition_activity_01gqxD6xW7NDM48A3ffoe0A28DsatzHpy.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.devices..deviceId",
+              "jsonpath_query_name": "Device Id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.devices..name",
+              "jsonpath_query_name": "Device Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.devices..status",
+              "jsonpath_query_name": "Status",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.templateName",
+              "jsonpath_query_name": "Template Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.templateVersion",
+              "jsonpath_query_name": "Template Version",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.deploymentId",
+              "jsonpath_query_name": "Deployment Id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gqYcdRNHCd30UkmLgnhVCL0hn8NI6LD",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gqYcfhQ3FQ0rX6VFMYHIqXzRNZoY6cj",
+            "name": "Condition Branch",
+            "title": "If Id found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6.output.jsonpath_queries.Deployment Id$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Id found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gqyrKGpSxB187AdzIVvIEGB1FPDJGnZ",
+                "name": "Set Variables",
+                "title": "Set Template Deployment Status",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Template Deployment Status",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d.output.variable_workflow_01gqYUnEm8uLDo8ld5hGd7uHSS6QA2skX$",
+                      "variable_value_new": "$activity.definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6.output.jsonpath_queries.Device Id$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d.output.variable_workflow_01gqYw7KfoDEfP1qr43h4TmRrCfue1TbX$",
+                      "variable_value_new": "$activity.definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6.output.jsonpath_queries.Device Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d.output.variable_workflow_01gqy2XBOtx8rv09iHIduZDbxSo7GxNOM$",
+                      "variable_value_new": "$activity.definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6.output.jsonpath_queries.Status$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d.output.variable_workflow_01gqyaoEGJPj18rD8RmE4iFM5CmA38PsI$",
+                      "variable_value_new": "$activity.definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6.output.jsonpath_queries.Template Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d.output.variable_workflow_01gqyCNtGKQmQQP1vZFU35p5HL4NWHYGA$",
+                      "variable_value_new": "$activity.definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6.output.jsonpath_queries.Template Version$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqx1S7874t8NHgQDrW3qmLmDZZBQC8d.output.variable_workflow_01gR0jphwby768J5R3lguj50EKcMJyUrV$",
+                      "variable_value_new": "$activity.definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6.output.jsonpath_queries.Deployment Id$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gqYcgpTueu5AnlThkiAD9GYwsCARe5F",
+            "name": "Condition Branch",
+            "title": "If Id not found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gqYb3lBKRTcaBOEFHruhVHyJfD1ivZ6.output.jsonpath_queries.Deployment Id$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Id not found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gqz3X0lMkIREhv0CSuyu55CMU0BDWhR",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Get Template Deployment Status"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

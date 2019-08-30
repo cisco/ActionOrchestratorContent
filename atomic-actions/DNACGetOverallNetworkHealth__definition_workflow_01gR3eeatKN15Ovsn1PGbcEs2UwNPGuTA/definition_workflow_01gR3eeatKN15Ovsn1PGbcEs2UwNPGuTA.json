@@ -1,0 +1,435 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA",
+    "name": "Get Overall Network Health",
+    "title": "Get Overall Network Health",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Fair Percentage",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRbC6alCzs1mscpmp6Q27e60vJhcwPq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "UnMonitored Devices",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRBSceI7X4X9YGquCSVqHsoznALsXPw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Timestamp",
+          "type": "datatype.string",
+          "description": "Epoch time(in milliseconds) when the Network health data is required",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR3mPX6YYbSRACTREwrGirhpcF0X3pj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Total Count",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRBxzfzVrx6eZlh0D3JLWuHJ6RTf9ZQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Latest Health Score",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRBkt8Lac0QmNh8W4INajFQmfQy2SDD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018YRPI42P46G1sMqdVwFJxaMiSQpu3srC9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Monitored Devices",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRBOiDgLp5tBY5U3hF2kQmeOv7CRf6r",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Bad Percentage",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRb9EKm6ee9WMH816Bp5FOnrOZweANC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Health Score",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRb0OyI1V9efebAQvKn2ADDM2FB83ik",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "MeasuredBy",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRBDy6Nk43g4IwIW6YUYGqtJGPnCgRi",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Category",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRBfZZ5ubwd9n6ftr8mSaVKUEcpLIfn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Good Percentage",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRb59UR07WfGETCIfW7gQiIG28nRrBr",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "continue_on_failure": false,
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Get Overall Network Health",
+      "display_name": "Get Overall Network Health",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "workflow_id": "01gqWDAinQUY3oHAegzfWCZHEFNgHIXDU"
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gR3QGYqwxfFgJP1iTULkoLk7ukJwaC4",
+        "name": "HTTP Request",
+        "title": "Get Network Health",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.input.variable_workflow_018YRPI42P46G1sMqdVwFJxaMiSQpu3srC9$"
+            },
+            {
+              "name": "__runsync",
+              "value": "true"
+            }
+          ],
+          "display_name": "Get Network Health",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/network-health",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ",
+        "name": "JSONPath Query",
+        "title": "Read Network Health",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Network Health",
+          "input_json": "$activity.definition_activity_01gR3QGYqwxfFgJP1iTULkoLk7ukJwaC4.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.response.measuredBy",
+              "jsonpath_query_name": "Measured By",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.latestHealthScore",
+              "jsonpath_query_name": "Latest Health Score",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.monitoredDevices",
+              "jsonpath_query_name": "Monitored Devices",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.unMonitoredDevices",
+              "jsonpath_query_name": "UnMonitored Devices",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.healthDistirubution.category",
+              "jsonpath_query_name": "Category",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.healthDistirubution.totalCount",
+              "jsonpath_query_name": "Total Count",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.healthDistirubution.healthScore",
+              "jsonpath_query_name": "Health Score",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.healthDistirubution.goodPercentage",
+              "jsonpath_query_name": "Good Percentage",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.healthDistirubution.badPercentage",
+              "jsonpath_query_name": "BadPercentage",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.healthDistirubution.fairPercentage",
+              "jsonpath_query_name": "Fair Percentage",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRgl3j7nMT0c8jr5Oyq7jODc9JUDPvu",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRgl776W3bwStqKykq1QaLyWyG4wGCI",
+            "name": "Condition Branch",
+            "title": "If Monitored Devices Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Health Score$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Monitored Devices Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRHL6Q8lKCGEvXT7GvFmndXVQtv84F8",
+                "name": "Set Variables",
+                "title": "Set Network Health",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Network Health",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRb9EKm6ee9WMH816Bp5FOnrOZweANC$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.BadPercentage$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRBfZZ5ubwd9n6ftr8mSaVKUEcpLIfn$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Category$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRbC6alCzs1mscpmp6Q27e60vJhcwPq$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Fair Percentage$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRb59UR07WfGETCIfW7gQiIG28nRrBr$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Good Percentage$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRb0OyI1V9efebAQvKn2ADDM2FB83ik$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Health Score$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRBkt8Lac0QmNh8W4INajFQmfQy2SDD$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Latest Health Score$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRBDy6Nk43g4IwIW6YUYGqtJGPnCgRi$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Measured By$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRBOiDgLp5tBY5U3hF2kQmeOv7CRf6r$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Monitored Devices$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRBxzfzVrx6eZlh0D3JLWuHJ6RTf9ZQ$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Total Count$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR3eeatKN15Ovsn1PGbcEs2UwNPGuTA.output.variable_workflow_01gRBSceI7X4X9YGquCSVqHsoznALsXPw$",
+                      "variable_value_new": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.UnMonitored Devices$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRgl9ohTGW7ipmTPFilERfGFYcM2uFA",
+            "name": "Condition Branch",
+            "title": "If Monitored Devices  not Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRazuLqfx0DpCdTpe4hMo2guS2tdFnQ.output.jsonpath_queries.Health Score$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Monitored Devices  not Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRiWEyfjWl6mBMaeFVHwRIntNt20Mww",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get Overall Network Health"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

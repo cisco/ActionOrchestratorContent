@@ -1,0 +1,280 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gqwiZpyo58DV6SFoFOhI5H39MMv8ziU",
+    "name": "Get Module Info By Id",
+    "title": "Get Module Info By Id",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Module Serial Number",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR9WDgdPz6R4AIGLthuiHiT9tQXeL1C",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Module Part Number",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR9Zygumi8G2xHs3QVsEEyQPzBvLosP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Module Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR9pzJrdyzvV1VRyd6IynkaU5DUilwk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Module Type",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR9sDqtxJSUG7FwDIvRG74MIjy76LlA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018IKBRV60AUS1VCE7HFq18EEPjXQkU2rII",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Device Id",
+          "type": "datatype.string",
+          "description": "Device Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gqwwvMJFa7PwWx3yjSfBJOPjwgz5paF",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow fetches module by id",
+      "display_name": "Get Module Info By Id",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gqws5ies85pxknfaRmWNisvkh4rfvWP",
+        "name": "HTTP Request",
+        "title": "Get Module Info by Id",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Auth-Token",
+              "value": "$workflow.definition_workflow_01gqwiZpyo58DV6SFoFOhI5H39MMv8ziU.input.variable_workflow_018IKBRV60AUS1VCE7HFq18EEPjXQkU2rII$"
+            }
+          ],
+          "display_name": "Get Module Info by Id",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/network-device/module/$workflow.definition_workflow_01gqwiZpyo58DV6SFoFOhI5H39MMv8ziU.input.variable_workflow_01gqwwvMJFa7PwWx3yjSfBJOPjwgz5paF$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gR90cpmcJ6TOzpYJb6C69UWvIyYMAO3",
+        "name": "JSONPath Query",
+        "title": "Read Module Info",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Module Info",
+          "input_json": "$activity.definition_activity_01gqws5ies85pxknfaRmWNisvkh4rfvWP.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.response.name",
+              "jsonpath_query_name": "Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.serialNumber",
+              "jsonpath_query_name": "Serial Number",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.vendorEquipmentType",
+              "jsonpath_query_name": "Module Type",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.partNumber",
+              "jsonpath_query_name": "Part Number",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRA4Pi66ID0BQPX4NrU8tEgNpJ3MdX2",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRA4TVLcVQq6WkYRac5HAqs1y3EA0XX",
+            "name": "Condition Branch",
+            "title": "If Name Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gR90cpmcJ6TOzpYJb6C69UWvIyYMAO3.output.jsonpath_queries.Name$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Name Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRADXD8bik4KvIrsceqVG3S2DQci0WD",
+                "name": "Set Variables",
+                "title": "Set Module Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Module Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqwiZpyo58DV6SFoFOhI5H39MMv8ziU.output.variable_workflow_01gR9pzJrdyzvV1VRyd6IynkaU5DUilwk$",
+                      "variable_value_new": "$activity.definition_activity_01gR90cpmcJ6TOzpYJb6C69UWvIyYMAO3.output.jsonpath_queries.Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqwiZpyo58DV6SFoFOhI5H39MMv8ziU.output.variable_workflow_01gR9Zygumi8G2xHs3QVsEEyQPzBvLosP$",
+                      "variable_value_new": "$activity.definition_activity_01gR90cpmcJ6TOzpYJb6C69UWvIyYMAO3.output.jsonpath_queries.Part Number$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqwiZpyo58DV6SFoFOhI5H39MMv8ziU.output.variable_workflow_01gR9WDgdPz6R4AIGLthuiHiT9tQXeL1C$",
+                      "variable_value_new": "$activity.definition_activity_01gR90cpmcJ6TOzpYJb6C69UWvIyYMAO3.output.jsonpath_queries.Serial Number$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gqwiZpyo58DV6SFoFOhI5H39MMv8ziU.output.variable_workflow_01gR9sDqtxJSUG7FwDIvRG74MIjy76LlA$",
+                      "variable_value_new": "$activity.definition_activity_01gR90cpmcJ6TOzpYJb6C69UWvIyYMAO3.output.jsonpath_queries.Module Type$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRA4wI3bVAAAwe41LIqLhGGyv9uGQVT",
+            "name": "Condition Branch",
+            "title": "If Name Not Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gR90cpmcJ6TOzpYJb6C69UWvIyYMAO3.output.jsonpath_queries.Name$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Name Not Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRACeBN32JBKsBvEm2QkfAnA9nyyh39",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get Module name"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

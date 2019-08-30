@@ -1,0 +1,463 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2",
+    "name": "Get Client Detail",
+    "title": "Get Client Detail",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Host Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gr2eFVJ4gcy8OPGDAlcQF6u5nKtC6sI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Client Detail Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRMocWD63zO2oNQXc0uBY794wrRBWeg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Host IPv4",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gr2h5hRHJSTZ3x4W1fEhhzi0VxWDBLq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Connection Status",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gr2DTWPazeJk5lENTy4n1QN4DDY7krN",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0190H8978ZZL027k8Nor2FlpXuyO0Ke4eLX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Host OS",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gr2fmvXPfriqDElaLcXfPHaffb3R5bu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Timestamp",
+          "type": "datatype.string",
+          "description": "Epoch time(in milliseconds) when the Client health data is required",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRMLVcQoZ9OgMSiP2CCrhPiQfa2eQWK",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "MAC Address",
+          "type": "datatype.string",
+          "description": "MAC Address of the client",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gRMN4eUX8u6Ox7V8dHflML80V1DymjX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gr2CaEYLHll0ALGCSKpJz4JFsFj7quD",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow fetches client details.",
+      "display_name": "Get Client Detail",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gRMfytiWX2Ssc1SvNY5Fsi3yFWQ5lwF",
+        "name": "HTTP Request",
+        "title": "Get Client Detail",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.input.variable_workflow_0190H8978ZZL027k8Nor2FlpXuyO0Ke4eLX$"
+            },
+            {
+              "name": "__runsync",
+              "value": "true"
+            }
+          ],
+          "display_name": "Get Client Detail",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/client-detail?timestamp=$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.input.variable_workflow_01gRMLVcQoZ9OgMSiP2CCrhPiQfa2eQWK$\u0026macAddress=$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.input.variable_workflow_01gRMN4eUX8u6Ox7V8dHflML80V1DymjX$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRMplApyvY83AO7WD2wIwi124yiT1Fe",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRMpOdNN5TGP6QD2V5P5qL67QUbkAvP",
+            "name": "Condition Branch",
+            "title": "If Status code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRMfytiWX2Ssc1SvNY5Fsi3yFWQ5lwF.output.status_code$",
+                "operator": "eq",
+                "right_operand": "200"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Status code = 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0190FUR94NZM04gRD8z3LSuNrkZva61YSjC",
+                "name": "Find String",
+                "title": "Search Get Client Details Response",
+                "type": "core.find_string",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Search Get Client Details Response",
+                  "searched_string": "\"connectionStatus\"",
+                  "skip_execution": false,
+                  "source": "$activity.definition_activity_01gRMfytiWX2Ssc1SvNY5Fsi3yFWQ5lwF.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0190FVP992A7C25bjEHnqKsRGXK3qpWIZHX",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0190FVPAA1H747lfZOzn7iJ1efAXKW3C8iE",
+                    "name": "Condition Branch",
+                    "title": "if matched is true",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190FUR94NZM04gRD8z3LSuNrkZva61YSjC.output.has_match$",
+                        "operator": "eq",
+                        "right_operand": true
+                      },
+                      "continue_on_failure": true,
+                      "display_name": "if matched is true",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gr1sYlVayB1fuCCZ7sZSAPxCe5LRfxo",
+                        "name": "JSONPath Query",
+                        "title": "Read Client Details Data",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "display_name": "Read Client Details Data",
+                          "input_json": "$activity.definition_activity_01gRMfytiWX2Ssc1SvNY5Fsi3yFWQ5lwF.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.detail.id",
+                              "jsonpath_query_name": "ID",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            },
+                            {
+                              "jsonpath_query": "$.detail.connectionStatus",
+                              "jsonpath_query_name": "Connection Status",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            },
+                            {
+                              "jsonpath_query": "$.detail.hostName",
+                              "jsonpath_query_name": "Host Name",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            },
+                            {
+                              "jsonpath_query": "$.detail.hostOs",
+                              "jsonpath_query_name": "Host OS",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            },
+                            {
+                              "jsonpath_query": "$.detail.hostIpV4",
+                              "jsonpath_query_name": "Host IPv4",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01gr2Icdt8Od41Kl1jmOG4NzlqOCXsoco",
+                        "name": "Set Variables",
+                        "title": "Set  Required Client Data",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set  Required Client Data",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.output.variable_workflow_01gr2CaEYLHll0ALGCSKpJz4JFsFj7quD$",
+                              "variable_value_new": "$activity.definition_activity_01gr1sYlVayB1fuCCZ7sZSAPxCe5LRfxo.output.jsonpath_queries.ID$ "
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.output.variable_workflow_01gr2DTWPazeJk5lENTy4n1QN4DDY7krN$",
+                              "variable_value_new": "$activity.definition_activity_01gr1sYlVayB1fuCCZ7sZSAPxCe5LRfxo.output.jsonpath_queries.Connection Status$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.output.variable_workflow_01gr2eFVJ4gcy8OPGDAlcQF6u5nKtC6sI$",
+                              "variable_value_new": "$activity.definition_activity_01gr1sYlVayB1fuCCZ7sZSAPxCe5LRfxo.output.jsonpath_queries.Host Name$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.output.variable_workflow_01gr2fmvXPfriqDElaLcXfPHaffb3R5bu$",
+                              "variable_value_new": "$activity.definition_activity_01gr1sYlVayB1fuCCZ7sZSAPxCe5LRfxo.output.jsonpath_queries.Host OS$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.output.variable_workflow_01gr2h5hRHJSTZ3x4W1fEhhzi0VxWDBLq$",
+                              "variable_value_new": "$activity.definition_activity_01gr1sYlVayB1fuCCZ7sZSAPxCe5LRfxo.output.jsonpath_queries.Host IPv4$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01gRMvEvSdVokO5N7YpVcxaP0wgh4XtjF",
+                        "name": "Set Variables",
+                        "title": "Set Client Detail Output",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "description": "Client Details Output.",
+                          "display_name": "Set Client Detail Output",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gRlr6notUXgkpGWOJSvZyvwRNP1XJN2.output.variable_workflow_01gRMocWD63zO2oNQXc0uBY794wrRBWeg$",
+                              "variable_value_new": "$activity.definition_activity_01gRMfytiWX2Ssc1SvNY5Fsi3yFWQ5lwF.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01gRmaoPAE1fXG688RTihbRCbmQgC6wsR",
+                        "name": "Completed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Completed"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0190FVPAM1OX46ZrJN3L0KkqcjMTzbnDfMR",
+                    "name": "Condition Branch",
+                    "title": "if matched is false",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190FUR94NZM04gRD8z3LSuNrkZva61YSjC.output.has_match$",
+                        "operator": "ne",
+                        "right_operand": true
+                      },
+                      "continue_on_failure": true,
+                      "display_name": "if matched is false",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190GJRXIBMZ44NGsUxYtD7Ec83EyOHdc81",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Error: $activity.definition_activity_01gRMfytiWX2Ssc1SvNY5Fsi3yFWQ5lwF.output.response_body$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRMppVd81wrcCKPTzgS9v8OdKAMA1dg",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRMfytiWX2Ssc1SvNY5Fsi3yFWQ5lwF.output.status_code$",
+                "operator": "ne",
+                "right_operand": "200"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Status code \u003c\u003e 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRMsEMhN8YkxDvt9S6620IeCXXVh9bs",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Error:\n$activity.definition_activity_01gRMfytiWX2Ssc1SvNY5Fsi3yFWQ5lwF.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

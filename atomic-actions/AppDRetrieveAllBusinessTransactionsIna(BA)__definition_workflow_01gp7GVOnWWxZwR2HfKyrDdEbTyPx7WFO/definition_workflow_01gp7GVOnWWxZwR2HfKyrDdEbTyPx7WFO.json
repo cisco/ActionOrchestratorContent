@@ -1,0 +1,250 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gp7GVOnWWxZwR2HfKyrDdEbTyPx7WFO",
+    "name": "Retrieve All Business Transactions in a (BA)",
+    "title": "Retrieve All Business Transactions in a (BA)",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpb8XHYeOCmQg1MjgAtXVzHO7xbzON3",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gpaZ4VqHWpaktKTfh19xgGx1wceRCba",
+        "properties": {
+          "scope": "output",
+          "name": "Retrieve All Business Transactions in a(BA) Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gpB4Kl6W3jydt9ijSqatAgCPxJg2dPJ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Retrieve All Business Transactions in a (BA) Based On Application Name.",
+      "display_name": "Retrieve All Business Transactions in a (BA)",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gp7PjA9pMU103dnKF2JvVa0C3xZVuOZ",
+        "name": "HTTP Request",
+        "title": "Retrieve All Business Transactions",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Retrieve All Business Transactions",
+          "method": "GET",
+          "relative_url": "/rest/applications/$workflow.definition_workflow_01gp7GVOnWWxZwR2HfKyrDdEbTyPx7WFO.input.variable_workflow_01gpb8XHYeOCmQg1MjgAtXVzHO7xbzON3$/business-transactions",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpa4sB2ih4c1M1xGKczWCaEHCNJFVjD",
+        "name": "Read Table from XML",
+        "title": "Read Retrieve All Business Transactions",
+        "type": "corejava.read_table_from_xml",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Retrieve All Business Transactions",
+          "input_xml": "$activity.definition_activity_01gp7PjA9pMU103dnKF2JvVa0C3xZVuOZ.output.response_body$",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "entryPointType",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "internalName",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "tierId",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "tierName",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "background",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "xmlpath_query": "/business-transactions/business-transaction"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpB6h5fBjQ4hdNTWIx0NNkfPQ1mSZqR",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_01gpa4sB2ih4c1M1xGKczWCaEHCNJFVjD.output.read_table_from_xml$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gpBa9BD6so1vaI6WFfwSeVSBLqJQNqC",
+            "name": "Add Row to Table",
+            "title": "Add Retrieve All Business Transactions Table",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Retrieve All Business Transactions Table",
+              "input_table": "$workflow.definition_workflow_01gp7GVOnWWxZwR2HfKyrDdEbTyPx7WFO.output.variable_workflow_01gpB4Kl6W3jydt9ijSqatAgCPxJg2dPJ$",
+              "row": [
+                {
+                  "key": "id",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpB6h5fBjQ4hdNTWIx0NNkfPQ1mSZqR.input.source_array[@].id$"
+                },
+                {
+                  "key": "name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpB6h5fBjQ4hdNTWIx0NNkfPQ1mSZqR.input.source_array[@].name$"
+                },
+                {
+                  "key": "entryPointType",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpB6h5fBjQ4hdNTWIx0NNkfPQ1mSZqR.input.source_array[@].entryPointType$"
+                },
+                {
+                  "key": "internalName",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpB6h5fBjQ4hdNTWIx0NNkfPQ1mSZqR.input.source_array[@].internalName$"
+                },
+                {
+                  "key": "tierId",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpB6h5fBjQ4hdNTWIx0NNkfPQ1mSZqR.input.source_array[@].tierId$"
+                },
+                {
+                  "key": "tierName",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpB6h5fBjQ4hdNTWIx0NNkfPQ1mSZqR.input.source_array[@].tierName$"
+                },
+                {
+                  "key": "background",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpB6h5fBjQ4hdNTWIx0NNkfPQ1mSZqR.input.source_array[@].background$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gpaZ4VqHWpaktKTfh19xgGx1wceRCba": {
+      "unique_name": "tabletype_01gpaZ4VqHWpaktKTfh19xgGx1wceRCba",
+      "data_type": "datatype.tabletype",
+      "display_name": "Retrieve All Business Transactions in a(BA) Table",
+      "description": "Retrieve All Business Transactions in a(BA) Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "tierId",
+          "title": "TierId",
+          "type": "string"
+        },
+        {
+          "name": "tierName",
+          "title": "TierName",
+          "type": "string"
+        },
+        {
+          "name": "background",
+          "title": "Background",
+          "type": "string"
+        },
+        {
+          "name": "entryPointType",
+          "title": "EntryPointType",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "string"
+        },
+        {
+          "name": "internalName",
+          "title": "InternalName",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

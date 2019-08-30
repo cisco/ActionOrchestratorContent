@@ -1,0 +1,163 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gp3AHaQTG8uiKRdy132katMplIoB0da",
+    "name": "Retrieve All Business Applications",
+    "title": "Retrieve All Business Applications",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01gp4LYptQyhUEfYRT8enlE1ourfe934c",
+        "properties": {
+          "scope": "output",
+          "name": "Retrieve All Business Applications Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gp4NL7LSv8COjDEZjQymdU1VLLmB1mQ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Retrieve All Business Applications.",
+      "display_name": "Retrieve All Business Applications",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gp3B5dndXV1TmTIMbBWPa8rRS7CGT4A",
+        "name": "HTTP Request",
+        "title": "Retrieve All Business Applications",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Retrieve All Business Applications",
+          "method": "GET",
+          "relative_url": "/rest/applications",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gp3ROfuIJnAiiOgMGSRCJQG3lkht2VJ",
+        "name": "Read Table from XML",
+        "title": "Read Retrieve All Business Applications",
+        "type": "corejava.read_table_from_xml",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Retrieve All Business Applications",
+          "input_xml": "$activity.definition_activity_01gp3B5dndXV1TmTIMbBWPa8rRS7CGT4A.output.response_body$",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "xmlpath_query": "/applications/application"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gp4eJ7xg5jmYffWS8sqYKPbBr0yfQcU",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_01gp3ROfuIJnAiiOgMGSRCJQG3lkht2VJ.output.read_table_from_xml$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gp4rDIm4zRUuZPncuURCqDde5fs7CYc",
+            "name": "Add Row to Table",
+            "title": "Add Retrieve All Business Applications Table",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Retrieve All Business Applications Table",
+              "input_table": "$workflow.definition_workflow_01gp3AHaQTG8uiKRdy132katMplIoB0da.output.variable_workflow_01gp4NL7LSv8COjDEZjQymdU1VLLmB1mQ$",
+              "row": [
+                {
+                  "key": "id",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gp4eJ7xg5jmYffWS8sqYKPbBr0yfQcU.input.source_array[@].id$"
+                },
+                {
+                  "key": "name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gp4eJ7xg5jmYffWS8sqYKPbBr0yfQcU.input.source_array[@].name$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gp4LYptQyhUEfYRT8enlE1ourfe934c": {
+      "unique_name": "tabletype_01gp4LYptQyhUEfYRT8enlE1ourfe934c",
+      "data_type": "datatype.tabletype",
+      "display_name": "Retrieve All Business Applications Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018AXZ3XTFLB55GWzoqY94NQZpk2cWdLXvJ",
+    "name": "Get Cluster Role Binding",
+    "title": "Get Cluster Role Binding",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AYFKTTZQ8A5WGTaNKrBfKqkWfRDYIZlS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Self Link",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AYFW87WEW0191ofNSASlzcAxpwG7j6j9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "UID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AYG3ZXXL7M0PBA5kiuWne48iZoAGTgH8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Resource Version",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AYGDU0BOFE10F6d4M16LW1ebGwX7lGVp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cluster Role Binding Name",
+          "type": "datatype.string",
+          "description": "Enter Cluster Role Binding Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018AY2AJW7YAC2NYPmgaoO5niL7Nnpqu6jo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018AY2NT4FLFE7afElr8ZJDuLrq5laxchdZ",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic will retrieves a particular Cluster Role Binding details.",
+      "display_name": "Get Cluster Role Binding",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018AY01BSWIT50SB0RI46NcjkMoz05PQ2p7",
+        "name": "HTTP Request",
+        "title": "Get Cluster Role Binding",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_018AXZ3XTFLB55GWzoqY94NQZpk2cWdLXvJ.input.variable_workflow_018AY2NT4FLFE7afElr8ZJDuLrq5laxchdZ$"
+            }
+          ],
+          "display_name": "Get Cluster Role Binding",
+          "method": "GET",
+          "relative_url": "/clusterrolebindings/$workflow.definition_workflow_018AXZ3XTFLB55GWzoqY94NQZpk2cWdLXvJ.input.variable_workflow_018AY2AJW7YAC2NYPmgaoO5niL7Nnpqu6jo$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018AY3CCJES363rylp4njxWOe5VxOwZyIkp",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018AY3CIQ6TKE4W7W3Qjgqnr3i1ZKOX1dTB",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AY01BSWIT50SB0RI46NcjkMoz05PQ2p7.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AYC16HI57Z4932kgC3MgASmfpHhj72fO",
+                "name": "JSONPath Query",
+                "title": "Read Cluster Role Binding Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Cluster Role Binding Details",
+                  "input_json": "$activity.definition_activity_018AY01BSWIT50SB0RI46NcjkMoz05PQ2p7.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.metadata.name",
+                      "jsonpath_query_name": "Name",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.selfLink",
+                      "jsonpath_query_name": "SelfLink",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.uid",
+                      "jsonpath_query_name": "UID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.resourceVersion",
+                      "jsonpath_query_name": "Resource Version",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018AYEWV8HRA76hcUrDRXFSVirAEYz6MHyG",
+                "name": "Set Variables",
+                "title": "Set Output Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Output Variables",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AXZ3XTFLB55GWzoqY94NQZpk2cWdLXvJ.output.variable_workflow_018AYFKTTZQ8A5WGTaNKrBfKqkWfRDYIZlS$",
+                      "variable_value_new": "$activity.definition_activity_018AYC16HI57Z4932kgC3MgASmfpHhj72fO.output.jsonpath_queries.Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AXZ3XTFLB55GWzoqY94NQZpk2cWdLXvJ.output.variable_workflow_018AYFW87WEW0191ofNSASlzcAxpwG7j6j9$",
+                      "variable_value_new": "$activity.definition_activity_018AYC16HI57Z4932kgC3MgASmfpHhj72fO.output.jsonpath_queries.SelfLink$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AXZ3XTFLB55GWzoqY94NQZpk2cWdLXvJ.output.variable_workflow_018AYG3ZXXL7M0PBA5kiuWne48iZoAGTgH8$",
+                      "variable_value_new": "$activity.definition_activity_018AYC16HI57Z4932kgC3MgASmfpHhj72fO.output.jsonpath_queries.UID$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AXZ3XTFLB55GWzoqY94NQZpk2cWdLXvJ.output.variable_workflow_018AYGDU0BOFE10F6d4M16LW1ebGwX7lGVp$",
+                      "variable_value_new": "$activity.definition_activity_018AYC16HI57Z4932kgC3MgASmfpHhj72fO.output.jsonpath_queries.Resource Version$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018AY3CMXAZI26ZPS9NGHpwu3rN4hJC1F07",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AY01BSWIT50SB0RI46NcjkMoz05PQ2p7.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AYJ63CQ0BL2qfzuU3HMSsa5EK4DCiNTI",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get Cluster Role Binding For The Given Cluster Role Binding Name: $workflow.definition_workflow_018AXZ3XTFLB55GWzoqY94NQZpk2cWdLXvJ.input.variable_workflow_018AY2AJW7YAC2NYPmgaoO5niL7Nnpqu6jo$\n\nErrorMessage:\n$activity.definition_activity_018AY01BSWIT50SB0RI46NcjkMoz05PQ2p7.output.response_body$\n\nStatus Message:\n$activity.definition_activity_018AY01BSWIT50SB0RI46NcjkMoz05PQ2p7.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

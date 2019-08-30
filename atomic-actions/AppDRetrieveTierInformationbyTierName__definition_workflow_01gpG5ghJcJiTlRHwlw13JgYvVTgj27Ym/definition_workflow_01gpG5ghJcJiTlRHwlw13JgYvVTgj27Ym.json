@@ -1,0 +1,190 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gpG5ghJcJiTlRHwlw13JgYvVTgj27Ym",
+    "name": "Retrieve Tier Information by Tier Name",
+    "title": "Retrieve Tier Information by Tier Name",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpgMxQSKVKqGqcaEc9dB10YjWye1C3P",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tier Name ",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpgPRRJVozWpzfc1u3k57FFZ3BV7Rxb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Number Of Nodes",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpNeios7I5mtSnKkHLnthGV9z4SCQP2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "TierName",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpVBo4p3N0q6ndRTAUiNKRHa3gZg838",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Tier Type ",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpNI7Lo3kNzrb53eNwqhJrvlZKHKFqU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Agent Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpNpw5H91OSLzsWpdgsWQOtmgERkiNs",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Retrieve Tier Information by Tier Name.",
+      "display_name": "Retrieve Tier Information by Tier Name",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gpgRer6f4Wna2FP4rvDeXmCXkB3beew",
+        "name": "HTTP Request",
+        "title": "Retrieve Tier Information by Tier Name",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Retrieve Tier Information by Tier Name",
+          "method": "GET",
+          "relative_url": "/rest/applications/$workflow.definition_workflow_01gpG5ghJcJiTlRHwlw13JgYvVTgj27Ym.input.variable_workflow_01gpgMxQSKVKqGqcaEc9dB10YjWye1C3P$/tiers/$workflow.definition_workflow_01gpG5ghJcJiTlRHwlw13JgYvVTgj27Ym.input.variable_workflow_01gpgPRRJVozWpzfc1u3k57FFZ3BV7Rxb$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gptXsR5UhEeUlIibpdYASh1bPNiVDu2",
+        "name": "XPath Query",
+        "title": "Read  Tier Information ",
+        "type": "core.xpathquery",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Read  Tier Information ",
+          "input_xml": "$activity.definition_activity_01gpgRer6f4Wna2FP4rvDeXmCXkB3beew.output.response_body$",
+          "xpath_queries": [
+            {
+              "xpath_query": "//name",
+              "xpath_query_name": "Tier Name",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "//type",
+              "xpath_query_name": "Tier Type",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "//agentType",
+              "xpath_query_name": "Agent Type",
+              "xpath_query_type": "string"
+            },
+            {
+              "xpath_query": "//numberOfNodes",
+              "xpath_query_name": "Number Of Nodes",
+              "xpath_query_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpUyABvT9bSNYHBT3N9GKiqhfZAtmiQ",
+        "name": "Set Variables",
+        "title": "Set Tier Information",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Tier Information",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpG5ghJcJiTlRHwlw13JgYvVTgj27Ym.output.variable_workflow_01gpNpw5H91OSLzsWpdgsWQOtmgERkiNs$",
+              "variable_value_new": "$activity.definition_activity_01gptXsR5UhEeUlIibpdYASh1bPNiVDu2.output.xpath_queries.Agent Type$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpG5ghJcJiTlRHwlw13JgYvVTgj27Ym.output.variable_workflow_01gpVBo4p3N0q6ndRTAUiNKRHa3gZg838$",
+              "variable_value_new": "$activity.definition_activity_01gptXsR5UhEeUlIibpdYASh1bPNiVDu2.output.xpath_queries.Tier Name$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpG5ghJcJiTlRHwlw13JgYvVTgj27Ym.output.variable_workflow_01gpNeios7I5mtSnKkHLnthGV9z4SCQP2$",
+              "variable_value_new": "$activity.definition_activity_01gptXsR5UhEeUlIibpdYASh1bPNiVDu2.output.xpath_queries.Number Of Nodes$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gpG5ghJcJiTlRHwlw13JgYvVTgj27Ym.output.variable_workflow_01gpNI7Lo3kNzrb53eNwqhJrvlZKHKFqU$",
+              "variable_value_new": "$activity.definition_activity_01gptXsR5UhEeUlIibpdYASh1bPNiVDu2.output.xpath_queries.Tier Type$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

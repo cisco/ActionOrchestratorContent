@@ -1,0 +1,185 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0151I6HLW4K8Q2fvqiNIeeRuIPqrVhzHZQj",
+    "name": "Get Delivery Address",
+    "title": "Get Delivery Address",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "User Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151I9DC9572Q4UMffNmPjRNZIopLLC0FeD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Delivery Address",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151IBSQ5E0QR6j88rD14ZPbCDv82mwKlBv",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Service Now",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This action returns Delivery Address",
+      "display_name": "Get Delivery Address",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0151IAFBTHQYF5OpHZN1FGPZpvUlXtPS9f3",
+        "name": "HTTP Request",
+        "title": "Get Delivery Address Request",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Get Delivery Address Request",
+          "method": "GET",
+          "relative_url": "/sn_sc/v1/servicecatalog/cart/delivery_address/$workflow.definition_workflow_0151I6HLW4K8Q2fvqiNIeeRuIPqrVhzHZQj.input.variable_workflow_0151I9DC9572Q4UMffNmPjRNZIopLLC0FeD$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151IEWX77GM8648TFKVAyfJ7ry6g0dfQ2Y",
+        "name": "Condition Block",
+        "title": "Check StatusCode",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check StatusCode"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0151IEX1SAVGJ7JYkT2ir2mzSkUVWIn62fW",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151IAFBTHQYF5OpHZN1FGPZpvUlXtPS9f3.output.status_code$",
+                "operator": "eq",
+                "right_operand": "200"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151ID617323E1C6i2klI1aCEwlv4xs1q00",
+                "name": "JSONPath Query",
+                "title": "Get Delivery Address",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Get Delivery Address",
+                  "input_json": "$activity.definition_activity_0151IAFBTHQYF5OpHZN1FGPZpvUlXtPS9f3.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.result",
+                      "jsonpath_query_name": "Result",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0151IJGKZOTI40oSLoz3suymx0IM2NuLb2R",
+                "name": "Set Variables",
+                "title": "Set Delivery Address",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Delivery Address",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0151I6HLW4K8Q2fvqiNIeeRuIPqrVhzHZQj.output.variable_workflow_0151IBSQ5E0QR6j88rD14ZPbCDv82mwKlBv$",
+                      "variable_value_new": "$activity.definition_activity_0151ID617323E1C6i2klI1aCEwlv4xs1q00.output.jsonpath_queries.Result$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0151IEX4KHSHX4Vb5M4peInjfsCpHJmIUeg",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151IAFBTHQYF5OpHZN1FGPZpvUlXtPS9f3.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151IKA3FAQYB4PVTiO8mVrKgRHgEMyudyU",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get Delivery Address.\nStatus Text: $activity.definition_activity_0151IAFBTHQYF5OpHZN1FGPZpvUlXtPS9f3.output.status_text$\nResponse Body : $activity.definition_activity_0151IAFBTHQYF5OpHZN1FGPZpvUlXtPS9f3.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

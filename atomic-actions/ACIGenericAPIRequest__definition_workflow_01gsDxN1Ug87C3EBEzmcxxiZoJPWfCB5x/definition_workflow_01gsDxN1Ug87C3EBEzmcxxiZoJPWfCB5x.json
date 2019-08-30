@@ -1,0 +1,258 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x",
+    "name": "Generic API Request",
+    "title": "Generic API Request",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_01gsdslJCwSZyhMcI4byCrpPtpAUomyce",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cookie",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gsIwExqfmUaoggu6uOyvBvabqZA3ZLV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "HTTP Method",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gsdK0zbTS4PCnARX0O9igJm1kjJuPeO",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "null",
+          "scope": "input",
+          "name": "Request Body (JSON)",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gsdloLMNSSYplMekO1An6ixWk3Lxp6i",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Relative URL",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gsdpOPuyoXxmcr2tUmx0nYehy4zQq7V",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco ACI",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Generic API Request",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gseycKB9kvL0sYQ9jtQwUvJda7PHG6y",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gseyFfQNVueALMd2nOmMdp6DcjlQaRw",
+            "name": "Condition Branch",
+            "title": "Body = null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdloLMNSSYplMekO1An6ixWk3Lxp6i$",
+                "operator": "eq",
+                "right_operand": "null"
+              },
+              "continue_on_failure": false,
+              "display_name": "Body = null"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gsdf9AAG6g5A2LSA5mGxJaZWKYY4Za4",
+                "name": "HTTP Request",
+                "title": "Execute API Request",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "cookie": [
+                    "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsIwExqfmUaoggu6uOyvBvabqZA3ZLV$"
+                  ],
+                  "custom_headers": [
+                    {
+                      "name": "APIC-challenge",
+                      "value": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdslJCwSZyhMcI4byCrpPtpAUomyce$"
+                    }
+                  ],
+                  "display_name": "Execute API Request",
+                  "method": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdK0zbTS4PCnARX0O9igJm1kjJuPeO$",
+                  "relative_url": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdpOPuyoXxmcr2tUmx0nYehy4zQq7V$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gsES4WMxqxEiZjsYyWom9HmHFtCyalV",
+                "name": "Set Variables",
+                "title": "Set Response",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Response",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$",
+                      "variable_value_new": "$activity.definition_activity_01gsdf9AAG6g5A2LSA5mGxJaZWKYY4Za4.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gseyG8NEE7JrZeLWQJJZVm8BDPUxvyE",
+            "name": "Condition Branch",
+            "title": "Body \u003c\u003e Null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdloLMNSSYplMekO1An6ixWk3Lxp6i$",
+                "operator": "ne",
+                "right_operand": "null"
+              },
+              "continue_on_failure": false,
+              "display_name": "Body \u003c\u003e Null"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gsF59dfGqfwbq1Ng024G4Kru4fBVpse",
+                "name": "HTTP Request",
+                "title": "Execute API Request",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdloLMNSSYplMekO1An6ixWk3Lxp6i$",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "cookie": [
+                    "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsIwExqfmUaoggu6uOyvBvabqZA3ZLV$"
+                  ],
+                  "custom_headers": [
+                    {
+                      "name": "APIC-challenge",
+                      "value": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdslJCwSZyhMcI4byCrpPtpAUomyce$"
+                    }
+                  ],
+                  "display_name": "Execute API Request",
+                  "method": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdK0zbTS4PCnARX0O9igJm1kjJuPeO$",
+                  "relative_url": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.input.variable_workflow_01gsdpOPuyoXxmcr2tUmx0nYehy4zQq7V$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gsF7uTOKXtVBxlFH6yFQ9IqNRXzG8iU",
+                "name": "Set Variables",
+                "title": "Set Response",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Response",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gsDxN1Ug87C3EBEzmcxxiZoJPWfCB5x.output.variable_workflow_01gsEqfeERFH1lYRlKhW81VRFgp6uC1Dp$",
+                      "variable_value_new": "$activity.definition_activity_01gsF59dfGqfwbq1Ng024G4Kru4fBVpse.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

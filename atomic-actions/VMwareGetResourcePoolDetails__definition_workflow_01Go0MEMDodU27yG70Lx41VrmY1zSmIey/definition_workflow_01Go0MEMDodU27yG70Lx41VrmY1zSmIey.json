@@ -1,0 +1,173 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01Go0MEMDodU27yG70Lx41VrmY1zSmIey",
+    "name": "Get Resource Pool Details",
+    "title": "Get Resource Pool Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ResourcePool ID",
+          "type": "datatype.string",
+          "description": "Enter ResourcePool ID",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01Go5BgJdAVFucGiRNiVtXwAE6vluj93H",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Name",
+          "type": "datatype.string",
+          "description": "Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01Go4KoLYKiIosOdlLBMxJ8ZtCK0KayTk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ResourcePool",
+          "type": "datatype.string",
+          "description": "ResourcePool",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01Go4nSTaLZmbGepnrRkHfdxBbDr6j31U",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Session Id",
+          "type": "datatype.secure_string",
+          "description": "Provide Session Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_019BIP7C9VVOC4WnjRaNqLmexC9WqlRK4tM",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow retrieves required resource pool details.",
+      "display_name": "Get Resource Pool Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01Go0uwnVuu0U2z7diFDAr0tb8m7JKPXf",
+        "name": "HTTP Request",
+        "title": "GetResourecPoolDetails",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$workflow.definition_workflow_01Go0MEMDodU27yG70Lx41VrmY1zSmIey.input.variable_workflow_019BIP7C9VVOC4WnjRaNqLmexC9WqlRK4tM$"
+            }
+          ],
+          "display_name": "GetResourecPoolDetails",
+          "method": "GET",
+          "relative_url": "/rest/vcenter/resource-pool/$workflow.definition_workflow_01Go0MEMDodU27yG70Lx41VrmY1zSmIey.input.variable_workflow_01Go5BgJdAVFucGiRNiVtXwAE6vluj93H$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01Go3J63a5FCDl6cckVbOQuuCMQNcJPpU",
+        "name": "JSONPath Query",
+        "title": "Read Resourec Pool Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Resourec Pool Details",
+          "input_json": "$activity.definition_activity_01Go0uwnVuu0U2z7diFDAr0tb8m7JKPXf.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..name",
+              "jsonpath_query_name": "Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..resource_pools",
+              "jsonpath_query_name": "ResourcePools",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151H9BVUCA5Y2q2Yxb2FDEg4Tgx7uFG7f2",
+        "name": "Set Variables",
+        "title": "Set Resource Pool Details Output",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Resource Pool Details Output",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01Go0MEMDodU27yG70Lx41VrmY1zSmIey.output.variable_workflow_01Go4KoLYKiIosOdlLBMxJ8ZtCK0KayTk$",
+              "variable_value_new": "$activity.definition_activity_01Go3J63a5FCDl6cckVbOQuuCMQNcJPpU.output.jsonpath_queries.Name$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01Go0MEMDodU27yG70Lx41VrmY1zSmIey.output.variable_workflow_01Go4nSTaLZmbGepnrRkHfdxBbDr6j31U$",
+              "variable_value_new": "$activity.definition_activity_01Go3J63a5FCDl6cckVbOQuuCMQNcJPpU.output.jsonpath_queries.ResourcePools$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

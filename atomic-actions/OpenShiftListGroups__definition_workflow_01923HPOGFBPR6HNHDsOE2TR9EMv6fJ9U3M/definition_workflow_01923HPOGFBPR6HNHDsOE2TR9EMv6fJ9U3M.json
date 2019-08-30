@@ -1,0 +1,447 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01923HPOGFBPR6HNHDsOE2TR9EMv6fJ9U3M",
+    "name": "List Groups",
+    "title": "List Groups",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01923HQHRVJ2V4foRzt6Zl3Y55M6xRQwaUZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_018BRI8H8FYE07lXMQ1VVW3BB6aNYK7HPGz",
+        "properties": {
+          "value": [
+            {
+              "column_data": {
+                "name": "testgroup1",
+                "resourceVersion": "1339832",
+                "selfLink": "/oapi/v1/groups/testgroup1",
+                "uid": "b028d5e0-9c95-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup1",
+                "resourceVersion": "1339832",
+                "selfLink": "/oapi/v1/groups/testgroup1",
+                "uid": "b028d5e0-9c95-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup2",
+                "resourceVersion": "1341919",
+                "selfLink": "/oapi/v1/groups/testgroup2",
+                "uid": "e4a3881c-9c96-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup3",
+                "resourceVersion": "1380088",
+                "selfLink": "/oapi/v1/groups/testgroup3",
+                "uid": "f0389aaa-9cac-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup4",
+                "resourceVersion": "1383125",
+                "selfLink": "/oapi/v1/groups/testgroup4",
+                "uid": "b16842c5-9cae-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup1",
+                "resourceVersion": "1339832",
+                "selfLink": "/oapi/v1/groups/testgroup1",
+                "uid": "b028d5e0-9c95-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup2",
+                "resourceVersion": "1341919",
+                "selfLink": "/oapi/v1/groups/testgroup2",
+                "uid": "e4a3881c-9c96-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup3",
+                "resourceVersion": "1380088",
+                "selfLink": "/oapi/v1/groups/testgroup3",
+                "uid": "f0389aaa-9cac-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup4",
+                "resourceVersion": "1383125",
+                "selfLink": "/oapi/v1/groups/testgroup4",
+                "uid": "b16842c5-9cae-11e9-a49e-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "testgroup4",
+                "resourceVersion": "1383125",
+                "selfLink": "/oapi/v1/groups/testgroup4",
+                "uid": "b16842c5-9cae-11e9-a49e-005056a75e02"
+              }
+            }
+          ],
+          "scope": "output",
+          "name": "Groups",
+          "type": "datatype.table",
+          "description": "Lists Groups",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01923HQHRVELA4QV5GKBFPynyeK96nMVAW0",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow retrieves all the groups in the openshift.",
+      "display_name": "List Groups",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01923HQPGMQEI0PmMVEkvf5emVGUo6rN2Ns",
+        "name": "HTTP Request",
+        "title": "List Groups",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_01923HPOGFBPR6HNHDsOE2TR9EMv6fJ9U3M.input.variable_workflow_01923HQHRVJ2V4foRzt6Zl3Y55M6xRQwaUZ$"
+            }
+          ],
+          "display_name": "List Groups",
+          "method": "GET",
+          "relative_url": "/groups",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01923HQYGJR4D6cMXsynVPP7YB1UY67djVm",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01923HR4GSN396Q4D90kmwF6fVCqrPmMlfn",
+            "name": "Condition Branch",
+            "title": "If Status code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01923HQPGMQEI0PmMVEkvf5emVGUo6rN2Ns.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code == 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01923HRHR7YMX5ayyxgpFZwZ4YeOH6Od5mg",
+                "name": "Read Table from JSON",
+                "title": "Read Group Details",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Group Details",
+                  "input_json": "$activity.definition_activity_01923HQPGMQEI0PmMVEkvf5emVGUo6rN2Ns.output.response_body$",
+                  "jsonpath_query": "$.items[*].metadata",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "selfLink",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "uid",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "resourceVersion",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01923HRS8MU1L3Od2v10gxyIXO8MIBUKPAi",
+                "name": "Condition Block",
+                "title": "Check for Data ",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check for Data "
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01923HRXCLPK20T2uNIcfiXGW92BvygGIuW",
+                    "name": "Condition Branch",
+                    "title": "If Data Exists",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01923HRHR7YMX5ayyxgpFZwZ4YeOH6Od5mg.output.read_table_from_json[0].name$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Data Exists"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01923HS3KGRBA0n2WAX0rNCw5e9FDOEpVcN",
+                        "name": "For Each",
+                        "title": "For Each",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "For Each",
+                          "source_array": "$activity.definition_activity_01923HRHR7YMX5ayyxgpFZwZ4YeOH6Od5mg.output.read_table_from_json$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_01923HSCAM2E20gugF0YoH3HWHoVsxjYaRa",
+                            "name": "Add Row to Table",
+                            "title": "List Groups Output",
+                            "type": "core.addrowtotable",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "continue_on_failure": false,
+                              "display_name": "List Groups Output",
+                              "input_table": "$workflow.definition_workflow_01923HPOGFBPR6HNHDsOE2TR9EMv6fJ9U3M.output.variable_workflow_01923HQHRVELA4QV5GKBFPynyeK96nMVAW0$",
+                              "row": [
+                                {
+                                  "key": "name",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_01923HS3KGRBA0n2WAX0rNCw5e9FDOEpVcN.input.source_array[@].name$"
+                                },
+                                {
+                                  "key": "selfLink",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_01923HS3KGRBA0n2WAX0rNCw5e9FDOEpVcN.input.source_array[@].selfLink$"
+                                },
+                                {
+                                  "key": "uid",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_01923HS3KGRBA0n2WAX0rNCw5e9FDOEpVcN.input.source_array[@].uid$"
+                                },
+                                {
+                                  "key": "resourceVersion",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_01923HS3KGRBA0n2WAX0rNCw5e9FDOEpVcN.input.source_array[@].resourceVersion$"
+                                }
+                              ],
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01923HSN03HYO0nIwgeq5D9QyAie7lWgxy2",
+                    "name": "Condition Branch",
+                    "title": "If No Data Exists",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01923HRHR7YMX5ayyxgpFZwZ4YeOH6Od5mg.output.read_table_from_json[0].name$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If No Data Exists",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01923HSYP4HYA0GjqU3cTztxO33BQMs7emX",
+                        "name": "Succeeded",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Succeeded",
+                          "result_message": "No Groups Found."
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01923HT8VW6HI5FSIBSxCCKMCCXNmjWNObh",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01923HQPGMQEI0PmMVEkvf5emVGUo6rN2Ns.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01923HTF74DUD0Wq9kbdQ3f0fssIiLm0Xjd",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to List Groups.\n\nError Message:\n$activity.definition_activity_01923HQPGMQEI0PmMVEkvf5emVGUo6rN2Ns.output.response_body$\n\nStatus Message:\n$activity.definition_activity_01923HQPGMQEI0PmMVEkvf5emVGUo6rN2Ns.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_018BRI8H8FYE07lXMQ1VVW3BB6aNYK7HPGz": {
+      "unique_name": "tabletype_018BRI8H8FYE07lXMQ1VVW3BB6aNYK7HPGz",
+      "data_type": "datatype.tabletype",
+      "display_name": "Openshift - List Groups Details",
+      "description": "Lists Groups",
+      "columns": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "resourceVersion",
+          "title": "Resource Version",
+          "type": "string"
+        },
+        {
+          "name": "selfLink",
+          "title": "Self Link",
+          "type": "string"
+        },
+        {
+          "name": "uid",
+          "title": "UID",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

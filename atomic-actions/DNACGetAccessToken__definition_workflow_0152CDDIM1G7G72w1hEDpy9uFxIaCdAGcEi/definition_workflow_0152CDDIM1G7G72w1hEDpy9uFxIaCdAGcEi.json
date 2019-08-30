@@ -1,0 +1,183 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0152CDDIM1G7G72w1hEDpy9uFxIaCdAGcEi",
+    "name": "Get Access Token",
+    "title": "Get Access Token",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "output",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0152CDE3YX5JE2JNcsvHyRVvv4qM3Nyb5fH",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "display_name": "Get Access Token",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0152CDECYISH16rzUJ24JFdkMpfDujPiGHi",
+        "name": "HTTP Request",
+        "title": "Get Auth Token",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "text/html",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Get Auth Token",
+          "method": "POST",
+          "relative_url": "/dna/system/api/v1/auth/token",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152CDEMBKXA95GzlkNMTKCQvi8vzKaXvKp",
+        "name": "JSONPath Query",
+        "title": "Read Auth Token",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Auth Token",
+          "input_json": "$activity.definition_activity_0152CDECYISH16rzUJ24JFdkMpfDujPiGHi.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.Token",
+              "jsonpath_query_name": "Token",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0152CDEVM27QL1c2chnRI2bTNDp4QPBWQOF",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0152CDF63JSKQ2OYS4aFj9f84a4jwR38d4z",
+            "name": "Condition Branch",
+            "title": "If Token \u003c\u003e null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0152CDEMBKXA95GzlkNMTKCQvi8vzKaXvKp.output.jsonpath_queries.Token$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Token \u003c\u003e null",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0152CDFEQ3BSI43eAtAiC07xRHz18ZRjaEp",
+                "name": "Set Variables",
+                "title": "Set Token",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Token",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0152CDDIM1G7G72w1hEDpy9uFxIaCdAGcEi.output.variable_workflow_0152CDE3YX5JE2JNcsvHyRVvv4qM3Nyb5fH$",
+                      "variable_value_new": "$activity.definition_activity_0152CDEMBKXA95GzlkNMTKCQvi8vzKaXvKp.output.jsonpath_queries.Token$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0152CDFNKOEM0229AuFMRx7Qc7Kq7hSxJPZ",
+            "name": "Condition Branch",
+            "title": "Is Token = null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0152CDEMBKXA95GzlkNMTKCQvi8vzKaXvKp.output.jsonpath_queries.Token$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "Is Token = null",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0152CDFVX1FTP1uOAocrvYqRojLaoBdnYqx",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Unable to get token from Cisco DNAC"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

@@ -1,0 +1,889 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap",
+    "name": "Manage User",
+    "title": "Manage User",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Update User Response Body",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196GDYB7Y8IQ1WcVgiXCZnOxnGNhMLEcp2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Name",
+          "type": "datatype.string",
+          "description": "Enter Name",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196CBNFIWCS54UE9bdWUzvIxzSpDr19wr8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Input Action Type",
+          "type": "datatype.string",
+          "description": "Enter Action Type (Add/Update/Delete)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0196CBNFIWQLE7B5IZCLg4p6ZLK35x6KpWh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Email",
+          "type": "datatype.string",
+          "description": "Enter Email",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196CBNFIWP075604W41X93xGvAorJbFLNn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Default Project Id",
+          "type": "datatype.string",
+          "description": "Enter Project Id",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196CBNFIW8AN4PnYbyjT51WrlLlQDOXpdj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "User ID Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196GPKYQ55FG2n6MZxGNFcPofK9Na5PB0c",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Password",
+          "type": "datatype.secure_string",
+          "description": "Enter Password for User.",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196CJY2RJS8U0Z63fpmZM8X76iuYYsw8kG",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Domain Id",
+          "type": "datatype.string",
+          "description": "Enter Domain ID",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196CBNFIWIDR6WSeWFGrrj8UbXsp0JLsBu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0196CBNFIWGKI09FQZXXKrbLa60XPg3XNc9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Domain ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196CBNFIWND94TXUW8WfzHaRSQGcFaDE7O",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Project ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196E61JMZ76A18ZkfrSKzzT2iREf0Ud203",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": true,
+          "scope": "output",
+          "name": "Enabled",
+          "type": "datatype.boolean",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196E5QYMNPE81Qw3icZEri4QxOmlJv6QcG",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Description",
+          "type": "datatype.string",
+          "description": "Enter Description",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196CBNFIWETA2Vjntuwk5kFD6lv7WIdUw7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Update User Request Body",
+          "type": "datatype.string",
+          "description": "Enter Request body to update user details.\n(Eg. \n        {\n    \"user\": {\n        \"default_project_id\": \"263fd9\",\n        \"enabled\": true,\n        \"options\": {\n            \"ignore_lockout_failure_attempts\": true\n        }\n    }\n}\n)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196H89TXMC9L3PsoLjIXhRSLf6ZTLPq5pc",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Email Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196EBG9BUGLK2ZXPhQT42MvCMsaOGm2fvd",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "User ID",
+          "type": "datatype.string",
+          "description": "Enter User Id to Delete User.",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0196CBNFIWLQX7YxnCTgcVWDTwwvUDyQlE8",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic Creates, Updates and Deletes User",
+      "display_name": "Manage User",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0196CBNNXNMYG5iMaKfhnLTn3PVRp1aga34",
+        "name": "To Lower",
+        "title": "To Lower",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "To Lower",
+          "skip_execution": false,
+          "source": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWQLE7B5IZCLg4p6ZLK35x6KpWh$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0196CBNU2TNF11aiXrLTNKyM8cKxHcApwwS",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0196CBNY1FZBI6A4xAcGPGXn7cwzvd8l2fQ",
+            "name": "Condition Branch",
+            "title": "Add User",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0196CBNNXNMYG5iMaKfhnLTn3PVRp1aga34.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "add"
+              },
+              "continue_on_failure": false,
+              "display_name": "Add User",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0196CBO6G6E0R5DSHlog2JZsWSvcowt6ruU",
+                "name": "HTTP Request",
+                "title": "Add Manage user",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"user\": {\n    \"default_project_id\": \"$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIW8AN4PnYbyjT51WrlLlQDOXpdj$\",\n    \"domain_id\": \"$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWIDR6WSeWFGrrj8UbXsp0JLsBu$\",\n    \"enabled\": true,\n    \"name\": \"$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWCS54UE9bdWUzvIxzSpDr19wr8$\",\n    \"password\": \"$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CJY2RJS8U0Z63fpmZM8X76iuYYsw8kG$\",\n    \"description\": \"$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWETA2Vjntuwk5kFD6lv7WIdUw7$\",\n    \"email\": \"$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWP075604W41X93xGvAorJbFLNn$\",\n    \"options\": {\n      \"ignore_password_expiry\": true\n    }\n  }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                      "value": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWGKI09FQZXXKrbLa60XPg3XNc9$"
+                    }
+                  ],
+                  "display_name": "Add Manage user",
+                  "method": "POST",
+                  "relative_url": "/users",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0196CBOBVFOAT5vsfrl5Efy1jlxilraO5XU",
+                "name": "Condition Block",
+                "title": "Evaluate Condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate Condition"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0196CBOFGMQ9S2qt9km3tpvK3SxLsIF2PwC",
+                    "name": "Condition Branch",
+                    "title": "If Status Code = 201",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0196CBO6G6E0R5DSHlog2JZsWSvcowt6ruU.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 201
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code = 201"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0196CBOOGF2I77a1mrXZh9OhvBjJTnCLk8k",
+                        "name": "JSONPath Query",
+                        "title": "Read Manage users",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": true,
+                          "display_name": "Read Manage users",
+                          "input_json": "$activity.definition_activity_0196CBO6G6E0R5DSHlog2JZsWSvcowt6ruU.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.user.domain_id",
+                              "jsonpath_query_name": "Domain id",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            },
+                            {
+                              "jsonpath_query": "$.user.default_project_id",
+                              "jsonpath_query_name": "Default Project ID",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            },
+                            {
+                              "jsonpath_query": "$.user.enabled",
+                              "jsonpath_query_name": "Enabled",
+                              "jsonpath_query_type": "boolean",
+                              "zdate_type_format": ""
+                            },
+                            {
+                              "jsonpath_query": "$..email",
+                              "jsonpath_query_name": "Email",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            },
+                            {
+                              "jsonpath_query": "$..id",
+                              "jsonpath_query_name": "User ID",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_0196CBOTAKPQK7b1ZDBKfVbpvzIHLqk9Q2x",
+                        "name": "Condition Block",
+                        "title": "Condition Block",
+                        "type": "logic.if_else",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Condition Block"
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_0196CBOWQTN4963HBKMxrSUaxT4qKhZAjfU",
+                            "name": "Condition Branch",
+                            "title": "If Domain Id Found",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_0196CBOOGF2I77a1mrXZh9OhvBjJTnCLk8k.output.jsonpath_queries.Domain id$",
+                                "operator": "ne",
+                                "right_operand": ""
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "If Domain Id Found",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_0196CBPDL8VLF2TBXWBlJGiT4yu57MqrtsK",
+                                "name": "Set Variables",
+                                "title": "Set User Details",
+                                "type": "core.set_multiple_variables",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "Set User Details",
+                                  "skip_execution": false,
+                                  "variables_to_update": [
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.output.variable_workflow_0196CBNFIWND94TXUW8WfzHaRSQGcFaDE7O$",
+                                      "variable_value_new": "$activity.definition_activity_0196CBOOGF2I77a1mrXZh9OhvBjJTnCLk8k.output.jsonpath_queries.Domain id$"
+                                    },
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.output.variable_workflow_0196E61JMZ76A18ZkfrSKzzT2iREf0Ud203$",
+                                      "variable_value_new": "$activity.definition_activity_0196CBOOGF2I77a1mrXZh9OhvBjJTnCLk8k.output.jsonpath_queries.Default Project ID$"
+                                    },
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.output.variable_workflow_0196E5QYMNPE81Qw3icZEri4QxOmlJv6QcG$",
+                                      "variable_value_new": "$activity.definition_activity_0196CBOOGF2I77a1mrXZh9OhvBjJTnCLk8k.output.jsonpath_queries.Enabled$"
+                                    },
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.output.variable_workflow_0196EBG9BUGLK2ZXPhQT42MvCMsaOGm2fvd$",
+                                      "variable_value_new": "$activity.definition_activity_0196CBOOGF2I77a1mrXZh9OhvBjJTnCLk8k.output.jsonpath_queries.Email$"
+                                    },
+                                    {
+                                      "variable_to_update": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.output.variable_workflow_0196GPKYQ55FG2n6MZxGNFcPofK9Na5PB0c$",
+                                      "variable_value_new": "$activity.definition_activity_0196CBOOGF2I77a1mrXZh9OhvBjJTnCLk8k.output.jsonpath_queries.User ID$"
+                                    }
+                                  ]
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          },
+                          {
+                            "unique_name": "definition_activity_0196CBPJUHGV91MtdEv10IalY37HJhpuVx1",
+                            "name": "Condition Branch",
+                            "title": "If Domain Id Not Found",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_0196CBOOGF2I77a1mrXZh9OhvBjJTnCLk8k.output.jsonpath_queries.Domain id$",
+                                "operator": "eq",
+                                "right_operand": ""
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "If Domain Id Not Found",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_0196CBPOTP7VU3RctKI59oRDqFSH21UlK7j",
+                                "name": "Failed",
+                                "title": "Failed",
+                                "type": "logic.completed",
+                                "base_type": "activity",
+                                "properties": {
+                                  "completion_type": "failed-completed",
+                                  "display_name": "Failed",
+                                  "result_message": "Failed to Read User Details."
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0196CBPS1KK217RgZmg94AyTX8J1YJat8fH",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 201",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0196CBO6G6E0R5DSHlog2JZsWSvcowt6ruU.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 201
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 201"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0196CBQ3YYC9L32udUOC0JwFYagR2lc5TOY",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed  to Add User: $workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWCS54UE9bdWUzvIxzSpDr19wr8$\n\nError Message :\n$activity.definition_activity_0196CBO6G6E0R5DSHlog2JZsWSvcowt6ruU.output.response_body$\n\nStatus Message: \n$activity.definition_activity_0196CBO6G6E0R5DSHlog2JZsWSvcowt6ruU.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0196CBQ8MXTK84ZU2HQkQkyet7XR3lnO3Tp",
+            "name": "Condition Branch",
+            "title": "Update User",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0196CBNNXNMYG5iMaKfhnLTn3PVRp1aga34.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "update"
+              },
+              "continue_on_failure": false,
+              "display_name": "Update User",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0196CBQMDPO0K74ol7Pa6rCu4VZISHICm2Q",
+                "name": "HTTP Request",
+                "title": "Update User",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196H89TXMC9L3PsoLjIXhRSLf6ZTLPq5pc$",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "cookie": [
+                    ""
+                  ],
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                      "value": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWGKI09FQZXXKrbLa60XPg3XNc9$"
+                    }
+                  ],
+                  "display_name": "Update User",
+                  "method": "PATCH",
+                  "relative_url": "/users/$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWLQX7YxnCTgcVWDTwwvUDyQlE8$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0196CBQWIK2RD3l15eQ6BzcxKj7iuY2VRQv",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0196CBR0YHKTM4TsR9dvgTm2anPs8ugZI9w",
+                    "name": "Condition Branch",
+                    "title": "If Status Code == 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0196CBQMDPO0K74ol7Pa6rCu4VZISHICm2Q.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code == 200",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0196GD3DHHN622767BvlOzfMlpfGcSyt0VV",
+                        "name": "Set Variables",
+                        "title": "Set Update User Response",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Update User Response",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.output.variable_workflow_0196GDYB7Y8IQ1WcVgiXCZnOxnGNhMLEcp2$",
+                              "variable_value_new": "$activity.definition_activity_0196CBQMDPO0K74ol7Pa6rCu4VZISHICm2Q.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_0196CBR7G3O217GipCEV0r8h5RckDKwJ7hx",
+                        "name": "Completed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Completed"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0196CBRC8XX3L7IV1TeGk7BponibTmzpQVm",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0196CBQMDPO0K74ol7Pa6rCu4VZISHICm2Q.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 200",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0196CBRFTQ52J3heTdRz4rm5QLzxf2YChZr",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to Update User: $workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWLQX7YxnCTgcVWDTwwvUDyQlE8$\n\nError Message:\n$activity.definition_activity_0196CBQMDPO0K74ol7Pa6rCu4VZISHICm2Q.output.response_body$\n\nStatus Message:\n$activity.definition_activity_0196CBQMDPO0K74ol7Pa6rCu4VZISHICm2Q.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0196CBRK1CB951nII4vfjvZOhFM6IheW8gm",
+            "name": "Condition Branch",
+            "title": "Delete User",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0196CBNNXNMYG5iMaKfhnLTn3PVRp1aga34.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "delete"
+              },
+              "continue_on_failure": false,
+              "display_name": "Delete User",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0196CBRQTNNW95MznFgJ9qziN6pC1iyIpri",
+                "name": "HTTP Request",
+                "title": "Delete User",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                      "value": "$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWGKI09FQZXXKrbLa60XPg3XNc9$"
+                    }
+                  ],
+                  "display_name": "Delete User",
+                  "method": "DELETE",
+                  "relative_url": "/users/$workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWLQX7YxnCTgcVWDTwwvUDyQlE8$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0196CBRYTVY324dV96xl7r9ZiVOjvoXWOub",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0196CBS28RMF572NLx4tsswrcuRW7soZJn4",
+                    "name": "Condition Branch",
+                    "title": "If Status Code = 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0196CBRQTNNW95MznFgJ9qziN6pC1iyIpri.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code = 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0196CBS8KS2TN59gksUIEfKz3tlnEEGqaHA",
+                        "name": "Succeeded",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Succeeded",
+                          "result_message": "User: $workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWLQX7YxnCTgcVWDTwwvUDyQlE8$ Deleted Successfully."
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0196CBSBYK1NH78fBh2DQNZU2Oqo9SRG7ea",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0196CBRQTNNW95MznFgJ9qziN6pC1iyIpri.output.status_text$",
+                        "operator": "ne",
+                        "right_operand": "204"
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 204"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0196CBSJND0754LTXHFGBgiWUoeX5g26sRq",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to Delete User: $workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWLQX7YxnCTgcVWDTwwvUDyQlE8$\n\nError Message:\n$activity.definition_activity_0196CBRQTNNW95MznFgJ9qziN6pC1iyIpri.output.response_body$\n\nStatus Message:\n$activity.definition_activity_0196CBRQTNNW95MznFgJ9qziN6pC1iyIpri.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0196HX5UYR5HM6LdxJ5FtXDw4r3w8dvuc2S",
+            "name": "Condition Branch",
+            "title": "If not Add/Update/Delete",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": {
+                  "left_operand": {
+                    "left_operand": "$activity.definition_activity_0196CBNNXNMYG5iMaKfhnLTn3PVRp1aga34.output.lowercase_text$",
+                    "operator": "ne",
+                    "right_operand": "add"
+                  },
+                  "operator": "or",
+                  "right_operand": {
+                    "left_operand": "$activity.definition_activity_0196CBNNXNMYG5iMaKfhnLTn3PVRp1aga34.output.lowercase_text$",
+                    "operator": "eq",
+                    "right_operand": "update"
+                  }
+                },
+                "operator": "or",
+                "right_operand": {
+                  "left_operand": "$activity.definition_activity_0196CBNNXNMYG5iMaKfhnLTn3PVRp1aga34.output.lowercase_text$",
+                  "operator": "ne",
+                  "right_operand": "delete"
+                }
+              },
+              "continue_on_failure": false,
+              "display_name": "If not Add/Update/Delete",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0196HY2BZAMTH1qDzAbg3KstcZbJrRw8bXm",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Invalid Action Type: $workflow.definition_workflow_0196CBMK0F9OO4Z72LR4onGvTZ76vpSTyap.input.variable_workflow_0196CBNFIWQLE7B5IZCLg4p6ZLK35x6KpWh$\n\n"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C": {
+      "unique_name": "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "Openstack Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

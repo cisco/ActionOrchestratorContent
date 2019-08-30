@@ -1,0 +1,208 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0190IKIQB4AIK5ap8ZTfaJ4KXAflCRh95nE",
+    "name": "READ Device Modules State",
+    "title": "READ Device Modules State",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "tailf-ncs:devices",
+          "scope": "input",
+          "name": "Devices-type",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0190IKJ6M3QM43XT8Dl5t11u6BZdijsDlnv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0190IKJ6M3WH80it9FKdkHhq0NChZHIagZV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Device-name",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0190IKJ6M3ZHK1M1rDA1oZJBrTMt15D2UCo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "application/yang-data+json",
+          "scope": "local",
+          "name": "application/vnd.yang.data+json",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0190IKJ6M3Y0S36sGB7J2cmDofGn0dhSZ5p",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco NSO",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "We cannot perform CREATE,UPDATE,DELETE operations here.Only allowed operation is READ",
+      "display_name": "READ Device Modules State",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0190IPJ2TSOJG4jiR1T21mXyBoue5ZFbrEF",
+        "name": "HTTP Request",
+        "title": "HTTP Request",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "content-type",
+              "value": "$workflow.definition_workflow_0190IKIQB4AIK5ap8ZTfaJ4KXAflCRh95nE.local.variable_workflow_0190IKJ6M3Y0S36sGB7J2cmDofGn0dhSZ5p$"
+            },
+            {
+              "name": "accept",
+              "value": "$workflow.definition_workflow_0190IKIQB4AIK5ap8ZTfaJ4KXAflCRh95nE.local.variable_workflow_0190IKJ6M3Y0S36sGB7J2cmDofGn0dhSZ5p$"
+            }
+          ],
+          "display_name": "HTTP Request",
+          "method": "GET",
+          "relative_url": "/restconf/data/$workflow.definition_workflow_0190IKIQB4AIK5ap8ZTfaJ4KXAflCRh95nE.input.variable_workflow_0190IKJ6M3QM43XT8Dl5t11u6BZdijsDlnv$/device=$workflow.definition_workflow_0190IKIQB4AIK5ap8ZTfaJ4KXAflCRh95nE.input.variable_workflow_0190IKJ6M3ZHK1M1rDA1oZJBrTMt15D2UCo$/config/ietf-yang-library:modules-state/",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0190IR5IKB60K6W2L7bZ7lMcXD6tin5fTn7",
+        "name": "Condition Block",
+        "title": "CHECK STATUS CODE",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "CHECK STATUS CODE",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0190IR5J8FGCK47JHd82h6U5sfD910pwraP",
+            "name": "Condition Branch",
+            "title": "IF STATUS CODE == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0190IPJ2TSOJG4jiR1T21mXyBoue5ZFbrEF.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "IF STATUS CODE == 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0190IPQCBSESS3thYEjDSA7JD0G5DlG5qnV",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0190IKIQB4AIK5ap8ZTfaJ4KXAflCRh95nE.output.variable_workflow_0190IKJ6M3WH80it9FKdkHhq0NChZHIagZV$",
+                      "variable_value_new": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0190IR5JJ5D6879LGIXnyfIKouLxj2sTS9Z",
+            "name": "Condition Branch",
+            "title": "IF STATUS CODE != 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0190IPJ2TSOJG4jiR1T21mXyBoue5ZFbrEF.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "IF STATUS CODE != 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0190IT6MFMT9K3a3MSAjVUO1cD3XRkoLAFg",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get response.\nError Code: $activity.definition_activity_0190IPJ2TSOJG4jiR1T21mXyBoue5ZFbrEF.output.response_body$\nStatus Msg: $activity.definition_activity_0190IPJ2TSOJG4jiR1T21mXyBoue5ZFbrEF.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

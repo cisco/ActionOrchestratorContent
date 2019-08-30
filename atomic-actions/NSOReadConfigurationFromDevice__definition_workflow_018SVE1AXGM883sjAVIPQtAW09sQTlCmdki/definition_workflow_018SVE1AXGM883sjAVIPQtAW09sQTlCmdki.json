@@ -1,0 +1,291 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018SVE1AXGM883sjAVIPQtAW09sQTlCmdki",
+    "name": "NSO-Read configuration from the device",
+    "title": "NSO-Read configuration from the device",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018UGP3NX579K6YTGDVSojRh1eq2LZw83Jy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "device-name",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018SVPF68CTAW0KdM1Gavdx6Xov40TWvLRS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_018UGOD3CZ71K6SOVPBI9ukiAJifDWrPd8A",
+        "properties": {
+          "scope": "output",
+          "name": "Device Config Details",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018UGOOR1P9AK4gC3qGdufTGaXCIAtIJZXa",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco NSO",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "NSO - Read configuration details from the chosen device",
+      "display_name": "NSO-Read configuration from the device",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018SVKYE6BM3W2OOoilf5pTxaArPnTG2jBt",
+        "name": "HTTP Request",
+        "title": "Get device config details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/yang-data+json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/vnd.yang.data+xml",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Get device config details",
+          "method": "GET",
+          "relative_url": "/restconf/data/tailf-ncs:devices/device=$workflow.definition_workflow_018SVE1AXGM883sjAVIPQtAW09sQTlCmdki.input.variable_workflow_018SVPF68CTAW0KdM1Gavdx6Xov40TWvLRS$/config/",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018UGQO1L9EA01RfBsX5XdNIyLIL1Sblxya",
+        "name": "Condition Block",
+        "title": "CHECK STATUS CODE",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "CHECK STATUS CODE",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018UGQO52L0ES6CYQXCtczI2dBdriQJk8ZG",
+            "name": "Condition Branch",
+            "title": "IF STATUS CODE == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018SVKYE6BM3W2OOoilf5pTxaArPnTG2jBt.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "IF STATUS CODE == 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018UGPAXEB2DC0dfLmLqRP17d9cccsUdEc0",
+                "name": "Read Table from JSON",
+                "title": "Read Device Config from JSON",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Device Config from JSON",
+                  "input_json": "$activity.definition_activity_018SVKYE6BM3W2OOoilf5pTxaArPnTG2jBt.output.response_body$",
+                  "jsonpath_query": "$..module",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "skip_execution": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "revision",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "namespace",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "conformance-type",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018UGTFKOFM2S4TKUuhzwQ3Pt3vCU5bB11V",
+                "name": "For Each",
+                "title": "For Each Module",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Module",
+                  "skip_execution": false,
+                  "source_array": "$activity.definition_activity_018UGPAXEB2DC0dfLmLqRP17d9cccsUdEc0.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_018UGTLMK82GW6UnF0Ewzc018ddWJcgnhD9",
+                    "name": "Add Row to Table",
+                    "title": "Add Row to Device Config Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "description": "Add Row to Device Config Table",
+                      "display_name": "Add Row to Device Config Table",
+                      "input_table": "$workflow.definition_workflow_018SVE1AXGM883sjAVIPQtAW09sQTlCmdki.output.variable_workflow_018UGOOR1P9AK4gC3qGdufTGaXCIAtIJZXa$",
+                      "row": [
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_018UGTFKOFM2S4TKUuhzwQ3Pt3vCU5bB11V.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "revision",
+                          "type": "string",
+                          "value": "$activity.definition_activity_018UGTFKOFM2S4TKUuhzwQ3Pt3vCU5bB11V.input.source_array[@].revision$"
+                        },
+                        {
+                          "key": "namespace",
+                          "type": "string",
+                          "value": "$activity.definition_activity_018UGTFKOFM2S4TKUuhzwQ3Pt3vCU5bB11V.input.source_array[@].namespace$"
+                        },
+                        {
+                          "key": "conformance-type",
+                          "type": "string",
+                          "value": "$activity.definition_activity_018UGTFKOFM2S4TKUuhzwQ3Pt3vCU5bB11V.input.source_array[@].conformance-type$"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018UGQO6CPF6G1Q0teCN8HKfxsL3IdsB9Dl",
+            "name": "Condition Branch",
+            "title": "IF STATUS CODE != 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018SVKYE6BM3W2OOoilf5pTxaArPnTG2jBt.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "IF STATUS CODE != 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018UH7YKL5HL44058p85NDFr8C0bzu4OTYh",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get customers\n\nStatus Text : $activity.definition_activity_018SVKYE6BM3W2OOoilf5pTxaArPnTG2jBt.output.status_text$\nResponse Body : $workflow.definition_workflow_018SVE1AXGM883sjAVIPQtAW09sQTlCmdki.output.variable_workflow_018UGP3NX579K6YTGDVSojRh1eq2LZw83Jy$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_018UGOD3CZ71K6SOVPBI9ukiAJifDWrPd8A": {
+      "unique_name": "tabletype_018UGOD3CZ71K6SOVPBI9ukiAJifDWrPd8A",
+      "data_type": "datatype.tabletype",
+      "display_name": "Device-Config",
+      "columns": [
+        {
+          "name": "namespace",
+          "title": "namespace",
+          "type": "string"
+        },
+        {
+          "name": "revision",
+          "title": "revision",
+          "type": "string"
+        },
+        {
+          "name": "conformance-type",
+          "title": "conformance-type",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

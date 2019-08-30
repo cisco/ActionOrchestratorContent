@@ -1,0 +1,316 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_016O6DX83L4DQ1mJCKoo1tfpp44F6aU5mZZ",
+    "name": "Retrieve Metric Data",
+    "title": "Retrieve Metric Data",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Time Range Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016O6DY2G0STK3Wv8yK2vsOmithbsisoe9h",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gpJQZnNtOBWURuFz0OKoEKmZ0WBzGgU",
+        "properties": {
+          "scope": "output",
+          "name": "Retrieve Metric Data Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_016O6DY2FZVHD0A2LbKIkRkaYgfgKabUbFo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Duration in Minutes",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016O6DY2G02GI7P8immqYd1pzGBDlf3kTOk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016O6DY2G077M6PHKryCcTxnObAx9wsCN7I",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Metric Path",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016O6DY2G0OV40it7cnXLis8rk4Ut33cSp1",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Retrieve Metric Data For The Given Application Name.",
+      "display_name": "Retrieve Metric Data",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_016O6DYC386G41uaqANAGxxUfSo9W5P1pt7",
+        "name": "HTTP Request",
+        "title": "Retrieve Metric Data",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Retrieve Metric Data",
+          "method": "GET",
+          "relative_url": "/rest/applications/$workflow.definition_workflow_016O6DX83L4DQ1mJCKoo1tfpp44F6aU5mZZ.input.variable_workflow_016O6DY2G077M6PHKryCcTxnObAx9wsCN7I$/metric-data?metric-path=$workflow.definition_workflow_016O6DX83L4DQ1mJCKoo1tfpp44F6aU5mZZ.input.variable_workflow_016O6DY2G0OV40it7cnXLis8rk4Ut33cSp1$\u0026time-range-type=$workflow.definition_workflow_016O6DX83L4DQ1mJCKoo1tfpp44F6aU5mZZ.input.variable_workflow_016O6DY2G0STK3Wv8yK2vsOmithbsisoe9h$\u0026duration-in-mins=$workflow.definition_workflow_016O6DX83L4DQ1mJCKoo1tfpp44F6aU5mZZ.input.variable_workflow_016O6DY2G02GI7P8immqYd1pzGBDlf3kTOk$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_016O6G6B69OK72fp3EHZleyaPMJFpbOKHL5",
+        "name": "Find String",
+        "title": "Check for metric data",
+        "type": "core.find_string",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check for metric data",
+          "searched_string": "\u003cmetric-datas/\u003e",
+          "source": "$activity.definition_activity_016O6DYC386G41uaqANAGxxUfSo9W5P1pt7.output.response_body$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_016O6G1T5WXTV0qC9In8kremAiStJut96Ik",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_016O6G1YA8NIC7YEE1eEpldHT70IoSZUR3i",
+            "name": "Condition Branch",
+            "title": "If Data Present",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016O6G6B69OK72fp3EHZleyaPMJFpbOKHL5.output.has_match$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false,
+              "display_name": "If Data Present"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016O6DYMMZ3CU49wHmIB8cKBeqFjVfr0JFw",
+                "name": "Read Table from XML",
+                "title": "Read Metric Data Details",
+                "type": "corejava.read_table_from_xml",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Metric Data Details",
+                  "input_xml": "$activity.definition_activity_016O6DYC386G41uaqANAGxxUfSo9W5P1pt7.output.response_body$",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "metricId",
+                      "column_type": "integer",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "metricPath",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "metricName",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "frequency",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ],
+                  "xmlpath_query": "//metric-data"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_016O6DYWVTF010wx8GPJzqmYthChnz0JYtx",
+                "name": "For Each",
+                "title": "For Each Workflow",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Workflow",
+                  "source_array": "$activity.definition_activity_016O6DYMMZ3CU49wHmIB8cKBeqFjVfr0JFw.output.read_table_from_xml$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_016O6DZA80EX27GyrSbRO5WkJN2zMmYDcMw",
+                    "name": "Add Row to Table",
+                    "title": "Add Metric Data Details",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Metric Data Details",
+                      "input_table": "$workflow.definition_workflow_016O6DX83L4DQ1mJCKoo1tfpp44F6aU5mZZ.output.variable_workflow_016O6DY2FZVHD0A2LbKIkRkaYgfgKabUbFo$",
+                      "row": [
+                        {
+                          "key": "frequency",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016O6DYWVTF010wx8GPJzqmYthChnz0JYtx.input.source_array[@].frequency$"
+                        },
+                        {
+                          "key": "metricId",
+                          "type": "integer",
+                          "value": "$activity.definition_activity_016O6DYWVTF010wx8GPJzqmYthChnz0JYtx.input.source_array[@].metricId$"
+                        },
+                        {
+                          "key": "metricName",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016O6DYWVTF010wx8GPJzqmYthChnz0JYtx.input.source_array[@].metricName$"
+                        },
+                        {
+                          "key": "metricPath",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016O6DYWVTF010wx8GPJzqmYthChnz0JYtx.input.source_array[@].metricPath$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_016O6G21ATY0Y3wA3lIvSYJcCSNJIy6RZNN",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016O6G6B69OK72fp3EHZleyaPMJFpbOKHL5.output.has_match$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016O6KEOC83GD1Wcl1SyCkuoNvn5zr6UcDu",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Completed"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gpJQZnNtOBWURuFz0OKoEKmZ0WBzGgU": {
+      "unique_name": "tabletype_01gpJQZnNtOBWURuFz0OKoEKmZ0WBzGgU",
+      "data_type": "datatype.tabletype",
+      "display_name": "Retrieve Metric Data Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "frequency",
+          "title": "Frequency",
+          "type": "string"
+        },
+        {
+          "name": "metricId",
+          "title": "Metric ID",
+          "type": "integer"
+        },
+        {
+          "name": "metricName",
+          "title": "Metric Name",
+          "type": "string"
+        },
+        {
+          "name": "metricPath",
+          "title": "Metric Path",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

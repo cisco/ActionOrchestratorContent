@@ -1,0 +1,287 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gMq1U9zErScevp372pQfQymEw8O11VD",
+    "name": "Get Device by Serial Number",
+    "title": "Get Device by Serial Number",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Device Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR8RUtamCX7xEkgEU6LtqBW343u0qmo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018CK6EO0A68G1ZvJhtIptlHmgoV3o3yJkb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Host Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR8VyqyvSm2b7BzXPu8QO0mMPbG2REr",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "MAC Adress",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR8xm6krs8YpARn3OsvkSEj7uecnI2Q",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Serial Number",
+          "type": "datatype.string",
+          "description": "Device serial number",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gMSoHfgpiPP7AODzRjp2KFiCEVEYZtR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ResponseBody",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR5FjkPm3FGLUXWfO8TVrqFPPhpIhYf",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic get device by serial number details",
+      "display_name": "Get Device by Serial Number",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gMq9t0hrN9bTbWfDOhuv2KuH1cp85Jz",
+        "name": "HTTP Request",
+        "title": "Get Device by Serial Number",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gMq1U9zErScevp372pQfQymEw8O11VD.input.variable_workflow_018CK6EO0A68G1ZvJhtIptlHmgoV3o3yJkb$"
+            }
+          ],
+          "display_name": "Get Device by Serial Number",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/network-device/serial-number/$workflow.definition_workflow_01gMq1U9zErScevp372pQfQymEw8O11VD.input.variable_workflow_01gMSoHfgpiPP7AODzRjp2KFiCEVEYZtR$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gMqoGN02jncGwZ3rjRgXamu2rIce9eq",
+        "name": "JSONPath Query",
+        "title": "Read Device Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Device Details",
+          "input_json": "$activity.definition_activity_01gMq9t0hrN9bTbWfDOhuv2KuH1cp85Jz.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.response.id",
+              "jsonpath_query_name": "ID",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.hostname",
+              "jsonpath_query_name": "Host Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": " $.response.macAddress",
+              "jsonpath_query_name": "MAC Address",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gR9eokLQnEyZlKAaviA5rD3XGaQArjf",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gR9eSmWGkqKjXKbmDOXbrbMUzTPMzq1",
+            "name": "Condition Branch",
+            "title": "If Id Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gMqoGN02jncGwZ3rjRgXamu2rIce9eq.output.jsonpath_queries.ID$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Id Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gR67ahB7Y8AeONSEiyyD7ZD0icKoL5W",
+                "name": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gMq1U9zErScevp372pQfQymEw8O11VD.output.variable_workflow_01gR8RUtamCX7xEkgEU6LtqBW343u0qmo$",
+                      "variable_value_new": "$activity.definition_activity_01gMqoGN02jncGwZ3rjRgXamu2rIce9eq.output.jsonpath_queries.ID$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gMq1U9zErScevp372pQfQymEw8O11VD.output.variable_workflow_01gR8VyqyvSm2b7BzXPu8QO0mMPbG2REr$",
+                      "variable_value_new": "$activity.definition_activity_01gMqoGN02jncGwZ3rjRgXamu2rIce9eq.output.jsonpath_queries.Host Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gMq1U9zErScevp372pQfQymEw8O11VD.output.variable_workflow_01gR8xm6krs8YpARn3OsvkSEj7uecnI2Q$",
+                      "variable_value_new": "$activity.definition_activity_01gMqoGN02jncGwZ3rjRgXamu2rIce9eq.output.jsonpath_queries.MAC Address$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gMq1U9zErScevp372pQfQymEw8O11VD.output.variable_workflow_01gR5FjkPm3FGLUXWfO8TVrqFPPhpIhYf$",
+                      "variable_value_new": "$activity.definition_activity_01gMq9t0hrN9bTbWfDOhuv2KuH1cp85Jz.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gR9etlaSUOgZOSuhaLxEbFciBrNJZSD",
+            "name": "Condition Branch",
+            "title": "If Id Not Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gMqoGN02jncGwZ3rjRgXamu2rIce9eq.output.jsonpath_queries.ID$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Id Not Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gR9Ykp9VPFVpGHitcS73594QEUJAgge",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Get Device by Serial Number"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

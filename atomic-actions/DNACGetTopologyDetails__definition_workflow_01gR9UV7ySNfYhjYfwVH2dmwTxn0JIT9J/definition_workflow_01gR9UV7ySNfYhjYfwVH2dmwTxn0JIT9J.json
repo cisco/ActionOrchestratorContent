@@ -1,0 +1,435 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gR9UV7ySNfYhjYfwVH2dmwTxn0JIT9J",
+    "name": "Get Topology Details",
+    "title": "Get Topology Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_018SQCZEZA5ZG5KzbPywnELCecET3Ih6DFD",
+        "properties": {
+          "scope": "output",
+          "name": "DNACTopologyDetails",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018SQDMWE92W857IoJSJ33LAMOfqbpsP8cz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018SSMYAQWI5S5EV41Yan6IYIIMFgZtuZoE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAfKAQ0sdlaUZvlGVG1jMqMB6G8DzA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Links",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAh25X01NEV0DKEDp6CLFzQGYrZnw8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "V Lan Id",
+          "type": "datatype.string",
+          "description": "Vlan Name for e.g Vlan1, Vlan23 etc",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gRAlsAejhlNs9KnFjmaDxGo4FGvb18M",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Nodes",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRAJPwaPw1nbX9NAE8utAQrfq2sW9B8",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow fetches topology details.",
+      "display_name": "Get Topology Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_018PCC6H2RMIK7UXBctp8QoQ5IddC2RH1FS",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gRA2k4255RlL5vjmaXwb3WWI2M53iZM",
+        "name": "HTTP Request",
+        "title": "Get Topology Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gR9UV7ySNfYhjYfwVH2dmwTxn0JIT9J.input.variable_workflow_018SSMYAQWI5S5EV41Yan6IYIIMFgZtuZoE$"
+            }
+          ],
+          "display_name": "Get Topology Details",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/topology/l2/$workflow.definition_workflow_01gR9UV7ySNfYhjYfwVH2dmwTxn0JIT9J.input.variable_workflow_01gRAlsAejhlNs9KnFjmaDxGo4FGvb18M$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRaAMsi739P182iI82PzWJOAlRYbgyx",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRaAOgPohbFLMTMElMMJjLb7POnNoOg",
+            "name": "Condition Branch",
+            "title": "If Status_Code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRA2k4255RlL5vjmaXwb3WWI2M53iZM.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": true,
+              "display_name": "If Status_Code == 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018SQKEK124RO3xuZyjH1BEGkfah9Rrd8do",
+                "name": "Read Table from JSON",
+                "title": "Read Topolgy Details",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "description": "Read Topolgy Details",
+                  "display_name": "Read Topolgy Details",
+                  "input_json": "$activity.definition_activity_01gRA2k4255RlL5vjmaXwb3WWI2M53iZM.output.response_body$",
+                  "jsonpath_query": "$.response.nodes",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "skip_execution": false,
+                  "table_columns": [
+                    {
+                      "column_name": "deviceType",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "label",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "ip",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "softwareVersion",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "nodeType",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "family",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "role",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018SQO9CLDCGK6yKCg59vb9dHqnCqUWPqHz",
+                "name": "For Each",
+                "title": "For Each Topology",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Topology",
+                  "skip_execution": false,
+                  "source_array": "$activity.definition_activity_018SQKEK124RO3xuZyjH1BEGkfah9Rrd8do.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_018SQJCQWRTS44iQrRuD7HRAU5BJx4H6dYx",
+                    "name": "Add Row to Table",
+                    "title": "Add Row to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Row to Table",
+                      "input_table": "$workflow.definition_workflow_01gR9UV7ySNfYhjYfwVH2dmwTxn0JIT9J.output.variable_workflow_018SQDMWE92W857IoJSJ33LAMOfqbpsP8cz$",
+                      "row": [
+                        {
+                          "key": "deviceType",
+                          "type": "string"
+                        },
+                        {
+                          "key": "label",
+                          "type": "string"
+                        },
+                        {
+                          "key": "ip",
+                          "type": "string"
+                        },
+                        {
+                          "key": "softwareVersion",
+                          "type": "string"
+                        },
+                        {
+                          "key": "nodeType",
+                          "type": "string"
+                        },
+                        {
+                          "key": "family",
+                          "type": "string"
+                        },
+                        {
+                          "key": "role",
+                          "type": "string"
+                        },
+                        {
+                          "key": "id",
+                          "type": "string"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRaAQ3u5otFvmblYybvGZKD6L7nl0ZG",
+            "name": "Condition Branch",
+            "title": "If Status_Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRA2k4255RlL5vjmaXwb3WWI2M53iZM.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": true,
+              "display_name": "If Status_Code \u003c\u003e 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRaGwhpqyRTlAwagVQZmQD4KifzkqUt",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Get Topology Details\nError Message; $activity.definition_activity_01gRA2k4255RlL5vjmaXwb3WWI2M53iZM.output.response_body$\nStatus Code: $activity.definition_activity_01gRA2k4255RlL5vjmaXwb3WWI2M53iZM.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_018PCC6H2RMIK7UXBctp8QoQ5IddC2RH1FS": {
+      "unique_name": "definition_target_018PCC6H2RMIK7UXBctp8QoQ5IddC2RH1FS",
+      "name": "DNAC_URL",
+      "title": "DNAC_URL",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_018PCBO8QITF81DyoKs62kXJEBMA3aIFsvf",
+        "disable_certificate_validation": true,
+        "display_name": "DNAC_URL",
+        "host": "10.122.6.51",
+        "no_runtime_user": false,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_018PCBO8QITF81DyoKs62kXJEBMA3aIFsvf": {
+      "unique_name": "definition_runtime_user_018PCBO8QITF81DyoKs62kXJEBMA3aIFsvf",
+      "name": "DNAC_Creds",
+      "title": "DNAC_Creds",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "DNAC_Creds"
+      }
+    }
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_018SQCZEZA5ZG5KzbPywnELCecET3Ih6DFD": {
+      "unique_name": "tabletype_018SQCZEZA5ZG5KzbPywnELCecET3Ih6DFD",
+      "data_type": "datatype.tabletype",
+      "display_name": "DNACTopologyDetailTable",
+      "columns": [
+        {
+          "name": "role",
+          "title": "role",
+          "type": "string"
+        },
+        {
+          "name": "softwareVersion",
+          "title": "softwareVersion",
+          "type": "string"
+        },
+        {
+          "name": "deviceType",
+          "title": "deviceType",
+          "type": "string"
+        },
+        {
+          "name": "family",
+          "title": "family",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "title": "id",
+          "type": "string"
+        },
+        {
+          "name": "ip",
+          "title": "ip",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "title": "label",
+          "type": "string"
+        },
+        {
+          "name": "nodeType",
+          "title": "nodeType",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

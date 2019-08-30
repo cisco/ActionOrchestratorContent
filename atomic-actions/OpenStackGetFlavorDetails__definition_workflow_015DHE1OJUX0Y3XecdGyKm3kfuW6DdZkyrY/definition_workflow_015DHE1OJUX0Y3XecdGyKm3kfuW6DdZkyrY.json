@@ -1,0 +1,293 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_015DHE1OJUX0Y3XecdGyKm3kfuW6DdZkyrY",
+    "name": "Get Flavor Details",
+    "title": "Get Flavor Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "VCpus",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_015DHKA216IEI1Wxw6pKTrKzEmzk2kKOodh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Disk",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_015DHKI4CK1DS4kvB9H91dZwhjuT06X3jmT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Flavor ID",
+          "type": "datatype.string",
+          "description": "Enter Flavor ID",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_015DHFWNJFFE31S1JSMYh89xe3m7JuddUPq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_015DHGDZZ7NA51JdGsgzfdZXAjD8SfGAGZw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_015DHJX2DB2CP7gnDZNQ9GCvqdAyJ46GYrh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "RAM",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_015DHK2O78ZML6yeNAlqBCyce00rwRS1IeI",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic retrieves flavor details",
+      "display_name": "Get Flavor Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_015DHEN8UURD479Mu4qlHXPdAorCSXP06pv",
+        "name": "HTTP Request",
+        "title": "Get Flavor Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+              "value": "$workflow.definition_workflow_015DHE1OJUX0Y3XecdGyKm3kfuW6DdZkyrY.input.variable_workflow_015DHGDZZ7NA51JdGsgzfdZXAjD8SfGAGZw$"
+            }
+          ],
+          "display_name": "Get Flavor Details",
+          "method": "GET",
+          "relative_url": "/flavors/$workflow.definition_workflow_015DHE1OJUX0Y3XecdGyKm3kfuW6DdZkyrY.input.variable_workflow_015DHFWNJFFE31S1JSMYh89xe3m7JuddUPq$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015DHGO3T2EHR0DVo9QgsVFkR7XZFsqXfdI",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_015DHGOASOB127YGDdJFXOVfNbSgGenCaBx",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DHEN8UURD479Mu4qlHXPdAorCSXP06pv.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DHICTUY90N4RTzjD4KnfZiZR5JSz0BRg",
+                "name": "JSONPath Query",
+                "title": "Read Flavor Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Flavor Details",
+                  "input_json": "$activity.definition_activity_015DHEN8UURD479Mu4qlHXPdAorCSXP06pv.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$..name",
+                      "jsonpath_query_name": "Name",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..ram",
+                      "jsonpath_query_name": "RAM",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..vcpus",
+                      "jsonpath_query_name": "VCpus",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..disk",
+                      "jsonpath_query_name": "Disk",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_015DHJL789LZJ23FJ8LIERGxwsNbsXFJ9dq",
+                "name": "Set Variables",
+                "title": "Set Flavor Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Flavor Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_015DHE1OJUX0Y3XecdGyKm3kfuW6DdZkyrY.output.variable_workflow_015DHKI4CK1DS4kvB9H91dZwhjuT06X3jmT$",
+                      "variable_value_new": "$activity.definition_activity_015DHICTUY90N4RTzjD4KnfZiZR5JSz0BRg.output.jsonpath_queries.Disk$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_015DHE1OJUX0Y3XecdGyKm3kfuW6DdZkyrY.output.variable_workflow_015DHJX2DB2CP7gnDZNQ9GCvqdAyJ46GYrh$",
+                      "variable_value_new": "$activity.definition_activity_015DHICTUY90N4RTzjD4KnfZiZR5JSz0BRg.output.jsonpath_queries.Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_015DHE1OJUX0Y3XecdGyKm3kfuW6DdZkyrY.output.variable_workflow_015DHK2O78ZML6yeNAlqBCyce00rwRS1IeI$",
+                      "variable_value_new": "$activity.definition_activity_015DHICTUY90N4RTzjD4KnfZiZR5JSz0BRg.output.jsonpath_queries.RAM$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_015DHE1OJUX0Y3XecdGyKm3kfuW6DdZkyrY.output.variable_workflow_015DHKA216IEI1Wxw6pKTrKzEmzk2kKOodh$",
+                      "variable_value_new": "$activity.definition_activity_015DHICTUY90N4RTzjD4KnfZiZR5JSz0BRg.output.jsonpath_queries.VCpus$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_015DHGOE9QRF95MhDpSmePkXsaBaOlDErJM",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DHEN8UURD479Mu4qlHXPdAorCSXP06pv.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DHM36XLVZI4pp1t9oxCfjucqkWpEHbLa",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get Flavor Details For The Given Flavor ID: $workflow.definition_workflow_015DHE1OJUX0Y3XecdGyKm3kfuW6DdZkyrY.input.variable_workflow_015DHFWNJFFE31S1JSMYh89xe3m7JuddUPq$ With The Following Error Message: $activity.definition_activity_015DHEN8UURD479Mu4qlHXPdAorCSXP06pv.output.status_text$."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C": {
+      "unique_name": "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "Openstack Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

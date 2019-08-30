@@ -1,0 +1,290 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018AUQX4JNDJO6nIE01qDO0n3BQNxvwHR1Y",
+    "name": "Get Host Subnet Details",
+    "title": "Get Host Subnet Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Host Subnet Name",
+          "type": "datatype.string",
+          "description": "Enter Host Subnet Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018AUTABOV5P12jMPruwfEw2xZQLjs1UQVZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AW1XPJX6UY2Y2ogvD8DjNfeRVyQ91IUK",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "SelfLink",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AW26H245ZF5hkOUOO6hbNhdCuQoTVKAp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "UID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AW2DMWCAD72Mq2mvbSXhTgcrdEuBtOUy",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ResourceVersion",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AW2K8ECSVS6HpglWkfd9L02PljrachAk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018AURE2U9UGG5DmBWn9dxXRLOxjSLAXrKV",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow retrieves the details of host subnet",
+      "display_name": "Get Host Subnet Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018AURZX3AIZR7iXJinZsvvLIh5cob0oJDI",
+        "name": "HTTP Request",
+        "title": "Get Host Subent Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_018AUQX4JNDJO6nIE01qDO0n3BQNxvwHR1Y.input.variable_workflow_018AURE2U9UGG5DmBWn9dxXRLOxjSLAXrKV$"
+            }
+          ],
+          "display_name": "Get Host Subent Details",
+          "method": "GET",
+          "relative_url": "/hostsubnets/$workflow.definition_workflow_018AUQX4JNDJO6nIE01qDO0n3BQNxvwHR1Y.input.variable_workflow_018AUTABOV5P12jMPruwfEw2xZQLjs1UQVZ$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018AUTZH7D6R72DNsmmcQU1QWjHuwZvhw0B",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018AUTZNDLHAL1mF7pkRZ0XtH8P1i9FZhCt",
+            "name": "Condition Branch",
+            "title": "If Status code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AURZX3AIZR7iXJinZsvvLIh5cob0oJDI.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code == 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AUV9661WV42COpppgECpRQXlMcS7tEwJ",
+                "name": "Read Table from JSON",
+                "title": "Read Host Subnet Details",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Host Subnet Details",
+                  "input_json": "$activity.definition_activity_018AURZX3AIZR7iXJinZsvvLIh5cob0oJDI.output.response_body$",
+                  "jsonpath_query": "$.metadata",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "selfLink",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "uid",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "resourceVersion",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018AW2TKIG3B05BfkQOlUOEDkBFscZPd8yH",
+                "name": "Set Variables",
+                "title": "Set Host Subnet Detail",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Host Subnet Detail",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AUQX4JNDJO6nIE01qDO0n3BQNxvwHR1Y.output.variable_workflow_018AW1XPJX6UY2Y2ogvD8DjNfeRVyQ91IUK$",
+                      "variable_value_new": "$activity.definition_activity_018AUV9661WV42COpppgECpRQXlMcS7tEwJ.output.read_table_from_json[0].name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AUQX4JNDJO6nIE01qDO0n3BQNxvwHR1Y.output.variable_workflow_018AW26H245ZF5hkOUOO6hbNhdCuQoTVKAp$",
+                      "variable_value_new": "$activity.definition_activity_018AUV9661WV42COpppgECpRQXlMcS7tEwJ.output.read_table_from_json[0].selfLink$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AUQX4JNDJO6nIE01qDO0n3BQNxvwHR1Y.output.variable_workflow_018AW2DMWCAD72Mq2mvbSXhTgcrdEuBtOUy$",
+                      "variable_value_new": "$activity.definition_activity_018AUV9661WV42COpppgECpRQXlMcS7tEwJ.output.read_table_from_json[0].uid$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AUQX4JNDJO6nIE01qDO0n3BQNxvwHR1Y.output.variable_workflow_018AW2K8ECSVS6HpglWkfd9L02PljrachAk$",
+                      "variable_value_new": "$activity.definition_activity_018AUV9661WV42COpppgECpRQXlMcS7tEwJ.output.read_table_from_json[0].resourceVersion$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018AUTZR27XSD7McFQTAG6FjN9CYI9QZ2HJ",
+            "name": "Condition Branch",
+            "title": "If Status code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AURZX3AIZR7iXJinZsvvLIh5cob0oJDI.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code == 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AUUSZYU8FN1jsxPfPLkw3C3JJwnkn3Mr",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get the host subnet details.\n\nError Message:\n$activity.definition_activity_018AURZX3AIZR7iXJinZsvvLIh5cob0oJDI.output.response_body$\n\nStatus Message:\n$activity.definition_activity_018AURZX3AIZR7iXJinZsvvLIh5cob0oJDI.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

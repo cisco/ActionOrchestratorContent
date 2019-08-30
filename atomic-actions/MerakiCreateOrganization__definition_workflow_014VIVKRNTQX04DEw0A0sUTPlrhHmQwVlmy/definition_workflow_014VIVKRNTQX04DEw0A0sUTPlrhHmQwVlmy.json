@@ -1,0 +1,225 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014VIVKRNTQX04DEw0A0sUTPlrhHmQwVlmy",
+    "name": "Create Organization",
+    "title": "Create Organization",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.number",
+        "properties": {
+          "scope": "output",
+          "name": "Organization Id",
+          "type": "datatype.number",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_014WA8G8JPWDM3gqHi3bTDmb9PNG9wMWbne",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Organization Name",
+          "type": "datatype.string",
+          "description": "enter the name of the organization\nex: My organization",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014VJAJ4998573LSeAnb7JWhs6Q2fm0BpLp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014VJE7BRYRCV1SD7mvyysxGpmpwLIw4ugH",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Meraki",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Creates a New Organization",
+      "display_name": "Create Organization",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014VJ76M0S6LW7gsK4E9hnO05xAOPZL8Svn",
+        "name": "HTTP Request",
+        "title": "Create Organization",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\"name\":\"$workflow.definition_workflow_014VIVKRNTQX04DEw0A0sUTPlrhHmQwVlmy.input.variable_workflow_014VJAJ4998573LSeAnb7JWhs6Q2fm0BpLp$\"}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf.global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf$",
+              "value": "$workflow.definition_workflow_014VIVKRNTQX04DEw0A0sUTPlrhHmQwVlmy.input.variable_workflow_014VJE7BRYRCV1SD7mvyysxGpmpwLIw4ugH$"
+            }
+          ],
+          "display_name": "Create Organization",
+          "method": "POST",
+          "relative_url": "/organizations",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0194JBYB3MBTW3MEtYmEZXp53J74HGALEJ4",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0194JBYCHXH1P5nYDYtZanbBNgqcXVDqwTS",
+            "name": "Condition Branch",
+            "title": "If Status Code == 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014VJ76M0S6LW7gsK4E9hnO05xAOPZL8Svn.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code == 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014VJF1PE4DFG3cOQbTgEo8Q5md4x2YeP3b",
+                "name": "JSONPath Query",
+                "title": "Read Organization Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Organization Details",
+                  "input_json": "$activity.definition_activity_014VJ76M0S6LW7gsK4E9hnO05xAOPZL8Svn.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.id",
+                      "jsonpath_query_name": "Id",
+                      "jsonpath_query_type": "number",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_014W9DUWNHC6Y6iUtGKiYlbVtSYMg8Y3wo0",
+                "name": "Set Variables",
+                "title": "Set Organization Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Organization Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_014VIVKRNTQX04DEw0A0sUTPlrhHmQwVlmy.output.variable_workflow_014WA8G8JPWDM3gqHi3bTDmb9PNG9wMWbne$",
+                      "variable_value_new": "$activity.definition_activity_014VJF1PE4DFG3cOQbTgEo8Q5md4x2YeP3b.output.jsonpath_queries.Id$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0194JBYD3UMFU4KaZAVbaGUOOOt2Aq3nNRB",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014VJ76M0S6LW7gsK4E9hnO05xAOPZL8Svn.output.status_code$",
+                "operator": "ne",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0194JE3IN8C0M5EgOa8ejmQY9Rx4UuFRiUE",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Error not able to create a organization\n\nerror: $activity.definition_activity_014VJ76M0S6LW7gsK4E9hnO05xAOPZL8Svn.output.response_body$\n\nstatus code: $activity.definition_activity_014VJ76M0S6LW7gsK4E9hnO05xAOPZL8Svn.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf": {
+      "unique_name": "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf",
+      "properties": {
+        "value": "X-Cisco-Meraki-API-Key",
+        "scope": "global",
+        "name": "MerakiAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

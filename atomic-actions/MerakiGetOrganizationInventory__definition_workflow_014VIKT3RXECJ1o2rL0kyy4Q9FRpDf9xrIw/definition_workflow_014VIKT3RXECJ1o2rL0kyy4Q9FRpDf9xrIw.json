@@ -1,0 +1,334 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_014VIKT3RXECJ1o2rL0kyy4Q9FRpDf9xrIw",
+    "name": "Get Organization Inventory",
+    "title": "Get Organization Inventory",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_014VJTX0OCG2D6AtBDTwxxhh8HLfBdmwlpb",
+        "properties": {
+          "scope": "output",
+          "name": "Organization Inventory Table",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_014VJUT3D5MAZ4QZjxKq8yy93bOItqR9XId",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Key",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014W928ZI36GM5cb42I6xWCqXrSDZZ3GKQ8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Organization ID",
+          "type": "datatype.string",
+          "description": "enter a valid organization id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_014VJK5B36WGW712XEfCSzWHXvh3St4u22K",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Meraki",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Returns organization inventory for the given organization id.",
+      "display_name": "Get Organization Inventory",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_014VJKA22GCTM5lG7GN3CKFtgJct9BvISaC",
+        "name": "HTTP Request",
+        "title": "Get Organization Inventory",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf.global.variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf$",
+              "value": "$workflow.definition_workflow_014VIKT3RXECJ1o2rL0kyy4Q9FRpDf9xrIw.input.variable_workflow_014W928ZI36GM5cb42I6xWCqXrSDZZ3GKQ8$"
+            }
+          ],
+          "display_name": "Get Organization Inventory",
+          "method": "GET",
+          "relative_url": "/organizations/$workflow.definition_workflow_014VIKT3RXECJ1o2rL0kyy4Q9FRpDf9xrIw.input.variable_workflow_014VJK5B36WGW712XEfCSzWHXvh3St4u22K$/inventory",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014VJXOLUH8YW3FcybXCa8E50PzF3fFJXaI",
+        "name": "Read Table from JSON",
+        "title": "Read Organization Inventory",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Organization Inventory",
+          "input_json": "{\"results\": $activity.definition_activity_014VJKA22GCTM5lG7GN3CKFtgJct9BvISaC.output.response_body$}",
+          "jsonpath_query": "$.results",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "mac",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "serial",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "networkId",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "model",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "claimedAt",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "publicIp",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_014VK3O6N3Q4B5wYc5xMAa6KoJZ3Vn83xqq",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_014VK3OTQOK2S19tgdSCIwqNZpMkeoXAB0B",
+            "name": "Condition Branch",
+            "title": "If Row Count \u003e 0",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014VJXOLUH8YW3FcybXCa8E50PzF3fFJXaI.output.row_count$",
+                "operator": "gt",
+                "right_operand": "0"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Row Count \u003e 0"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014VK2WIHRZQF0I5qPFta7k7I7kEGQ41haU",
+                "name": "For Each",
+                "title": "For Each Organization Inventory",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Organization Inventory",
+                  "source_array": "$activity.definition_activity_014VJXOLUH8YW3FcybXCa8E50PzF3fFJXaI.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_014VK78OJ59241wkoXfgHGZ6EZlqEQ17inN",
+                    "name": "Add Row to Table",
+                    "title": "Add Organization Inventory to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Organization Inventory to Table",
+                      "input_table": "$workflow.definition_workflow_014VIKT3RXECJ1o2rL0kyy4Q9FRpDf9xrIw.output.variable_workflow_014VJUT3D5MAZ4QZjxKq8yy93bOItqR9XId$",
+                      "row": [
+                        {
+                          "key": "mac",
+                          "type": "string",
+                          "value": "$activity.definition_activity_014VK2WIHRZQF0I5qPFta7k7I7kEGQ41haU.input.source_array[@].mac$"
+                        },
+                        {
+                          "key": "serial",
+                          "type": "string",
+                          "value": "$activity.definition_activity_014VK2WIHRZQF0I5qPFta7k7I7kEGQ41haU.input.source_array[@].serial$"
+                        },
+                        {
+                          "key": "networkId",
+                          "type": "string",
+                          "value": "$activity.definition_activity_014VK2WIHRZQF0I5qPFta7k7I7kEGQ41haU.input.source_array[@].networkId$"
+                        },
+                        {
+                          "key": "model",
+                          "type": "string",
+                          "value": "$activity.definition_activity_014VK2WIHRZQF0I5qPFta7k7I7kEGQ41haU.input.source_array[@].model$"
+                        },
+                        {
+                          "key": "claimedAt",
+                          "type": "string",
+                          "value": "$activity.definition_activity_014VK2WIHRZQF0I5qPFta7k7I7kEGQ41haU.input.source_array[@].claimedAt$"
+                        },
+                        {
+                          "key": "publicIp",
+                          "type": "string",
+                          "value": "$activity.definition_activity_014VK2WIHRZQF0I5qPFta7k7I7kEGQ41haU.input.source_array[@].publicIp$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_014VK3P4KNIBO1WXNZGtyN2l0rOSafU8ISp",
+            "name": "Condition Branch",
+            "title": "If Row Count = 0",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_014VJXOLUH8YW3FcybXCa8E50PzF3fFJXaI.output.row_count$",
+                "operator": "eq",
+                "right_operand": 0
+              },
+              "continue_on_failure": false,
+              "display_name": "If Row Count = 0"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_014VKA6U24Z3C5XY44ylRndIWgG8Wqb4avc",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get Organization Inventory"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf": {
+      "unique_name": "variable_014VJR06JBJVK6z94WHV93L5ws1fqNYzGHf",
+      "properties": {
+        "value": "X-Cisco-Meraki-API-Key",
+        "scope": "global",
+        "name": "MerakiAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_014VJTX0OCG2D6AtBDTwxxhh8HLfBdmwlpb": {
+      "unique_name": "tabletype_014VJTX0OCG2D6AtBDTwxxhh8HLfBdmwlpb",
+      "data_type": "datatype.tabletype",
+      "display_name": "Get Organization Inventory Table",
+      "columns": [
+        {
+          "name": "claimedAt",
+          "title": "ClaimedAt",
+          "type": "string"
+        },
+        {
+          "name": "mac",
+          "title": "MAC",
+          "type": "string"
+        },
+        {
+          "name": "model",
+          "title": "Model",
+          "type": "string"
+        },
+        {
+          "name": "networkId",
+          "title": "NetworkId",
+          "type": "string"
+        },
+        {
+          "name": "publicIp",
+          "title": "PublicIp",
+          "type": "string"
+        },
+        {
+          "name": "serial",
+          "title": "Serial",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

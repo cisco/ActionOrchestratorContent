@@ -1,0 +1,415 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr",
+    "name": "Create/Delete Group",
+    "title": "Create/Delete Group",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Group Name",
+          "type": "datatype.string",
+          "description": "Enter Group Name, if Action Type is Delete",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018ASNIQN63R46VRH1lSlV7bnD7tcmLLkCI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Action Type",
+          "type": "datatype.string",
+          "description": "Enter Action Type (Create/Delete)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018ASP2JW5WAD5d74GpGDZx0oS1cC9datFF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Request Body",
+          "type": "datatype.string",
+          "description": "Enter Request Body, if Action Type is Create.\n\n(Eg. \n{\n  \"kind\": \"Group\",\n  \"apiVersion\": \"v1\",\n  \"metadata\": {\n    \"name\": \"testgroup3\"\n  },\n  \"users\": [\n    \"user5\",\n    \"user6\"\n  ]\n}\n)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AYEDZT7PSQ3kX5X2yAM3fxTQqUjOVt6M",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AYR2SVIVQ31XkADQrioJPDICwjstqrlk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018ASMUS6UN0Z0aTj3heqnVhTyOfs89HkFu",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic action Creates and Deletes the group.",
+      "display_name": "Create/Delete Group",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018AR1ZBPOJCK5lbmCJTvTnxUQn9Ytq7Kzb",
+        "name": "To Lower",
+        "title": "Action Type To Lower",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Action Type To Lower",
+          "source": "$workflow.definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr.input.variable_workflow_018ASP2JW5WAD5d74GpGDZx0oS1cC9datFF$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018AQZSVPULWV3NSynpEaqx5hGOV3EW1oqu",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018AQZT139M1H77Kz6YIHwCNvut5tkzqJNo",
+            "name": "Condition Branch",
+            "title": "If Action Type = create",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AR1ZBPOJCK5lbmCJTvTnxUQn9Ytq7Kzb.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "create"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Type = create"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AR3BCIJ9Q03Yq7ccpmQfOOEGLSowu6e2",
+                "name": "HTTP Request",
+                "title": "Create Group",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "$workflow.definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr.input.variable_workflow_018AYEDZT7PSQ3kX5X2yAM3fxTQqUjOVt6M$",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+                      "value": "Bearer $workflow.definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr.input.variable_workflow_018ASMUS6UN0Z0aTj3heqnVhTyOfs89HkFu$"
+                    }
+                  ],
+                  "display_name": "Create Group",
+                  "method": "POST",
+                  "relative_url": "/groups",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018AR2GVJ1A8J3RSyKYMfD7A3Q6B3Mc8KLW",
+                "name": "Condition Block",
+                "title": "Evaluate Condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate Condition"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_018AYMTRDCCPL7P9FI0DpG3GMPlgd47asm7",
+                    "name": "Condition Branch",
+                    "title": "If Status Code = 201",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_018AR3BCIJ9Q03Yq7ccpmQfOOEGLSowu6e2.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 201
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code = 201"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_018AYNEYOZKUY7TLd7GnKF1Rsxe3QOwZhgo",
+                        "name": "Set Variables",
+                        "title": "Set Response",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Response",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr.output.variable_workflow_018AYR2SVIVQ31XkADQrioJPDICwjstqrlk$",
+                              "variable_value_new": "$activity.definition_activity_018AR3BCIJ9Q03Yq7ccpmQfOOEGLSowu6e2.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_018AVQ3ZT5Z4M1sHdHj1sgG1AhrVtvzDhuI",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 201",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_018AR3BCIJ9Q03Yq7ccpmQfOOEGLSowu6e2.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 201
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 201"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_018AR5AMJFV2C0pARrZTnKZa4y0udB8pGdE",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to Create Group\n\nError Message: $activity.definition_activity_018AR3BCIJ9Q03Yq7ccpmQfOOEGLSowu6e2.output.response_body$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018AR6NRB8Z4S7QVmYfY9gwVuElCZxyDuvc",
+            "name": "Condition Branch",
+            "title": "If Action Type = delete",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AR1ZBPOJCK5lbmCJTvTnxUQn9Ytq7Kzb.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "delete"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action Type = delete"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AR6ZAYXHA4041iGXDRdXysJbU8pV7kn5",
+                "name": "HTTP Request",
+                "title": "Delete Group",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+                      "value": "Bearer $workflow.definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr.input.variable_workflow_018ASMUS6UN0Z0aTj3heqnVhTyOfs89HkFu$"
+                    }
+                  ],
+                  "display_name": "Delete Group",
+                  "method": "DELETE",
+                  "relative_url": "/groups/$workflow.definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr.input.variable_workflow_018ASNIQN63R46VRH1lSlV7bnD7tcmLLkCI$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018AR78S99XQK5p7dT6zIMrZpzBzj1cxy2W",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Condition Block"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_018AR78XQXW2V6LAg6Nq4tyuPfQCyoZkcRR",
+                    "name": "Condition Branch",
+                    "title": "If Status Code = 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_018AR6ZAYXHA4041iGXDRdXysJbU8pV7kn5.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code = 200"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_018AYQALPN2LC3Cr6y23g4GHsDPUWp1Op0o",
+                        "name": "Set Variables",
+                        "title": "Set Response",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Response",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr.output.variable_workflow_018AYR2SVIVQ31XkADQrioJPDICwjstqrlk$",
+                              "variable_value_new": "$activity.definition_activity_018AR6ZAYXHA4041iGXDRdXysJbU8pV7kn5.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_018AR791BG2C14X43qHLcgu0bQ7CCBwlNfb",
+                    "name": "Condition Branch",
+                    "title": "If Status Code \u003c\u003e 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_018AR6ZAYXHA4041iGXDRdXysJbU8pV7kn5.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status Code \u003c\u003e 200"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_018AR7O92MNJ27XRT6qt7AsHrrJir2M1mtp",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to delete group with name: $workflow.definition_workflow_018AQW230QFT36YnZPUT76OhsujG3zy8vLr.input.variable_workflow_018ASNIQN63R46VRH1lSlV7bnD7tcmLLkCI$\n\nError Message: $activity.definition_activity_018AR6ZAYXHA4041iGXDRdXysJbU8pV7kn5.output.response_body$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

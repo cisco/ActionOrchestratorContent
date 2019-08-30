@@ -1,0 +1,469 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0197VCPQ75PRC7NA8HxITmLu6YsmUZSMUsh",
+    "name": "Retrieve Event Data ",
+    "title": "Retrieve Event Data ",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "URI Query (Use \u0026 for multiple queries)",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0197VCQ2R71L150Eti84G7jjJGOIHF5X4Kk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gphPEItWbDsap8rEXXJrHRMZTN1WP3q",
+        "properties": {
+          "scope": "output",
+          "name": "Retrieve Event Data Output",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0197VCQ2R6TNW7XGJG3CtpVTQMPxDtcEbIg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name/ID",
+          "type": "datatype.string",
+          "description": "Enter Application Name/ID",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0197VCQ2R6YXG0SJ3E7sOoUKmjTGDU0en4W",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Retrieve Event Data For The Given Application Name/Id.",
+      "display_name": "Retrieve Event Data ",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0197VCQ6H7PK215XWiJWwdn90filxU1syAW",
+        "name": "To Lower",
+        "title": "Query to Lower case",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Query to Lower case",
+          "skip_execution": false,
+          "source": "$workflow.definition_workflow_0197VCPQ75PRC7NA8HxITmLu6YsmUZSMUsh.input.variable_workflow_0197VCQ2R71L150Eti84G7jjJGOIHF5X4Kk$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0197VCQAOH2QH755IBJIj30QpYSiS4qtnqH",
+        "name": "Condition Block",
+        "title": "Check whether Output is JSON/XML",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "description": "Fail is Output is XML.",
+          "display_name": "Check whether Output is JSON/XML",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0197VCQDH47WL7NsB21GoRq0tQhOw14fr6D",
+            "name": "Condition Branch",
+            "title": "If Output Format is XML",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0197VCQ6H7PK215XWiJWwdn90filxU1syAW.output.lowercase_text$",
+                "operator": "nmw",
+                "right_operand": "output=json"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Output Format is XML",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0197VCQHLX1320DuptIgNYAOJ5I9hQ2pzy8",
+                "name": "HTTP Request",
+                "title": "Retrieve Event Data",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "display_name": "Retrieve Event Data",
+                  "method": "GET",
+                  "relative_url": "/rest/applications/$workflow.definition_workflow_0197VCPQ75PRC7NA8HxITmLu6YsmUZSMUsh.input.variable_workflow_0197VCQ2R6YXG0SJ3E7sOoUKmjTGDU0en4W$/events?$workflow.definition_workflow_0197VCPQ75PRC7NA8HxITmLu6YsmUZSMUsh.input.variable_workflow_0197VCQ2R71L150Eti84G7jjJGOIHF5X4Kk$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0197VCQKCCGTL2igXVPIcj2H5mV7MUGKTLR",
+                "name": "Condition Block",
+                "title": "Check Status Code",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check Status Code",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0197VCQML1ZTV2rq2Kn3uSL0SfJA8l67wo0",
+                    "name": "Condition Branch",
+                    "title": "If Status code == 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0197VCQHLX1320DuptIgNYAOJ5I9hQ2pzy8.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status code == 200",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0197VCQQDXHAC3NrEBQwsspbPUgskYGcxSL",
+                        "name": "Find String",
+                        "title": "Check for Empty Response Tags",
+                        "type": "core.find_string",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Check for Empty Response Tags",
+                          "searched_string": "\u003cevents\u003e\u003c/events\u003e",
+                          "skip_execution": false,
+                          "source": "$activity.definition_activity_0197VCQHLX1320DuptIgNYAOJ5I9hQ2pzy8.output.response_body$"
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_0197VCQTIM1IS4Tt0cmQAb5SiuNcxMaXx3L",
+                        "name": "Condition Block",
+                        "title": "Check If Data Exists",
+                        "type": "logic.if_else",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Check If Data Exists",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity",
+                        "blocks": [
+                          {
+                            "unique_name": "definition_activity_0197VCQXPIRLR48SBueOWMpx9flQJG0I0FW",
+                            "name": "Condition Branch",
+                            "title": "If Data Exists",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_0197VCQQDXHAC3NrEBQwsspbPUgskYGcxSL.output.has_match$",
+                                "operator": "eq",
+                                "right_operand": false
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "If Data Exists",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_0197VCR2CK9607FfGhaiaztZxAQOuCKwegW",
+                                "name": "Read Table from XML",
+                                "title": "Read Event Data from XML",
+                                "type": "corejava.read_table_from_xml",
+                                "base_type": "activity",
+                                "properties": {
+                                  "action_timeout": 180,
+                                  "continue_on_failure": false,
+                                  "display_name": "Read Event Data from XML",
+                                  "input_xml": "$activity.definition_activity_0197VCQHLX1320DuptIgNYAOJ5I9hQ2pzy8.output.response_body$",
+                                  "persist_output": false,
+                                  "populate_columns": false,
+                                  "skip_execution": false,
+                                  "table_columns": [
+                                    {
+                                      "column_name": "id",
+                                      "column_type": "string",
+                                      "zdate_type_format": ""
+                                    },
+                                    {
+                                      "column_name": "type",
+                                      "column_type": "string",
+                                      "zdate_type_format": ""
+                                    },
+                                    {
+                                      "column_name": "severity",
+                                      "column_type": "string",
+                                      "zdate_type_format": ""
+                                    },
+                                    {
+                                      "column_name": "summary",
+                                      "column_type": "string",
+                                      "zdate_type_format": ""
+                                    }
+                                  ],
+                                  "xmlpath_query": "/events/event"
+                                },
+                                "object_type": "definition_activity"
+                              },
+                              {
+                                "unique_name": "definition_activity_0197VCR7WLJNE0mHphaylXyZEDcy70MeIC1",
+                                "name": "For Each",
+                                "title": "For Each",
+                                "type": "logic.for_each",
+                                "base_type": "activity",
+                                "properties": {
+                                  "continue_on_failure": false,
+                                  "display_name": "For Each",
+                                  "source_array": "$activity.definition_activity_0197VCR2CK9607FfGhaiaztZxAQOuCKwegW.output.read_table_from_xml$"
+                                },
+                                "object_type": "definition_activity",
+                                "actions": [
+                                  {
+                                    "unique_name": "definition_activity_0197VCRCGJ3NW2ZSkU5XcCkAiRCb0dhpfzO",
+                                    "name": "Add Row to Table",
+                                    "title": "Output Event Data",
+                                    "type": "core.addrowtotable",
+                                    "base_type": "activity",
+                                    "properties": {
+                                      "action_timeout": 180,
+                                      "continue_on_failure": false,
+                                      "display_name": "Output Event Data",
+                                      "input_table": "$workflow.definition_workflow_0197VCPQ75PRC7NA8HxITmLu6YsmUZSMUsh.output.variable_workflow_0197VCQ2R6TNW7XGJG3CtpVTQMPxDtcEbIg$",
+                                      "row": [
+                                        {
+                                          "key": "id",
+                                          "type": "string",
+                                          "value": "$activity.definition_activity_0197VCR7WLJNE0mHphaylXyZEDcy70MeIC1.input.source_array[@].id$"
+                                        },
+                                        {
+                                          "key": "type",
+                                          "type": "string",
+                                          "value": "$activity.definition_activity_0197VCR7WLJNE0mHphaylXyZEDcy70MeIC1.input.source_array[@].type$"
+                                        },
+                                        {
+                                          "key": "severity",
+                                          "type": "string",
+                                          "value": "$activity.definition_activity_0197VCR7WLJNE0mHphaylXyZEDcy70MeIC1.input.source_array[@].severity$"
+                                        },
+                                        {
+                                          "key": "summary",
+                                          "type": "string",
+                                          "value": "$activity.definition_activity_0197VCR7WLJNE0mHphaylXyZEDcy70MeIC1.input.source_array[@].summary$"
+                                        }
+                                      ]
+                                    },
+                                    "object_type": "definition_activity"
+                                  }
+                                ]
+                              },
+                              {
+                                "unique_name": "definition_activity_0197VCRH5BYXZ1RoR9vVhr8H8uIDfFJ3oEH",
+                                "name": "Succeeded",
+                                "title": "Completed",
+                                "type": "logic.completed",
+                                "base_type": "activity",
+                                "properties": {
+                                  "completion_type": "succeeded",
+                                  "display_name": "Succeeded"
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          },
+                          {
+                            "unique_name": "definition_activity_0197VCRJHIUDJ2ynNWFXclRBhWNi7wKRFuJ",
+                            "name": "Condition Branch",
+                            "title": "If Empty Data",
+                            "type": "logic.condition_block",
+                            "base_type": "activity",
+                            "properties": {
+                              "condition": {
+                                "left_operand": "$activity.definition_activity_0197VCQQDXHAC3NrEBQwsspbPUgskYGcxSL.output.has_match$",
+                                "operator": "eq",
+                                "right_operand": true
+                              },
+                              "continue_on_failure": false,
+                              "display_name": "If Empty Data",
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity",
+                            "actions": [
+                              {
+                                "unique_name": "definition_activity_0197VCRM56CDM59ygjdFUfY761ovl0AWyLY",
+                                "name": "Failed",
+                                "title": "Completed",
+                                "type": "logic.completed",
+                                "base_type": "activity",
+                                "properties": {
+                                  "completion_type": "failed-completed",
+                                  "display_name": "Failed",
+                                  "result_message": "No Data Exsists on Event: \"$workflow.definition_workflow_0197VCPQ75PRC7NA8HxITmLu6YsmUZSMUsh.input.variable_workflow_0197VCQ2R6YXG0SJ3E7sOoUKmjTGDU0en4W$\"\n\nResponse:\n$activity.definition_activity_0197VCQHLX1320DuptIgNYAOJ5I9hQ2pzy8.output.response_body$"
+                                },
+                                "object_type": "definition_activity"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0197VCRON9ZX51KYwfx0eHih1tOrWf4jyo0",
+                    "name": "Condition Branch",
+                    "title": "If Status code \u003c\u003e 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0197VCQHLX1320DuptIgNYAOJ5I9hQ2pzy8.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Status code \u003c\u003e 200",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0197VCRRJ5RBY6oDSenTg9eGXlhcEBkJTNH",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to Retrieve event Data.\n\nError Message:\n$activity.definition_activity_0197VCQHLX1320DuptIgNYAOJ5I9hQ2pzy8.output.response_body$\n\nStatus Message:\n$activity.definition_activity_0197VCQHLX1320DuptIgNYAOJ5I9hQ2pzy8.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0197VCRU1CW5N4MqbRv9V55BXTMwzo8B3kT",
+            "name": "Condition Branch",
+            "title": "If Output Format is not XML",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0197VCQ6H7PK215XWiJWwdn90filxU1syAW.output.lowercase_text$",
+                "operator": "mw",
+                "right_operand": "output=json"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Output Format is not XML",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0197VCRWP1PPS2BavqpkHfNcNWXg6104R27",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Retrieve Event Data.\n\nReason: \nInvalid Output format query: JSON\nAllowed XML query format."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gphPEItWbDsap8rEXXJrHRMZTN1WP3q": {
+      "unique_name": "tabletype_01gphPEItWbDsap8rEXXJrHRMZTN1WP3q",
+      "data_type": "datatype.tabletype",
+      "display_name": "Retrieve Event Data",
+      "columns": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "string"
+        },
+        {
+          "name": "severity",
+          "title": "Severity",
+          "type": "string"
+        },
+        {
+          "name": "summary",
+          "title": "Summary",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "title": "Type",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

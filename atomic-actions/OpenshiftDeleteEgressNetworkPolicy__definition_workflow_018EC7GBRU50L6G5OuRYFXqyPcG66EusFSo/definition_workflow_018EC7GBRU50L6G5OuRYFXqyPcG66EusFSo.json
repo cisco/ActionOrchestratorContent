@@ -1,0 +1,231 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018EC7GBRU50L6G5OuRYFXqyPcG66EusFSo",
+    "name": "Delete Egress Network Policy",
+    "title": "Delete Egress Network Policy",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Egress Network Policy Name",
+          "type": "datatype.string",
+          "description": "Enter Egress Network Policy Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018ECCOHA7SWO1cUnKZE0hmRDuZcT3coBVe",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response Body",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018ECEDCBMW2N4dcdzFp5DuaVwExk7Ado97",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018ECGNO4H8QY3PMgx95fIBAYvRDYwxuq1r",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 180,
+          "scope": "input",
+          "name": "Grace Period in Seconds",
+          "type": "datatype.integer",
+          "description": "Enter Grace Period in Seconds",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018ECBEJYFEM106CMhOAs56mIpcbJEZdBtI",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Namespace",
+          "type": "datatype.string",
+          "description": "Enter Namespace",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018ECBPRF9RAR4Prumff7gfwlhjuCabGlAd",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic action Deletes an Egress Network Policy.",
+      "display_name": "Delete Egress Network Policy",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018EC9X4K66CQ2nQ9elq8hywOSicuShJQA0",
+        "name": "HTTP Request",
+        "title": "Delete Egress Network Policy",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n\t\"gracePeriodSeconds\": \"$workflow.definition_workflow_018EC7GBRU50L6G5OuRYFXqyPcG66EusFSo.input.variable_workflow_018ECBEJYFEM106CMhOAs56mIpcbJEZdBtI$\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_018EC7GBRU50L6G5OuRYFXqyPcG66EusFSo.input.variable_workflow_018ECGNO4H8QY3PMgx95fIBAYvRDYwxuq1r$"
+            }
+          ],
+          "display_name": "Delete Egress Network Policy",
+          "method": "DELETE",
+          "relative_url": "/namespaces/$workflow.definition_workflow_018EC7GBRU50L6G5OuRYFXqyPcG66EusFSo.input.variable_workflow_018ECBPRF9RAR4Prumff7gfwlhjuCabGlAd$/egressnetworkpolicies/$workflow.definition_workflow_018EC7GBRU50L6G5OuRYFXqyPcG66EusFSo.input.variable_workflow_018ECCOHA7SWO1cUnKZE0hmRDuZcT3coBVe$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018ECA0SN3ULH2QZKfYRrUL5CyDgJyLf8LR",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018ECA0X38J720wdtRcRCIO4YtiRHyy5lYm",
+            "name": "Condition Branch",
+            "title": "If Status Code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018EC9X4K66CQ2nQ9elq8hywOSicuShJQA0.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code == 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018ECA5V78BY17Xk48jRDGmj91mLJCUu56X",
+                "name": "Set Variables",
+                "title": "Delete Egress Policy Output",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Delete Egress Policy Output",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018EC7GBRU50L6G5OuRYFXqyPcG66EusFSo.output.variable_workflow_018ECEDCBMW2N4dcdzFp5DuaVwExk7Ado97$",
+                      "variable_value_new": "$activity.definition_activity_018EC9X4K66CQ2nQ9elq8hywOSicuShJQA0.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018ECA11450HF7BJzYICorYMwtm8jjdbVIG",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018EC9X4K66CQ2nQ9elq8hywOSicuShJQA0.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018ECA2K8BRA94zTavDB2Q5vVT3NEVdanPO",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Delete Egress network Policy: $workflow.definition_workflow_018EC7GBRU50L6G5OuRYFXqyPcG66EusFSo.input.variable_workflow_018ECCOHA7SWO1cUnKZE0hmRDuZcT3coBVe$\n\nError Message: \n$activity.definition_activity_018EC9X4K66CQ2nQ9elq8hywOSicuShJQA0.output.response_body$\n\nStatus Message:\n$activity.definition_activity_018EC9X4K66CQ2nQ9elq8hywOSicuShJQA0.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gRLhuxY1hNaewpASbDUxD8rfKNRGGTQ",
+    "name": "Delete Project ",
+    "title": "Delete Project ",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ProjectId",
+          "type": "datatype.string",
+          "description": "Project ID",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gRLZoYVZth4j8yGikbq3wYrf00oBSxW",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018CMSKM4BFPW50pJdbJ1Hx6XqFeEtRkNu3",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "TaskId",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRm4W6djDoAaijRGPfYsw67KBKlwluA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Url",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRm79FrT0CiNZOiWSmDZJCkxYwkxkbj",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow deletes a project.",
+      "display_name": "Delete Project ",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gRLRfIvxPqBNhTP5OOtR7CY9jCVCM9k",
+        "name": "HTTP Request",
+        "title": "Delete Project",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gRLhuxY1hNaewpASbDUxD8rfKNRGGTQ.input.variable_workflow_018CMSKM4BFPW50pJdbJ1Hx6XqFeEtRkNu3$"
+            }
+          ],
+          "display_name": "Delete Project",
+          "method": "DELETE",
+          "relative_url": "/dna/intent/api/v1/template-programmer/project/$workflow.definition_workflow_01gRLhuxY1hNaewpASbDUxD8rfKNRGGTQ.input.variable_workflow_01gRLZoYVZth4j8yGikbq3wYrf00oBSxW$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRlRD8NrGxpF919g2p0PUUYG3sTGtKb",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "display_name": "Condition Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRlRgzehlzdRPq2No6vSl4RmJ8uXh9F",
+            "name": "Condition Branch",
+            "title": "If Status code = 202",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRLRfIvxPqBNhTP5OOtR7CY9jCVCM9k.output.status_code$",
+                "operator": "eq",
+                "right_operand": "202"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Status code = 202",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRlvwwEw5IPaNiaLPNi2FWskBc12jm8",
+                "name": "JSONPath Query",
+                "title": "Read Delete Project",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Delete Project",
+                  "input_json": "$activity.definition_activity_01gRLRfIvxPqBNhTP5OOtR7CY9jCVCM9k.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.response.taskId ",
+                      "jsonpath_query_name": "TaskID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": " $.response.url",
+                      "jsonpath_query_name": "Url",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gRMuxQ3UQfRXujbnMiJAyN0pGGdt2CL",
+                "name": "Set Variables",
+                "title": "Set TaskId and Url ",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set TaskId and Url ",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gRLhuxY1hNaewpASbDUxD8rfKNRGGTQ.output.variable_workflow_01gRm4W6djDoAaijRGPfYsw67KBKlwluA$",
+                      "variable_value_new": "$activity.definition_activity_01gRlvwwEw5IPaNiaLPNi2FWskBc12jm8.output.jsonpath_queries.TaskID$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gRLhuxY1hNaewpASbDUxD8rfKNRGGTQ.output.variable_workflow_01gRm79FrT0CiNZOiWSmDZJCkxYwkxkbj$",
+                      "variable_value_new": "$activity.definition_activity_01gRlvwwEw5IPaNiaLPNi2FWskBc12jm8.output.jsonpath_queries.Url$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gRmhKSovHMWKZnPxO3x1JjRlC2DCMtw",
+                "name": "Succeeded",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRlRj57lpKWqmnI0gJbGLJdkVGGiOj9",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 202",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gRLRfIvxPqBNhTP5OOtR7CY9jCVCM9k.output.status_code$",
+                "operator": "ne",
+                "right_operand": "202"
+              },
+              "continue_on_failure": true,
+              "display_name": "If Status code \u003c\u003e 202",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRmIBzkYEJeyKgBLdfdj2C9G38vz75O",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed "
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

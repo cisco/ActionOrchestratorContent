@@ -1,0 +1,169 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gPzPGCJBYuvyREGObLarGssRV6NK1Ck",
+    "name": "Configure Metric Retention By Application",
+    "title": "Configure Metric Retention By Application",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp039ajhbd2gJWoav25EnUbYPBx83gl",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Number Of Days",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp05iM55jv9bSBGN8spOaijr0emBYVE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Account ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp00KD3KGW5NqSpcPMBxc1yhiXxFGXe",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Configure Metric Retention By Application for the given Application Id.",
+      "display_name": "Configure Metric Retention By Application",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gPzT3dt7ZpJpGb8FUHvQdctf9NG5BuK",
+        "name": "HTTP Request",
+        "title": "Configure Metric Retention By Application",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Configure Metric Retention By Application",
+          "method": "POST",
+          "relative_url": "/api/accounts/$workflow.definition_workflow_01gPzPGCJBYuvyREGObLarGssRV6NK1Ck.input.variable_workflow_01gp00KD3KGW5NqSpcPMBxc1yhiXxFGXe$/applications/$workflow.definition_workflow_01gPzPGCJBYuvyREGObLarGssRV6NK1Ck.input.variable_workflow_01gp039ajhbd2gJWoav25EnUbYPBx83gl$/metricstaleduration/$workflow.definition_workflow_01gPzPGCJBYuvyREGObLarGssRV6NK1Ck.input.variable_workflow_01gp05iM55jv9bSBGN8spOaijr0emBYVE$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_016O06NBB290Y5jZE9XTA8Z9ogBJbv5nLDt",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_016O06NFVY8DC3JghvOS9zGm9d7TSt20GOH",
+            "name": "Condition Branch",
+            "title": "If Status = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gPzT3dt7ZpJpGb8FUHvQdctf9NG5BuK.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016Z6Q1FVM62B77V4xNIQgXQbNmGphCEAND",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Completed"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_016O06NIHGLPR6GZ0k8qeqPxok8oaGteEWG",
+            "name": "Condition Branch",
+            "title": "If Status \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gPzT3dt7ZpJpGb8FUHvQdctf9NG5BuK.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016O07ZFGBD7L0VJ05ycVU65z5sMGYH41Lz",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Configure Metric Retention By Application for App ID: $workflow.definition_workflow_01gPzPGCJBYuvyREGObLarGssRV6NK1Ck.input.variable_workflow_01gp039ajhbd2gJWoav25EnUbYPBx83gl$\n\nError Description:\n$activity.definition_activity_01gPzT3dt7ZpJpGb8FUHvQdctf9NG5BuK.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

@@ -1,0 +1,341 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01g0Wbjk84stz14z0U7O0A2Vz2cwg2lV2",
+    "name": "List Backup Jobs",
+    "title": "List Backup Jobs",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Resource Group Name",
+          "type": "datatype.string",
+          "description": "enter a existing resourcegroup name\nex: sample_resourcegroup",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g0XsbU1RXcB141beuwjhjaqf0Gv1QP2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1FtL3zNlQZ0DSFyOCWIeNhLWWhzOcU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subscription ID",
+          "type": "datatype.string",
+          "description": "enter a valid subscription id\nex: 244fc-3ef8-49b2-b02d-7f0",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g0XQ9t0ZyksH15QOjys9Ul2VbrDmNR8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "VaultName",
+          "type": "datatype.string",
+          "description": "enter a valid vault name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g0XVNAmFuNQb9seE1oVorqk9YG4IpzE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string",
+          "description": "enter a valid api version\nex: 2018-08-01",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1FpoCCVxF2HHTGz1aswGcXMY4GOUt3",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01g4diSPEZ5kg0DqTWwukQNQfJEPMlMWT",
+        "properties": {
+          "scope": "output",
+          "name": "Backup Jobs Details",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01g4dKIDwgN3dF1aT6wMohS10vBBOK7rI",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Get Backup Jobs.",
+      "display_name": "List Backup Jobs",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01g0xOB8ldoIYZmqFWkKWdQnRGDwTogq4",
+        "name": "HTTP Request",
+        "title": "Get Backup Jobs",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "cookie": [
+            ""
+          ],
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01g0Wbjk84stz14z0U7O0A2Vz2cwg2lV2.input.variable_workflow_01g1FtL3zNlQZ0DSFyOCWIeNhLWWhzOcU$"
+            }
+          ],
+          "display_name": "Get Backup Jobs",
+          "method": "Get",
+          "relative_url": "/Subscriptions/$workflow.definition_workflow_01g0Wbjk84stz14z0U7O0A2Vz2cwg2lV2.input.variable_workflow_01g0XQ9t0ZyksH15QOjys9Ul2VbrDmNR8$/resourceGroups/$workflow.definition_workflow_01g0Wbjk84stz14z0U7O0A2Vz2cwg2lV2.input.variable_workflow_01g0XsbU1RXcB141beuwjhjaqf0Gv1QP2$/providers/Microsoft.RecoveryServices/vaults/$workflow.definition_workflow_01g0Wbjk84stz14z0U7O0A2Vz2cwg2lV2.input.variable_workflow_01g0XVNAmFuNQb9seE1oVorqk9YG4IpzE$/backupJobs?api-version=$workflow.definition_workflow_01g0Wbjk84stz14z0U7O0A2Vz2cwg2lV2.input.variable_workflow_01g1FpoCCVxF2HHTGz1aswGcXMY4GOUt3$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g1HDpzXV4YD9H9LmQjkBoTmEoIPsxGs",
+        "name": "Convert Json to Xml",
+        "title": "Convert Json to Xml",
+        "type": "core.json2xml",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Convert Json to Xml",
+          "input_json": "$activity.definition_activity_01g0xOB8ldoIYZmqFWkKWdQnRGDwTogq4.output.response_body$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g1Hv2jtboMisAQNhybJv1ubRY81c7i6",
+        "name": "XPath Query",
+        "title": "Read Backup Job Details",
+        "type": "core.xpathquery",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "Read Backup Job Details",
+          "input_xml": "$activity.definition_activity_01g1HDpzXV4YD9H9LmQjkBoTmEoIPsxGs.output.output_xml$",
+          "xpath_queries": [
+            {
+              "xpath_query": "//value",
+              "xpath_query_name": "value",
+              "xpath_query_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g1HxlCXZE0r0LRREG7rLNlk52mwCZck",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01g1HxTOZVqU1KHlc3foyXy84dsO3pU7C",
+            "name": "Condition Branch",
+            "title": "If Jobs Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1Hv2jtboMisAQNhybJv1ubRY81c7i6.output.xpath_queries.value$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If Jobs Found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01g11sVKLzMAUWBamPbSwIQ1kkbbrZY6L",
+                "name": "Read Table from JSON",
+                "title": "Read Backup Jobs ",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Backup Jobs ",
+                  "input_json": "$activity.definition_activity_01g0xOB8ldoIYZmqFWkKWdQnRGDwTogq4.output.response_body$",
+                  "jsonpath_query": "$.value[*]",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g10em2QrHIthXyPuIzXfp51Wg6D71hD",
+                "name": "For Each",
+                "title": "For Each Backup Job",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Backup Job",
+                  "source_array": "$activity.definition_activity_01g11sVKLzMAUWBamPbSwIQ1kkbbrZY6L.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01g1lQlyekWfvcnLtkDzmiXjYH4ETyOUD",
+                    "name": "Add Row to Table",
+                    "title": "Add Backup Job Details",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "backupManagementType": null,
+                      "continue_on_failure": false,
+                      "display_name": "Add Backup Job Details",
+                      "entityFriendlyName": null,
+                      "id": "$activity.definition_activity_01g10em2QrHIthXyPuIzXfp51Wg6D71hD.input.source_array[@].id$",
+                      "input_table": "$workflow.definition_workflow_01g0Wbjk84stz14z0U7O0A2Vz2cwg2lV2.output.variable_workflow_01g4dKIDwgN3dF1aT6wMohS10vBBOK7rI$",
+                      "jobType": null,
+                      "name": "$activity.definition_activity_01g10em2QrHIthXyPuIzXfp51Wg6D71hD.input.source_array[@].name$",
+                      "row": [
+                        {
+                          "key": "id",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01g10em2QrHIthXyPuIzXfp51Wg6D71hD.input.source_array[@].id$"
+                        },
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01g10em2QrHIthXyPuIzXfp51Wg6D71hD.input.source_array[@].name$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0150I19VINBWI4ckERkxFoB9K6WjTOTFKsx",
+            "name": "Condition Branch",
+            "title": "If Jobs Not Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1Hv2jtboMisAQNhybJv1ubRY81c7i6.output.xpath_queries.value$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If Jobs Not Found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0150I1MMZ2V535ZAIoJ90P0F4wyNIIc5rEv",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Get Backup Jobs"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01g4diSPEZ5kg0DqTWwukQNQfJEPMlMWT": {
+      "unique_name": "tabletype_01g4diSPEZ5kg0DqTWwukQNQfJEPMlMWT",
+      "data_type": "datatype.tabletype",
+      "display_name": "Backup Jobs",
+      "columns": [
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

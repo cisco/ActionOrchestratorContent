@@ -1,0 +1,196 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01918ENZ201BT0gIg1kSOboMFT4kXHOGrTY",
+    "name": "Create Image Signature",
+    "title": "Create Image Signature",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Request Body",
+          "type": "datatype.string",
+          "description": "Enter Request Body\n(Eg. \n{\n  \"kind\": \"ImageSignature\",\n  \"apiVersion\": \"v1\",\n  \"type\":    \"atomic\",\n  \"content\": \"aaaaaaaa\",\n  \"metadata\":{\n    \"version\": 1,\n    \"name\": \"TestImageCreation_2@********\"\n  }\n}\n)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01918EO9CRPZA0ZG0lAWz4pNrmNmSXvILlV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01918EO9CRS7T3GuwmLh2UvaS6IjO4ctfLX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01918EO9CRL5D4RvNQ6PkAv8gmFXsxZ7OBb",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Creates an Image Signature.",
+      "display_name": "Create Image Signature",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01918EOD2U2CG44kA4StQIrg2ox4ZbOwOCs",
+        "name": "HTTP Request",
+        "title": "Create Image Signature",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_01918ENZ201BT0gIg1kSOboMFT4kXHOGrTY.input.variable_workflow_01918EO9CRPZA0ZG0lAWz4pNrmNmSXvILlV$",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01918ENZ201BT0gIg1kSOboMFT4kXHOGrTY.input.variable_workflow_01918EO9CRS7T3GuwmLh2UvaS6IjO4ctfLX$"
+            }
+          ],
+          "display_name": "Create Image Signature",
+          "method": "POST",
+          "relative_url": "/imagesignatures",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01918EOG76WM15PDXfJJ8XPksvvats5UjEi",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01918EOJ2WWIN6OsKfub7vDSBneykeC7GtZ",
+            "name": "Condition Branch",
+            "title": "If Status code == 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01918EOD2U2CG44kA4StQIrg2ox4ZbOwOCs.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code == 201",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01918EOMFDF1Y4AatToAskuZglf0J6JWyjv",
+                "name": "Set Variables",
+                "title": "Set Image Signature creation status",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Image Signature creation status",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01918ENZ201BT0gIg1kSOboMFT4kXHOGrTY.output.variable_workflow_01918EO9CRL5D4RvNQ6PkAv8gmFXsxZ7OBb$",
+                      "variable_value_new": "$activity.definition_activity_01918EOD2U2CG44kA4StQIrg2ox4ZbOwOCs.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01918EOQ1GON36j0QkL2wVOI3k6dYj3Qi55",
+            "name": "Condition Branch",
+            "title": "If status code\u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01918EOD2U2CG44kA4StQIrg2ox4ZbOwOCs.output.status_code$",
+                "operator": "ne",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If status code\u003c\u003e 201",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01918EOTNJ2C97AAL9EQB4vQGYgFfQfQCDn",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Request to Create an Image Signature has failed due to the following reason : $activity.definition_activity_01918EOD2U2CG44kA4StQIrg2ox4ZbOwOCs.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

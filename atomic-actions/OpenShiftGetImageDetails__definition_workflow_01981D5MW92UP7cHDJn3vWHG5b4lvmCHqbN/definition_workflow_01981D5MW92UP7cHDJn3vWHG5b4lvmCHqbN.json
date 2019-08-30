@@ -1,0 +1,331 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN",
+    "name": "Get Image Details",
+    "title": "Get Image Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Docker Image Metadata Version",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01981F2UJ4VMR5gwSOFKXyw0G5bwYGSHseL",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Docker Image Reference",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01981F9JZ2Z0S5KhiffX7qW6YP4FzWZLjYw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Image Details",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01981G9EMQRCE5ZbtwUMEb935Xi0Ld1Lcnn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Image Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01981GG9VH5XA75eRcu1mEITbCqyiMJOqDx",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Image UID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01981GMENWQK352aE9RoIMlvWouwiJt92dR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Name",
+          "type": "datatype.string",
+          "description": "Enter the Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01981GY82KNBR15npQHvU5TGYgtc2SsNrpM",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Resource Version",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01981H6F4KR6D6xGinsZ6fDaGhYoaOjApKR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01981EP2HHT7V6kB3w50QvM28DrvgaO0yd3",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow retrieves a particular Image Details",
+      "display_name": "Get Image Details",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01981DS7VDR5D5el3Riz9ugOCQNAztA69rW",
+        "name": "HTTP Request",
+        "title": "Get Image Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.input.variable_workflow_01981EP2HHT7V6kB3w50QvM28DrvgaO0yd3$"
+            }
+          ],
+          "display_name": "Get Image Details",
+          "method": "GET",
+          "relative_url": "/images/$workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.input.variable_workflow_01981GY82KNBR15npQHvU5TGYgtc2SsNrpM$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01981I2V8E3ZD5xgtzn7LCNnLROmcrqT72d",
+        "name": "Condition Block",
+        "title": "Validate response",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Validate response",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01981I2X658RX4HCLAfgscsgZMbLupX9gUH",
+            "name": "Condition Branch",
+            "title": "If Status code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01981DS7VDR5D5el3Riz9ugOCQNAztA69rW.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code == 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01981JQ280TUF7R03FbTMMZNndMdhzUhmjm",
+                "name": "JSONPath Query",
+                "title": "Read Image Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Image Details",
+                  "input_json": "$activity.definition_activity_01981DS7VDR5D5el3Riz9ugOCQNAztA69rW.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$..name",
+                      "jsonpath_query_name": "Image Name",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..uid",
+                      "jsonpath_query_name": "UID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..resourceVersion",
+                      "jsonpath_query_name": "Resource Version",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..dockerImageReference",
+                      "jsonpath_query_name": "Docker Image Reference",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..dockerImageMetadataVersion",
+                      "jsonpath_query_name": "Docker Image Metadata Version",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01981LIDQ4XQH6BhraBAuBCAxW6YVgp5XWY",
+                "name": "Set Variables",
+                "title": "Set Image response",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Image response",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.output.variable_workflow_01981G9EMQRCE5ZbtwUMEb935Xi0Ld1Lcnn$",
+                      "variable_value_new": "$activity.definition_activity_01981DS7VDR5D5el3Riz9ugOCQNAztA69rW.output.response_body$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.output.variable_workflow_01981GG9VH5XA75eRcu1mEITbCqyiMJOqDx$",
+                      "variable_value_new": "$activity.definition_activity_01981JQ280TUF7R03FbTMMZNndMdhzUhmjm.output.jsonpath_queries.Image Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.output.variable_workflow_01981F2UJ4VMR5gwSOFKXyw0G5bwYGSHseL$",
+                      "variable_value_new": "$activity.definition_activity_01981JQ280TUF7R03FbTMMZNndMdhzUhmjm.output.jsonpath_queries.Docker Image Metadata Version$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.output.variable_workflow_01981F9JZ2Z0S5KhiffX7qW6YP4FzWZLjYw$",
+                      "variable_value_new": "$activity.definition_activity_01981JQ280TUF7R03FbTMMZNndMdhzUhmjm.output.jsonpath_queries.Docker Image Reference$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.output.variable_workflow_01981GMENWQK352aE9RoIMlvWouwiJt92dR$",
+                      "variable_value_new": "$activity.definition_activity_01981JQ280TUF7R03FbTMMZNndMdhzUhmjm.output.jsonpath_queries.UID$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.output.variable_workflow_01981H6F4KR6D6xGinsZ6fDaGhYoaOjApKR$",
+                      "variable_value_new": "$activity.definition_activity_01981JQ280TUF7R03FbTMMZNndMdhzUhmjm.output.jsonpath_queries.Resource Version$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01981I2Y3NXI52xgrNadGvMEAo6mTrXhgl3",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01981DS7VDR5D5el3Riz9ugOCQNAztA69rW.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code \u003c\u003e 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01981J2QIE7LP7iACEAjzJxW22e4QhlsIps",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Get Image Details: $workflow.definition_workflow_01981D5MW92UP7cHDJn3vWHG5b4lvmCHqbN.input.variable_workflow_01981GY82KNBR15npQHvU5TGYgtc2SsNrpM$\n\nError Message:\n$activity.definition_activity_01981DS7VDR5D5el3Riz9ugOCQNAztA69rW.output.response_body$\n\nStatus Message:\n$activity.definition_activity_01981DS7VDR5D5el3Riz9ugOCQNAztA69rW.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

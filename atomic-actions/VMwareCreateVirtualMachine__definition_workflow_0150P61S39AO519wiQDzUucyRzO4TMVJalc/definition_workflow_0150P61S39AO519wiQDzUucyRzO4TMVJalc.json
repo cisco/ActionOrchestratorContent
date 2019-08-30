@@ -1,0 +1,424 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc",
+    "name": "Create Virtual Machine",
+    "title": "Create Virtual Machine",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "Memory (MiB)",
+          "type": "datatype.integer",
+          "description": "Enter Memory(MiB)",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6COAB2lAVIZ4o3VYIg5f49wDQYP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "GENERATED",
+          "scope": "input",
+          "name": "vNIC MAC Allocation Type",
+          "type": "datatype.string",
+          "description": "Enter vNIC MAC Allocation Type",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6EHUA555anco0EyPfzdPrjq0icS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Datastore ID",
+          "type": "datatype.string",
+          "description": "Enter Datastore ID",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6CCFS4SIajMkJed0UDVlMalzwXV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "CPU - Hot Add Enabled",
+          "type": "datatype.boolean",
+          "description": "CPU - Hot Add Enabled",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6C8913bbVjWPUSpenGrTtAu3oe9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Portgroup/Network ID",
+          "type": "datatype.string",
+          "description": "Enter Portgroup/Network ID",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6DQZ45wGsFm2ZN0j0QLzO31p739",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": true,
+          "scope": "local",
+          "name": "NICS - Allow Guest Control",
+          "type": "datatype.boolean",
+          "description": "NICS - Allow Guest Control",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6DURV5S1t1cI0hhK1bwYAuo5K5u",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "vCPU",
+          "type": "datatype.integer",
+          "description": "Enter vCPU",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6D00Z3EKKDiBxK58CE6dekzfWeS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "VMX_13",
+          "scope": "local",
+          "name": "Hardware Version",
+          "type": "datatype.string",
+          "description": "Hardware Version",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6D3VD6eUN1rpzgwLrmfERVoxSXv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Host ID",
+          "type": "datatype.string",
+          "description": "Enter Host Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6DFHL3y5LpPobsVsSyy4esnVCDb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Folder ID",
+          "type": "datatype.string",
+          "description": "Enter Folder Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6EA5T5y50IRTGuIZ9waz2jiZesF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vNIC Type",
+          "type": "datatype.string",
+          "description": "Enter vNIC Type",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6DN4H1YsLuCuCmam5wj8TSDK3qX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "NICS - Wake on LAN Enabled",
+          "type": "datatype.boolean",
+          "description": "NICS - Wake on LAN Enabled",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6EE027BWdslLaxTtEnGCdFIGsBW",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "Memory Hot Add Enabled",
+          "type": "datatype.boolean",
+          "description": "Memory Hot Add Enabled",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6DJBU2ugTf85CG7hTslDnFyUyaB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cluster ID",
+          "type": "datatype.string",
+          "description": "Enter Cluster Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6DYM07KJuu0cGYHPnMbVCH6wzLw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Portgroup/Network Type",
+          "type": "datatype.string",
+          "description": "Enter Portgroup/Network Type",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6E6BC2HbcDhJmGMkC0TRniQ8d3V",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Virtual Machine Name",
+          "type": "datatype.string",
+          "description": "Enter Virtual Machine Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6E2G92cevYYWvysteqWMWy63fXC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Session Id",
+          "type": "datatype.secure_string",
+          "description": "Provide Session Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_019BHAWN8Q5946mtGdTZFDdrCNJYeG2NLxL",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 1,
+          "scope": "local",
+          "name": "CPU - Cores Per Socket",
+          "type": "datatype.integer",
+          "description": "CPU - Cores Per Socket",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6CGBY0qJn3I1nXiAq7QR1zzRpeX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": true,
+          "scope": "local",
+          "name": "NICS - Start Connected",
+          "type": "datatype.boolean",
+          "description": "NICS - Start Connected",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6CS8V46LKjpntjwrxJdQb9APViZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vDisk - New VMDK Capacity (Bytes)",
+          "type": "datatype.string",
+          "description": "Enter vDisk - New VMDK Capacity (Bytes)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6D7Q81iKvQLvEHduKesNZwpEHfE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Virtual Machine ID",
+          "type": "datatype.string",
+          "description": "Virtual Machine ID",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6CW5061m81PEWC2fGmWOeQH56xw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Guest OS",
+          "type": "datatype.string",
+          "description": "Enter Guest OS",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6C0V63skwS6RLvtG0s0zDuyYXV6",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "CPU - Hot Remove Enabled",
+          "type": "datatype.boolean",
+          "description": "CPU - Hot Remove Enabled",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150P67V6DBMH0QbkcWmqVB1W9sFrQ1NyQn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "vDisk - VMDK Name",
+          "type": "datatype.string",
+          "description": "Enter vDisk - VMDK Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150P67V6CKEK6z6WRCmsnFzeOn5EZb3pFh",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Creates a Virtual Machine",
+      "display_name": "Create Virtual Machine",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150P68NFDTMW0patl0HI8vZqFSMV38pMlP",
+        "name": "HTTP Request",
+        "title": "Create Virtual Machine",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n\t\"spec\": {\r\n\t\t\"name\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6E2G92cevYYWvysteqWMWy63fXC$\",\r\n\t\t\"guest_OS\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6C0V63skwS6RLvtG0s0zDuyYXV6$\",\r\n\t\t\"placement\": {\r\n\t\t\t\"cluster\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6DYM07KJuu0cGYHPnMbVCH6wzLw$\",\r\n\t\t\t\"folder\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6EA5T5y50IRTGuIZ9waz2jiZesF$\",\r\n\t\t\t\"host\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6DFHL3y5LpPobsVsSyy4esnVCDb$\",\r\n\t\t\t\"datastore\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6CCFS4SIajMkJed0UDVlMalzwXV$\"\r\n\t\t},\r\n\t\t\"hardware_version\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.local.variable_workflow_0150P67V6D3VD6eUN1rpzgwLrmfERVoxSXv$\",\r\n\t\t\"memory\": {\r\n\t\t\t\"hot_add_enabled\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.local.variable_workflow_0150P67V6DJBU2ugTf85CG7hTslDnFyUyaB$\",\r\n\t\t\t\"size_MiB\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6COAB2lAVIZ4o3VYIg5f49wDQYP$\"\r\n\t\t},\r\n\t\t\"nics\": [{\r\n\t\t\t\t\"backing\": {\r\n\t\t\t\t\t\"type\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6E6BC2HbcDhJmGMkC0TRniQ8d3V$\",\r\n\t\t\t\t\t\"network\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6DQZ45wGsFm2ZN0j0QLzO31p739$\"\r\n\t\t\t\t},\r\n\t\t\t\t\"mac_type\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6EHUA555anco0EyPfzdPrjq0icS$\",\r\n\t\t\t\t\"allow_guest_control\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.local.variable_workflow_0150P67V6DURV5S1t1cI0hhK1bwYAuo5K5u$\",\r\n\t\t\t\t\"wake_on_lan_enabled\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.local.variable_workflow_0150P67V6EE027BWdslLaxTtEnGCdFIGsBW$\",\r\n\t\t\t\t\"start_connected\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.local.variable_workflow_0150P67V6CS8V46LKjpntjwrxJdQb9APViZ$\",\r\n\t\t\t\t\"type\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6DN4H1YsLuCuCmam5wj8TSDK3qX$\"\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"disks\": [{\r\n\t\t\t\t\"new_vmdk\": {\r\n\t\t\t\t\t\"capacity\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6D7Q81iKvQLvEHduKesNZwpEHfE$\",\r\n\t\t\t\t\t\"name\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6CKEK6z6WRCmsnFzeOn5EZb3pFh$\"\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"cpu\": {\r\n\t\t\t\"count\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_0150P67V6D00Z3EKKDiBxK58CE6dekzfWeS$\",\r\n\t\t\t\"hot_add_enabled\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.local.variable_workflow_0150P67V6C8913bbVjWPUSpenGrTtAu3oe9$\",\r\n\t\t\t\"hot_remove_enabled\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.local.variable_workflow_0150P67V6DBMH0QbkcWmqVB1W9sFrQ1NyQn$\",\r\n\t\t\t\"cores_per_socket\": \"$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.local.variable_workflow_0150P67V6CGBY0qJn3I1nXiAq7QR1zzRpeX$\"\r\n\t\t}\r\n\t}\r\n}\r\n",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.input.variable_workflow_019BHAWN8Q5946mtGdTZFDdrCNJYeG2NLxL$"
+            }
+          ],
+          "display_name": "Create Virtual Machine",
+          "method": "Post",
+          "relative_url": "/rest/vcenter/vm",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150P691HU19T09P7wRHSDtqx8ooW869e8M",
+        "name": "JSONPath Query",
+        "title": "Read Virtual Machine Value",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Virtual Machine Value",
+          "input_json": "$activity.definition_activity_0150P68NFDTMW0patl0HI8vZqFSMV38pMlP.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.value",
+              "jsonpath_query_name": "Virtual Machine Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150P69FJA4JI6mhZ7fB3QPvpxnCNL8v0dn",
+        "name": "Set Variables",
+        "title": "Set Virtual Machine Value",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Virtual Machine Value",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_0150P61S39AO519wiQDzUucyRzO4TMVJalc.output.variable_workflow_0150P67V6CW5061m81PEWC2fGmWOeQH56xw$",
+              "variable_value_new": "$activity.definition_activity_0150P691HU19T09P7wRHSDtqx8ooW869e8M.output.jsonpath_queries.Virtual Machine Name$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz",
+    "name": "Add Route",
+    "title": "Add Route",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string",
+          "description": "enter a valid api version\nex: 2018-08-01",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1BlM3o8coFE63QnqtLN8WOg4YOCy1o",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "AddressPrefix",
+          "type": "datatype.string",
+          "description": "enter a valid address prefix, the destination CIDR to which the route applies.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01geH1l2x2jpAWqkr1uXrMGQ1YI233LUQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01geKdSlruqKGkgmDnby6EPaknqK2P353",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "SubscriptionID",
+          "type": "datatype.string",
+          "description": "enter a valid subscription id\nex: 244fc-3ef8-49b2-b02d-7f0",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01GZUVa2km4zy6T5NRSrqCvp9dCosgTze",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "RouteName",
+          "type": "datatype.string",
+          "description": "enter a valid name for a route\nex: demo",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g10Ldt1hHyVK4dYP13AbKPuO9e6qzXh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Route output Respons",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01g1pgJHrhiLGAEclYP9f3ZWjJTIwpDeV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ResourceGroupsName",
+          "type": "datatype.string",
+          "description": "enter a valid resourcegroup name which exists.\nex: testing_resourcegroup",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01GZuBJXAwpj2a4uf4WDXwl5jB4OJXFjn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "RouteTableName",
+          "type": "datatype.string",
+          "description": "enter the name of the route table.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g0zOkb0a5yzDanmw2gJwQOvA1ydv55v",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Create a Route in a Route Table.",
+      "display_name": "Add Route",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01GZUglosm1Kj92WGxjwUOrhLOCFR3Ti0",
+        "name": "HTTP Request",
+        "title": "Add Route Request",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n  \"properties\": {\r\n    \"addressPrefix\":\"$workflow.definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz.input.variable_workflow_01geH1l2x2jpAWqkr1uXrMGQ1YI233LUQ$\",\r\n    \"nextHopType\": \"VirtualNetworkGateway\"\r\n  }\r\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz.input.variable_workflow_01geKdSlruqKGkgmDnby6EPaknqK2P353$"
+            }
+          ],
+          "display_name": "Add Route Request",
+          "method": "PUT",
+          "relative_url": "/subscriptions/$workflow.definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz.input.variable_workflow_01GZUVa2km4zy6T5NRSrqCvp9dCosgTze$/resourceGroups/$workflow.definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz.input.variable_workflow_01GZuBJXAwpj2a4uf4WDXwl5jB4OJXFjn$/providers/Microsoft.Network/routeTables/$workflow.definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz.input.variable_workflow_01g0zOkb0a5yzDanmw2gJwQOvA1ydv55v$/routes/$workflow.definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz.input.variable_workflow_01g10Ldt1hHyVK4dYP13AbKPuO9e6qzXh$?api-version=$workflow.definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz.input.variable_workflow_01g1BlM3o8coFE63QnqtLN8WOg4YOCy1o$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gDkfpQQvrbHy3uEifHALCEOwEl2u7mq",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gDkfUtNMC7u7nPxWgTLhglsbHwSYgWd",
+            "name": "Condition Branch",
+            "title": "If Status Code = 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01GZUglosm1Kj92WGxjwUOrhLOCFR3Ti0.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01g1sZcizvGraMyvDafTqYXtTDnw9YG2F",
+                "name": "Replace String",
+                "title": "Replace String",
+                "type": "core.replacestring",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Replace String",
+                  "input_string": "$activity.definition_activity_01GZUglosm1Kj92WGxjwUOrhLOCFR3Ti0.output.response_body$",
+                  "replace_list": [
+                    {
+                      "replaced_string": "\\\\",
+                      "replacement_string": "\\"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g1Qz9a3rtWdQxou0nDEh4ErUNHf4yDq",
+                "name": "JSONPath Query",
+                "title": "JSONPath Query",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "JSONPath Query",
+                  "input_json": "$activity.definition_activity_01g1sZcizvGraMyvDafTqYXtTDnw9YG2F.output.result_string$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.id",
+                      "jsonpath_query_name": "ID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g16XTLJ9hc2uSCSjGJeKosPlKmTAOod",
+                "name": "Set Variables",
+                "title": "Route Response",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Route Response",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01GZteT1kUGOxgOjSblFa74MziMAalUAz.output.variable_workflow_01g1pgJHrhiLGAEclYP9f3ZWjJTIwpDeV$",
+                      "variable_value_new": "$activity.definition_activity_01g1Qz9a3rtWdQxou0nDEh4ErUNHf4yDq.output.jsonpath_queries.ID$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gDkfWOSA0ZplPNn8ic153r81Zcr0fkO",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01GZUglosm1Kj92WGxjwUOrhLOCFR3Ti0.output.status_code$",
+                "operator": "ne",
+                "right_operand": "201"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gDkOgYrn8tuE3HmsWgYXGkW9XDOyO9L",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Unable to add route to Microsoft Azure\n\nError:\n$activity.definition_activity_01GZUglosm1Kj92WGxjwUOrhLOCFR3Ti0.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

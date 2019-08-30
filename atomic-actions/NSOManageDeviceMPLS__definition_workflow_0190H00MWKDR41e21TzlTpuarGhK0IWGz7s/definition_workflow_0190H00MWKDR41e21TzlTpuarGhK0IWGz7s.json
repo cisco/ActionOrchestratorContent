@@ -1,0 +1,718 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s",
+    "name": "Manage  Device Mpls",
+    "title": "Manage  Device Mpls",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0190H00Z7J8K45uky4N914KvtZA8nw41KAr",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "application/yang-data+json",
+          "scope": "local",
+          "name": "application/vnd.yang.data+json",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Device-name",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "tailf-ncs:devices",
+          "scope": "input",
+          "name": "Devices-type",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "VIEW",
+          "scope": "input",
+          "name": "Action",
+          "type": "datatype.string",
+          "description": "This input takes one of the below values :\n1.VIEW\n2.CREATE\n3.UPDATE\n4.DELETE",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0190H00Z7J6V03vDO8Evl1mBnDAlRLp2TdP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "input",
+          "name": "ip:conf:propagate-ttl",
+          "type": "datatype.boolean",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco NSO",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "display_name": "Manage  Device Mpls",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0195H6U93QN5G2ifjQ1JR9rosLY7cXKjXyV",
+        "name": "To Upper",
+        "title": "To Upper",
+        "type": "core.string2upper",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "To Upper",
+          "skip_execution": false,
+          "source": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J6V03vDO8Evl1mBnDAlRLp2TdP$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0190H01219IDO5C027UGeRcOBxoSuR5GZPP",
+        "name": "Condition Block",
+        "title": "check action",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "check action",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0190H0140AR6K1qsVKAjgsJ60Ut4tq1ASTh",
+            "name": "Condition Branch",
+            "title": "IF ACTION == VIEW",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0195H6U93QN5G2ifjQ1JR9rosLY7cXKjXyV.output.uppercase_text$",
+                "operator": "eqi",
+                "right_operand": "VIEW"
+              },
+              "continue_on_failure": false,
+              "display_name": "IF ACTION == VIEW",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0190H018EQEL47HcBmZnzO4fYQZVZI8x6ar",
+                "name": "HTTP Request",
+                "title": "HTTP Request",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Content-Type",
+                      "value": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.local.variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb$"
+                    },
+                    {
+                      "name": "Accept",
+                      "value": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.local.variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb$"
+                    }
+                  ],
+                  "display_name": "HTTP Request",
+                  "method": "GET",
+                  "relative_url": "/restconf/data/$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu$/device=$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY$/config/tailf-ned-cisco-ios:mpls/",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0190H01AQ8OIG6wrTNKsdc9PIvuBxcTs8ZC",
+                "name": "Condition Block",
+                "title": "CHECK STATUS CODE",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "CHECK STATUS CODE",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0190H01D2WF3W0J3IiuF9CqlYgarvx1kS4B",
+                    "name": "Condition Branch",
+                    "title": "IF STATUS CODE == 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190H018EQEL47HcBmZnzO4fYQZVZI8x6ar.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "IF STATUS CODE == 200",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190H01HW3TN87MGwJsfEzam2tMWJW8B6uy",
+                        "name": "Set Variables",
+                        "title": "Set Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.output.variable_workflow_0190H00Z7J8K45uky4N914KvtZA8nw41KAr$",
+                              "variable_value_new": "$activity.definition_activity_0190H018EQEL47HcBmZnzO4fYQZVZI8x6ar.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0190H01LUEH0073LWgLSFyr5AKJbjY5jsKM",
+                    "name": "Condition Branch",
+                    "title": "IF STATUS CODE != 200",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190H018EQEL47HcBmZnzO4fYQZVZI8x6ar.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 200
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "IF STATUS CODE != 200",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190H01PZ0L8S3pG8sh8Zhe4numompuHqp3",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to read interface details.\nError Msg: $activity.definition_activity_0190H018EQEL47HcBmZnzO4fYQZVZI8x6ar.output.response_body$\nStatus Code: $activity.definition_activity_0190H018EQEL47HcBmZnzO4fYQZVZI8x6ar.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0190H01UAU1AG3Rd2OP7yPO81envEIDB01J",
+            "name": "Condition Branch",
+            "title": "IF ACTION == CREATE",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0195H6U93QN5G2ifjQ1JR9rosLY7cXKjXyV.output.uppercase_text$",
+                "operator": "eqi",
+                "right_operand": "CREATE"
+              },
+              "continue_on_failure": false,
+              "display_name": "IF ACTION == CREATE",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0190H01XBY8EW2EaoU7bPOXgUgiGrQWDBec",
+                "name": "HTTP Request",
+                "title": "HTTP Request",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"tailf-ned-cisco-ios:mpls\": {\n    \"ip\": {\n      \"conf\": {\n        \"propagate-ttl\": $workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM$\n      }\n    }\n  }\n}",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "content-type",
+                      "value": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.local.variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb$"
+                    },
+                    {
+                      "name": "accept",
+                      "value": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.local.variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb$"
+                    }
+                  ],
+                  "display_name": "HTTP Request",
+                  "method": "PATCH",
+                  "relative_url": "/restconf/data/$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu$/device=$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY$/config/tailf-ned-cisco-ios:mpls/",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0190H01ZI2VTC3GnIYwloIGNEUs62N8SVz0",
+                "name": "Condition Block",
+                "title": "CHECK STATUS CODE",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "CHECK STATUS CODE",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0190H021XKON01nG4Zgx7ylBXtfWuzFe4Dt",
+                    "name": "Condition Branch",
+                    "title": "IF STATUS CODE  == 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190H01XBY8EW2EaoU7bPOXgUgiGrQWDBec.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "IF STATUS CODE  == 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190H024POXHS5kk5GVzL6ubmL0DiiRb9fa",
+                        "name": "Set Variables",
+                        "title": "Set Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.output.variable_workflow_0190H00Z7J8K45uky4N914KvtZA8nw41KAr$",
+                              "variable_value_new": "$activity.definition_activity_0190H01XBY8EW2EaoU7bPOXgUgiGrQWDBec.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0190H0284Y0286PdTyNlVP8cxDVaWKpJax5",
+                    "name": "Condition Branch",
+                    "title": "IF STATUS CODE != 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190H01XBY8EW2EaoU7bPOXgUgiGrQWDBec.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "IF STATUS CODE != 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190H02C4ESJO6iZyGJdzgYrPxoTxSJ7KW8",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to create interface.\nError code : $activity.definition_activity_0190H01XBY8EW2EaoU7bPOXgUgiGrQWDBec.output.response_body$\nStatus Msg : $activity.definition_activity_0190H01XBY8EW2EaoU7bPOXgUgiGrQWDBec.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0190H02E22VO86etvcSL4nYxSadscF3u9Sh",
+            "name": "Condition Branch",
+            "title": "IF ACTION == UPDATE",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0195H6U93QN5G2ifjQ1JR9rosLY7cXKjXyV.output.uppercase_text$",
+                "operator": "eqi",
+                "right_operand": "UPDATE"
+              },
+              "continue_on_failure": false,
+              "display_name": "IF ACTION == UPDATE",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0190H02H3YR8W69A4pII1eiLvvsTHVDlVE2",
+                "name": "HTTP Request",
+                "title": "HTTP Request",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"tailf-ned-cisco-ios:mpls\": {\n    \"ip\": {\n      \"conf\": {\n        \"propagate-ttl\": $workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H35K1KE4G5iIVvq2oiLzvBPGLir7eaM$\n      }\n    }\n  }\n}",
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "content-type",
+                      "value": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.local.variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb$"
+                    },
+                    {
+                      "name": "accept",
+                      "value": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.local.variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb$"
+                    }
+                  ],
+                  "display_name": "HTTP Request",
+                  "method": "PATCH",
+                  "relative_url": "/restconf/data/$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu$/device=$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY$/config/tailf-ned-cisco-ios:mpls/",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0190H02KIB6L05GtID4tlparLn3nQK93asm",
+                "name": "Condition Block",
+                "title": "CHECK STATUS CODE",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "CHECK STATUS CODE",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0190H02NK9RGG1g2z8yAYrWo9xV6wWMkXZ2",
+                    "name": "Condition Branch",
+                    "title": "IF STATUS CODE == 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190H02H3YR8W69A4pII1eiLvvsTHVDlVE2.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "IF STATUS CODE == 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190H02SOOMRG0n9seSywheqhsXSRPe3b5n",
+                        "name": "Set Variables",
+                        "title": "Set Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.output.variable_workflow_0190H00Z7J8K45uky4N914KvtZA8nw41KAr$",
+                              "variable_value_new": "$activity.definition_activity_0190H02H3YR8W69A4pII1eiLvvsTHVDlVE2.output.response_body$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0190H02ZFOMGO6LfrtPJ6WC4fwY4EVoYFNk",
+                    "name": "Condition Branch",
+                    "title": "IF STATUS CODE != 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190H02H3YR8W69A4pII1eiLvvsTHVDlVE2.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "IF STATUS CODE != 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190H036PHCFK7lZBGCkFevJIrR1zLEKxJA",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to update the configuration.\n\nError Code : $activity.definition_activity_0190H02H3YR8W69A4pII1eiLvvsTHVDlVE2.output.response_body$\nStatus Msg: $activity.definition_activity_0190H02H3YR8W69A4pII1eiLvvsTHVDlVE2.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0190H0399MNI47ZZiowzaMVCgVmnyhaIIBS",
+            "name": "Condition Branch",
+            "title": "IF ACTION == DELETE",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0195H6U93QN5G2ifjQ1JR9rosLY7cXKjXyV.output.uppercase_text$",
+                "operator": "eqi",
+                "right_operand": "DELETE"
+              },
+              "continue_on_failure": false,
+              "display_name": "IF ACTION == DELETE",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0190H03CCW16C6kE8WAP6amEd2J9dO9EG2c",
+                "name": "HTTP Request",
+                "title": "HTTP Request",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": true,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "content-type",
+                      "value": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.local.variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb$"
+                    },
+                    {
+                      "name": "accept",
+                      "value": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.local.variable_workflow_0190H00Z7J1B00PMHRCiHU9LBHNlrtH6fgb$"
+                    }
+                  ],
+                  "display_name": "HTTP Request",
+                  "method": "DELETE",
+                  "relative_url": "/restconf/data/$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J55W2YDubDUWb6iQ7rmKvGuecu$/device=$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.input.variable_workflow_0190H00Z7J3E01qTielcztcRmvcZ0p15DBY$/config/tailf-ned-cisco-ios:mpls/",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0190H03K1TJKG5CHuqZnNo8uYGWLBICXOf3",
+                "name": "Condition Block",
+                "title": "CHECK STATUS CODE",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "CHECK STATUS CODE",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0190H03N8UW2K0pj1AerEz6f3DXCB01b5Hn",
+                    "name": "Condition Branch",
+                    "title": "IF STATUS CODE == 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190H03CCW16C6kE8WAP6amEd2J9dO9EG2c.output.status_code$",
+                        "operator": "eq",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "IF STATUS CODE == 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190H03Q5XXNK5Wdzmr0KLodtzWZSPWrIoN",
+                        "name": "Set Variables",
+                        "title": "Set Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_0190H00MWKDR41e21TzlTpuarGhK0IWGz7s.output.variable_workflow_0190H00Z7J8K45uky4N914KvtZA8nw41KAr$",
+                              "variable_value_new": ""
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0190H03TBJ7MC2b4Acg1zMYAxiZd6oe1vRZ",
+                    "name": "Condition Branch",
+                    "title": "IF STATUS CODE != 204",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0190H03CCW16C6kE8WAP6amEd2J9dO9EG2c.output.status_code$",
+                        "operator": "ne",
+                        "right_operand": 204
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "IF STATUS CODE != 204",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0190H03XU3K1852OxO3W2ejvLirl3Ls4Z7D",
+                        "name": "Failed",
+                        "title": "Failed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to delete spanning tree\n\nError Code: $activity.definition_activity_0190H03CCW16C6kE8WAP6amEd2J9dO9EG2c.output.response_body$\nStatus Msg: $activity.definition_activity_0190H03CCW16C6kE8WAP6amEd2J9dO9EG2c.output.status_text$"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

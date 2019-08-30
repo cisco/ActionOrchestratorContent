@@ -1,0 +1,336 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL",
+    "name": "Add Network Security Group",
+    "title": "Add Network Security Group",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "DestinationPortRange",
+          "type": "datatype.string",
+          "description": "enter a valid destination port range\nex: range between 0 and 65535. Asterisk '*' can also be used to match all ports.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g45mkNmYL4L7KUaStq5oFuFTpDdWcf6",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "Priority",
+          "type": "datatype.integer",
+          "description": "enter a valid priority\nex: between 100 and 4096",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01g43fzW2P6jph2lTgynFEqG1JXewMcsE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01geUdAhDSemd6QOTGbx42YeBgdLUqvI5",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Network Security Group Details",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01g4HRTdUS2PhnJRDj32QKEseZHGioHmb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "NetworkSecurityGroupName",
+          "type": "datatype.string",
+          "description": "enter a valid network security group name\nex: networksecuritygroup_testing",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g4dDrdDrg8h8xdlD8XrdTtwP2cgfR0Y",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ResourceGroupName",
+          "type": "datatype.string",
+          "description": "enter a valid resourcegroup name which exists\nex: resourcegroup_testing",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1e958RzD3MYFAgV3pHENbc5S23MAG4",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string",
+          "description": "enter a valid api version\nex: 2018-08-01",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1eGrRTKQx5QShdlrkE1c4I9KKQR2aq",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Access",
+          "type": "datatype.string",
+          "description": "enter a valid securityrules access\nex: Allow/Deny",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g42vCJoajAIKNjZqgrWerXM75Gscuo7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Location",
+          "type": "datatype.string",
+          "description": "enter a valid location\nex: westus",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g44ntJiwLdco0nUYsp1F1aaMAht46UX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "SubscriptionId",
+          "type": "datatype.string",
+          "description": "enter a valid subscription id\nex: 244fc-3ef8-49b2-b02d-7f0",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1e3FOshfmXnvgrfmATBxHjq06QQ58k",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Direction",
+          "type": "datatype.string",
+          "description": "enter valid direction\nex: Inbound/Outbound",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g43PdVWvBxn2rTR7PDYf69kPyIvYzDm",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Create a Network Security Group.",
+      "display_name": "Add Network Security Group",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01g1E3I2SCowkxvlP1imGZQ6Al0hUV2Pf",
+        "name": "HTTP Request",
+        "title": "Add Network Security Group",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"location\": \"$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g44ntJiwLdco0nUYsp1F1aaMAht46UX$\",\n  \"properties\": {\n    \"SecurityRules\": [\n      {\n        \"name\": \"$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g4dDrdDrg8h8xdlD8XrdTtwP2cgfR0Y$\",\n        \"properties\": {\n          \"protocol\": \"*\",\n          \"sourceAddressPrefix\": \"*\",\n          \"destinationAddressPrefix\": \"*\",\n          \"access\": \"$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g42vCJoajAIKNjZqgrWerXM75Gscuo7$\",\n          \"destinationPortRange\": \"$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g45mkNmYL4L7KUaStq5oFuFTpDdWcf6$\",\n          \"sourcePortRange\": \"*\",\n          \"priority\": \"$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g43fzW2P6jph2lTgynFEqG1JXewMcsE$\",\n          \"direction\": \"$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g43PdVWvBxn2rTR7PDYf69kPyIvYzDm$\"\n        }\n      }\n    ]\n  }\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01geUdAhDSemd6QOTGbx42YeBgdLUqvI5$"
+            }
+          ],
+          "description": "HTTP Request to Create a Network Security Group",
+          "display_name": "Add Network Security Group",
+          "method": "PUT",
+          "relative_url": "/subscriptions/$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g1e3FOshfmXnvgrfmATBxHjq06QQ58k$/resourceGroups/$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g1e958RzD3MYFAgV3pHENbc5S23MAG4$/providers/Microsoft.Network/networkSecurityGroups/$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g4dDrdDrg8h8xdlD8XrdTtwP2cgfR0Y$?api-version=$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.input.variable_workflow_01g1eGrRTKQx5QShdlrkE1c4I9KKQR2aq$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gDlwZ6OudCDf7KqSi6VFg3V99AQwXa7",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gDlX6vf1DiTm47YMYEbOaMhdIs4BPn7",
+            "name": "Condition Branch",
+            "title": "If Status Code = 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1E3I2SCowkxvlP1imGZQ6Al0hUV2Pf.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01g4GPrgxSNuxMzMVzbZ6SMr3hZMvm7A6",
+                "name": "Replace String",
+                "title": "Replace String",
+                "type": "core.replacestring",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Replace String",
+                  "input_string": "$activity.definition_activity_01g1E3I2SCowkxvlP1imGZQ6Al0hUV2Pf.output.response_body$",
+                  "replace_list": [
+                    {
+                      "replaced_string": "\\\\",
+                      "replacement_string": "\\"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g4GR0hg8KMF6njNL2RPnU6jK5pfBWZp",
+                "name": "JSONPath Query",
+                "title": "Read Network Security Group Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Network Security Group Details",
+                  "input_json": "$activity.definition_activity_01g4GPrgxSNuxMzMVzbZ6SMr3hZMvm7A6.output.result_string$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.id",
+                      "jsonpath_query_name": "NETWORK SECURITY GROUP ID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g4Hms1C1zbUfemkBX2RzCvNYxt37Jpl",
+                "name": "Set Variables",
+                "title": "Set Network Security Group Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Network Security Group Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01g1DpvdStk9z6uUmZMzZJVV8tBj1PVnL.output.variable_workflow_01g4HRTdUS2PhnJRDj32QKEseZHGioHmb$",
+                      "variable_value_new": "$activity.definition_activity_01g4GR0hg8KMF6njNL2RPnU6jK5pfBWZp.output.jsonpath_queries.NETWORK SECURITY GROUP ID$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gDlXAdf64yCQZW4Fi0bdvOgzQWK2uBc",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1E3I2SCowkxvlP1imGZQ6Al0hUV2Pf.output.status_code$",
+                "operator": "ne",
+                "right_operand": "201"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gDM2kGXo5zAotXjAieHajEvwPWgl0VD",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Unable to add network security group in Micrsoft Azure\n\nError:\n$activity.definition_activity_01g1E3I2SCowkxvlP1imGZQ6Al0hUV2Pf.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

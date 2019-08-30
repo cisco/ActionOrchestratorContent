@@ -1,0 +1,185 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gRNWcORlVRcUdHA6wqCAzo6OiIGCYZh",
+    "name": "Update Template",
+    "title": "Update Template",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Url",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRnMZ2S7vXLJ0OQfcnDIxh1W6soQRCo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Request Body",
+          "type": "datatype.string",
+          "description": "Request",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gRnjZpvEMsgv2vb9znUevGNYns90ux2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018ED0UWG1S2K7bpPoN5wqmfASHngYXiMkH",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Task ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRnLb6WYkwF2pPVEyXHaEsFeCXKuUh0",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic update/replace template",
+      "display_name": "Update Template",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gRn29Dwcu5okaJXHmEnb0ttQfi6De6B",
+        "name": "HTTP Request",
+        "title": "Update Template",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_01gRNWcORlVRcUdHA6wqCAzo6OiIGCYZh.input.variable_workflow_01gRnjZpvEMsgv2vb9znUevGNYns90ux2$",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gRNWcORlVRcUdHA6wqCAzo6OiIGCYZh.input.variable_workflow_018ED0UWG1S2K7bpPoN5wqmfASHngYXiMkH$"
+            }
+          ],
+          "display_name": "Update Template",
+          "method": "PUT",
+          "relative_url": "/dna/intent/api/v1/template-programmer/template",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRntTc9VAZxdBQFhGmzkfCZB1sMlUG6",
+        "name": "JSONPath Query",
+        "title": "Read Update Template",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Update Template",
+          "input_json": "$activity.definition_activity_01gRn29Dwcu5okaJXHmEnb0ttQfi6De6B.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.response.taskId ",
+              "jsonpath_query_name": "TaskId",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.url ",
+              "jsonpath_query_name": "Url",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRnu0slfk7kf8GuL13n4LT80YzSZPqZ",
+        "name": "Set Variables",
+        "title": "Update Template Successfully",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Update Template Successfully",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gRNWcORlVRcUdHA6wqCAzo6OiIGCYZh.output.variable_workflow_01gRnLb6WYkwF2pPVEyXHaEsFeCXKuUh0$",
+              "variable_value_new": "$activity.definition_activity_01gRntTc9VAZxdBQFhGmzkfCZB1sMlUG6.output.jsonpath_queries.TaskId$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01gRNWcORlVRcUdHA6wqCAzo6OiIGCYZh.output.variable_workflow_01gRnMZ2S7vXLJ0OQfcnDIxh1W6soQRCo$",
+              "variable_value_new": "$activity.definition_activity_01gRntTc9VAZxdBQFhGmzkfCZB1sMlUG6.output.jsonpath_queries.Url$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

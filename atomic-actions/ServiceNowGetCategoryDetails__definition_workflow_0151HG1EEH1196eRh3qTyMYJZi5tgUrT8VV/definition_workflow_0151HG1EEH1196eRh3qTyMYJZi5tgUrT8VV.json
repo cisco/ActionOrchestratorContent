@@ -1,0 +1,413 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0151HG1EEH1196eRh3qTyMYJZi5tgUrT8VV",
+    "name": "Get Category Details ",
+    "title": "Get Category Details ",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_0151HGOB3OU1G1FH1Lpxpf4XJaf6ZlDnTal",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "System Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151HH1GR4NPZ11NN0opx6HfqdSZvg1QjZZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_0151HLF9J2JZ945lSFR07zYxxRz5f4ajO1P",
+        "properties": {
+          "scope": "output",
+          "name": "Child Categories Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_0151HLIQF01OE5Os68nYqJ3daopQ7m7LhXt",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Title",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151HM75FT9431PQHVg7RLLaVorJU7c9G2v",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Description",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151HMC963UDM34sCvFIuJ0LF96M1xsqn0m",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Sys Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151HMMWF3KR85fKqaXTqlAvMfvMTSKUn5t",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Service Now",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Returns Category Details For The Provided System Id",
+      "display_name": "Get Category Details ",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0151HH4KWEBQM3H96vJxtylyK321OC4URzM",
+        "name": "HTTP Request",
+        "title": "Get Category Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_0151HG1EEH1196eRh3qTyMYJZi5tgUrT8VV.input.variable_workflow_0151HGOB3OU1G1FH1Lpxpf4XJaf6ZlDnTal$"
+            }
+          ],
+          "display_name": "Get Category Details",
+          "method": "GET",
+          "relative_url": "/sn_sc/servicecatalog/categories/$workflow.definition_workflow_0151HG1EEH1196eRh3qTyMYJZi5tgUrT8VV.input.variable_workflow_0151HH1GR4NPZ11NN0opx6HfqdSZvg1QjZZ$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151HI2FC8CJW71YhfAwIOgPmyOSljCkKIJ",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0151HI2JPO4B44a6DX1JaGWz91JigviyqlM",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151HH4KWEBQM3H96vJxtylyK321OC4URzM.output.status_code$",
+                "operator": "eq",
+                "right_operand": "200"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151HIYF8FWVU16pESfwsF9imXMRVMaGqJI",
+                "name": "JSONPath Query",
+                "title": "Read Category Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Category Details",
+                  "input_json": "$activity.definition_activity_0151HH4KWEBQM3H96vJxtylyK321OC4URzM.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$..title",
+                      "jsonpath_query_name": "Title",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..description",
+                      "jsonpath_query_name": "Description",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..sys_id",
+                      "jsonpath_query_name": "System Id",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0151HLQAM0K0T6FDojr1X6NoAvA0R4iwm2Y",
+                "name": "Read Table from JSON",
+                "title": "Read Child Categories Details from JSON",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Child Categories Details from JSON",
+                  "input_json": "$activity.definition_activity_0151HH4KWEBQM3H96vJxtylyK321OC4URzM.output.response_body$",
+                  "jsonpath_query": "$..child_categories",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "sys_id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "title",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0151HOD1SQCQ05diZdnBPImmBRDx8L3XmQE",
+                "name": "Condition Block",
+                "title": "Evaluate condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate condition"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_0151HOD7IK5Q52NbtKJ489sMfSIxVMP9RR3",
+                    "name": "Condition Branch",
+                    "title": "If Row Count \u003e 0",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0151HLQAM0K0T6FDojr1X6NoAvA0R4iwm2Y.output.row_count$",
+                        "operator": "gt",
+                        "right_operand": 0
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Row Count \u003e 0"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0151HSNC2VN1F7gNOUlOQ8mjxseKT4smhSf",
+                        "name": "For Each",
+                        "title": "For Each Child Categories",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "For Each Child Categories",
+                          "source_array": "$activity.definition_activity_0151HLQAM0K0T6FDojr1X6NoAvA0R4iwm2Y.output.read_table_from_json$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_0151HQJD19Y0I3vBDHQfsWlC5dVleoTPLw6",
+                            "name": "Add Row to Table",
+                            "title": "Add Child Categories to Table",
+                            "type": "core.addrowtotable",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "continue_on_failure": false,
+                              "display_name": "Add Child Categories to Table",
+                              "input_table": "$workflow.definition_workflow_0151HG1EEH1196eRh3qTyMYJZi5tgUrT8VV.output.variable_workflow_0151HLIQF01OE5Os68nYqJ3daopQ7m7LhXt$",
+                              "row": [
+                                {
+                                  "key": "sys_id",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_0151HSNC2VN1F7gNOUlOQ8mjxseKT4smhSf.input.source_array[@].sys_id$"
+                                },
+                                {
+                                  "key": "title",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_0151HSNC2VN1F7gNOUlOQ8mjxseKT4smhSf.input.source_array[@].title$"
+                                }
+                              ]
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_0151HODB13I9N4UFUFaCM8dQhIQOLlH9mur",
+                    "name": "Condition Branch",
+                    "title": "If Row Count \u003c\u003e 0",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_0151HLQAM0K0T6FDojr1X6NoAvA0R4iwm2Y.output.row_count$",
+                        "operator": "eq",
+                        "right_operand": 0
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Row Count \u003c\u003e 0"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_0151HTL922AKQ7672HPk21pQGKn5gb1L4mV",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed To Get Child Category Details"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_0151HLVWXEM934ZZJhlxcWETsaBEgzmgPVD",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0151HG1EEH1196eRh3qTyMYJZi5tgUrT8VV.output.variable_workflow_0151HM75FT9431PQHVg7RLLaVorJU7c9G2v$",
+                      "variable_value_new": "$activity.definition_activity_0151HIYF8FWVU16pESfwsF9imXMRVMaGqJI.output.jsonpath_queries.Title$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0151HG1EEH1196eRh3qTyMYJZi5tgUrT8VV.output.variable_workflow_0151HMC963UDM34sCvFIuJ0LF96M1xsqn0m$",
+                      "variable_value_new": "$activity.definition_activity_0151HIYF8FWVU16pESfwsF9imXMRVMaGqJI.output.jsonpath_queries.Description$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0151HG1EEH1196eRh3qTyMYJZi5tgUrT8VV.output.variable_workflow_0151HMMWF3KR85fKqaXTqlAvMfvMTSKUn5t$",
+                      "variable_value_new": "$activity.definition_activity_0151HIYF8FWVU16pESfwsF9imXMRVMaGqJI.output.jsonpath_queries.System Id$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0151HI2MOXW4Q2LmKZSC9n8eLJW0aQkzvLu",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151HH4KWEBQM3H96vJxtylyK321OC4URzM.output.status_code$",
+                "operator": "ne",
+                "right_operand": "200"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151HUF0U57N36pbrkbCgrNopAqpySVM4ml",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Fetch Category Deatils For System id: $workflow.definition_workflow_0151HG1EEH1196eRh3qTyMYJZi5tgUrT8VV.input.variable_workflow_0151HH1GR4NPZ11NN0opx6HfqdSZvg1QjZZ$ With The Following Error Message: $activity.definition_activity_0151HH4KWEBQM3H96vJxtylyK321OC4URzM.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_0151HLF9J2JZ945lSFR07zYxxRz5f4ajO1P": {
+      "unique_name": "tabletype_0151HLF9J2JZ945lSFR07zYxxRz5f4ajO1P",
+      "data_type": "datatype.tabletype",
+      "display_name": "Child Categories Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "sys_id",
+          "title": "Sys Id",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "title": "Title",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

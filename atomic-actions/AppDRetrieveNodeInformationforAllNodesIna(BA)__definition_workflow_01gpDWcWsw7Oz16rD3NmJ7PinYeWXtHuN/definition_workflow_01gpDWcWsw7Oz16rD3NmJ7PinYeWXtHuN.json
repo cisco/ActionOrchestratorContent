@@ -1,0 +1,324 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gpDWcWsw7Oz16rD3NmJ7PinYeWXtHuN",
+    "name": "Retrieve Node Information for All Nodes in a(BA)",
+    "title": "Retrieve Node Information for All Nodes in a(BA)",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application_name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpg4DETYpf5ck66vVIDF8NZIhx5uMbt",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gpEQoZnswoyQZYSuohcu3Fzd3FvLe8S",
+        "properties": {
+          "scope": "output",
+          "name": "Retrieve Node Information for All Nodes(BA) Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gpEtb7CnTWwgH9GoNbVls0xzFZU7nyf",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Retrieve Node Information for All Nodes in a(BA) Based On Application Name.",
+      "display_name": "Retrieve Node Information for All Nodes in a(BA)",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gpDylh1SF85RHosO5TZrTX2qNq95yEI",
+        "name": "HTTP Request",
+        "title": "Retrieve Node Information for All Nodes(BA)",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Retrieve Node Information for All Nodes(BA)",
+          "method": "GET",
+          "relative_url": "/rest/applications/$workflow.definition_workflow_01gpDWcWsw7Oz16rD3NmJ7PinYeWXtHuN.input.variable_workflow_01gpg4DETYpf5ck66vVIDF8NZIhx5uMbt$/nodes",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpd3vJeqnlyLTEdQBYMCoKe2fYAdZnp",
+        "name": "Read Table from XML",
+        "title": "Read Retrieve Node Information for All Nodes(BA)",
+        "type": "corejava.read_table_from_xml",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Retrieve Node Information for All Nodes(BA)",
+          "input_xml": "$activity.definition_activity_01gpDylh1SF85RHosO5TZrTX2qNq95yEI.output.response_body$",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "type",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "tierId",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "tierName",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "machineId",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "machineName",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "machineOSType",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "machineAgentPresent",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "machineAgentVersion",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "appAgentPresent",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "appAgentVersion",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ],
+          "xmlpath_query": "/nodes/node"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_01gpd3vJeqnlyLTEdQBYMCoKe2fYAdZnp.output.read_table_from_xml$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gpe1omsdoVYnhFdP9XBq0DLstdbmyLp",
+            "name": "Add Row to Table",
+            "title": "Add Retrieve Node Information Table",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "Add Retrieve Node Information Table",
+              "input_table": "$workflow.definition_workflow_01gpDWcWsw7Oz16rD3NmJ7PinYeWXtHuN.output.variable_workflow_01gpEtb7CnTWwgH9GoNbVls0xzFZU7nyf$",
+              "row": [
+                {
+                  "key": "id",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].id$"
+                },
+                {
+                  "key": "name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].name$"
+                },
+                {
+                  "key": "type",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].type$"
+                },
+                {
+                  "key": "tierId",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].tierId$"
+                },
+                {
+                  "key": "tierName",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].tierName$"
+                },
+                {
+                  "key": "machineId",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].machineId$"
+                },
+                {
+                  "key": "machineName",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].machineName$"
+                },
+                {
+                  "key": "machineOSType",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].machineOSType$"
+                },
+                {
+                  "key": "machineAgentPresent",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].machineAgentPresent$"
+                },
+                {
+                  "key": "machineAgentVersion",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].machineAgentVersion$"
+                },
+                {
+                  "key": "appAgentPresent",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].appAgentPresent$"
+                },
+                {
+                  "key": "appAgentVersion",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gpEw9Yf1NxgjifbdxI7oiX9zcvwVAue.input.source_array[@].appAgentVersion$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gpEQoZnswoyQZYSuohcu3Fzd3FvLe8S": {
+      "unique_name": "tabletype_01gpEQoZnswoyQZYSuohcu3Fzd3FvLe8S",
+      "data_type": "datatype.tabletype",
+      "display_name": "Retrieve Node Information for All Nodes(BA) Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "type",
+          "title": "Type",
+          "type": "string"
+        },
+        {
+          "name": "machineAgentPresent",
+          "title": "MachineAgentPresent",
+          "type": "string"
+        },
+        {
+          "name": "machineAgentVersion",
+          "title": "MachineAgentVersion",
+          "type": "string"
+        },
+        {
+          "name": "tierName",
+          "title": "TierName",
+          "type": "string"
+        },
+        {
+          "name": "machineId",
+          "title": "MachineId",
+          "type": "string"
+        },
+        {
+          "name": "machineName",
+          "title": "MachineName",
+          "type": "string"
+        },
+        {
+          "name": "machineOSType",
+          "title": "MachineOSType",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "tierId",
+          "title": "TierId",
+          "type": "string"
+        },
+        {
+          "name": "appAgentPresent",
+          "title": "AppAgentPresent",
+          "type": "string"
+        },
+        {
+          "name": "appAgentVersion",
+          "title": "AppAgentVersion",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "title": "ID",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

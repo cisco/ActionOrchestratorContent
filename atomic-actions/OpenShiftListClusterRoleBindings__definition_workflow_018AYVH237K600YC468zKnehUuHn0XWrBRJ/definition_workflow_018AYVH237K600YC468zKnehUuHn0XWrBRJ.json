@@ -1,0 +1,1066 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018AYVH237K600YC468zKnehUuHn0XWrBRJ",
+    "name": "List Cluster Role Bindings",
+    "title": "List Cluster Role Bindings",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_018AZ4G74HIML2DPFYsdQXvpVT9uO3ZCroP",
+        "properties": {
+          "value": [
+            {
+              "column_data": {
+                "name": "basic-users",
+                "resourceVersion": "789",
+                "selfLink": "/oapi/v1/clusterrolebindings/basic-users",
+                "uid": "98c4d772-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "cluster-admin",
+                "resourceVersion": "102",
+                "selfLink": "/oapi/v1/clusterrolebindings/cluster-admin",
+                "uid": "5b0d93a1-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "cluster-admin-0",
+                "resourceVersion": "995",
+                "selfLink": "/oapi/v1/clusterrolebindings/cluster-admin-0",
+                "uid": "b9595f59-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "cluster-admin-1",
+                "resourceVersion": "4723",
+                "selfLink": "/oapi/v1/clusterrolebindings/cluster-admin-1",
+                "uid": "2c5ec653-9992-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "cluster-admin-2",
+                "resourceVersion": "5771",
+                "selfLink": "/oapi/v1/clusterrolebindings/cluster-admin-2",
+                "uid": "c63ee9bd-9992-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "cluster-admins",
+                "resourceVersion": "787",
+                "selfLink": "/oapi/v1/clusterrolebindings/cluster-admins",
+                "uid": "98c3b0dd-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "cluster-readers",
+                "resourceVersion": "788",
+                "selfLink": "/oapi/v1/clusterrolebindings/cluster-readers",
+                "uid": "98c441d1-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "cluster-status-binding",
+                "resourceVersion": "793",
+                "selfLink": "/oapi/v1/clusterrolebindings/cluster-status-binding",
+                "uid": "98c724f6-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "registry-registry-role",
+                "resourceVersion": "1012",
+                "selfLink": "/oapi/v1/clusterrolebindings/registry-registry-role",
+                "uid": "ba0c7eb9-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "router-router-role",
+                "resourceVersion": "1049",
+                "selfLink": "/oapi/v1/clusterrolebindings/router-router-role",
+                "uid": "bb3867bd-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "self-access-reviewers",
+                "resourceVersion": "790",
+                "selfLink": "/oapi/v1/clusterrolebindings/self-access-reviewers",
+                "uid": "98c56825-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "self-provisioners",
+                "resourceVersion": "791",
+                "selfLink": "/oapi/v1/clusterrolebindings/self-provisioners",
+                "uid": "98c5f8ca-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:aws-cloud-provider",
+                "resourceVersion": "110",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aaws-cloud-provider",
+                "uid": "5b384b29-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:basic-user",
+                "resourceVersion": "104",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Abasic-user",
+                "uid": "5b19b94e-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:build-strategy-docker-binding",
+                "resourceVersion": "798",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Abuild-strategy-docker-binding",
+                "uid": "98cf7c4a-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:build-strategy-jenkinspipeline-binding",
+                "resourceVersion": "800",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Abuild-strategy-jenkinspipeline-binding",
+                "uid": "98d09a24-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:build-strategy-source-binding",
+                "resourceVersion": "799",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Abuild-strategy-source-binding",
+                "uid": "98d01674-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:attachdetach-controller",
+                "resourceVersion": "114",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Aattachdetach-controller",
+                "uid": "5b50af2f-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:certificate-controller",
+                "resourceVersion": "137",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Acertificate-controller",
+                "uid": "5bdd07de-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:clusterrole-aggregation-controller",
+                "resourceVersion": "115",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Aclusterrole-aggregation-controller",
+                "uid": "5b56c3a4-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:cronjob-controller",
+                "resourceVersion": "116",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Acronjob-controller",
+                "uid": "5b5ce2e9-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:daemon-set-controller",
+                "resourceVersion": "117",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Adaemon-set-controller",
+                "uid": "5b62f367-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:deployment-controller",
+                "resourceVersion": "118",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Adeployment-controller",
+                "uid": "5b692f9b-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:disruption-controller",
+                "resourceVersion": "119",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Adisruption-controller",
+                "uid": "5b6f2c03-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:endpoint-controller",
+                "resourceVersion": "120",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Aendpoint-controller",
+                "uid": "5b754cd8-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:expand-controller",
+                "resourceVersion": "121",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Aexpand-controller",
+                "uid": "5b7b60dd-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:generic-garbage-collector",
+                "resourceVersion": "122",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Ageneric-garbage-collector",
+                "uid": "5b817c29-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:horizontal-pod-autoscaler",
+                "resourceVersion": "827",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Ahorizontal-pod-autoscaler",
+                "uid": "5b879334-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:job-controller",
+                "resourceVersion": "124",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Ajob-controller",
+                "uid": "5b8db42b-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:namespace-controller",
+                "resourceVersion": "125",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Anamespace-controller",
+                "uid": "5b93caec-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:node-controller",
+                "resourceVersion": "126",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Anode-controller",
+                "uid": "5b99ea6c-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:persistent-volume-binder",
+                "resourceVersion": "127",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Apersistent-volume-binder",
+                "uid": "5b9ffdf2-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:pod-garbage-collector",
+                "resourceVersion": "128",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Apod-garbage-collector",
+                "uid": "5ba6215c-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:pv-protection-controller",
+                "resourceVersion": "139",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Apv-protection-controller",
+                "uid": "5be93a6f-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:pvc-protection-controller",
+                "resourceVersion": "138",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Apvc-protection-controller",
+                "uid": "5be323f1-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:replicaset-controller",
+                "resourceVersion": "129",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Areplicaset-controller",
+                "uid": "5bac35e9-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:replication-controller",
+                "resourceVersion": "130",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Areplication-controller",
+                "uid": "5bb257a0-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:resourcequota-controller",
+                "resourceVersion": "131",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Aresourcequota-controller",
+                "uid": "5bb870bc-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:route-controller",
+                "resourceVersion": "132",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Aroute-controller",
+                "uid": "5bbe8c9d-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:service-account-controller",
+                "resourceVersion": "133",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Aservice-account-controller",
+                "uid": "5bc4a246-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:service-controller",
+                "resourceVersion": "134",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Aservice-controller",
+                "uid": "5bcabf6f-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:statefulset-controller",
+                "resourceVersion": "135",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Astatefulset-controller",
+                "uid": "5bd0dbff-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:controller:ttl-controller",
+                "resourceVersion": "136",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Acontroller%3Attl-controller",
+                "uid": "5bd6f480-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:deployer",
+                "resourceVersion": "831",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Adeployer",
+                "uid": "98e4858f-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:discovery",
+                "resourceVersion": "103",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Adiscovery",
+                "uid": "5b13a30d-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:discovery-binding",
+                "resourceVersion": "804",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Adiscovery-binding",
+                "uid": "98d39f13-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:image-builder",
+                "resourceVersion": "830",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aimage-builder",
+                "uid": "98e3e9ce-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:image-puller",
+                "resourceVersion": "829",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aimage-puller",
+                "uid": "98e36481-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:kube-controller-manager",
+                "resourceVersion": "106",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Akube-controller-manager",
+                "uid": "5b268c5a-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:kube-dns",
+                "resourceVersion": "108",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Akube-dns",
+                "uid": "5b2c0b33-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:kube-proxy",
+                "resourceVersion": "195",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Akube-proxy",
+                "uid": "5d5fb42d-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:kube-scheduler",
+                "resourceVersion": "109",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Akube-scheduler",
+                "uid": "5b3223e8-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:masters",
+                "resourceVersion": "785",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Amasters",
+                "uid": "98c27a5a-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:node",
+                "resourceVersion": "111",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Anode",
+                "uid": "5b3e60b9-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:node-admin",
+                "resourceVersion": "113",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Anode-admin",
+                "uid": "5b4a9c61-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:node-admins",
+                "resourceVersion": "786",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Anode-admins",
+                "uid": "98c323ec-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:node-bootstrapper",
+                "resourceVersion": "801",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Anode-bootstrapper",
+                "uid": "98d17d15-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:node-proxier",
+                "resourceVersion": "105",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Anode-proxier",
+                "uid": "5b2542f7-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:node-proxiers",
+                "resourceVersion": "794",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Anode-proxiers",
+                "uid": "98c7be76-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:nodes",
+                "resourceVersion": "803",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Anodes",
+                "uid": "98d30454-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:oauth-token-deleters",
+                "resourceVersion": "792",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aoauth-token-deleters",
+                "uid": "98c68dc4-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:apiservice-cabundle-injector",
+                "resourceVersion": "528",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aapiservice-cabundle-injector",
+                "uid": "80f1e4f1-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:build-config-change-controller",
+                "resourceVersion": "806",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Abuild-config-change-controller",
+                "uid": "98d4cd1e-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:build-controller",
+                "resourceVersion": "805",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Abuild-controller",
+                "uid": "98d4347f-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:cluster-quota-reconciliation-controller",
+                "resourceVersion": "820",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Acluster-quota-reconciliation-controller",
+                "uid": "98de3388-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:default-rolebindings-controller",
+                "resourceVersion": "832",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Adefault-rolebindings-controller",
+                "uid": "98e52454-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:deployer-controller",
+                "resourceVersion": "807",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Adeployer-controller",
+                "uid": "98d562e8-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:deploymentconfig-controller",
+                "resourceVersion": "808",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Adeploymentconfig-controller",
+                "uid": "98d634b2-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:horizontal-pod-autoscaler",
+                "resourceVersion": "826",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Ahorizontal-pod-autoscaler",
+                "uid": "98e1add1-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:image-import-controller",
+                "resourceVersion": "818",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aimage-import-controller",
+                "uid": "98dcf2a9-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:image-trigger-controller",
+                "resourceVersion": "816",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aimage-trigger-controller",
+                "uid": "98dbbda4-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:ingress-to-route-controller",
+                "resourceVersion": "823",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aingress-to-route-controller",
+                "uid": "98dfea69-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:namespace-security-allocation-controller",
+                "resourceVersion": "833",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Anamespace-security-allocation-controller",
+                "uid": "98e5c4a5-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:origin-namespace-controller",
+                "resourceVersion": "813",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aorigin-namespace-controller",
+                "uid": "98d9eb0e-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:pv-recycler-controller",
+                "resourceVersion": "824",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Apv-recycler-controller",
+                "uid": "98e07e6e-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:resourcequota-controller",
+                "resourceVersion": "825",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aresourcequota-controller",
+                "uid": "98e12397-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:sdn-controller",
+                "resourceVersion": "819",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Asdn-controller",
+                "uid": "98dd8d8f-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:service-ingress-ip-controller",
+                "resourceVersion": "822",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aservice-ingress-ip-controller",
+                "uid": "98df5c1c-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:service-serving-cert-controller",
+                "resourceVersion": "817",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aservice-serving-cert-controller",
+                "uid": "98dc5d46-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:service-serving-cert-signer",
+                "resourceVersion": "506",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aservice-serving-cert-signer",
+                "uid": "8099a9e9-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:serviceaccount-controller",
+                "resourceVersion": "814",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aserviceaccount-controller",
+                "uid": "98da92af-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:serviceaccount-pull-secrets-controller",
+                "resourceVersion": "815",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aserviceaccount-pull-secrets-controller",
+                "uid": "98db274b-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:template-instance-controller",
+                "resourceVersion": "809",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Atemplate-instance-controller",
+                "uid": "98d6c8de-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:template-instance-controller:admin",
+                "resourceVersion": "810",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Atemplate-instance-controller%3Aadmin",
+                "uid": "98d76115-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:template-instance-finalizer-controller",
+                "resourceVersion": "811",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Atemplate-instance-finalizer-controller",
+                "uid": "98d80034-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:template-instance-finalizer-controller:admin",
+                "resourceVersion": "812",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Atemplate-instance-finalizer-controller%3Aadmin",
+                "uid": "98d956ab-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:template-service-broker",
+                "resourceVersion": "828",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Atemplate-service-broker",
+                "uid": "98e2d835-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:controller:unidling-controller",
+                "resourceVersion": "821",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Acontroller%3Aunidling-controller",
+                "uid": "98ded03c-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:discovery",
+                "resourceVersion": "797",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Adiscovery",
+                "uid": "98ced862-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:openshift-controller-manager",
+                "resourceVersion": "974",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Aopenshift-controller-manager",
+                "uid": "b8bb38c9-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:operator:service-cert-signer",
+                "resourceVersion": "227",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Aoperator%3Aservice-cert-signer",
+                "uid": "5d84c858-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:openshift:operator:web-console",
+                "resourceVersion": "1063",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Aopenshift%3Aoperator%3Aweb-console",
+                "uid": "bbaa0cff-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:scope-impersonation",
+                "resourceVersion": "802",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Ascope-impersonation",
+                "uid": "98d25be4-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:sdn-readers",
+                "resourceVersion": "795",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Asdn-readers",
+                "uid": "98c95d02-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:volume-scheduler",
+                "resourceVersion": "112",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Avolume-scheduler",
+                "uid": "5b4471fc-9990-11e9-be87-005056a75e02"
+              }
+            },
+            {
+              "column_data": {
+                "name": "system:webhooks",
+                "resourceVersion": "796",
+                "selfLink": "/oapi/v1/clusterrolebindings/system%3Awebhooks",
+                "uid": "98ce0781-9990-11e9-be87-005056a75e02"
+              }
+            }
+          ],
+          "scope": "output",
+          "name": "Cluster Role Binding Table",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AZ4OG58ZYS7kJxUdIVBqveUZgA3qL0pS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018AZ8R6VROKT0pWw9WYye8k0VN003f43O9",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic will return all the available cluster role bindings.",
+      "display_name": "List Cluster Role Bindings",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018AYXRV1IGSU2LP8maWL7hEWJe0Vm04kLd",
+        "name": "HTTP Request",
+        "title": "List Cluster Role Bindings",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_018AYVH237K600YC468zKnehUuHn0XWrBRJ.input.variable_workflow_018AZ8R6VROKT0pWw9WYye8k0VN003f43O9$"
+            }
+          ],
+          "display_name": "List Cluster Role Bindings",
+          "method": "GET",
+          "relative_url": "/clusterrolebindings",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018AYYE0DPT7S2Jyi7VWCeOO7TZSyO09WqU",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018AYYE4KT1VC67CZgmz9gU7SC6FmPUmkUE",
+            "name": "Condition Branch",
+            "title": "If Status Code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AYXRV1IGSU2LP8maWL7hEWJe0Vm04kLd.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code == 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AZ5Q2IBY384J8h5Z3kOPH4MuXmbTN2cr",
+                "name": "Read Table from JSON",
+                "title": "Read Cluster Role Binding Details",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Cluster Role Binding Details",
+                  "input_json": "$activity.definition_activity_018AYXRV1IGSU2LP8maWL7hEWJe0Vm04kLd.output.response_body$",
+                  "jsonpath_query": "$.items[*].metadata",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "selfLink",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "uid",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "resourceVersion",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018AZ4Z115QI10n2MxA1bRwFVSnjhW3TEWY",
+                "name": "For Each",
+                "title": "For Each Cluster Role Binding",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Cluster Role Binding",
+                  "source_array": "$activity.definition_activity_018AZ5Q2IBY384J8h5Z3kOPH4MuXmbTN2cr.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_018AZ12U3J10X1qaRFBSstfCh3eUJ6ZuMig",
+                    "name": "Add Row to Table",
+                    "title": "Add Cluster Role Bindings to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Cluster Role Bindings to Table",
+                      "input_table": "$workflow.definition_workflow_018AYVH237K600YC468zKnehUuHn0XWrBRJ.output.variable_workflow_018AZ4OG58ZYS7kJxUdIVBqveUZgA3qL0pS$",
+                      "row": [
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_018AZ4Z115QI10n2MxA1bRwFVSnjhW3TEWY.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "selfLink",
+                          "type": "string",
+                          "value": "$activity.definition_activity_018AZ4Z115QI10n2MxA1bRwFVSnjhW3TEWY.input.source_array[@].selfLink$"
+                        },
+                        {
+                          "key": "uid",
+                          "type": "string",
+                          "value": "$activity.definition_activity_018AZ4Z115QI10n2MxA1bRwFVSnjhW3TEWY.input.source_array[@].uid$"
+                        },
+                        {
+                          "key": "resourceVersion",
+                          "type": "string",
+                          "value": "$activity.definition_activity_018AZ4Z115QI10n2MxA1bRwFVSnjhW3TEWY.input.source_array[@].resourceVersion$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018AYYE8A2BM41vLadybvpWhsFL3Wu9ltOf",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AYXRV1IGSU2LP8maWL7hEWJe0Vm04kLd.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AZ7AZ99W956FHZj4metzMxou1xRrNYVT",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get Clust Role Bindings\n\nErrorMessage:\n$activity.definition_activity_018AYXRV1IGSU2LP8maWL7hEWJe0Vm04kLd.output.response_body$ \n\nStatus Message:\n$activity.definition_activity_018AYXRV1IGSU2LP8maWL7hEWJe0Vm04kLd.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_018AZ4G74HIML2DPFYsdQXvpVT9uO3ZCroP": {
+      "unique_name": "tabletype_018AZ4G74HIML2DPFYsdQXvpVT9uO3ZCroP",
+      "data_type": "datatype.tabletype",
+      "display_name": "Cluster Role Binding Table",
+      "columns": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "resourceVersion",
+          "title": "ResourceVersion",
+          "type": "string"
+        },
+        {
+          "name": "selfLink",
+          "title": "SelfLink",
+          "type": "string"
+        },
+        {
+          "name": "uid",
+          "title": "UID",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

@@ -1,0 +1,306 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa",
+    "name": "Get User Details",
+    "title": "Get User Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0195KPEJZW3D16Sy2DG09Jl03DcH6HDqc4M",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Domain ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0195KPEJZW51T6otoQ21RFt7BymTZF0Doda",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Enabled",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0195KPEJZW6QO3Xr4NwA6bwqytlHruXnh2x",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "User Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0195KPEJZW8I82pA0kA3D8nftlvd5KF2eT1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "User Details",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0195KWZ2K1EUG3ZxWBLHTeN9AbrweyvWVaJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "User ID",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0195KPEJZVWIM36wyL4lVMHsNBooMYzogJ4",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0195KPEJZW1EX5TEik9VYxkqnie4gqKEbSi",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic get details of a particular user",
+      "display_name": "Get User Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0195KPEO13ADY4ryhenAdDqOaJBMQNfGyUV",
+        "name": "HTTP Request",
+        "title": "Get User Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+              "value": "$workflow.definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa.input.variable_workflow_0195KPEJZW1EX5TEik9VYxkqnie4gqKEbSi$"
+            }
+          ],
+          "display_name": "Get User Details",
+          "method": "GET",
+          "relative_url": "/v3/users/$workflow.definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa.input.variable_workflow_0195KPEJZVWIM36wyL4lVMHsNBooMYzogJ4$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0195KPESA90DO7LLm782Gqlv2I4FPTJjlV9",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0195KPEV9E1V7343r6LEs65LdBx4TM0gW4z",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0195KPEO13ADY4ryhenAdDqOaJBMQNfGyUV.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195KPEZYXVIQ3D5YpiEHMEaLLWcokvPgNG",
+                "name": "JSONPath Query",
+                "title": "Read User Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read User Details",
+                  "input_json": "$activity.definition_activity_0195KPEO13ADY4ryhenAdDqOaJBMQNfGyUV.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$..name",
+                      "jsonpath_query_name": "Name",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..domain_id",
+                      "jsonpath_query_name": "Domain ID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..enabled",
+                      "jsonpath_query_name": "Enabled",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$..id",
+                      "jsonpath_query_name": "ID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0195KPF3SYMCJ5CsvtiX0ogeHXCunZD6dlJ",
+                "name": "Set Variables",
+                "title": "Set User Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set User Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa.output.variable_workflow_0195KPEJZW51T6otoQ21RFt7BymTZF0Doda$",
+                      "variable_value_new": "$activity.definition_activity_0195KPEZYXVIQ3D5YpiEHMEaLLWcokvPgNG.output.jsonpath_queries.Domain ID$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa.output.variable_workflow_0195KPEJZW6QO3Xr4NwA6bwqytlHruXnh2x$",
+                      "variable_value_new": "$activity.definition_activity_0195KPEZYXVIQ3D5YpiEHMEaLLWcokvPgNG.output.jsonpath_queries.Enabled$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa.output.variable_workflow_0195KPEJZW3D16Sy2DG09Jl03DcH6HDqc4M$",
+                      "variable_value_new": "$activity.definition_activity_0195KPEZYXVIQ3D5YpiEHMEaLLWcokvPgNG.output.jsonpath_queries.Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa.output.variable_workflow_0195KPEJZW8I82pA0kA3D8nftlvd5KF2eT1$",
+                      "variable_value_new": "$activity.definition_activity_0195KPEZYXVIQ3D5YpiEHMEaLLWcokvPgNG.output.jsonpath_queries.ID$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa.output.variable_workflow_0195KWZ2K1EUG3ZxWBLHTeN9AbrweyvWVaJ$",
+                      "variable_value_new": "$activity.definition_activity_0195KPEO13ADY4ryhenAdDqOaJBMQNfGyUV.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0195KPF7PYKBT39EnrxaaLHmnvxyOEHy3xk",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0195KPEO13ADY4ryhenAdDqOaJBMQNfGyUV.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0195KPFBAI61P05fTslaJLVsByGsOusU5jh",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Complete User Details For The Given User ID: $workflow.definition_workflow_0195KPE8547NF6wy17MpZpNQkLjQYUkLERa.input.variable_workflow_0195KPEJZVWIM36wyL4lVMHsNBooMYzogJ4$ WIth The Following Error Message: $activity.definition_activity_0195KPEO13ADY4ryhenAdDqOaJBMQNfGyUV.output.status_text$."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C": {
+      "unique_name": "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "Openstack Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

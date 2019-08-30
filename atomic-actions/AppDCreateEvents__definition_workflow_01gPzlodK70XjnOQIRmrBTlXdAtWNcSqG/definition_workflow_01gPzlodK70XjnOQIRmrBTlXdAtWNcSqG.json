@@ -1,0 +1,126 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gPzlodK70XjnOQIRmrBTlXdAtWNcSqG",
+    "name": "Create Events",
+    "title": "Create Events",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name/ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gPzu9dmTzuBYecs6a6OEvIjUzDZucxj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Comment",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gPzyomTO5zjSjqJpZm82PumbbDJ3hNJ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Create Events Output",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp08EJ73WCb44CrYlF065vY8bVLyzlz",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Summary",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gPzXSwsGW3nCw6IHcOMpIHxgFbGh620",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "APPLICATION_DEPLOYMENT",
+          "scope": "local",
+          "name": "Event Type",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp00iROEaAHAVjFRZeZxUqtCnxYigyf",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Severity",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp04TXpnehAzNKUXAPXecDf1WbEwDIW",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Create Events For The Given Application Name/Id.",
+      "display_name": "Create Events",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gPzOhILCy2sbm9c8BktqOut2IRUa3Un",
+        "name": "HTTP Request",
+        "title": "Create Events",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n\t\"eventtype\": \"$workflow.definition_workflow_01gPzlodK70XjnOQIRmrBTlXdAtWNcSqG.local.variable_workflow_01gp00iROEaAHAVjFRZeZxUqtCnxYigyf$\",\r\n\t\"severity\": \"$workflow.definition_workflow_01gPzlodK70XjnOQIRmrBTlXdAtWNcSqG.input.variable_workflow_01gp04TXpnehAzNKUXAPXecDf1WbEwDIW$\",\r\n\t\"summary\": \"$workflow.definition_workflow_01gPzlodK70XjnOQIRmrBTlXdAtWNcSqG.input.variable_workflow_01gPzXSwsGW3nCw6IHcOMpIHxgFbGh620$\",\r\n\t\"comment\": \"$workflow.definition_workflow_01gPzlodK70XjnOQIRmrBTlXdAtWNcSqG.input.variable_workflow_01gPzyomTO5zjSjqJpZm82PumbbDJ3hNJ$\"\r\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Create Events",
+          "method": "POST",
+          "relative_url": "/rest/applications/$workflow.definition_workflow_01gPzlodK70XjnOQIRmrBTlXdAtWNcSqG.input.variable_workflow_01gPzu9dmTzuBYecs6a6OEvIjUzDZucxj$/events",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

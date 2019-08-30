@@ -1,0 +1,394 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB",
+    "name": "Create Egress Network Policy",
+    "title": "Create Egress Network Policy",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Kind",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0191BL3OMZL1Y08ycisSGH67b2mSsa7hUQD",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Self Link",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0191BL3OMZSS21lznC0I8NkUX4XELAsu1lY",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "UID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0191BL3OMZUGT4EHxs8YEtuXkT5QKGkjO2W",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Specifications",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0191BL3OMZW7E14XUqqPuvWQU0KKm7x2bgR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Namespace Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0191BL3OMZGOE1adpoGqcDKmMC9RRfObgME",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Egress Network Policy Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0191BL3OMZN3G7kk3O6gSXI7qJBG4H6S3d2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0191BL3OMZY170x2M36ozhckjD7BoiVlxjB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Resource Version",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0191BL3OMZP0I2wxLDfaFYlZ2gA0EwWiwEs",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Request Body",
+          "type": "datatype.string",
+          "description": "Enter Request Body\n(Eg. \n{\n\t\"kind\": \"EgressNetworkPolicy\",\n\t\"apiVersion\": \"v1\",\n\t\"metadata\": {\n\t\t\"name\": \"test\"\n\t},\n\t\"spec\": {\n\t\t\"egress\": [\n\t\t\t{\n\t\t\t\t\"type\": \"Deny\",\n\t\t\t\t\"to\": {\n\t\t\t\t\t\"cidrSelector\": \"0.0.0.0/0\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t}\n}\n)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0191BL3OMZQV97V2TGwNL5h1tsm8JhLffWP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "API Version",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0191BL3OMZZQW0iWqSsYqiG6CzOJS3f1t7e",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Namespace",
+          "type": "datatype.string",
+          "description": "Enter Namespace",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0191BL3ON01FI69Sqj7VphMbZ29KKHKF5Y1",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Creates an Egress Network Policy.",
+      "display_name": "Create Egress Network Policy",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0191BL3SF0I7S7dg3cY7ATdws4fyr3EH9X9",
+        "name": "HTTP Request",
+        "title": "Create Egress Network Policy",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.input.variable_workflow_0191BL3OMZQV97V2TGwNL5h1tsm8JhLffWP$",
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.input.variable_workflow_0191BL3OMZY170x2M36ozhckjD7BoiVlxjB$"
+            }
+          ],
+          "display_name": "Create Egress Network Policy",
+          "method": "POST",
+          "relative_url": "/namespaces/$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.input.variable_workflow_0191BL3ON01FI69Sqj7VphMbZ29KKHKF5Y1$/egressnetworkpolicies",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0191BL4CHCTJH1MATjBobJW2ura75vyMKci",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0191BL4F830RZ4udDtlokw7NlJ4y50cSzWZ",
+            "name": "Condition Branch",
+            "title": "If Status Code == 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0191BL3SF0I7S7dg3cY7ATdws4fyr3EH9X9.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code == 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM",
+                "name": "JSONPath Query",
+                "title": "Read Egress Network Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Egress Network Details",
+                  "input_json": "$activity.definition_activity_0191BL3SF0I7S7dg3cY7ATdws4fyr3EH9X9.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.kind",
+                      "jsonpath_query_name": "Kind",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.apiVersion",
+                      "jsonpath_query_name": "API Version",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.name",
+                      "jsonpath_query_name": "Egress Network Policy Name",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.selfLink",
+                      "jsonpath_query_name": "Self Link",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.uid",
+                      "jsonpath_query_name": "UID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.resourceVersion",
+                      "jsonpath_query_name": "Resource Version",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.spec",
+                      "jsonpath_query_name": "Specifications",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.namespace",
+                      "jsonpath_query_name": "Namespace",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0191BL4PNOYZU7HuSw0XiLz7q41vwK1INPF",
+                "name": "Set Variables",
+                "title": "Egress Network Policy Details Output",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Egress Network Policy Details Output",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.output.variable_workflow_0191BL3OMZL1Y08ycisSGH67b2mSsa7hUQD$",
+                      "variable_value_new": "$activity.definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM.output.jsonpath_queries.Kind$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.output.variable_workflow_0191BL3OMZZQW0iWqSsYqiG6CzOJS3f1t7e$",
+                      "variable_value_new": "$activity.definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM.output.jsonpath_queries.API Version$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.output.variable_workflow_0191BL3OMZN3G7kk3O6gSXI7qJBG4H6S3d2$",
+                      "variable_value_new": "$activity.definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM.output.jsonpath_queries.Egress Network Policy Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.output.variable_workflow_0191BL3OMZSS21lznC0I8NkUX4XELAsu1lY$",
+                      "variable_value_new": "$activity.definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM.output.jsonpath_queries.Self Link$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.output.variable_workflow_0191BL3OMZUGT4EHxs8YEtuXkT5QKGkjO2W$",
+                      "variable_value_new": "$activity.definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM.output.jsonpath_queries.UID$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.output.variable_workflow_0191BL3OMZP0I2wxLDfaFYlZ2gA0EwWiwEs$",
+                      "variable_value_new": "$activity.definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM.output.jsonpath_queries.Resource Version$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.output.variable_workflow_0191BL3OMZW7E14XUqqPuvWQU0KKm7x2bgR$",
+                      "variable_value_new": "$activity.definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM.output.jsonpath_queries.Specifications$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0191BL35U8ZWG3MSuOHYiZAl6CuzARZfeoB.output.variable_workflow_0191BL3OMZGOE1adpoGqcDKmMC9RRfObgME$",
+                      "variable_value_new": "$activity.definition_activity_0191BL4KDQDBO1QpJ6NQeP3zoTxRv9mhfaM.output.jsonpath_queries.Namespace$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0191BL4V3H8855TLtNtBptv7wrio2smL2IS",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0191BL3SF0I7S7dg3cY7ATdws4fyr3EH9X9.output.status_code$",
+                "operator": "ne",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0191BL4YBNZAX7HrHk1Q8yBfTLmTIR9bQRo",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Create Egress Network Policy\n\nError Message: \n$activity.definition_activity_0191BL3SF0I7S7dg3cY7ATdws4fyr3EH9X9.output.response_body$\n\nStatus Message:\n$activity.definition_activity_0191BL3SF0I7S7dg3cY7ATdws4fyr3EH9X9.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

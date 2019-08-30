@@ -1,0 +1,246 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf",
+    "name": "Add Host To vCenter",
+    "title": "Add Host To vCenter",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ThumbPrint Verification",
+          "type": "datatype.string",
+          "description": "Enter ThumbPrint Verification",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150Q79LVRZ6H5nBpzLqN4HUG8aoa8Qwl9M",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 0,
+          "scope": "input",
+          "name": "Port",
+          "type": "datatype.integer",
+          "description": "Enter Port",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150Q79LVSUQJ1BcO75osTrV9vzupZKLFA2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "input",
+          "name": "Force Add",
+          "type": "datatype.boolean",
+          "description": "Chose Force Add",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150Q79LVS6JN3meUgA46MxD5cDQ4XMRgUe",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Thumb Print",
+          "type": "datatype.string",
+          "description": "Enter Thumb Print",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150Q79LVSQWE2xOF4YKAwVg6KJE3SL0Pod",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Session Id",
+          "type": "datatype.secure_string",
+          "description": "Provide Session Id",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_019CDUWSIJOCC53FnagFqx8tclcOsZuRONw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "UserName",
+          "type": "datatype.string",
+          "description": "Enter UserName",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150Q79LVSJ4M66HLqLrFpLx1XNotKZ8CXp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "HostName",
+          "type": "datatype.string",
+          "description": "Enter HostName",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150Q79LVSARM5fIQm7BN0qjWRoWxoaNmmF",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Folder",
+          "type": "datatype.string",
+          "description": "Enter folder",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0150Q79LVSF1Q2hdUXiEIjNmx1bHPw0ziGZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Host Value",
+          "type": "datatype.string",
+          "description": "Host Value",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_0150Q79LVSMWZ2oBhpblPCIOEyr9Yp9BFul",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "VMware vCenter Server",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow adds host to a vCenter",
+      "display_name": "Add Host To vCenter",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01GL3E0xdaYZXuqMRV4Hh7u3Q0xvhcQBc",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0150Q7AEMBMK11ATnRIsYjAo2itnLUW5EBp",
+        "name": "HTTP Request",
+        "title": "Add Host To vCenter",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\r\n  \"spec\": {\r\n    \"thumbprint_verification\": \"$workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.input.variable_workflow_0150Q79LVRZ6H5nBpzLqN4HUG8aoa8Qwl9M$\",\r\n    \"force_add\": \"$workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.input.variable_workflow_0150Q79LVS6JN3meUgA46MxD5cDQ4XMRgUe$\",\r\n    \"hostname\": \"$workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.input.variable_workflow_0150Q79LVSARM5fIQm7BN0qjWRoWxoaNmmF$\",\r\n    \"thumbprint\": \"$workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.input.variable_workflow_0150Q79LVSQWE2xOF4YKAwVg6KJE3SL0Pod$\",\r\n    \"folder\": \"$workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.input.variable_workflow_0150Q79LVSF1Q2hdUXiEIjNmx1bHPw0ziGZ$\",\r\n    \"user_name\": \"$workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.input.variable_workflow_0150Q79LVSJ4M66HLqLrFpLx1XNotKZ8CXp$\",\r\n    \"port\": $workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.input.variable_workflow_0150Q79LVSUQJ1BcO75osTrV9vzupZKLFA2$\r\n  }\r\n}",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "vmware-api-session-id",
+              "value": "$workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.input.variable_workflow_019CDUWSIJOCC53FnagFqx8tclcOsZuRONw$"
+            }
+          ],
+          "display_name": "Add Host To vCenter",
+          "method": "POST",
+          "relative_url": "/rest/vcenter/host",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150Q7AQ0XZB46cIvqZjyLv5v3f5mhISLsG",
+        "name": "JSONPath Query",
+        "title": "Read Host Value",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Host Value",
+          "input_json": "$activity.definition_activity_0150Q7AEMBMK11ATnRIsYjAo2itnLUW5EBp.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.value",
+              "jsonpath_query_name": "Host Name",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0150Q7AZL76VD0hhOsSnHG0KZ72NTORXwgb",
+        "name": "Set Variables",
+        "title": "Set Host Value",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Host Value",
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_0150Q75WCEJQH7UNw1TWpcmDYrCydvqMqhf.output.variable_workflow_0150Q79LVSMWZ2oBhpblPCIOEyr9Yp9BFul$",
+              "variable_value_new": "$activity.definition_activity_0150Q7AQ0XZB46cIvqZjyLv5v3f5mhISLsG.output.jsonpath_queries.Host Name$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01GL3E0xdaYZXuqMRV4Hh7u3Q0xvhcQBc": {
+      "unique_name": "definition_target_01GL3E0xdaYZXuqMRV4Hh7u3Q0xvhcQBc",
+      "name": " vCenter Server - aus-65esxvc-01 ",
+      "title": " vCenter Server - aus-65esxvc-01 ",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": " vCenter Server - aus-65esxvc-01 ",
+        "host": "10.88.102.41",
+        "no_runtime_user": false,
+        "protocol": "https"
+      }
+    }
+  }
+}

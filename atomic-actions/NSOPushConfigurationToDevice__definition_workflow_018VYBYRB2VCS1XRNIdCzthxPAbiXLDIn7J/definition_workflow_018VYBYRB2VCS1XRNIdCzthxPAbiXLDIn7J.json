@@ -1,0 +1,174 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018VYBYRB2VCS1XRNIdCzthxPAbiXLDIn7J",
+    "name": "NSO-Push config to the device",
+    "title": "NSO-Push config to the device",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "device-name",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018VYFGP1ZZMC65L6F8SctbkYimCKpqurVm",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Patch request body",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018W0MCRZ89R45EbZ0ZAozrMl0JQUW0qB6s",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco NSO",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "NSO - Push configuration details to the given device",
+      "display_name": "NSO-Push config to the device",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018VYC999LWXG6Nb0QgcBlGmgVJioUzsV7X",
+        "name": "HTTP Request",
+        "title": "Push config to the device",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/vnd.yang.data+json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_018VYBYRB2VCS1XRNIdCzthxPAbiXLDIn7J.input.variable_workflow_018W0MCRZ89R45EbZ0ZAozrMl0JQUW0qB6s$",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/yang-data+json"
+            }
+          ],
+          "display_name": "Push config to the device",
+          "method": "PATCH",
+          "relative_url": "/restconf/data/tailf-ncs:devices/device=$workflow.definition_workflow_018VYBYRB2VCS1XRNIdCzthxPAbiXLDIn7J.input.variable_workflow_018VYFGP1ZZMC65L6F8SctbkYimCKpqurVm$/config/",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018VYOPYS4UXS3U7PvGD3u08omdjFM1ViP7",
+        "name": "Condition Block",
+        "title": "CHECK STATUS CODE",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "CHECK STATUS CODE",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018VYOPZTC4O85tw5tnMcz7LprkxCq98YwL",
+            "name": "Condition Branch",
+            "title": "IF STATUS CODE == 204",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018VYC999LWXG6Nb0QgcBlGmgVJioUzsV7X.output.status_code$",
+                "operator": "eq",
+                "right_operand": 204
+              },
+              "continue_on_failure": false,
+              "display_name": "IF STATUS CODE == 204",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018VYQLC8D1Q45vJVXhETGF6bVU4l8dPVeF",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Completed"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018VYOQ04Y4Z413zrAKUX2RQ1AZRvf2T2Z5",
+            "name": "Condition Branch",
+            "title": "IF STATUS CODE != 204",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018VYC999LWXG6Nb0QgcBlGmgVJioUzsV7X.output.status_code$",
+                "operator": "ne",
+                "right_operand": 204
+              },
+              "continue_on_failure": false,
+              "display_name": "IF STATUS CODE != 204",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018VYQU2ZGKQG2Q95BQ7tKdKBwkLxzBPhHa",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

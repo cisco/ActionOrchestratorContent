@@ -1,0 +1,229 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gqYbt34K7BKtTBzSyh21HR7Fbw6xQ4A",
+    "name": "List Templates",
+    "title": "List Templates",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018Q8Q7TUJWSG2j5Ua8cD5Go2D251KnCK4C",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gqZjI1PIFuyQeuUIpGnBfbHEyuc6RlT",
+        "properties": {
+          "scope": "output",
+          "name": "List Templates Table",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gqZLOhQI8dgsbw7q1e89u6ZRFjaAm6Y",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic list templates details",
+      "display_name": "List Templates",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gqYwElfyY0fJElMb2iAHJ1X1Q7zoDtK",
+        "name": "HTTP Request",
+        "title": "List Templates",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gqYbt34K7BKtTBzSyh21HR7Fbw6xQ4A.input.variable_workflow_018Q8Q7TUJWSG2j5Ua8cD5Go2D251KnCK4C$"
+            }
+          ],
+          "display_name": "List Templates",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/template-programmer/template",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gR4n8IrWYyy1S9er7FVMiwbnyevSqtm",
+        "name": "Read Table from JSON",
+        "title": "Read List Templates",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read List Templates",
+          "input_json": "$activity.definition_activity_01gqYwElfyY0fJElMb2iAHJ1X1Q7zoDtK.output.response_body$",
+          "jsonpath_query": "$.",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "projectName",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "projectId",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "templateId",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gqZV08BzuNhctcB0lHMgDr8ySCUhLCr",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each",
+          "source_array": "$activity.definition_activity_01gR4n8IrWYyy1S9er7FVMiwbnyevSqtm.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01gqZ6XoIVAfuY9AIgc0YDpnmXUVXIFf5",
+            "name": "Add Row to Table",
+            "title": "List Templates",
+            "type": "core.addrowtotable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": false,
+              "display_name": "List Templates",
+              "input_table": "$workflow.definition_workflow_01gqYbt34K7BKtTBzSyh21HR7Fbw6xQ4A.output.variable_workflow_01gqZLOhQI8dgsbw7q1e89u6ZRFjaAm6Y$",
+              "row": [
+                {
+                  "key": "name",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gqZV08BzuNhctcB0lHMgDr8ySCUhLCr.input.source_array[@].name$"
+                },
+                {
+                  "key": "projectName",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gqZV08BzuNhctcB0lHMgDr8ySCUhLCr.input.source_array[@].projectName$"
+                },
+                {
+                  "key": "projectId",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gqZV08BzuNhctcB0lHMgDr8ySCUhLCr.input.source_array[@].projectId$"
+                },
+                {
+                  "key": "templateId",
+                  "type": "string",
+                  "value": "$activity.definition_activity_01gqZV08BzuNhctcB0lHMgDr8ySCUhLCr.input.source_array[@].templateId$"
+                }
+              ]
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01gqZjI1PIFuyQeuUIpGnBfbHEyuc6RlT": {
+      "unique_name": "tabletype_01gqZjI1PIFuyQeuUIpGnBfbHEyuc6RlT",
+      "data_type": "datatype.tabletype",
+      "display_name": "List Templates Table",
+      "description": "List Templates Table",
+      "columns": [
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "projectId",
+          "title": "ProjectId",
+          "type": "string"
+        },
+        {
+          "name": "projectName",
+          "title": "ProjectName",
+          "type": "string"
+        },
+        {
+          "name": "templateId",
+          "title": "TemplateId",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018UKVTPYUX1Q3ExOMnvKKOMyUJDQC4LaaF",
+    "name": "List Projects",
+    "title": "List Projects",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018UKZ0EY7CHW3IjCZApFMQTrqDXXKyKamZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_015DIPNL9KBJW5JrV4W19914dQnUmah6Huy",
+        "properties": {
+          "scope": "output",
+          "name": "Project Details",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018UL81AAJXHN0VEjzJkTBcl6V8PUOfRq05",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Lists Projects.",
+      "display_name": "List Projects",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018UKX0KLKC9F7D8baiiVzm3sqpC1zOBTAH",
+        "name": "HTTP Request",
+        "title": "List Projects",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+              "value": "$workflow.definition_workflow_018UKVTPYUX1Q3ExOMnvKKOMyUJDQC4LaaF.input.variable_workflow_018UKZ0EY7CHW3IjCZApFMQTrqDXXKyKamZ$"
+            }
+          ],
+          "display_name": "List Projects",
+          "method": "GET",
+          "relative_url": "/v3/projects",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018ULBURJQRGI5Pwt1Re8aQLQMzK7C3NYE8",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018ULBUVXAKBI6ZblemuIhg0sab2OnxbmpS",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018UKX0KLKC9F7D8baiiVzm3sqpC1zOBTAH.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018ULC75C5GUJ5jUjmpTalCHXfJzQeK2AsX",
+                "name": "Read Table from JSON",
+                "title": "Read Project Details",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Project Details",
+                  "input_json": "$activity.definition_activity_018UKX0KLKC9F7D8baiiVzm3sqpC1zOBTAH.output.response_body$",
+                  "jsonpath_query": "$..projects[*]",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "skip_execution": false,
+                  "table_columns": [
+                    {
+                      "column_name": "is_domain",
+                      "column_type": "boolean",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "description",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "enabled",
+                      "column_type": "boolean",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "parent_id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "domain_id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018W1IZONZKD56WPReFCIMhjhQ5SQTpFzqN",
+                "name": "Condition Block",
+                "title": "Check for Data",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check for Data"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_018W1IZV8BE0Z6PL6fKwaSj4ZoVM3E2hggs",
+                    "name": "Condition Branch",
+                    "title": "If Data Exists",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_018ULC75C5GUJ5jUjmpTalCHXfJzQeK2AsX.output.read_table_from_json[0].id$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Data Exists"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_018ULD7SPDDX31GvSYnt0helYAqn01Lx49P",
+                        "name": "For Each",
+                        "title": "For Each Project",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "For Each Project",
+                          "skip_execution": false,
+                          "source_array": "$activity.definition_activity_018ULC75C5GUJ5jUjmpTalCHXfJzQeK2AsX.output.read_table_from_json$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_018ULDHOAF2342ZnlZwRUAgK79ZDXFXvbYl",
+                            "name": "Add Row to Table",
+                            "title": "Add Project Details",
+                            "type": "core.addrowtotable",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "continue_on_failure": false,
+                              "display_name": "Add Project Details",
+                              "input_table": "$workflow.definition_workflow_018UKVTPYUX1Q3ExOMnvKKOMyUJDQC4LaaF.output.variable_workflow_018UL81AAJXHN0VEjzJkTBcl6V8PUOfRq05$",
+                              "row": [
+                                {
+                                  "key": "is_domain",
+                                  "type": "boolean",
+                                  "value": "$activity.definition_activity_018ULD7SPDDX31GvSYnt0helYAqn01Lx49P.input.source_array[@].is_domain$"
+                                },
+                                {
+                                  "key": "description",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_018ULD7SPDDX31GvSYnt0helYAqn01Lx49P.input.source_array[@].description$"
+                                },
+                                {
+                                  "key": "enabled",
+                                  "type": "boolean",
+                                  "value": "$activity.definition_activity_018ULD7SPDDX31GvSYnt0helYAqn01Lx49P.input.source_array[@].enabled$"
+                                },
+                                {
+                                  "key": "id",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_018ULD7SPDDX31GvSYnt0helYAqn01Lx49P.input.source_array[@].id$"
+                                },
+                                {
+                                  "key": "parent_id",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_018ULD7SPDDX31GvSYnt0helYAqn01Lx49P.input.source_array[@].parent_id$"
+                                },
+                                {
+                                  "key": "domain_id",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_018ULD7SPDDX31GvSYnt0helYAqn01Lx49P.input.source_array[@].domain_id$"
+                                },
+                                {
+                                  "key": "name",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_018ULD7SPDDX31GvSYnt0helYAqn01Lx49P.input.source_array[@].name$"
+                                }
+                              ],
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_018W1IZZHF76F3Ka6gTFlHJTEiSMDqXeEiB",
+                    "name": "Condition Branch",
+                    "title": "If No Data Exists",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_018ULC75C5GUJ5jUjmpTalCHXfJzQeK2AsX.output.read_table_from_json[0].id$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If No Data Exists"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_018W1MGLT5J6P2jFobnf8R0KJyWCDpGgWxX",
+                        "name": "Succeeded",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "display_name": "Succeeded",
+                          "result_message": "No Projects Found."
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018ULBUZ5HONH1EPSoH8O61Ah5YBRzYbmzq",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018UKX0KLKC9F7D8baiiVzm3sqpC1zOBTAH.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018ULCM61JD345RPc5nF1Aqoc9tFQ2IYfDc",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to List Projects.\n\nError Message:\n$activity.definition_activity_018UKX0KLKC9F7D8baiiVzm3sqpC1zOBTAH.output.response_body$\n\nStatus Message:\n$activity.definition_activity_018UKX0KLKC9F7D8baiiVzm3sqpC1zOBTAH.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C": {
+      "unique_name": "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "Openstack Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_015DIPNL9KBJW5JrV4W19914dQnUmah6Huy": {
+      "unique_name": "tabletype_015DIPNL9KBJW5JrV4W19914dQnUmah6Huy",
+      "data_type": "datatype.tabletype",
+      "display_name": "Openstack Tenants",
+      "columns": [
+        {
+          "name": "parent_id",
+          "title": "Parent Id",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "string"
+        },
+        {
+          "name": "domain_id",
+          "title": "Domain Id",
+          "type": "string"
+        },
+        {
+          "name": "enabled",
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        {
+          "name": "id",
+          "title": "Project ID",
+          "type": "string"
+        },
+        {
+          "name": "is_domain",
+          "title": "Is Domain",
+          "type": "boolean"
+        },
+        {
+          "name": "name",
+          "title": "Project Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap",
+    "name": "Create a New Action Suppression",
+    "title": "Create a New Action Suppression",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "StartTime",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp5Sg41HfFDZOIHiNsc7v6jk2iskudT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Affects",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp5XOZz3QUe2Z1K6w4wQFCXlm2RniUi",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "RequestBody",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp6l9a0ZNgnLIB9mSbZ22ZoQOZVeml2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ApplicationId",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp1kzC00js7RbQuQMyHESIkHlDt4zTk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "EndTime",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp5TqWECBXdXMfyIN9RttmcaXRoeHR2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "HealthRuleIds",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp6CvlolfIafeWIYLb7yMc1CkB5eYuZ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "AccountId",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp1jEw0g3La6o2BZ0k0lvxDSxqnv6cv",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "ActionSuppressionName",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gp5POhxjyPX93xkocBXvAp7haVp8Oxh",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Creates a New Action Suppression.",
+      "display_name": "Create a New Action Suppression",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gp6D8IOKla7GHoifvpdya79OW821lLV",
+        "name": "Condition Block",
+        "title": "Build Request Body",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Build Request Body"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gp6DAONOXsSw0PH3ueBfpdDaFflMEui",
+            "name": "Condition Branch",
+            "title": "If HealthRuleIds Not Null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp6CvlolfIafeWIYLb7yMc1CkB5eYuZ$",
+                "operator": "ne",
+                "right_operand": "null"
+              },
+              "continue_on_failure": false,
+              "display_name": "If HealthRuleIds Not Null"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gp6hzK5d9nX8zHMTx9fxBpXqAPULtmg",
+                "name": "Set Variables",
+                "title": "Set Request Body",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Request Body",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.local.variable_workflow_01gp6l9a0ZNgnLIB9mSbZ22ZoQOZVeml2$",
+                      "variable_value_new": "{\"name\": \"$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp5POhxjyPX93xkocBXvAp7haVp8Oxh$\",\"timeRange\": {\"startTimeMillis\": \"$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp5Sg41HfFDZOIHiNsc7v6jk2iskudT$\",\"endTimeMillis\": \"$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp5TqWECBXdXMfyIN9RttmcaXRoeHR2$\"},\"healthRuleIds\": $workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp6CvlolfIafeWIYLb7yMc1CkB5eYuZ$,\"affects\":$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp5XOZz3QUe2Z1K6w4wQFCXlm2RniUi$}"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gp6DaDZ0azxSCPWkJie6hlbZFHUpwpE",
+            "name": "Condition Branch",
+            "title": "If HealthRuleIds is Null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp6CvlolfIafeWIYLb7yMc1CkB5eYuZ$",
+                "operator": "eq",
+                "right_operand": "null"
+              },
+              "continue_on_failure": false,
+              "display_name": "If HealthRuleIds is Null"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gpO9UzYZSFzaV9pnZkd7iqm8QPnIbJf",
+                "name": "Set Variables",
+                "title": "Set Request Body",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Request Body",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.local.variable_workflow_01gp6l9a0ZNgnLIB9mSbZ22ZoQOZVeml2$",
+                      "variable_value_new": "{\"name\": \"$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp5POhxjyPX93xkocBXvAp7haVp8Oxh$\",\"timeRange\": {\"startTimeMillis\": \"$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp5Sg41HfFDZOIHiNsc7v6jk2iskudT$\",\"endTimeMillis\": \"$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp5TqWECBXdXMfyIN9RttmcaXRoeHR2$\"},\"affects\":$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp5XOZz3QUe2Z1K6w4wQFCXlm2RniUi$}"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01gp0h5ITluVcTjhtydBmhKW2kmRFpEzC",
+        "name": "HTTP Request",
+        "title": "Create New Action Suppression",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.local.variable_workflow_01gp6l9a0ZNgnLIB9mSbZ22ZoQOZVeml2$",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Create New Action Suppression",
+          "method": "POST",
+          "relative_url": "/api/accounts/$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp1jEw0g3La6o2BZ0k0lvxDSxqnv6cv$/applications/$workflow.definition_workflow_01gp0ByUzxyDcSMJMocjE4BBVCzmxF8ap.input.variable_workflow_01gp1kzC00js7RbQuQMyHESIkHlDt4zTk$/actionsuppressions",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

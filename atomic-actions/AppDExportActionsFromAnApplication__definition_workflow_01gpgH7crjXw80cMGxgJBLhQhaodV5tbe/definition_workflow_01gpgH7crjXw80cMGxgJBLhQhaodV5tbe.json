@@ -1,0 +1,285 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gpgH7crjXw80cMGxgJBLhQhaodV5tbe",
+    "name": "Export Actions From An Application",
+    "title": "Export Actions From An Application",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_01gphFdEZElIXTd7D9GDyDk4OJUCHBDfU",
+        "properties": {
+          "scope": "output",
+          "name": "Application Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gphfkWLcIyiUyrHbgzwZInJJuCRlbia",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application ID",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpgnGdvevafP8mVGOTekVosPPsOLege",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Export Actions From An Application For The Given Application Id.",
+      "display_name": "Export Actions From An Application",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gpgK95ByeeGW0vdY3VkolXFgbKlG63m",
+        "name": "HTTP Request",
+        "title": "Export Action Form An Application",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Export Action Form An Application",
+          "method": "GET",
+          "relative_url": "/actions/$workflow.definition_workflow_01gpgH7crjXw80cMGxgJBLhQhaodV5tbe.input.variable_workflow_01gpgnGdvevafP8mVGOTekVosPPsOLege$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpgRkAR1MRQ1VE2Niss7cjHruKiPoOn",
+        "name": "Read Table from JSON",
+        "title": "Read Export Action Application Details",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Export Action Application Details",
+          "input_json": "$activity.definition_activity_01gpgK95ByeeGW0vdY3VkolXFgbKlG63m.output.response_body$",
+          "jsonpath_query": "$",
+          "persist_output": false,
+          "populate_columns": false,
+          "table_columns": [
+            {
+              "column_name": "actionType",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "name",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "priority",
+              "column_type": "integer",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "description",
+              "column_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "column_name": "toAddress",
+              "column_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gpHt3ActJJDG5zdSztQjNjTLikmMrH1",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gpHt5rWX2JyLDvXJE7XKoz3JtNVuiDq",
+            "name": "Condition Branch",
+            "title": "If Row Count \u003e 0",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gpgRkAR1MRQ1VE2Niss7cjHruKiPoOn.output.row_count$",
+                "operator": "gt",
+                "right_operand": "0"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Row Count \u003e 0"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gphgXitsq5UeTojluDzssDNkC57Mk6D",
+                "name": "For Each",
+                "title": "For Each Action",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Action",
+                  "source_array": "$activity.definition_activity_01gpgRkAR1MRQ1VE2Niss7cjHruKiPoOn.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01gph1jLacPJYO4vuREyYKeeeenNQoocN",
+                    "name": "Add Row to Table",
+                    "title": "Add Export Action Details to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Export Action Details to Table",
+                      "input_table": "$workflow.definition_workflow_01gpgH7crjXw80cMGxgJBLhQhaodV5tbe.output.variable_workflow_01gphfkWLcIyiUyrHbgzwZInJJuCRlbia$",
+                      "row": [
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gphgXitsq5UeTojluDzssDNkC57Mk6D.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "actionType",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gphgXitsq5UeTojluDzssDNkC57Mk6D.input.source_array[@].actionType$"
+                        },
+                        {
+                          "key": "priority",
+                          "type": "integer",
+                          "value": "$activity.definition_activity_01gphgXitsq5UeTojluDzssDNkC57Mk6D.input.source_array[@].priority$"
+                        },
+                        {
+                          "key": "description",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gphgXitsq5UeTojluDzssDNkC57Mk6D.input.source_array[@].description$"
+                        },
+                        {
+                          "key": "toAddress",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gphgXitsq5UeTojluDzssDNkC57Mk6D.input.source_array[@].toAddress$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gpHt6IERIGD6SRgPw9TxYrP5XvOQIM4",
+            "name": "Condition Branch",
+            "title": "If Row Count = 0",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gpgRkAR1MRQ1VE2Niss7cjHruKiPoOn.output.row_count$",
+                "operator": "eq",
+                "right_operand": "0"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Row Count = 0"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gphPpcTwKDCT4lcM0a4IFv6f0wEuS2S",
+                "name": "Succeeded",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "succeeded",
+                  "display_name": "Succeeded",
+                  "result_message": ""
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gphFdEZElIXTd7D9GDyDk4OJUCHBDfU": {
+      "unique_name": "tabletype_01gphFdEZElIXTd7D9GDyDk4OJUCHBDfU",
+      "data_type": "datatype.tabletype",
+      "display_name": "Application Table",
+      "description": "Application Table Details",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "description",
+          "title": "Description",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "priority",
+          "title": "Priority",
+          "type": "integer"
+        },
+        {
+          "name": "toAddress",
+          "title": "To Address",
+          "type": "string"
+        },
+        {
+          "name": "actionType",
+          "title": "Action Type",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

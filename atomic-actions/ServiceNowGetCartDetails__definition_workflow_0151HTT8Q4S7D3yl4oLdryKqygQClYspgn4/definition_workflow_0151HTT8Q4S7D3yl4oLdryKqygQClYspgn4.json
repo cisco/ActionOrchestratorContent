@@ -1,0 +1,237 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0151HTT8Q4S7D3yl4oLdryKqygQClYspgn4",
+    "name": "Get Cart Details",
+    "title": "Get Cart Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Subtotal Recurring Frequency",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151JWNZGO9XE4o2Okx8wBl52E5SOO8Tz8z",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Subtotal Recurring Price",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151JXSBKP0S46XpQt7mltB1Npg19VDpNvY",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Cart Id",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151JV8XXN4154QnvTmn47BtODoioWO0SO5",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Subtotal Price",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0151JVY5T9HE37Vsfu3RC9QQoZClUj88vo0",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Service Now",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "This action returns Cart Details",
+      "display_name": "Get Cart Details",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0151I2QOYYSBH6j7NaVAyRvu5i5dzYVlUIE",
+        "name": "HTTP Request",
+        "title": "Get Cart Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Get Cart Details",
+          "method": "GET",
+          "relative_url": "/sn_sc/v1/servicecatalog/cart",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0151K1G6P0BIW3stbRPJgSli31pqjEJsVQw",
+        "name": "Condition Block",
+        "title": "Get Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_0151K1GB22SSP3AyFDklvoTuMLcYn857ezs",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151I2QOYYSBH6j7NaVAyRvu5i5dzYVlUIE.output.status_code$",
+                "operator": "eq",
+                "right_operand": "200"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151JY4D8GX603ItLBll1S7eZkTGgEXrVnQ",
+                "name": "JSONPath Query",
+                "title": "Read Cart Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Cart Details",
+                  "input_json": "$activity.definition_activity_0151I2QOYYSBH6j7NaVAyRvu5i5dzYVlUIE.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.result.cart_id",
+                      "jsonpath_query_name": "Cart Id",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.result.subtotal_price",
+                      "jsonpath_query_name": "Subtotal Price",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.result.subtotal_recurring_frequency",
+                      "jsonpath_query_name": "Subtotal Recurring Frequency",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.result.subtotal_recurring_price",
+                      "jsonpath_query_name": "Subtotal Recurring Price",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_0151K2YIPG2CE1sodWmSuuLFUqUJdgKHnT5",
+                "name": "Set Variables",
+                "title": "Set Cart Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Cart Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0151HTT8Q4S7D3yl4oLdryKqygQClYspgn4.output.variable_workflow_0151JV8XXN4154QnvTmn47BtODoioWO0SO5$",
+                      "variable_value_new": "$activity.definition_activity_0151JY4D8GX603ItLBll1S7eZkTGgEXrVnQ.output.jsonpath_queries.Cart Id$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0151HTT8Q4S7D3yl4oLdryKqygQClYspgn4.output.variable_workflow_0151JVY5T9HE37Vsfu3RC9QQoZClUj88vo0$",
+                      "variable_value_new": "$activity.definition_activity_0151JY4D8GX603ItLBll1S7eZkTGgEXrVnQ.output.jsonpath_queries.Subtotal Price$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0151HTT8Q4S7D3yl4oLdryKqygQClYspgn4.output.variable_workflow_0151JWNZGO9XE4o2Okx8wBl52E5SOO8Tz8z$",
+                      "variable_value_new": "$activity.definition_activity_0151JY4D8GX603ItLBll1S7eZkTGgEXrVnQ.output.jsonpath_queries.Subtotal Recurring Frequency$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0151HTT8Q4S7D3yl4oLdryKqygQClYspgn4.output.variable_workflow_0151JXSBKP0S46XpQt7mltB1Npg19VDpNvY$",
+                      "variable_value_new": "$activity.definition_activity_0151JY4D8GX603ItLBll1S7eZkTGgEXrVnQ.output.jsonpath_queries.Subtotal Recurring Price$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0151K1GEB1TVI5rQ1FByzxBndTYvLYQcYIu",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_0151I2QOYYSBH6j7NaVAyRvu5i5dzYVlUIE.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0151K4S2AQ6VJ4pIGLETW6ftQvDe5ESrZt6",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get cart details.\nStatus Text : $activity.definition_activity_0151I2QOYYSBH6j7NaVAyRvu5i5dzYVlUIE.output.status_text$\nResponse  Body : $activity.definition_activity_0151I2QOYYSBH6j7NaVAyRvu5i5dzYVlUIE.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

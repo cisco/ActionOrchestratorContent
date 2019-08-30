@@ -1,0 +1,165 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_017B1O7CUOKAZ4eS3VLdSmh2O2O9dS1nVLP",
+    "name": "Get Process Instance Output Variables",
+    "title": "Get Process Instance Output Variables",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_017B3S8HUVDQC23wf0w5LAFVpw27aAYAmyC",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Process Instance Id",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_017B1ZMWFHPON6xJw7IwhMhav3oxVajg5ss",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco Process Orchestrator",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic is to get output details of a process instance in CPO.",
+      "display_name": "Get Process Instance Output Variables",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_017B1R4SBQT1M36DlyKfBEKX2lg39wxQZRZ",
+        "name": "HTTP Request",
+        "title": "Get Process Instance Output Variables",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Get Process Instance Output Variables",
+          "method": "GET",
+          "relative_url": "/ProcessInstances/outputvariables/$workflow.definition_workflow_017B1O7CUOKAZ4eS3VLdSmh2O2O9dS1nVLP.input.variable_workflow_017B1ZMWFHPON6xJw7IwhMhav3oxVajg5ss$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017B3U7JFGBVL4qqHEzTUoZQu96VTbS7ReY",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_017B3U7PX89H65qHLK0ndGmFtakwT0WPRiN",
+            "name": "Condition Branch",
+            "title": "If status code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_017B1R4SBQT1M36DlyKfBEKX2lg39wxQZRZ.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If status code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_017B3SBT7KKI37I5LP8sIbxbuG6HjnsQTB1",
+                "name": "Set Variables",
+                "title": "Set Output",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Output",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_017B1O7CUOKAZ4eS3VLdSmh2O2O9dS1nVLP.output.variable_workflow_017B3S8HUVDQC23wf0w5LAFVpw27aAYAmyC$",
+                      "variable_value_new": "$activity.definition_activity_017B1R4SBQT1M36DlyKfBEKX2lg39wxQZRZ.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_017B3U7SO3L0D6UjK1HCxp3m3UbJfjM3FfR",
+            "name": "Condition Branch",
+            "title": "if status code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_017B1R4SBQT1M36DlyKfBEKX2lg39wxQZRZ.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "if status code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_017B3V22Y909S4P4QGHf9ZF25bQrZMX8ojt",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Not able to retrieve output details of the provided process instance Id.\n\nError Description:\n$activity.definition_activity_017B1R4SBQT1M36DlyKfBEKX2lg39wxQZRZ.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

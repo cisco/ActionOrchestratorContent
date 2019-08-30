@@ -1,0 +1,298 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss",
+    "name": "Add Subnet",
+    "title": "Add Subnet",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01g3Vh2TOl1nSU8n4KvpWDC3WIu6EUyE7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subscription ID",
+          "type": "datatype.string",
+          "description": "enter a valid subscription id\nex: 244fc-3ef8-49b2-b02d-7f0",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1vAZJrmqEBa5RGHgGHEMuj5xDgstzj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Virtual Network Name",
+          "type": "datatype.string",
+          "description": "enter a valid virtual network name\nex: testing_vnetwork",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1vGDoaU8sqfIMsiTp4TlwwFmBg4c1I",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Resource Group Name",
+          "type": "datatype.string",
+          "description": "enter a valid resourcegroup name which exists\nex: resourcegroup_testing",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1vdaA1QKepTo4kDJrQ4NYZBvHMwTe8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string",
+          "description": "enter a valid api version\nex: 2018-08-01",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1WG43HeBLA4JsQqgOTleiSRgEq5af3",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01geORwmb0I08uGv5zWsFs53xq2rgMgSM",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subnet Name",
+          "type": "datatype.string",
+          "description": "enter a valid subnet name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1vInpropNtWuQfLnZXVcmzO0yx4p2o",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subnet Address Prefix",
+          "type": "datatype.string",
+          "description": "enter a valid subnet address prefix\nex: Asterisk '*' can also be used to match all ports.",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1xAO31amZoMF51JTecSjtT5UfcIJKO",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Create a Subnet in a Vitual Network",
+      "display_name": "Add Subnet",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01g1VQo9IuagqIdbdWbBUjsqVUYJHnC1o",
+        "name": "HTTP Request",
+        "title": "Create Subnet",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"properties\": {\n    \"addressPrefix\": \"$workflow.definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss.input.variable_workflow_01g1xAO31amZoMF51JTecSjtT5UfcIJKO$\"\n  }\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss.input.variable_workflow_01geORwmb0I08uGv5zWsFs53xq2rgMgSM$"
+            }
+          ],
+          "description": "HTTP Request to Create a Subnet.",
+          "display_name": "Create Subnet",
+          "method": "PUT",
+          "relative_url": "/subscriptions/$workflow.definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss.input.variable_workflow_01g1vAZJrmqEBa5RGHgGHEMuj5xDgstzj$/resourceGroups/$workflow.definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss.input.variable_workflow_01g1vdaA1QKepTo4kDJrQ4NYZBvHMwTe8$/providers/Microsoft.Network/virtualNetworks/$workflow.definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss.input.variable_workflow_01g1vGDoaU8sqfIMsiTp4TlwwFmBg4c1I$/subnets/$workflow.definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss.input.variable_workflow_01g1vInpropNtWuQfLnZXVcmzO0yx4p2o$?api-version=$workflow.definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss.input.variable_workflow_01g1WG43HeBLA4JsQqgOTleiSRgEq5af3$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gDkWMDPlhI8axa97BXnQWyyUDotjAdo",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gDkWpDyVLPsz1ZlPkAMOIoPtloObpVP",
+            "name": "Condition Branch",
+            "title": "If Status Code = 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1VQo9IuagqIdbdWbBUjsqVUYJHnC1o.output.status_code$",
+                "operator": "eq",
+                "right_operand": 201
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01g3U6fLHEcObKlE7nYyJ06MCfoZT3MuC",
+                "name": "Replace String",
+                "title": "Replace String",
+                "type": "core.replacestring",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Replace String",
+                  "input_string": "$activity.definition_activity_01g1VQo9IuagqIdbdWbBUjsqVUYJHnC1o.output.response_body$",
+                  "replace_list": [
+                    {
+                      "replaced_string": "\\\\",
+                      "replacement_string": "\\"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g3UYp5HeInt1cBlGjtCHXrlYhxkBkTl",
+                "name": "JSONPath Query",
+                "title": "Read Subnet Table",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Subnet Table",
+                  "input_json": "$activity.definition_activity_01g3U6fLHEcObKlE7nYyJ06MCfoZT3MuC.output.result_string$$activity.definition_activity_01g1VQo9IuagqIdbdWbBUjsqVUYJHnC1o.output.response_body$$activity.definition_activity_01g3U6fLHEcObKlE7nYyJ06MCfoZT3MuC.output.result_string$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.id",
+                      "jsonpath_query_name": "ID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01g3uJ8jWQQ9pPgt8orLUHUzBzeS2dQzy",
+                "name": "Set Variables",
+                "title": "Get Subnet Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Get Subnet Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01g1VOcz1baU7tr1x6MR3nXnFlHTOKzss.output.variable_workflow_01g3Vh2TOl1nSU8n4KvpWDC3WIu6EUyE7$",
+                      "variable_value_new": "$activity.definition_activity_01g3UYp5HeInt1cBlGjtCHXrlYhxkBkTl.output.jsonpath_queries.ID$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gDkWqQC4DAAKMZIPbdqbxrPz1jbSiiw",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 201",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1VQo9IuagqIdbdWbBUjsqVUYJHnC1o.output.status_code$",
+                "operator": "ne",
+                "right_operand": "201"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 201"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gDL8yPlkdpNihged2auXDdlw3YvRAla",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Unable to create subnet in Microsoft Azure\n\nError:\n$activity.definition_activity_01g1VQo9IuagqIdbdWbBUjsqVUYJHnC1o.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

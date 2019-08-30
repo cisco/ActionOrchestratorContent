@@ -1,0 +1,152 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_016QMUJ2ND7U71WvkG0XQryVpOAXkHAIEDe",
+    "name": "Get All Global Variables ",
+    "title": "Get All Global Variables ",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016QN9CV1NKTR2YFT3OzwBYBRqwqBnVfAJV",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco Process Orchestrator",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic will list out all global variables.",
+      "display_name": "Get All Global Variables ",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_016QMWJBSNLJY0uBFoU6ULMgx8e50suI6Ke",
+        "name": "HTTP Request",
+        "title": "Get All Global Variables",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Get All Global Variables",
+          "method": "GET",
+          "relative_url": "/GlobalVariables",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_016QN2A83LVL17MEWgOLaCSXdaFdLjaVP7F",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_016QN2ADD88KC6E8n7oigeCb0HMFIOvFdy1",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016QMWJBSNLJY0uBFoU6ULMgx8e50suI6Ke.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016QN910NULG42OWKAQIu4GNCWUeK2ddz3F",
+                "name": "Set Variables",
+                "title": "Set Response",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Response",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_016QMUJ2ND7U71WvkG0XQryVpOAXkHAIEDe.output.variable_workflow_016QN9CV1NKTR2YFT3OzwBYBRqwqBnVfAJV$",
+                      "variable_value_new": "$activity.definition_activity_016QMWJBSNLJY0uBFoU6ULMgx8e50suI6Ke.output.response_body$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_016QN2AGU63WW5yFhY4RKPRJ6EQfTRC8pGA",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016QMWJBSNLJY0uBFoU6ULMgx8e50suI6Ke.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016QN7XIZN79I5TOEMXblYAEqi77jviyMGE",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get Global Variables.\n\nError: $activity.definition_activity_016QMWJBSNLJY0uBFoU6ULMgx8e50suI6Ke.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

@@ -1,0 +1,566 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc",
+    "name": "Get Module Count",
+    "title": "Get Module Count",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Device ID",
+          "type": "datatype.string",
+          "description": "Device ID",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gR1yGcAKX5MQNDHMVpVwGghxoUIPBn8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018E9XKE7OIZW5rePAt7Ka34d6YZBG67htn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Module Count",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR2MhRN6vKlkNac82okAYk8EeG0VY5Y",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Version",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR2NTPESJeVvE4raDnNdJMpL3VCP0LR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "URL",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR3kqLhVg87dJQE335bwysydHGifexk",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "NULL",
+          "scope": "input",
+          "name": "Filter",
+          "type": "datatype.string",
+          "description": "Filter",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gR1SX3Z75Y8peJ6fUxq9fuOxnB2oWLt",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Get Modules Count",
+      "display_name": "Get Module Count",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gR1jYZrb2ItG653e059iTc5ADggBKov",
+        "name": "Condition Block",
+        "title": "Verify Condition Null/Not Null ",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Verify Condition Null/Not Null "
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gR1K1jCt4RZtWLKsrHd5YgtWKrBIwPg",
+            "name": "Condition Branch",
+            "title": "If Filter Is Not Null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.input.variable_workflow_01gR1SX3Z75Y8peJ6fUxq9fuOxnB2oWLt$",
+                "operator": "ne",
+                "right_operand": "NULL"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Filter Is Not Null"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gs1TvPm9mPAXswTjbOxJigjeXGPMuoC",
+                "name": "Match Regular Expression",
+                "title": "Find By Name List",
+                "type": "core.matchregex",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Find By Name List",
+                  "input_regex": "(?:nameList)",
+                  "input_string": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.input.variable_workflow_01gR1SX3Z75Y8peJ6fUxq9fuOxnB2oWLt$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gR2urk9Rw3F3hJp19oK9GLwajjK3yvv",
+                "name": "Condition Block",
+                "title": "Evaluate Condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "conditions": [],
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate Condition"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01gR2uv0R6IXYsOgxnrjeWSZTmFpZ6Ps5",
+                    "name": "Condition Branch",
+                    "title": "If Name List",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gs1TvPm9mPAXswTjbOxJigjeXGPMuoC.output.has_match$",
+                        "operator": "eq",
+                        "right_operand": true
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Name List"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gR3Dpe7E1A6fgNOpM8QVwlWKg9OaPYg",
+                        "name": "JSONPath Query",
+                        "title": "Read Name List Value",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "display_name": "Read Name List Value",
+                          "input_json": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.input.variable_workflow_01gR1SX3Z75Y8peJ6fUxq9fuOxnB2oWLt$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$.nameList",
+                              "jsonpath_query_name": "Name List",
+                              "jsonpath_query_type": "string",
+                              "zdate_type_format": ""
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_01gR3HJKKQw5XQ5HPlihUdZKQnYbKuI5L",
+                        "name": "Set Variables",
+                        "title": "Set URL",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set URL",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.local.variable_workflow_01gR3kqLhVg87dJQE335bwysydHGifexk$",
+                              "variable_value_new": "/dna/intent/api/v1/network-device/module/count?deviceId=$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.input.variable_workflow_01gR1yGcAKX5MQNDHMVpVwGghxoUIPBn8$\u0026nameList=$activity.definition_activity_01gR3Dpe7E1A6fgNOpM8QVwlWKg9OaPYg.output.jsonpath_queries.Name List$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01gR3rOlmTAQGffOyzas1jQd2vPJM5rW6",
+                "name": "HTTP Request",
+                "title": "Get Module Count",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+                      "value": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.input.variable_workflow_018E9XKE7OIZW5rePAt7Ka34d6YZBG67htn$"
+                    }
+                  ],
+                  "display_name": "Get Module Count",
+                  "method": "GET",
+                  "relative_url": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.local.variable_workflow_01gR3kqLhVg87dJQE335bwysydHGifexk$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gs20wkn9NhExZOmA92DRW3bgPfH8vgM",
+                "name": "JSONPath Query",
+                "title": "Read Module Count",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": true,
+                  "display_name": "Read Module Count",
+                  "input_json": "$activity.definition_activity_01gR3rOlmTAQGffOyzas1jQd2vPJM5rW6.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.response ",
+                      "jsonpath_query_name": "Response",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.version",
+                      "jsonpath_query_name": "Version",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gR3zBFzsxOLaz3dbvIjQXRXTeehT7x5",
+                "name": "Condition Block",
+                "title": "Evaluate Condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "conditions": [],
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate Condition"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01gR3zgTLoibiTCzlok6HNtKDi0dqLF8v",
+                    "name": "Condition Branch",
+                    "title": "If Module Count Found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gs20wkn9NhExZOmA92DRW3bgPfH8vgM.output.jsonpath_queries.Response$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": true,
+                      "display_name": "If Module Count Found",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gR4d1czgGAvlBdAnADh9XYNTZMlv6PW",
+                        "name": "Set Variables",
+                        "title": "Set Module Count",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Module Count",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.output.variable_workflow_01gR2MhRN6vKlkNac82okAYk8EeG0VY5Y$",
+                              "variable_value_new": "$activity.definition_activity_01gs20wkn9NhExZOmA92DRW3bgPfH8vgM.output.jsonpath_queries.Response$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.output.variable_workflow_01gR2NTPESJeVvE4raDnNdJMpL3VCP0LR$",
+                              "variable_value_new": "$activity.definition_activity_01gs20wkn9NhExZOmA92DRW3bgPfH8vgM.output.jsonpath_queries.Version$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01gR3zJCMN20B4j5ukKphgoMN8LRjxY2I",
+                    "name": "Condition Branch",
+                    "title": "If Module Count Not Found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gs20wkn9NhExZOmA92DRW3bgPfH8vgM.output.jsonpath_queries.Response$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": true,
+                      "display_name": "If Module Count Not Found",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gR4HMBiI43h6RJzMaz7QNGwZ6ucGMg2",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed To Get Module Count"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gR1K40tUREVfOik1HbFEBKXxqZ1LMld",
+            "name": "Condition Branch",
+            "title": "If Filter Is Null",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.input.variable_workflow_01gR1SX3Z75Y8peJ6fUxq9fuOxnB2oWLt$",
+                "operator": "eq",
+                "right_operand": "NULL"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Filter Is Null"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gR1PFXAN4bVa4pNa0DJMynoQsB7l13Y",
+                "name": "HTTP Request",
+                "title": "Get Module Count",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+                      "value": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.input.variable_workflow_018E9XKE7OIZW5rePAt7Ka34d6YZBG67htn$"
+                    }
+                  ],
+                  "display_name": "Get Module Count",
+                  "method": "GET",
+                  "relative_url": "/api/v1/network-device/module/count?deviceId=$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.input.variable_workflow_01gR1yGcAKX5MQNDHMVpVwGghxoUIPBn8$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gs2gCj2LpDOBKbxAR9GCAozauUR7dyV",
+                "name": "JSONPath Query",
+                "title": "Read Module Count",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": true,
+                  "display_name": "Read Module Count",
+                  "input_json": "$activity.definition_activity_01gR1PFXAN4bVa4pNa0DJMynoQsB7l13Y.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.response",
+                      "jsonpath_query_name": "Response",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.version",
+                      "jsonpath_query_name": "Version",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gR2cHDWSUvSXaKYWTHs1rJEcSYWX12s",
+                "name": "Condition Block",
+                "title": "Evaluate Condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "conditions": [],
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate Condition"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_01gR2cjb3wPsAPp2fHqCQgyK71G5ikLEd",
+                    "name": "Condition Branch",
+                    "title": "If Module Count Found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gs2gCj2LpDOBKbxAR9GCAozauUR7dyV.output.jsonpath_queries.Response$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Module Count Found"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gR2ItNRDgkhvg0wHKVYHYX2mlxwVLgk",
+                        "name": "Set Variables",
+                        "title": "Set Module Count",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Set Module Count",
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.output.variable_workflow_01gR2MhRN6vKlkNac82okAYk8EeG0VY5Y$",
+                              "variable_value_new": "$activity.definition_activity_01gs2gCj2LpDOBKbxAR9GCAozauUR7dyV.output.jsonpath_queries.Response$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01gR1bYVz29PEiGgA0d5ZOymM0wrDxUGc.output.variable_workflow_01gR2NTPESJeVvE4raDnNdJMpL3VCP0LR$",
+                              "variable_value_new": "$activity.definition_activity_01gs2gCj2LpDOBKbxAR9GCAozauUR7dyV.output.jsonpath_queries.Version$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01gR2cLfeRVa39TAfPn7bP8KcRcxkYvqY",
+                    "name": "Condition Branch",
+                    "title": "If Module Count Not Found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_01gs2gCj2LpDOBKbxAR9GCAozauUR7dyV.output.jsonpath_queries.Response$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Module Count Not Found"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01gR2Q8E0uQwibVEKkOtp4s7B3vkAyUae",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed To Get Module Count"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

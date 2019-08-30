@@ -1,0 +1,292 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018AYO6CPRK190iXGA2UHlIAFMNlQSA2ot7",
+    "name": "Get Cluster Resource Quota Details",
+    "title": "Get Cluster Resource Quota Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Secrets",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018BOINM8BQZF7L2y6QbKHv3i9pqepvam1I",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Annotations",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018BOJ6RIJR7N1LE0gANYwROzLiMOU0oa29",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Cluster Resource Quota  Name",
+          "type": "datatype.string",
+          "description": "Enter Cluster Resource Quota  Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_0191ZGSMORB5M2yi2FnPULmV4nyR2Livufp",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018AYVYOU77I24xUNkszMjPu3w0cXVVCbw5",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "ResponseBody",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018AZ2FE07F9D2us1iUkzpRuFdooy5yCmYg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Pods",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018BOIF7WBH945T0iEcPNVRmboYRSQCP3p0",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow retrieves Cluster Resource Quota Details",
+      "display_name": "Get Cluster Resource Quota Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018AYQN6RBA1W1dtPjVcKTWwqnCbdNq08oG",
+        "name": "HTTP Request",
+        "title": "Get Cluster Resource Quotas Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_018AYO6CPRK190iXGA2UHlIAFMNlQSA2ot7.input.variable_workflow_018AYVYOU77I24xUNkszMjPu3w0cXVVCbw5$"
+            }
+          ],
+          "display_name": "Get Cluster Resource Quotas Details",
+          "method": "GET",
+          "relative_url": "/clusterresourcequotas/$workflow.definition_workflow_018AYO6CPRK190iXGA2UHlIAFMNlQSA2ot7.input.variable_workflow_0191ZGSMORB5M2yi2FnPULmV4nyR2Livufp$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018AYR8C8Y37M4xRPWV5Mh0PH807Wk5Awh5",
+        "name": "Condition Block",
+        "title": "Evaluate Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Block"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018AYR8I69B323KFpGimak2AtzduOgXu0mA",
+            "name": "Condition Branch",
+            "title": "If Status code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AYQN6RBA1W1dtPjVcKTWwqnCbdNq08oG.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code == 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018BML88LN9XQ51xD7QpTmczmRWLOv6IOUu",
+                "name": "JSONPath Query",
+                "title": "Read Get Cluster Resource Quotas",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Get Cluster Resource Quotas",
+                  "input_json": "$activity.definition_activity_018AYQN6RBA1W1dtPjVcKTWwqnCbdNq08oG.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.spec.quota.hard.secrets",
+                      "jsonpath_query_name": "Secrets",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.spec.quota.hard.pods",
+                      "jsonpath_query_name": "Pods",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.spec.selector.annotations",
+                      "jsonpath_query_name": "Annotations",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.*",
+                      "jsonpath_query_name": "ResponseBody",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018AYTVMXLAJ808KIOEMqkIDrdw327eVs7Z",
+                "name": "Set Variables",
+                "title": "Read Cluster Resource Quotas Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Read Cluster Resource Quotas Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AYO6CPRK190iXGA2UHlIAFMNlQSA2ot7.output.variable_workflow_018BOJ6RIJR7N1LE0gANYwROzLiMOU0oa29$",
+                      "variable_value_new": "$activity.definition_activity_018BML88LN9XQ51xD7QpTmczmRWLOv6IOUu.output.jsonpath_queries.Annotations$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AYO6CPRK190iXGA2UHlIAFMNlQSA2ot7.output.variable_workflow_018BOIF7WBH945T0iEcPNVRmboYRSQCP3p0$",
+                      "variable_value_new": "$activity.definition_activity_018BML88LN9XQ51xD7QpTmczmRWLOv6IOUu.output.jsonpath_queries.Pods$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AYO6CPRK190iXGA2UHlIAFMNlQSA2ot7.output.variable_workflow_018BOINM8BQZF7L2y6QbKHv3i9pqepvam1I$",
+                      "variable_value_new": "$activity.definition_activity_018BML88LN9XQ51xD7QpTmczmRWLOv6IOUu.output.jsonpath_queries.Secrets$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018AYO6CPRK190iXGA2UHlIAFMNlQSA2ot7.output.variable_workflow_018AZ2FE07F9D2us1iUkzpRuFdooy5yCmYg$",
+                      "variable_value_new": "$activity.definition_activity_018BML88LN9XQ51xD7QpTmczmRWLOv6IOUu.output.jsonpath_queries.ResponseBody$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018AYR8M8U7OS53AvOW3MjRLQyRxLhKw1pf",
+            "name": "Condition Branch",
+            "title": "If Status code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018AYQN6RBA1W1dtPjVcKTWwqnCbdNq08oG.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018AYZ4LVXZTZ5uKEwIiMEah7jAr4kbILiJ",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Get Cluster Resource Quotas Details\n\nError Message: \n$activity.definition_activity_018AYQN6RBA1W1dtPjVcKTWwqnCbdNq08oG.output.response_body$\n\nStatus Message:\n$activity.definition_activity_018AYQN6RBA1W1dtPjVcKTWwqnCbdNq08oG.output.status_text$\n"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

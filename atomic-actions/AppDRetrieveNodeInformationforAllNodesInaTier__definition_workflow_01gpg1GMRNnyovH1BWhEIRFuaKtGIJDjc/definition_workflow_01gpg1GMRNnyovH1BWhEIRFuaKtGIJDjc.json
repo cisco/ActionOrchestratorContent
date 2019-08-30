@@ -1,0 +1,319 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gpg1GMRNnyovH1BWhEIRFuaKtGIJDjc",
+    "name": "Retrieve Node Information for All Nodes in a Tier",
+    "title": "Retrieve Node Information for All Nodes in a Tier",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Application Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpgfs17pp25EXylgdTXgsSMK09V9xp8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01gplQEpYKvVoMkPV7nUN2DexjYSYedYh",
+        "properties": {
+          "scope": "output",
+          "name": "Node Information Output Table",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_01gplSKFWV9w9jl06lAkt656cNLkQdhet",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tier Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_01gpghcbORyCTxtmu6ZBRzR6ELTRfQXUU",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "AppD",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "Retrieve Node Information Of All Available Tiers  For The Given Tier Name.",
+      "display_name": "Retrieve Node Information for All Nodes in a Tier",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gpg8Emzszn2IDQrVip1yHnWCyq9blOE",
+        "name": "HTTP Request",
+        "title": "Retrieve Node Information for All Nodes in a Tier",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "description": "Retrieve Node Information Of All Available Tiers  For The Given Tier Name.",
+          "display_name": "Retrieve Node Information for All Nodes in a Tier",
+          "method": "GET",
+          "relative_url": "/rest/applications/$workflow.definition_workflow_01gpg1GMRNnyovH1BWhEIRFuaKtGIJDjc.input.variable_workflow_01gpgfs17pp25EXylgdTXgsSMK09V9xp8$/tiers/$workflow.definition_workflow_01gpg1GMRNnyovH1BWhEIRFuaKtGIJDjc.input.variable_workflow_01gpghcbORyCTxtmu6ZBRzR6ELTRfQXUU$/nodes",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015DH3FWR9W0M5MCs8ahXPeBPwC9JdQCVBw",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_015DH3G2PJB7A6VWuCBJ7P3OnnI4B4nxLVq",
+            "name": "Condition Branch",
+            "title": "If Response \u003c\u003e Empty",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gpg8Emzszn2IDQrVip1yHnWCyq9blOE.output.response_body$",
+                "operator": "ne",
+                "right_operand": "\u003cnodes\u003e\u003c/nodes\u003e"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Response \u003c\u003e Empty"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gpKI3Lg36tnm9qBvA3WgRUaZt1MO9Ix",
+                "name": "Read Table from XML",
+                "title": "Read Node Information For All Nodes",
+                "type": "corejava.read_table_from_xml",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Node Information For All Nodes",
+                  "input_xml": "$activity.definition_activity_01gpg8Emzszn2IDQrVip1yHnWCyq9blOE.output.response_body$",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "type",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "tierId",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "tierName",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "machineId",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "machineName",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "machineOSType",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "ipAddress",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ],
+                  "xmlpath_query": "/nodes/node"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr",
+                "name": "For Each",
+                "title": "For Each Node",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Node",
+                  "source_array": "$activity.definition_activity_01gpKI3Lg36tnm9qBvA3WgRUaZt1MO9Ix.output.read_table_from_xml$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01gpKJVnerz0nWaUnp0JKJ3j9UqnXcnwY",
+                    "name": "Add Row to Table",
+                    "title": "Add Node Information to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Node Information to Table",
+                      "input_table": "$workflow.definition_workflow_01gpg1GMRNnyovH1BWhEIRFuaKtGIJDjc.output.variable_workflow_01gplSKFWV9w9jl06lAkt656cNLkQdhet$",
+                      "row": [
+                        {
+                          "key": "id",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].id$"
+                        },
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "type",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].type$"
+                        },
+                        {
+                          "key": "tierId",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].tierId$"
+                        },
+                        {
+                          "key": "tierName",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].tierName$"
+                        },
+                        {
+                          "key": "machineId",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].machineId$"
+                        },
+                        {
+                          "key": "machineName",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].machineName$"
+                        },
+                        {
+                          "key": "machineOSType",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].machineOSType$"
+                        },
+                        {
+                          "key": "ipAddress",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01gpKiPwVws7AuTG79T5O2hcn65kqXEdr.input.source_array[@].ipAddress$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_01gplQEpYKvVoMkPV7nUN2DexjYSYedYh": {
+      "unique_name": "tabletype_01gplQEpYKvVoMkPV7nUN2DexjYSYedYh",
+      "data_type": "datatype.tabletype",
+      "display_name": "AppD - Retrieve Node Information Table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "tierName",
+          "title": "Tier Name",
+          "type": "string"
+        },
+        {
+          "name": "type",
+          "title": "Type",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "title": "Id",
+          "type": "string"
+        },
+        {
+          "name": "machineId",
+          "title": "Machine Id",
+          "type": "string"
+        },
+        {
+          "name": "machineName",
+          "title": "Machine Name",
+          "type": "string"
+        },
+        {
+          "name": "machineOSType",
+          "title": "Machine OS Type",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "tierId",
+          "title": "Tier Id",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

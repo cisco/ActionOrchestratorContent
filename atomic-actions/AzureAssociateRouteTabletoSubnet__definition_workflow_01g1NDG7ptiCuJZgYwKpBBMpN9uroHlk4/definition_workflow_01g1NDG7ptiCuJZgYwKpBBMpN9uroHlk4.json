@@ -1,0 +1,302 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4",
+    "name": "Associate Route Table to Subnet",
+    "title": "Associate Route Table to Subnet",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subnet Name",
+          "type": "datatype.string",
+          "description": "enter a existing subnet name\nex: sample_subnet",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1n0SEBhTZYCwR8dUqwPLsz1DN5yYJ7",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01geIpi5dM5FNQV2RICZyHTc1fxjQiIrL",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Subscription Id",
+          "type": "datatype.string",
+          "description": "enter a valid subscription id\nex: 244fc-3ef8-49b2-b02d-7f0",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1NT211bWV7PddV0nHhOgSsIviA0n6j",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Resource Group Name",
+          "type": "datatype.string",
+          "description": "enter a existing resourcegroup name \nex: resourcegroup_testing",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1NVjMzhawP4LRdPYM1OOnCEvZVb1wr",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Route Table Name",
+          "type": "datatype.string",
+          "description": "enter a existing routetable name\nex: sample_routetable",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1n5nHaujZgYHw23xR0ux44MOZ9iG1f",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "API Version",
+          "type": "datatype.string",
+          "description": "enter a valid api version\nex: 2018-08-01",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1nDrSdfF8IjKh3mqbTQY4MVk8a3TNe",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Network Name",
+          "type": "datatype.string",
+          "description": "enter a existing network name\nex: sample_network",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01g1NxHBczqzKSfScWo9CvS0Vjq1OfVyO",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Associate Route Table to Subnet",
+      "display_name": "Associate Route Table to Subnet",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01g1NEDZh6CvU5ZcCIkvA0vGymgolFC13",
+        "name": "HTTP Request",
+        "title": "Get Subnet",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01geIpi5dM5FNQV2RICZyHTc1fxjQiIrL$"
+            }
+          ],
+          "description": "Get Details of a Subnet to Associate a Route Table",
+          "display_name": "Get Subnet",
+          "method": "GET",
+          "relative_url": "/subscriptions/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1NT211bWV7PddV0nHhOgSsIviA0n6j$/resourceGroups/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1NVjMzhawP4LRdPYM1OOnCEvZVb1wr$/providers/Microsoft.Network/virtualNetworks/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1NxHBczqzKSfScWo9CvS0Vjq1OfVyO$/subnets/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1n0SEBhTZYCwR8dUqwPLsz1DN5yYJ7$?api-version=$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1nDrSdfF8IjKh3mqbTQY4MVk8a3TNe$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g1pEIzcmrSDmi8JYQp4E5se8NGGVHDy",
+        "name": "Replace String",
+        "title": "Replace Result",
+        "type": "core.replacestring",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Replace Result",
+          "input_string": "$activity.definition_activity_01g1NEDZh6CvU5ZcCIkvA0vGymgolFC13.output.response_body$",
+          "replace_list": [
+            {
+              "replaced_string": "\\\\",
+              "replacement_string": "\\"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01g1nUtlgMctAO0kDSJQKR6TbSb8be1FI",
+        "name": "JSONPath Query",
+        "title": "Read Get Subnet Details",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": true,
+          "display_name": "Read Get Subnet Details",
+          "input_json": "$activity.definition_activity_01g1pEIzcmrSDmi8JYQp4E5se8NGGVHDy.output.result_string$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.properties.addressPrefix",
+              "jsonpath_query_name": "Subnet Address Prefix",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gd7SxhP55NORHjLzQjkghQRWpPqr224",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gd7s1KAl9BAdIFOSvjd3unvwyS2EaVW",
+            "name": "Condition Branch",
+            "title": "If result found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1nUtlgMctAO0kDSJQKR6TbSb8be1FI.output.jsonpath_queries.Subnet Address Prefix$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If result found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01g1ORmuU78zxb8f0ENdkiloNXDUjsYV2",
+                "name": "HTTP Request",
+                "title": "Associate Route Table",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "body": "{\n  \"properties\": {\n    \"addressPrefix\": \"$activity.definition_activity_01g1nUtlgMctAO0kDSJQKR6TbSb8be1FI.output.jsonpath_queries.Subnet Address Prefix$\",\n    \"routeTable\": {\n      \"id\": \"/subscriptions/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1NT211bWV7PddV0nHhOgSsIviA0n6j$/resourceGroups/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1NVjMzhawP4LRdPYM1OOnCEvZVb1wr$/providers/Microsoft.Network/routeTables/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1n5nHaujZgYHw23xR0ux44MOZ9iG1f$\"\n    }\n  }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "custom_headers": [
+                    {
+                      "name": "Authorization",
+                      "value": "Bearer $workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01geIpi5dM5FNQV2RICZyHTc1fxjQiIrL$"
+                    }
+                  ],
+                  "description": "Http Request to Associate a Route Table",
+                  "display_name": "Associate Route Table",
+                  "method": "PUT",
+                  "relative_url": "/subscriptions/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1NT211bWV7PddV0nHhOgSsIviA0n6j$/resourceGroups/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1NVjMzhawP4LRdPYM1OOnCEvZVb1wr$/providers/Microsoft.Network/virtualNetworks/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1NxHBczqzKSfScWo9CvS0Vjq1OfVyO$/subnets/$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1n0SEBhTZYCwR8dUqwPLsz1DN5yYJ7$?api-version=$workflow.definition_workflow_01g1NDG7ptiCuJZgYwKpBBMpN9uroHlk4.input.variable_workflow_01g1nDrSdfF8IjKh3mqbTQY4MVk8a3TNe$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gd7s3jDkPb31Z7eGKEuXzlKKjSyAXPH",
+            "name": "Condition Branch",
+            "title": "If result not found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01g1nUtlgMctAO0kDSJQKR6TbSb8be1FI.output.jsonpath_queries.Subnet Address Prefix$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": false,
+              "display_name": "If result not found"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gd7xzMX7lDXKdVrl4q3qpBGIYXbBWTR",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Fail to fetch the subnet address prefix cannot associate route table to subnet"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}

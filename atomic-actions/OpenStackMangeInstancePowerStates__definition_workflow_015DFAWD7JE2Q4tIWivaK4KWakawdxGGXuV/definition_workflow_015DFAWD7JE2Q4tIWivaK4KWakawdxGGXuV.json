@@ -1,0 +1,572 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV",
+    "name": "Manage Instance Power States",
+    "title": "Manage Instance Power States",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Server ID",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_015DHGIJ60JGV5tSRpry6LN0WmMEwdT3XkQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_015DHRDUEOBWV4rjXra4K9dBDIDynHs1qSw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Power Action",
+          "type": "datatype.string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_015DHG00VOL4G6W9e3ayj2FDY8duUAJaer1",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic manages instance power states",
+      "display_name": "Manage Instance Power States",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY",
+        "name": "To Lower",
+        "title": "Set action to lower case",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set action to lower case",
+          "source": "$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHG00VOL4G6W9e3ayj2FDY8duUAJaer1$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015DHI4UT7GS35n2YvH7naNixNrQYQ4U3Pa",
+        "name": "HTTP Request",
+        "title": "Get Instance Power State",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+              "value": "$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHRDUEOBWV4rjXra4K9dBDIDynHs1qSw$"
+            }
+          ],
+          "display_name": "Get Instance Power State",
+          "method": "GET",
+          "relative_url": "/v2.1/servers/$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHGIJ60JGV5tSRpry6LN0WmMEwdT3XkQ$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015DHI8YNEAU32qasepT78MDGrH4uKXmEmA",
+        "name": "JSONPath Query",
+        "title": "Query Instance Power State",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Query Instance Power State",
+          "input_json": "$activity.definition_activity_015DHI4UT7GS35n2YvH7naNixNrQYQ4U3Pa.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..OS-EXT-STS:power_state",
+              "jsonpath_query_name": "Power State",
+              "jsonpath_query_type": "integer",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015DFCD1ZD9UY3DxVaktbpf4qvvidU2XhMt",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_015DFCD6SSE2R6jz7Xqnovdc810m1sV6wRt",
+            "name": "Condition Branch",
+            "title": "If Action = Start",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "start"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action = Start"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DHNMYH1NL63RahIaKIxJd6iDrqE2q3wL",
+                "name": "Condition Block",
+                "title": "Check Power State",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check Power State"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_015DHNN4YI40A3sY8dGqAbiMcCXs6zNrBF8",
+                    "name": "Condition Branch",
+                    "title": "If Power state is not POWERED_ON",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_015DHI8YNEAU32qasepT78MDGrH4uKXmEmA.output.jsonpath_queries.Power State$",
+                        "operator": "ne",
+                        "right_operand": 1
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Power state is not POWERED_ON"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_015DH8J15VJQQ3I4EA8ByKe4YpZwVyqtdrt",
+                        "name": "HTTP Request",
+                        "title": "Start Instance",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "{\r\n    \"os-start\" : null\r\n}",
+                          "content_type": "application/json",
+                          "continue_on_error_status_code": true,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                              "value": "$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHRDUEOBWV4rjXra4K9dBDIDynHs1qSw$"
+                            }
+                          ],
+                          "display_name": "Start Instance",
+                          "method": "POST",
+                          "relative_url": "/v2.1/servers/$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHGIJ60JGV5tSRpry6LN0WmMEwdT3XkQ$/action",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_015DFCD9PT02B2AfwXFzx9FcMRNEmG4UsIv",
+            "name": "Condition Branch",
+            "title": "If Action = Stop",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "stop"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action = Stop"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DHURW2PDAH0HdNfCRX1kpC7enkG5fpb7",
+                "name": "Condition Block",
+                "title": "Check Power State",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check Power State"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_015DHUS47Z6OP4vbt08oXVVIEZbYDd5qhxo",
+                    "name": "Condition Branch",
+                    "title": "If Power State is not POWERED_OFF",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_015DHI8YNEAU32qasepT78MDGrH4uKXmEmA.output.jsonpath_queries.Power State$",
+                        "operator": "ne",
+                        "right_operand": 4
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Power State is not POWERED_OFF"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_015DH8YRSK0JO5reP9ET5aXPaRAvnwZnneR",
+                        "name": "HTTP Request",
+                        "title": "Stop Instance",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "{\r\n    \"os-stop\" : null\r\n}",
+                          "content_type": "application/json",
+                          "continue_on_error_status_code": true,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                              "value": "$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHRDUEOBWV4rjXra4K9dBDIDynHs1qSw$"
+                            }
+                          ],
+                          "display_name": "Stop Instance",
+                          "method": "POST",
+                          "relative_url": "/v2.1/servers/$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHGIJ60JGV5tSRpry6LN0WmMEwdT3XkQ$/action",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_015DH8N328NYQ0zlJT2xv126yBYzaCsJRC9",
+            "name": "Condition Branch",
+            "title": "If Action = Suspend",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "suspend"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action = Suspend"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DHZ0G2D3C94lVNZMVcnec1QQAI58xISI",
+                "name": "Condition Block",
+                "title": "Check Power State",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check Power State"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_015DHZ0P7K3Z83PR04NlaiO5FcntYDDMBy0",
+                    "name": "Condition Branch",
+                    "title": "If Power State is POWERED_ON",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_015DHI8YNEAU32qasepT78MDGrH4uKXmEmA.output.jsonpath_queries.Power State$",
+                        "operator": "eq",
+                        "right_operand": 1
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Power State is POWERED_ON"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_015DH952UVHBJ3K4YG1twtv7TywHDeE3sKi",
+                        "name": "HTTP Request",
+                        "title": "Suspend Instance",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "{\r\n    \"suspend\": null\r\n}",
+                          "content_type": "application/json",
+                          "continue_on_error_status_code": true,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                              "value": "$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHRDUEOBWV4rjXra4K9dBDIDynHs1qSw$"
+                            }
+                          ],
+                          "display_name": "Suspend Instance",
+                          "method": "POST",
+                          "relative_url": "/v2.1/servers/$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHGIJ60JGV5tSRpry6LN0WmMEwdT3XkQ$/action",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_015DH8P9QLBN86Ergwi4apxVIE9fvKpreXg",
+            "name": "Condition Branch",
+            "title": "If Action = Reboot",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY.output.lowercase_text$",
+                "operator": "eq",
+                "right_operand": "reboot"
+              },
+              "continue_on_failure": false,
+              "display_name": "If Action = Reboot"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_015DI3G9IQ4L10tlJoxazZwBwRUJV8Ab1Ni",
+                "name": "Condition Block",
+                "title": "Check Power State",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check Power State"
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_015DI3GF1RPG40xJIGP3Z2qxXfgMVQrxtCU",
+                    "name": "Condition Branch",
+                    "title": "If Power State is POWERED_ON",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_015DHI8YNEAU32qasepT78MDGrH4uKXmEmA.output.jsonpath_queries.Power State$",
+                        "operator": "eq",
+                        "right_operand": 1
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Power State is POWERED_ON"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_015DH931693IS6Q9GxuFVWiQdn4ixwolxAl",
+                        "name": "HTTP Request",
+                        "title": "Reboot Instance",
+                        "type": "web-service.http_request",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "allow_auto_redirect": true,
+                          "body": "{\r\n    \"reboot\" : {\r\n        \"type\" : \"HARD\"\r\n    }\r\n}",
+                          "content_type": "application/json",
+                          "continue_on_error_status_code": true,
+                          "continue_on_failure": false,
+                          "custom_headers": [
+                            {
+                              "name": "$global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C.global.variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C$",
+                              "value": "$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHRDUEOBWV4rjXra4K9dBDIDynHs1qSw$"
+                            }
+                          ],
+                          "display_name": "Reboot Instance",
+                          "method": "POST",
+                          "relative_url": "/v2.1/servers/$workflow.definition_workflow_015DFAWD7JE2Q4tIWivaK4KWakawdxGGXuV.input.variable_workflow_015DHGIJ60JGV5tSRpry6LN0WmMEwdT3XkQ$/action",
+                          "runtime_user": {
+                            "override_target_runtime_user": false,
+                            "target_default": true
+                          },
+                          "target": {
+                            "override_workflow_target": false,
+                            "override_workflow_target_group_criteria": false,
+                            "use_workflow_target": true,
+                            "use_workflow_target_group": false
+                          }
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_0194NGNZPU1HA24em7CvpT8b6j8fBuDXvqy",
+            "name": "Condition Branch",
+            "title": "If Invalid Action",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": {
+                  "left_operand": {
+                    "left_operand": {
+                      "left_operand": "$activity.definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY.output.lowercase_text$",
+                      "operator": "ne",
+                      "right_operand": "start"
+                    },
+                    "operator": "and",
+                    "right_operand": {
+                      "left_operand": "$activity.definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY.output.lowercase_text$",
+                      "operator": "ne",
+                      "right_operand": "stop"
+                    }
+                  },
+                  "operator": "and",
+                  "right_operand": {
+                    "left_operand": "$activity.definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY.output.lowercase_text$",
+                    "operator": "ne",
+                    "right_operand": "suspend"
+                  }
+                },
+                "operator": "and",
+                "right_operand": {
+                  "left_operand": "$activity.definition_activity_015DH850WT71Y20AI4jOwr0n1SyAmrnUYhY.output.lowercase_text$",
+                  "operator": "ne",
+                  "right_operand": "reboot"
+                }
+              },
+              "continue_on_failure": false,
+              "display_name": "If Invalid Action"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_0194NJAJ6X58C5JXhcINbDE3vjaZ7t4hN3J",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Invalid Action type provided, valid options are: start, stop, suspend and  reboot."
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C": {
+      "unique_name": "variable_015DGW989NYOT2csNuSMQcJEuqcT2JdqU7C",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "Openstack Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

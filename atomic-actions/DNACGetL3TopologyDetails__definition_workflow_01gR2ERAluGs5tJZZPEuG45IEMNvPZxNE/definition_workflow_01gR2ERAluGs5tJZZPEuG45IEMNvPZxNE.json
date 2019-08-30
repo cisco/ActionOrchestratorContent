@@ -1,0 +1,251 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01gR2ERAluGs5tJZZPEuG45IEMNvPZxNE",
+    "name": "Get L3 Topology Details",
+    "title": "Get L3 Topology Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Topology Type",
+          "type": "datatype.string",
+          "description": "Type of topology(OSPF,ISIS,etc)",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01gR2MUDPB4MhsGFMSowTUA7WcYHDAHA9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Links",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRKlXXXz0ybuL1RTHLaYaygqe6y6Vo1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Token",
+          "type": "datatype.secure_string",
+          "description": "Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018E9PK55PHJW44eoXeSWl36FAzy5Oq1cGP",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Nodes",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01gRKodNzEKdJlPYFUQuoZsdq9Og0EpW3",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco DNA Center",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow fetches L3 topology details.",
+      "display_name": "Get L3 Topology Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01gR2qgLA8gUA4TkSbp8Hg4UcqIAFSZsL",
+        "name": "HTTP Request",
+        "title": "Get Topology Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF.global.variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF$",
+              "value": "$workflow.definition_workflow_01gR2ERAluGs5tJZZPEuG45IEMNvPZxNE.input.variable_workflow_018E9PK55PHJW44eoXeSWl36FAzy5Oq1cGP$"
+            }
+          ],
+          "display_name": "Get Topology Details",
+          "method": "GET",
+          "relative_url": "/dna/intent/api/v1/topology/l3/$workflow.definition_workflow_01gR2ERAluGs5tJZZPEuG45IEMNvPZxNE.input.variable_workflow_01gR2MUDPB4MhsGFMSowTUA7WcYHDAHA9$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gR357q4f709MSue31UD88bDUdvIDY4u",
+        "name": "JSONPath Query",
+        "title": "Read Topology Details ",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Read Topology Details ",
+          "input_json": "$activity.definition_activity_01gR2qgLA8gUA4TkSbp8Hg4UcqIAFSZsL.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.response.links",
+              "jsonpath_query_name": "Links",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$.response.nodes",
+              "jsonpath_query_name": "Nodes",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01gRMTg90uXxzYQd9ugnOr5uo4MADrFpk",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "conditions": [],
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01gRMTJRldtASYeSNXrC2K3zDWQfnHZAN",
+            "name": "Condition Branch",
+            "title": "If Links Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gR357q4f709MSue31UD88bDUdvIDY4u.output.jsonpath_queries.Links$",
+                "operator": "ne",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Links Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRm9CBoOqR6g6ylOkaPHkmSZ6zo9hnd",
+                "name": "Set Variables",
+                "title": "Set Topology Details",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Topology Details",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR2ERAluGs5tJZZPEuG45IEMNvPZxNE.output.variable_workflow_01gRKlXXXz0ybuL1RTHLaYaygqe6y6Vo1$",
+                      "variable_value_new": "{\"links\": $activity.definition_activity_01gR357q4f709MSue31UD88bDUdvIDY4u.output.jsonpath_queries.Links$}"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_01gR2ERAluGs5tJZZPEuG45IEMNvPZxNE.output.variable_workflow_01gRKodNzEKdJlPYFUQuoZsdq9Og0EpW3$",
+                      "variable_value_new": "{\"nodes\": $activity.definition_activity_01gR357q4f709MSue31UD88bDUdvIDY4u.output.jsonpath_queries.Nodes$}"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01gRMTkssoZe6zmwHCuc72416h0CJbqSN",
+            "name": "Condition Branch",
+            "title": "If Topology Details not Found",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01gR357q4f709MSue31UD88bDUdvIDY4u.output.jsonpath_queries.Links$",
+                "operator": "eq",
+                "right_operand": ""
+              },
+              "continue_on_failure": true,
+              "display_name": "If Topology Details not Found",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01gRm21QTEgmnkXIa74tvkfruLplVAGnJ",
+                "name": "Failed",
+                "title": "Succeeded",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Get Topology Details"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
+      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
+      "properties": {
+        "value": "X-Auth-Token",
+        "scope": "global",
+        "name": "DNACAuthHeader",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

@@ -1,0 +1,320 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018V615REW7GI7aFmAUAboKXCBLquQ6yCG4",
+    "name": "List Images",
+    "title": "List Images",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_018V6GVJL4DOP6qxtin90NM9wRJudhL2Ul6",
+        "properties": {
+          "scope": "output",
+          "name": "List Images Details",
+          "type": "datatype.table",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018V6H206KX4H0XyAGS7YfSro31PXZefCfw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018V61RUVH4HC2IlGiWzDXloPJjDudQsn3z",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenStack",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "this atomic lists the image details.",
+      "display_name": "List Images",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018V6BZL7W7Y06y1dxhu2LYVMGhqZ9vywil",
+        "name": "HTTP Request",
+        "title": "List Images",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "X-Auth-Token",
+              "value": "$workflow.definition_workflow_018V615REW7GI7aFmAUAboKXCBLquQ6yCG4.input.variable_workflow_018V61RUVH4HC2IlGiWzDXloPJjDudQsn3z$"
+            }
+          ],
+          "display_name": "List Images",
+          "method": "GET",
+          "relative_url": "v2.1/images",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018V6CQOFNYOU7dkkNao82Ad8AohRsSDTlt",
+        "name": "Condition Block",
+        "title": "Evaluate Condition",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Evaluate Condition",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018V6CQT4G01F6kQCcG7BOm4vRai1lXtfuJ",
+            "name": "Condition Branch",
+            "title": "If Success",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018V6BZL7W7Y06y1dxhu2LYVMGhqZ9vywil.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Success",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018V6E6A6I1PL3bYAQkXK33wLtDVNd5OmzZ",
+                "name": "Read Table from JSON",
+                "title": "Read Image Details",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Image Details",
+                  "input_json": "$activity.definition_activity_018V6BZL7W7Y06y1dxhu2LYVMGhqZ9vywil.output.response_body$",
+                  "jsonpath_query": "$.images[*]",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "skip_execution": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "id",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018V6FDEB7TN45bONbzbiWJqkJ8vDIJG85a",
+                "name": "Condition Block",
+                "title": "Evaluate Condition",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Evaluate Condition",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_018V6FDIM8PLG1TumqPLujExntKIrb7tqvn",
+                    "name": "Condition Branch",
+                    "title": "If Id Found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_018V6E6A6I1PL3bYAQkXK33wLtDVNd5OmzZ.output.read_table_from_json[0].id$",
+                        "operator": "ne",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Id Found",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_018V6GAG4RB642E2rrNNfUWwnP764GFJB95",
+                        "name": "For Each",
+                        "title": "For Each Image Details",
+                        "type": "logic.for_each",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "For Each Image Details",
+                          "skip_execution": false,
+                          "source_array": "$activity.definition_activity_018V6E6A6I1PL3bYAQkXK33wLtDVNd5OmzZ.output.read_table_from_json$"
+                        },
+                        "object_type": "definition_activity",
+                        "actions": [
+                          {
+                            "unique_name": "definition_activity_018V6H6NLY9A457wxXaC4qCSmUSvPRB1uoo",
+                            "name": "Add Row to Table",
+                            "title": "Add Image Details",
+                            "type": "core.addrowtotable",
+                            "base_type": "activity",
+                            "properties": {
+                              "action_timeout": 180,
+                              "continue_on_failure": false,
+                              "display_name": "Add Image Details",
+                              "input_table": "$workflow.definition_workflow_018V615REW7GI7aFmAUAboKXCBLquQ6yCG4.output.variable_workflow_018V6H206KX4H0XyAGS7YfSro31PXZefCfw$",
+                              "row": [
+                                {
+                                  "key": "ID",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_018V6GAG4RB642E2rrNNfUWwnP764GFJB95.input.source_array[@].id$"
+                                },
+                                {
+                                  "key": "Name",
+                                  "type": "string",
+                                  "value": "$activity.definition_activity_018V6GAG4RB642E2rrNNfUWwnP764GFJB95.input.source_array[@].name$"
+                                }
+                              ],
+                              "skip_execution": false
+                            },
+                            "object_type": "definition_activity"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_018V6FDM6SQJ308iZrXb6H4QK2914yuprGx",
+                    "name": "Condition Branch",
+                    "title": "If Id Not Found",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_018V6E6A6I1PL3bYAQkXK33wLtDVNd5OmzZ.output.read_table_from_json[0].id$",
+                        "operator": "eq",
+                        "right_operand": ""
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "If Id Not Found",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_018V6FYW9OZ8B39cWXhOeCD3peD7if0FAgc",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Failed to get the list image id"
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018V6CQWW1YJZ6EViC5f2Eb2uPX3r9WsZnF",
+            "name": "Condition Branch",
+            "title": "If Failed",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018V6BZL7W7Y06y1dxhu2LYVMGhqZ9vywil.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Failed",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018V6DLACBNJ50M5tiT0ySWLkOEoor7gMlu",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to get  the list image details\n\nError : $activity.definition_activity_018V6BZL7W7Y06y1dxhu2LYVMGhqZ9vywil.output.response_body$\n\nStatus Code: $activity.definition_activity_018V6BZL7W7Y06y1dxhu2LYVMGhqZ9vywil.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_018V6GVJL4DOP6qxtin90NM9wRJudhL2Ul6": {
+      "unique_name": "tabletype_018V6GVJL4DOP6qxtin90NM9wRJudhL2Ul6",
+      "data_type": "datatype.tabletype",
+      "display_name": "ListImage Table",
+      "columns": [
+        {
+          "name": "ID",
+          "title": "ID",
+          "type": "string"
+        },
+        {
+          "name": "Name",
+          "title": "Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

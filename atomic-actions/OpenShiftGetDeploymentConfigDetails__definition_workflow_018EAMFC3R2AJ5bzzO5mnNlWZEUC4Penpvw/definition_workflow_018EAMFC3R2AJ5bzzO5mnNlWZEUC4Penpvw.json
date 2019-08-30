@@ -1,0 +1,304 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw",
+    "name": "Get Deployment Config Details",
+    "title": "Get Deployment Config Details",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Deployment Name",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018EAWNYB3F5D2VMCaPGaygXwdhJlzkMawX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Resource Version",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018EAXUP7ZMQP2Rf7k8nW5ZIjoxI0mPzc8U",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Container Image",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018EAY8LFKK3V5WihvAg5VO0yOwntxQUzzn",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "UID",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018EB0PA8DO585DKlQVZQq0ADLptYfvdwb8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "NameSpace",
+          "type": "datatype.string",
+          "description": "Enter NameSpace Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018EAN5EJ6L2B7cBalrowoG9TUlakj8DiG2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Enter Access Token",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018EANE03GSWG72d7ghRfVkhKLppOdTFvMN",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Deployment Config Name",
+          "type": "datatype.string",
+          "description": "Enter Deployment Config Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018EANOFINLG06B4M1eqSk7yVb134w5G5vs",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "OpenShift",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic workflow Gets Deployment Config Details",
+      "display_name": "Get Deployment Config Details",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018EANSD7KBZ55oIVb4I2z8G0aNA2mo05GV",
+        "name": "HTTP Request",
+        "title": "Get Deployment Config Details",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "$global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI.global.variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI$",
+              "value": "Bearer $workflow.definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw.input.variable_workflow_018EANE03GSWG72d7ghRfVkhKLppOdTFvMN$"
+            }
+          ],
+          "display_name": "Get Deployment Config Details",
+          "method": "GET",
+          "relative_url": "/namespaces/$workflow.definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw.input.variable_workflow_018EAN5EJ6L2B7cBalrowoG9TUlakj8DiG2$/deploymentconfigs/$workflow.definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw.input.variable_workflow_018EANOFINLG06B4M1eqSk7yVb134w5G5vs$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018EAP3DHF0QI7KErHxGB78S2FPI8Ho7K6p",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018EAP3I6GR266xXNl1lapVwjF2AUVYGaTP",
+            "name": "Condition Branch",
+            "title": "If Status Code == 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018EANSD7KBZ55oIVb4I2z8G0aNA2mo05GV.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code == 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018EAQ0MS1QR01yR5EYUUqP1hyfBfW0DYbZ",
+                "name": "JSONPath Query",
+                "title": "Read Deployment Config Details",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Deployment Config Details",
+                  "input_json": "$activity.definition_activity_018EANSD7KBZ55oIVb4I2z8G0aNA2mo05GV.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.metadata.name",
+                      "jsonpath_query_name": "Name",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.uid",
+                      "jsonpath_query_name": "UID",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.metadata.resourceVersion",
+                      "jsonpath_query_name": "Resource Version",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "jsonpath_query": "$.spec.template[*].containers[*].image",
+                      "jsonpath_query_name": "Container Image",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018EAVS1U8UPZ1IdgmgN3mEqcdaFt0pms9U",
+                "name": "Set Variables",
+                "title": "Set Output Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Output Variables",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw.output.variable_workflow_018EAY8LFKK3V5WihvAg5VO0yOwntxQUzzn$",
+                      "variable_value_new": "$activity.definition_activity_018EAQ0MS1QR01yR5EYUUqP1hyfBfW0DYbZ.output.jsonpath_queries.Container Image$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw.output.variable_workflow_018EAWNYB3F5D2VMCaPGaygXwdhJlzkMawX$",
+                      "variable_value_new": "$activity.definition_activity_018EAQ0MS1QR01yR5EYUUqP1hyfBfW0DYbZ.output.jsonpath_queries.Name$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw.output.variable_workflow_018EAXUP7ZMQP2Rf7k8nW5ZIjoxI0mPzc8U$",
+                      "variable_value_new": "$activity.definition_activity_018EAQ0MS1QR01yR5EYUUqP1hyfBfW0DYbZ.output.jsonpath_queries.Resource Version$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw.output.variable_workflow_018EB0PA8DO585DKlQVZQq0ADLptYfvdwb8$",
+                      "variable_value_new": "$activity.definition_activity_018EAQ0MS1QR01yR5EYUUqP1hyfBfW0DYbZ.output.jsonpath_queries.UID$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018EAP3LPO4D531U1XAJ2MhfJg5SnJRbBwC",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018EANSD7KBZ55oIVb4I2z8G0aNA2mo05GV.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018EB1BPTBOWM6asklngKqXgFTwvLOsi5zA",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed to Get Deployment Config Details For The Given Deployment Name: $workflow.definition_workflow_018EAMFC3R2AJ5bzzO5mnNlWZEUC4Penpvw.input.variable_workflow_018EANOFINLG06B4M1eqSk7yVb134w5G5vs$\n\nErrorMessage:\n$activity.definition_activity_018EANSD7KBZ55oIVb4I2z8G0aNA2mo05GV.output.response_body$\n\nStatus Message:\n$activity.definition_activity_018EANSD7KBZ55oIVb4I2z8G0aNA2mo05GV.output.status_text$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI": {
+      "unique_name": "variable_018AR8LVP28O74rYbh7eapaVenwTCfZqpKI",
+      "properties": {
+        "value": "Authorization",
+        "scope": "global",
+        "name": "Openshift Auth Header",
+        "type": "datatype.string",
+        "is_required": false
+      },
+      "object_type": "variable"
+    }
+  }
+}

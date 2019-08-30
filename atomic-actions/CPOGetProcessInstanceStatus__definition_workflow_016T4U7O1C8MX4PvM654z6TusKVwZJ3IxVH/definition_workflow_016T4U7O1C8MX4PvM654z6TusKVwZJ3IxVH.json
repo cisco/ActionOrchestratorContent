@@ -1,0 +1,295 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_016T4U7O1C8MX4PvM654z6TusKVwZJ3IxVH",
+    "name": "Get Process Instance Status",
+    "title": "Get Process Instance Status",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "tabletype_016T5409V3C5V48x1PeW5gAb3Dur4B6A3T3",
+        "properties": {
+          "scope": "output",
+          "name": "Process Instance Status",
+          "type": "datatype.table"
+        },
+        "unique_name": "variable_workflow_016T547C6N5CT3BJrh5Ot1Phh3zRRuRJh1e",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Process Instance Name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016T4W127DS9E4R7VPvbTTJwqCa5aJoF9Y4",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Response",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016T4Y63IIZH41IkXTuGoIrwA6ALsHpJ0kb",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Cisco Process Orchestrator",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "This atomic will retrieve process instance status for the given process id/name.",
+      "display_name": "Get Process Instance Status",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_016T4UPIJZOEL766eJyTL56rPxkjRVdmowZ",
+        "name": "HTTP Request",
+        "title": "Get Process Instance Status",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "display_name": "Get Process Instance Status",
+          "method": "GET",
+          "relative_url": "/ProcessInstances/$workflow.definition_workflow_016T4U7O1C8MX4PvM654z6TusKVwZJ3IxVH.input.variable_workflow_016T4W127DS9E4R7VPvbTTJwqCa5aJoF9Y4$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_016T4WT9YSJ202FAQJQXsxT5hOh7DaHOsKy",
+        "name": "Condition Block",
+        "title": "Check For Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check For Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_016T4WTG3VOS74bc5Oe6vrX3hPtsxxZY1Wq",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016T4UPIJZOEL766eJyTL56rPxkjRVdmowZ.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016T4YM22IPN57Fx96KMt3iiQx9na6KS97o",
+                "name": "Read Table from JSON",
+                "title": "Read Process Instance Status from JSON",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Process Instance Status from JSON",
+                  "input_json": "$activity.definition_activity_016T4UPIJZOEL766eJyTL56rPxkjRVdmowZ.output.response_body$",
+                  "jsonpath_query": "$",
+                  "persist_output": false,
+                  "populate_columns": false,
+                  "table_columns": [
+                    {
+                      "column_name": "InstanceId",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "InstanceState",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "InstanceName",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "ActivityCount",
+                      "column_type": "integer",
+                      "zdate_type_format": ""
+                    },
+                    {
+                      "column_name": "ProgressStatus",
+                      "column_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_016T51AE77CFU1A43xGlwiJemilKb53e11t",
+                "name": "For Each",
+                "title": "For Each Process Instance Status",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each Process Instance Status",
+                  "source_array": "$activity.definition_activity_016T4YM22IPN57Fx96KMt3iiQx9na6KS97o.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_016T51TREUFKE0LeGuwaHL7QiWW5UH6v3Ll",
+                    "name": "Add Row to Table",
+                    "title": "Add Process Instance to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Process Instance to Table",
+                      "input_table": "$workflow.definition_workflow_016T4U7O1C8MX4PvM654z6TusKVwZJ3IxVH.output.variable_workflow_016T547C6N5CT3BJrh5Ot1Phh3zRRuRJh1e$",
+                      "row": [
+                        {
+                          "key": "InstanceId",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016T51AE77CFU1A43xGlwiJemilKb53e11t.input.source_array[@].InstanceId$"
+                        },
+                        {
+                          "key": "InstanceState",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016T51AE77CFU1A43xGlwiJemilKb53e11t.input.source_array[@].InstanceState$"
+                        },
+                        {
+                          "key": "InstanceName",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016T51AE77CFU1A43xGlwiJemilKb53e11t.input.source_array[@].InstanceName$"
+                        },
+                        {
+                          "key": "ActivityCount",
+                          "type": "integer",
+                          "value": "$activity.definition_activity_016T51AE77CFU1A43xGlwiJemilKb53e11t.input.source_array[@].ActivityCount$"
+                        },
+                        {
+                          "key": "ProgressStatus",
+                          "type": "string",
+                          "value": "$activity.definition_activity_016T51AE77CFU1A43xGlwiJemilKb53e11t.input.source_array[@].ProgressStatus$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_016T4WTJ01H7H54nV86rffGcuNkvIIjBeUN",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_016T4UPIJZOEL766eJyTL56rPxkjRVdmowZ.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_016T54YWZQAW112TBVaghg7SnGCTdgz0Adv",
+                "name": "Failed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get Process Instance Status For The Given Name: $workflow.definition_workflow_016T4U7O1C8MX4PvM654z6TusKVwZJ3IxVH.input.variable_workflow_016T4W127DS9E4R7VPvbTTJwqCa5aJoF9Y4$\n\nError: $activity.definition_activity_016T4UPIJZOEL766eJyTL56rPxkjRVdmowZ.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "table_types": {
+    "tabletype_016T5409V3C5V48x1PeW5gAb3Dur4B6A3T3": {
+      "unique_name": "tabletype_016T5409V3C5V48x1PeW5gAb3Dur4B6A3T3",
+      "data_type": "datatype.tabletype",
+      "display_name": "Process Instance Status",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "name": "ActivityCount",
+          "title": "Activity Count",
+          "type": "integer"
+        },
+        {
+          "name": "InstanceId",
+          "title": "Instance Id",
+          "type": "string"
+        },
+        {
+          "name": "InstanceName",
+          "title": "Instance Name",
+          "type": "string"
+        },
+        {
+          "name": "InstanceState",
+          "title": "Instance State",
+          "type": "string"
+        },
+        {
+          "name": "ProgressStatus",
+          "title": "Progress Status",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_018W1VTC14Y4S6FF9s5cV8eU5Idji2FuN1k",
+    "name": "Get Access Token",
+    "title": "Get Access Token",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Tenant ID",
+          "type": "datatype.string",
+          "description": "enter the valid tenant id\nex : d74e8049-5c41-4l87-b6 f-035z",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018W1VUA3L1GE2JsoKRwanAYxLvwjhV9fvx",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "output",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_018W1VUA3L5N81quTYfLOIZVs8VqjbX9OBT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Client ID",
+          "type": "datatype.string",
+          "description": "enter the valid client id\nex : 28fe980c-b545-48e3af2a589",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018W1VUA3LNM471jMSXhDuisWXebfwSd7ni",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "input",
+          "name": "Client Secret",
+          "type": "datatype.secure_string",
+          "description": "enter the valid client secret\nex : =zrKV]_XWPYiNlh0b.ZXL",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_018W1VUA3KTDR4leKu2VnHhK7kMVcesWJNv",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Microsoft Azure",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "Returns Token As a Output In Secure String Format.",
+      "display_name": "Get Access Token",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "specify_on_workflow_start": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_018W1VUJKWQIG3spKcLimXJEGNSleviIOq3",
+        "name": "HTTP Request",
+        "title": "Get Azure Access Token",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "grant_type=client_credentials\u0026resource=https://management.azure.com\u0026client_id=$workflow.definition_workflow_018W1VTC14Y4S6FF9s5cV8eU5Idji2FuN1k.input.variable_workflow_018W1VUA3LNM471jMSXhDuisWXebfwSd7ni$\u0026client_secret=$workflow.definition_workflow_018W1VTC14Y4S6FF9s5cV8eU5Idji2FuN1k.input.variable_workflow_018W1VUA3KTDR4leKu2VnHhK7kMVcesWJNv$",
+          "continue_on_error_status_code": true,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ],
+          "display_name": "Get Azure Access Token",
+          "method": "POST",
+          "relative_url": "/$workflow.definition_workflow_018W1VTC14Y4S6FF9s5cV8eU5Idji2FuN1k.input.variable_workflow_018W1VUA3L1GE2JsoKRwanAYxLvwjhV9fvx$/oauth2/token",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "use_workflow_target": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_018W1VUWLMU4S2s6Xs1D5bkLfKx3AwEQKUb",
+        "name": "Condition Block",
+        "title": "Check Status Code",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Status Code"
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_018W1VV7H20JC0z7PKoDosabBLKaIKvadrc",
+            "name": "Condition Branch",
+            "title": "If Status Code = 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018W1VUJKWQIG3spKcLimXJEGNSleviIOq3.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code = 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018W1VVNFRAJV0nhhqGMj367q0Xngzo4U0o",
+                "name": "JSONPath Query",
+                "title": "Read Token",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Read Token",
+                  "input_json": "$activity.definition_activity_018W1VUJKWQIG3spKcLimXJEGNSleviIOq3.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.access_token",
+                      "jsonpath_query_name": "Access Token",
+                      "jsonpath_query_type": "string",
+                      "zdate_type_format": ""
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_018W1VVXF1DB05Cs3TWhmASXOacLtHH731T",
+                "name": "Set Variables",
+                "title": "Set Token",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Token",
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_018W1VTC14Y4S6FF9s5cV8eU5Idji2FuN1k.output.variable_workflow_018W1VUA3L5N81quTYfLOIZVs8VqjbX9OBT$",
+                      "variable_value_new": "$activity.definition_activity_018W1VVNFRAJV0nhhqGMj367q0Xngzo4U0o.output.jsonpath_queries.Access Token$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_018W1VW5FYB8Q0Se3Bvv9zGtPFoltLLrPf0",
+            "name": "Condition Branch",
+            "title": "If Status Code \u003c\u003e 200",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_018W1VUJKWQIG3spKcLimXJEGNSleviIOq3.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "If Status Code \u003c\u003e 200"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_018W1VWEZBAXF3vFAr0YmzYc81CCYPak2am",
+                "name": "Failed",
+                "title": "Failed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "display_name": "Failed",
+                  "result_message": "Failed To Get Access Token.\n\nStatus Text: $activity.definition_activity_018W1VUJKWQIG3spKcLimXJEGNSleviIOq3.output.status_text$\n\nResponse Body : $activity.definition_activity_018W1VUJKWQIG3spKcLimXJEGNSleviIOq3.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
