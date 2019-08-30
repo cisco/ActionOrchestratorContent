@@ -99,7 +99,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "input",
           "name": "Access Token",
           "type": "datatype.secure_string",
@@ -157,8 +157,7 @@
             "target_default": true
           },
           "target": {
-            "override_workflow_target": true,
-            "target_id": "definition_target_01g0VK5V9OdditW4LkbLV7PYS3Yuj92mm"
+            "use_workflow_target": true
           }
         },
         "object_type": "definition_activity"
@@ -291,24 +290,5 @@
     "categories": [
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
-  },
-  "targets": {
-    "definition_target_01g0VK5V9OdditW4LkbLV7PYS3Yuj92mm": {
-      "unique_name": "definition_target_01g0VK5V9OdditW4LkbLV7PYS3Yuj92mm",
-      "name": "Microsoft Azure Base Target",
-      "title": "Microsoft Azure Base Target",
-      "type": "web-service.endpoint",
-      "base_type": "target",
-      "object_type": "definition_target",
-      "properties": {
-        "disable_certificate_validation": false,
-        "display_name": "Microsoft Azure Base Target",
-        "host": "management.azure.com",
-        "no_runtime_user": true,
-        "protocol": "https",
-        "proxy_password": "Cisco123!",
-        "proxy_username": "aoadapterauthor@cisco.com"
-      }
-    }
   }
 }

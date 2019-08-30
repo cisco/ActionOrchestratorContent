@@ -31,7 +31,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "input",
           "name": "User Password",
           "type": "datatype.secure_string"

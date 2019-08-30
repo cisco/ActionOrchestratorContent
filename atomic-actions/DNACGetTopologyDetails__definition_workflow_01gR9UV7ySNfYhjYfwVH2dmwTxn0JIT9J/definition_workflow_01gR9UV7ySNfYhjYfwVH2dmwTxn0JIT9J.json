@@ -20,7 +20,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "input",
           "name": "Token",
           "type": "datatype.secure_string",
@@ -96,8 +96,7 @@
       },
       "target": {
         "target_type": "web-service.endpoint",
-        "target_id": "definition_target_018PCC6H2RMIK7UXBctp8QoQ5IddC2RH1FS",
-        "execute_on_workflow_target": true
+        "specify_on_workflow_start": true
       }
     },
     "object_type": "definition_workflow",
@@ -334,39 +333,6 @@
     "categories": [
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
-  },
-  "targets": {
-    "definition_target_018PCC6H2RMIK7UXBctp8QoQ5IddC2RH1FS": {
-      "unique_name": "definition_target_018PCC6H2RMIK7UXBctp8QoQ5IddC2RH1FS",
-      "name": "DNAC_URL",
-      "title": "DNAC_URL",
-      "type": "web-service.endpoint",
-      "base_type": "target",
-      "object_type": "definition_target",
-      "properties": {
-        "default_runtime_user_id": "definition_runtime_user_018PCBO8QITF81DyoKs62kXJEBMA3aIFsvf",
-        "disable_certificate_validation": true,
-        "display_name": "DNAC_URL",
-        "host": "10.122.6.51",
-        "no_runtime_user": false,
-        "protocol": "https"
-      }
-    }
-  },
-  "runtime_users": {
-    "definition_runtime_user_018PCBO8QITF81DyoKs62kXJEBMA3aIFsvf": {
-      "unique_name": "definition_runtime_user_018PCBO8QITF81DyoKs62kXJEBMA3aIFsvf",
-      "name": "DNAC_Creds",
-      "title": "DNAC_Creds",
-      "type": "runtime_user.web-service_basic_credentials",
-      "base_type": "runtime_user",
-      "object_type": "definition_runtime_user",
-      "properties": {
-        "basic_password": "*****",
-        "basic_username": "*****",
-        "display_name": "DNAC_Creds"
-      }
-    }
   },
   "variables": {
     "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {

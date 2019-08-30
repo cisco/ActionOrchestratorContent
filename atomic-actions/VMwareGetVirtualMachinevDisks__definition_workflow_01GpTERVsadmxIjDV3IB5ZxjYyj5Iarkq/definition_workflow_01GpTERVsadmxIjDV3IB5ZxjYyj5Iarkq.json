@@ -34,7 +34,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "input",
           "name": "Session Id",
           "type": "datatype.secure_string",
@@ -61,8 +61,7 @@
       },
       "target": {
         "target_type": "web-service.endpoint",
-        "target_id": "definition_target_01GL3E0xdaYZXuqMRV4Hh7u3Q0xvhcQBc",
-        "execute_on_workflow_target": true
+        "specify_on_workflow_start": true
       }
     },
     "object_type": "definition_workflow",
@@ -199,23 +198,6 @@
     "categories": [
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
-  },
-  "targets": {
-    "definition_target_01GL3E0xdaYZXuqMRV4Hh7u3Q0xvhcQBc": {
-      "unique_name": "definition_target_01GL3E0xdaYZXuqMRV4Hh7u3Q0xvhcQBc",
-      "name": " vCenter Server - aus-65esxvc-01 ",
-      "title": " vCenter Server - aus-65esxvc-01 ",
-      "type": "web-service.endpoint",
-      "base_type": "target",
-      "object_type": "definition_target",
-      "properties": {
-        "disable_certificate_validation": true,
-        "display_name": " vCenter Server - aus-65esxvc-01 ",
-        "host": "10.88.102.41",
-        "no_runtime_user": false,
-        "protocol": "https"
-      }
-    }
   },
   "table_types": {
     "tabletype_01GpUQIYqqttlZbmSJCYH7RGZ6LNtzT2m": {

@@ -113,7 +113,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "input",
           "name": "Access Token",
           "type": "datatype.secure_string",

@@ -33,7 +33,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "input",
           "name": "Access Token",
           "type": "datatype.secure_string",
@@ -102,8 +102,7 @@
             "target_default": true
           },
           "target": {
-            "override_workflow_target": true,
-            "target_id": "definition_target_01g0VK5V9OdditW4LkbLV7PYS3Yuj92mm"
+            "use_workflow_target": true
           }
         },
         "object_type": "definition_activity"

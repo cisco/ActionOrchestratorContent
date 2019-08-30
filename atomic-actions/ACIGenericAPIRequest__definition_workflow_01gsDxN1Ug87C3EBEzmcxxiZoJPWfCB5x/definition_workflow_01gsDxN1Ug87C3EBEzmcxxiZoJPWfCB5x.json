@@ -9,6 +9,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
+          "value": "",
           "scope": "input",
           "name": "Token",
           "type": "datatype.secure_string"

@@ -22,7 +22,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "output",
           "name": "Access Token",
           "type": "datatype.secure_string",
@@ -34,7 +34,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "input",
           "name": "Password",
           "type": "datatype.secure_string",

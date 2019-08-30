@@ -35,7 +35,7 @@
       {
         "schema_id": "datatype.secure_string",
         "properties": {
-          "value": "*****",
+          "value": "",
           "scope": "input",
           "name": "Session Id",
           "type": "datatype.secure_string",
