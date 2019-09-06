@@ -1,0 +1,104 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_019NOU7M93HPT2q6ZNSvOfNLRg0PWQOq7IX",
+    "name": "Example Python Activity",
+    "title": "Example Python Activity",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "test,1,2,3",
+          "scope": "input",
+          "name": "Input Data",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019NOV5ABCQH95TSmBLIIRnWE5YOydFAmAa",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Python Output",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019NOWTBMWVY26jmOCDXjhtvU2rJ12CdIxK",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This workflow shows how to use the Python Script node to take in data as input and to map python variables from the script to downstream activities.",
+      "display_name": "Example Python Activity",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019NOURXPC5F43map07j7b2C1SFyqO2jn2e",
+        "name": "Execute Python Script",
+        "title": "Execute Python Script",
+        "type": "python3.script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Execute Python Script",
+          "script": "import sys\n\ntest_data = sys.argv[1]\n\noutp = test_data.split(',')[0]",
+          "script_arguments": [
+            "$workflow.definition_workflow_019NOU7M93HPT2q6ZNSvOfNLRg0PWQOq7IX.input.variable_workflow_019NOV5ABCQH95TSmBLIIRnWE5YOydFAmAa$"
+          ],
+          "script_queries": [
+            {
+              "script_query": "outp",
+              "script_query_name": "python_var_output",
+              "script_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019NOWFPJ2QWY3IO97Tz42KyOPuiDZHlG64",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_019NOU7M93HPT2q6ZNSvOfNLRg0PWQOq7IX.output.variable_workflow_019NOWTBMWVY26jmOCDXjhtvU2rJ12CdIxK$",
+              "variable_value_new": "$activity.definition_activity_019NOURXPC5F43map07j7b2C1SFyqO2jn2e.output.script_queries.python_var_output$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
