@@ -1,0 +1,396 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_019KDDD7QG44B17UtJSoWB4qdmpuGK9DlwH",
+    "name": "Example HTTP Request JSON Path Query Branch Logic",
+    "title": "Example HTTP Request JSON Path Query Branch Logic",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Current Time",
+          "type": "datatype.string",
+          "description": "The current time of the timezone specified in the input variable.",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019KEJ4LMZOYC2cV1mlrmUYG9hmoYm5TSTV",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Timezone Abbreviation",
+          "type": "datatype.string",
+          "description": "The abbreviation code for the timezone specified in the input variable.",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019KEJS00AVTR1frBEcJEMwYSRRSCa4A5P3",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Available Timezones",
+          "type": "datatype.string",
+          "description": "A list of available timezones to pass",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019NO0L5NZ0PC4dW4ZnlkFYe7I5DoK8yAi0",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "America/Chicago",
+          "scope": "input",
+          "name": "Timezone",
+          "type": "datatype.string",
+          "description": "The timezone to get current time.\n\nList of available timezones can be found here:\n\nhttp://worldtimeapi.org/timezones\n",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_019KECNI8MT9L7Q44shfmKJuV1to7hMEtbd",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This workflow is an example of how to make a simple REST API call using the HTTP Request activity.  It calls a public Rest API called World Time API.  (http://worldtimeapi.org/)\n\nThis workflow demonstrates the following:\n\n- HTTP Endpoint target\n- Input and output variables\n- HTTP Request activity\n- JSON Path Query activity\n- Condition Block activity\n- Set Variables activity\n- Completed activity\n- Variable references\n\nThe workflow uses an HTTP Endpoint target called World Time API.  It does not require Account Keys for authorization.\n\nThe workflow takes one input variable called Timezone.  This is the timezone to query for current time.  The default value is America/Chicago.\n\nThe workflow has three output variables.  \n\n1.  Current Time which is the current time of the timezone passed in the input variable.  \n2.  Timezone Abbreviation which is standard abbreviation of the timezone (CDT for example).  \n3.  Available Timezones which is only populated if you pass an invalid timezone in the input variable.",
+      "display_name": "Example HTTP Request JSON Path Query Branch Logic",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_019KDNXR6AFFT7SJdyRRDbcPfcddbR9eWxk",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019KECXP6QWCR2b6VDKutxuNNnD1L123g3J",
+        "name": "HTTP Request",
+        "title": "Get Time for Specified Timezone",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": true,
+          "continue_on_failure": true,
+          "description": "Get time for timezone specified as input variable.",
+          "display_name": "Get Time for Specified Timezone",
+          "method": "GET",
+          "relative_url": "/$workflow.definition_workflow_019KDDD7QG44B17UtJSoWB4qdmpuGK9DlwH.input.variable_workflow_019KECNI8MT9L7Q44shfmKJuV1to7hMEtbd$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019KEFDKI14JV10Hr4i6zGP3TqIiY70J2qY",
+        "name": "Condition Block",
+        "title": "Check Result for Get Time for Specified Timezone",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Check Result for Get Time for Specified Timezone",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_019KEFDNBVB9H01FLAsfhV2jgxZLIRbWlJA",
+            "name": "Condition Branch",
+            "title": "Success",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_019KECXP6QWCR2b6VDKutxuNNnD1L123g3J.output.succeeded$",
+                "operator": "eq",
+                "right_operand": true
+              },
+              "continue_on_failure": false,
+              "description": "Check the status code to get time for timezone",
+              "display_name": "Success",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019KEJZ1X9UDO1JKn2ZUjX8v555qWNhxnCi",
+                "name": "JSONPath Query",
+                "title": "Query Timezone Values",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "description": "Query the current time from the JSON returned from Get Time for Specified Timezone.",
+                  "display_name": "Query Timezone Values",
+                  "input_json": "$activity.definition_activity_019KECXP6QWCR2b6VDKutxuNNnD1L123g3J.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$.abbreviation",
+                      "jsonpath_query_name": "Abbreviation",
+                      "jsonpath_query_type": "string"
+                    },
+                    {
+                      "jsonpath_query": "$.datetime",
+                      "jsonpath_query_name": "Current Time",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019KENCGGBQLH19VV2yeVEzoq5tlPmjKUQO",
+                "name": "Set Variables",
+                "title": "Set Output Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "description": "Set the values of the workflow output variables.",
+                  "display_name": "Set Output Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_019KDDD7QG44B17UtJSoWB4qdmpuGK9DlwH.output.variable_workflow_019KEJS00AVTR1frBEcJEMwYSRRSCa4A5P3$",
+                      "variable_value_new": "$activity.definition_activity_019KEJZ1X9UDO1JKn2ZUjX8v555qWNhxnCi.output.jsonpath_queries.Abbreviation$"
+                    },
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_019KDDD7QG44B17UtJSoWB4qdmpuGK9DlwH.output.variable_workflow_019KEJ4LMZOYC2cV1mlrmUYG9hmoYm5TSTV$",
+                      "variable_value_new": "$activity.definition_activity_019KEJZ1X9UDO1JKn2ZUjX8v555qWNhxnCi.output.jsonpath_queries.Current Time$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_019KEFDOETBA52yyx306nt7f7lcjwtxhAfp",
+            "name": "Condition Branch",
+            "title": "Failure",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_019KECXP6QWCR2b6VDKutxuNNnD1L123g3J.output.succeeded$",
+                "operator": "eq",
+                "right_operand": false
+              },
+              "continue_on_failure": false,
+              "description": "Check status code for get specifiied timezone.",
+              "display_name": "Failure",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019KDOEX79PNE0zmHejObSMZs4789Vqf7ko",
+                "name": "HTTP Request",
+                "title": "Get Available Timezones",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "description": "Request a list of valid timezones as JSON.",
+                  "display_name": "Get Available Timezones",
+                  "method": "GET",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": false,
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target": true,
+                    "use_workflow_target_group": false
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_019KE4UFMW0HV4uohV5tucXlShZWyJiMKgY",
+                "name": "Condition Block",
+                "title": "Check Result for Get Available Timezones",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Check Result for Get Available Timezones",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_019KE4UIY7I325gIoL1vN6fbeoDRjSf5FPF",
+                    "name": "Condition Branch",
+                    "title": "Success",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019KDOEX79PNE0zmHejObSMZs4789Vqf7ko.output.succeeded$",
+                        "operator": "eq",
+                        "right_operand": true
+                      },
+                      "continue_on_failure": false,
+                      "description": "The call to get timezones succeeded.",
+                      "display_name": "Success",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019NO1R8GP75K3WItiT9zvZiKvih0LbXA2a",
+                        "name": "JSONPath Query",
+                        "title": "Query Available Timezones",
+                        "type": "corejava.jsonpathquery",
+                        "base_type": "activity",
+                        "properties": {
+                          "action_timeout": 180,
+                          "continue_on_failure": false,
+                          "display_name": "Query Available Timezones",
+                          "input_json": "$activity.definition_activity_019KDOEX79PNE0zmHejObSMZs4789Vqf7ko.output.response_body$",
+                          "jsonpath_queries": [
+                            {
+                              "jsonpath_query": "$",
+                              "jsonpath_query_name": "Timezones",
+                              "jsonpath_query_type": "string"
+                            }
+                          ],
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      },
+                      {
+                        "unique_name": "definition_activity_019NO111D9FYH15m5KyGiSyipfetTTSTrkp",
+                        "name": "Set Variables",
+                        "title": "Set Output Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "description": "Set the output variables of the workflow to pass back to the invoker of the workflow",
+                          "display_name": "Set Output Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_019KDDD7QG44B17UtJSoWB4qdmpuGK9DlwH.output.variable_workflow_019NO0L5NZ0PC4dW4ZnlkFYe7I5DoK8yAi0$",
+                              "variable_value_new": "$activity.definition_activity_019NO1R8GP75K3WItiT9zvZiKvih0LbXA2a.output.jsonpath_queries.Timezones$"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_019KE4UK2F4B52RWioB8iBITovIBQvQ0Dfe",
+                    "name": "Condition Branch",
+                    "title": "Failure",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": "$activity.definition_activity_019KDOEX79PNE0zmHejObSMZs4789Vqf7ko.output.succeeded$",
+                        "operator": "eq",
+                        "right_operand": false
+                      },
+                      "continue_on_failure": false,
+                      "description": "Call to get available timezones failed.",
+                      "display_name": "Failure",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_019KE6DPLI2TF6Fk1RS9j5TPRRWHqvgYYXP",
+                        "name": "Failed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "failed-completed",
+                          "display_name": "Failed",
+                          "result_message": "Set workflow status to failed."
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019KEH8SNNN3J6HccpZHIBRexYn5bdSZNLF",
+        "name": "Completed",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "display_name": "Completed"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_019KDNXR6AFFT7SJdyRRDbcPfcddbR9eWxk": {
+      "unique_name": "definition_target_019KDNXR6AFFT7SJdyRRDbcPfcddbR9eWxk",
+      "name": "World Time API",
+      "title": "World Time API",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "description": "WorldTimeAPI is a simple web service which returns the local-time for a given timezone as either JSON or plain-text. Some additional information is provided, such as whether that timezone is currently in Daylight Savings Time, when DST starts and ends, the UTC offset, etc.",
+        "disable_certificate_validation": false,
+        "display_name": "World Time API",
+        "host": "worldtimeapi.org",
+        "no_runtime_user": true,
+        "path": "api/timezone",
+        "protocol": "http"
+      }
+    }
+  }
+}
