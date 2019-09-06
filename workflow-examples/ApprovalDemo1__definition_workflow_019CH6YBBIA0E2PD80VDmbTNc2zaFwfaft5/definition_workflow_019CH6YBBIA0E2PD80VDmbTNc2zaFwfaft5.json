@@ -1,0 +1,256 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_019CH6YBBIA0E2PD80VDmbTNc2zaFwfaft5",
+    "name": "Sample Approval",
+    "title": "Sample Approval",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "input",
+          "name": "Owner",
+          "type": "datatype.boolean",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019W6T3I1I9WP4GIZ3YCgy0b8s3A25vXqQ4",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Status",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019CI2RHQ0UPP7FFGgm5zaOnO7kEYtytkKr",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Assignee",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019P7IQUVQ7TS5wCRKBdwi5diOGDiIObvlU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "Requestor",
+          "type": "datatype.string",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019W6SXEW38QG6WdovEkZtVI3dneAXuCTBH",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This workflow demonstrates how to create an approval request that is to be approved by \"Assignee\" and the \"Requestor\" and \"Owner\" can both see the task status. These should be emails of the users in your tenant.\n\nThe workflow will wait for the approval to complete.",
+      "display_name": "Sample Approval",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019CH7L8M8AMY4HVfUdNfHK3OEdBJPj8qr7",
+        "name": "Create Approval Request",
+        "title": "Create Approval Request",
+        "type": "task.approval_request",
+        "base_type": "activity",
+        "properties": {
+          "approval_choices": [
+            "Approve",
+            "Reject"
+          ],
+          "assignees": [
+            "$workflow.definition_workflow_019CH6YBBIA0E2PD80VDmbTNc2zaFwfaft5.input.variable_workflow_019P7IQUVQ7TS5wCRKBdwi5diOGDiIObvlU$"
+          ],
+          "continue_on_failure": false,
+          "display_name": "Create Approval Request",
+          "due_date": {
+            "is_relative_time": true,
+            "relative_time": {
+              "duration": 15,
+              "time_units": "days"
+            },
+            "set_due_date": true
+          },
+          "expiration_date": {
+            "is_relative_time": true,
+            "is_specified_date": false,
+            "relative_time": {
+              "duration": 15,
+              "time_units": "days"
+            }
+          },
+          "expiration_status": "Expired",
+          "minimum_approvals": 1,
+          "priority": "high",
+          "skip_execution": false,
+          "subject_line": "Issue requries your approval",
+          "task_message": "Hello user, this issue requires your approval",
+          "task_owner": "$workflow.definition_workflow_019CH6YBBIA0E2PD80VDmbTNc2zaFwfaft5.input.variable_workflow_019W6T3I1I9WP4GIZ3YCgy0b8s3A25vXqQ4$",
+          "task_requestor": "$workflow.definition_workflow_019CH6YBBIA0E2PD80VDmbTNc2zaFwfaft5.input.variable_workflow_019W6SXEW38QG6WdovEkZtVI3dneAXuCTBH$"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019CHVQRDR1VD5TjE6bJEBbFhORflRljwG6",
+        "name": "Wait For Event",
+        "title": "Wait For Event",
+        "type": "task.wait_for_event",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Wait For Event",
+          "event_info": {
+            "add_event": true,
+            "event_definition": {
+              "conditions": {
+                "left_operand": "$output.status.state$",
+                "operator": "eqi",
+                "right_operand": "completed"
+              }
+            }
+          },
+          "event_type": "approval_task.event",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019CI0JGYG9R15m61MGDYM1txagBcKNlYtU",
+        "name": "Condition Block",
+        "title": "Condition Block",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Condition Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_019CI0JJLA6JU0yvLA2OJDnUylTHtaCFGTm",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_019CHVQRDR1VD5TjE6bJEBbFhORflRljwG6.output.response$",
+                "operator": "eq",
+                "right_operand": "Approve"
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019CI2TFX1CXA6Tbfoba2BVBssNDgb28d9M",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_019CH6YBBIA0E2PD80VDmbTNc2zaFwfaft5.local.variable_workflow_019CI2RHQ0UPP7FFGgm5zaOnO7kEYtytkKr$",
+                      "variable_value_new": "Approved"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_019CI0JKM16WO2RA6sMtj7GqcLoZWrndk9L",
+            "name": "Condition Branch",
+            "title": "Condition Branch",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_019CHVQRDR1VD5TjE6bJEBbFhORflRljwG6.output.response$",
+                "operator": "eq",
+                "right_operand": "Reject"
+              },
+              "continue_on_failure": false,
+              "display_name": "Condition Branch",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_019CI373SFY925PPzHidAteKT2VGJjRT38h",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Set Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_019CH6YBBIA0E2PD80VDmbTNc2zaFwfaft5.local.variable_workflow_019CI2RHQ0UPP7FFGgm5zaOnO7kEYtytkKr$",
+                      "variable_value_new": "Rejected"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_019CKYQR7TCLG0LkQLATfwHvlIXMhYAybsk",
+        "name": "Completed",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "display_name": "Completed"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
