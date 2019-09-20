@@ -244,12 +244,6 @@
                       "zdate_type_format": ""
                     },
                     {
-                      "jsonpath_query": "$..state",
-                      "jsonpath_query_name": "ProcessingState",
-                      "jsonpath_query_type": "string",
-                      "zdate_type_format": ""
-                    },
-                    {
                       "jsonpath_query": "$..importance",
                       "jsonpath_query_name": "Importance",
                       "jsonpath_query_type": "string",
