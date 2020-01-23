@@ -142,7 +142,7 @@
         "unique_name": "definition_activity_0167MFEEBWCKT5s0yCtVFEn9qQ1ZrHgO9Eu",
         "name": "Execute Python Script",
         "title": "Generate Unique ID",
-        "type": "python.script",
+        "type": "python3.script",
         "base_type": "activity",
         "properties": {
           "action_timeout": 180,
