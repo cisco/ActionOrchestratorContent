@@ -1,0 +1,159 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_017NX6BIZXZ2W4Gzr12cuTy0TGVNiyUrGPK",
+    "name": "Nir PMO24 ACI workflow",
+    "title": "Nir PMO24 ACI workflow",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "insert tenant name ",
+          "scope": "input",
+          "name": "tenant name",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_017NYFFHQTBI05Nw5QGvjLAk1xmT4fMWLSg",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "scope": "static",
+          "name": "admin pw",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_017NY7Y1QF6WO1PLWGZgEpzSP1u42416Oez",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": true
+      },
+      "delete_workflow_instance": false,
+      "description": "test for PMO24 to show how easy AO is ",
+      "display_name": "Nir PMO24 ACI workflow",
+      "favorite": false,
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_0175QOH2F688P6eFi3kUrP98qJLCtr6bE7Q",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_017NY5BLMMN380eQsizgYWWvhex43wSadUf",
+        "name": "Get Access Token",
+        "title": "Get Access Token",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get Access Token",
+          "input": {
+            "variable_workflow_01gRbBzC6y65ilW690WbXhKOxVVEFAWak": "admin",
+            "variable_workflow_01gRbcbVNXvwNc0xy6oSxfLv1IMlF4e8W": "$workflow.definition_workflow_017NX6BIZXZ2W4Gzr12cuTy0TGVNiyUrGPK.static.variable_workflow_017NY7Y1QF6WO1PLWGZgEpzSP1u42416Oez$"
+          },
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "016YVWSHDCXIU3jbVE7pXgYOLHVfKW1E2MG",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01gRBIJ4lT0J8qCi0CcrG0bvgGO8oehuN"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017NYANIB96FM04GcN9E1r0sfpqccW7xuZp",
+        "name": "Create Tenant",
+        "title": "Create Tenant",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Create Tenant",
+          "input": {
+            "variable_workflow_01gT1eyO4nbqZgpue94dU70UcFBp7AyZW": "$workflow.definition_workflow_017NX6BIZXZ2W4Gzr12cuTy0TGVNiyUrGPK.input.variable_workflow_017NYFFHQTBI05Nw5QGvjLAk1xmT4fMWLSg$",
+            "variable_workflow_01gsnF9Reqp3eXbZHWnp4iGqNuaeAP2Gd": "$activity.definition_activity_017NY5BLMMN380eQsizgYWWvhex43wSadUf.output.variable_workflow_01gRCX1ylwvVGzqIKjoLIg04d3smgS7fS$",
+            "variable_workflow_01gsnt2Y71XcG6yui8wJQbvu0uOfUad8y": "$activity.definition_activity_017NY5BLMMN380eQsizgYWWvhex43wSadUf.output.variable_workflow_01gsImXMWfa5RLNqia7EnKyhdI7KS9iNR$"
+          },
+          "target": {
+            "execute_on_this_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "target_type": "016YVWSHDCXIU3jbVE7pXgYOLHVfKW1E2MG",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01gSZhunoTp5AEnITcXSV7ryRFS6i2pCG"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017NYHQPS4FKX3wl9WRVPjHNyyrtN75MujM",
+        "name": "Add Bridge Domain",
+        "title": "Add Bridge Domain",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Add Bridge Domain",
+          "input": {
+            "variable_workflow_01gXVoS2IwC8pRReC4Krx5AHtBL1Hxe3n": "$activity.definition_activity_017NY5BLMMN380eQsizgYWWvhex43wSadUf.output.variable_workflow_01gRCX1ylwvVGzqIKjoLIg04d3smgS7fS$",
+            "variable_workflow_01gXVpWCLuW8kfL7WGM5FveS8OfJRx8Hc": "$activity.definition_activity_017NY5BLMMN380eQsizgYWWvhex43wSadUf.output.variable_workflow_01gsImXMWfa5RLNqia7EnKyhdI7KS9iNR$",
+            "variable_workflow_01gXw9veKeGXYdxiVdVcn1GJrOmMp3jBs": "$workflow.definition_workflow_017NX6BIZXZ2W4Gzr12cuTy0TGVNiyUrGPK.input.variable_workflow_017NYFFHQTBI05Nw5QGvjLAk1xmT4fMWLSg$",
+            "variable_workflow_01gXwbaSuIRnQiZAUZoZ7CkbfG5upWBhX": "BD-Nir"
+          },
+          "target": {
+            "target_type": "016YVWSHDCXIU3jbVE7pXgYOLHVfKW1E2MG",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01gXVESXPzf7bYqX9aoEDgypVZl4hl6Ls"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_016Z06DEERYCE2UTuKXvGDoONdMOBBL3xFM"
+    ]
+  },
+  "categories": {
+    "category_016Z06DEERYCE2UTuKXvGDoONdMOBBL3xFM": {
+      "unique_name": "category_016Z06DEERYCE2UTuKXvGDoONdMOBBL3xFM",
+      "name": "ACI Automation",
+      "title": "ACI Automation",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_0175QOH2F688P6eFi3kUrP98qJLCtr6bE7Q": {
+      "unique_name": "definition_target_0175QOH2F688P6eFi3kUrP98qJLCtr6bE7Q",
+      "name": "ACI Fabric",
+      "title": "ACI Fabric",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": false,
+        "display_name": "ACI Fabric",
+        "host": "10.2.0.14",
+        "no_runtime_user": true,
+        "path": "/api",
+        "port": 80,
+        "protocol": "http"
+      }
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01gRBIJ4lT0J8qCi0CcrG0bvgGO8oehuN",
+    "definition_workflow_01gSZhunoTp5AEnITcXSV7ryRFS6i2pCG",
+    "definition_workflow_01gXVESXPzf7bYqX9aoEDgypVZl4hl6Ls"
+  ]
+}
